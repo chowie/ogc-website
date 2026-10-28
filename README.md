@@ -108,7 +108,21 @@ summary: Short description.      # optional
 ---
 ```
 
-Past events drop off automatically on the next build.
+Past events drop off automatically; the site rebuilds every morning
+(`.github/workflows/daily-rebuild.yml`).
+
+For something that meets every week, give the first meeting's date and add
+`repeat: weekly`. The site always shows the next upcoming meeting. Add
+`until: 2026-12-16` to stop after a date.
+
+```markdown
+---
+title: Women's Bible Study
+start: 2026-09-16T09:30:00-04:00   # first meeting
+repeat: weekly
+until: 2026-12-16                  # optional
+---
+```
 
 ## Deploy
 

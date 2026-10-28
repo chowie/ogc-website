@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { getUpcomingEvents } from '../lib/content';
+import { TZ as tz } from '../lib/time';
 
 const events = await getUpcomingEvents();
-const tz = 'America/Detroit';
 const fmtDate = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: tz });
 const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
 ---
@@ -26,7 +26,9 @@ const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', mi
             <div>
               <h2 class="event-row__title">{e.data.title}</h2>
               <p class="event-row__meta">
-                {fmtDate(e.data.start)} · {fmtTime(e.data.start)}{e.data.end && ` – ${fmtTime(e.data.end)}`}
+                {e.data.repeat === 'weekly'
+                  ? <>Every {e.data.start.toLocaleDateString('en-US', { weekday: 'long', timeZone: tz })} · {fmtTime(e.data.start)}{e.data.end && ` – ${fmtTime(e.data.end)}`}<br />Next: {fmtDate(e.data.start)}</>
+                  : <>{fmtDate(e.data.start)} · {fmtTime(e.data.start)}{e.data.end && ` – ${fmtTime(e.data.end)}`}</>}
                 {e.data.location && <><br />{e.data.location}</>}
               </p>
               {e.data.summary && <p>{e.data.summary}</p>}

@@ -46,10 +46,17 @@ const events = defineCollection({
       end: z.coerce.date().optional(),
       location: z.string().optional(),
       summary: z.string().optional(),
+      // Repeating events: `start`/`end` are the first meeting; the site shows the next one.
+      repeat: z.enum(['weekly']).optional(),
+      until: z.coerce.date().optional(),
     })
     .refine((e) => !e.end || e.end >= e.start, {
       message: 'end must be after start',
       path: ['end'],
+    })
+    .refine((e) => !e.until || e.repeat, {
+      message: 'until only applies to repeating events',
+      path: ['until'],
     }),
 });
 

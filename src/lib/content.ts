@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content';
+import { nextWeekly } from './time';
 
 export async function getTeam() {
   const team = await getCollection('team');
@@ -15,10 +16,15 @@ export async function getSermons() {
 }
 
 // "Upcoming" is evaluated at build time; a scheduled daily rebuild keeps it fresh.
+// Repeating events come back with start/end moved to their next occurrence.
 export async function getUpcomingEvents(now = new Date()) {
   const events = await getCollection('events');
   return events
-    .filter((e) => (e.data.end ?? e.data.start) >= now)
+    .flatMap((e) => {
+      if (!e.data.repeat) return (e.data.end ?? e.data.start) >= now ? [e] : [];
+      const next = nextWeekly(e.data.start, e.data.end, now, e.data.until);
+      return next ? [{ ...e, data: { ...e.data, ...next } }] : [];
+    })
     .sort((a, b) => a.data.start.valueOf() - b.data.start.valueOf());
 }
 

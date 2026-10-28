@@ -64,9 +64,11 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] Events: 3 upcoming from oneidagospel.org/events (Women's Bible Study,
       Who Is Oneida? Nov 15, Membership Class Dec 6). Trunk or Treat skipped (past).
       Flyer's personal cell numbers deliberately omitted → "call the church office".
-- [ ] Recurring events: schema has one start date, so the weekly Women's Bible
-      Study is entered as its next date (Nov 4) and drops off after. Add a
-      `recurrence` field (e.g. weekly + until) if Chris wants standing events.
+- [x] Recurring events: `repeat: weekly` (+ optional `until`) on events; next
+      occurrence computed DST-safe in src/lib/time.ts. Women's Bible Study uses it.
+- [ ] **Chris:** add repo secret NETLIFY_BUILD_HOOK (URL of the "Daily rebuild
+      (GitHub Actions)" hook already created in Netlify) so daily-rebuild.yml can
+      run. Claude was blocked from writing secrets (correctly).
 - [x] Team photos downloaded from the current site's Wix CDN (Chris approved
       2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90

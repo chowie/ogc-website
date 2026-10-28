@@ -1,0 +1,29 @@
+# Rebuilds the site every morning so time-based content stays current:
+# past events drop off and repeating events roll forward to their next date.
+#
+# Needs a repo secret NETLIFY_BUILD_HOOK holding the Netlify build hook URL
+# (Netlify → Project configuration → Build & deploy → Build hooks).
+name: Daily rebuild
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # ~4-5 a.m. Eastern
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Netlify build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::NETLIFY_BUILD_HOOK secret is not set"
+            exit 1
+          fi
+          curl -fsS -X POST -d '{}' "$HOOK?trigger_title=Daily+rebuild" -o /dev/null
+          echo "Netlify build triggered."

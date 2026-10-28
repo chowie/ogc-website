@@ -1,15 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { TZ as tz } from '../lib/time';
 
 interface Props {
   event: CollectionEntry<'events'>;
 }
 const { event } = Astro.props;
-const { title, start, location } = event.data;
-const tz = 'America/Detroit';
+const { title, start, location, repeat } = event.data;
 const month = start.toLocaleDateString('en-US', { month: 'short', timeZone: tz });
 const day = start.toLocaleDateString('en-US', { day: 'numeric', timeZone: tz });
 const time = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
+const weekday = start.toLocaleDateString('en-US', { weekday: 'long', timeZone: tz });
 ---
 
 <article class="event-tile">
@@ -20,7 +21,7 @@ const time = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-dig
     </time>
   </p>
   <h3 class="event-tile__title">{title}</h3>
-  <p class="event-tile__meta">{time}{location && ` · ${location}`}</p>
+  <p class="event-tile__meta">{repeat === 'weekly' ? `Every ${weekday}, ${time}` : time}{location && ` · ${location}`}</p>
 </article>
 
 <style>
