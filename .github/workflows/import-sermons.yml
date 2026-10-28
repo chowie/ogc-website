@@ -1,0 +1,57 @@
+# Checks the church YouTube channel for new sermons and commits them to main.
+# The push to main triggers the normal Netlify deploy.
+name: Import sermons
+
+on:
+  schedule:
+    # Twice a day (UTC): ~8 a.m. and ~6 p.m. Eastern.
+    - cron: '0 12,22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-sermons
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Import new sermons
+        run: npm run sermons:import
+
+      - name: Check for new files
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain src/content/sermons)" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            git status --short src/content/sermons
+          else
+            echo "No new sermons."
+          fi
+
+      # Don't push anything that would break the site build.
+      - name: Validate build
+        if: steps.changes.outputs.found == 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit and push
+        if: steps.changes.outputs.found == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/content/sermons
+          git commit -m "content: import new sermons from YouTube"
+          git push
