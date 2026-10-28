@@ -1,5 +1,33 @@
 # Oneida Gospel Church website
 
+A prototype replacement for a small church's Wix site: fast, accessible, and
+cheap to run, with content volunteers can edit without touching code.
+
+**Live demo:** https://ogc-website.netlify.app (hidden from search engines
+until go-live)
+
+![Home page](docs/screenshots/home-desktop.png)
+
+| Team | Sermons | Phone |
+|---|---|---|
+| ![Team page](docs/screenshots/team-desktop.png) | ![Sermons page](docs/screenshots/sermons-desktop.png) | ![Home page on a phone](docs/screenshots/home-phone.png) |
+
+- **Astro 7**, static output, plain CSS with design tokens. No client
+  framework; the only JavaScript is the mobile menu toggle.
+- **Content as files:** Markdown/JSON content collections with a typed schema,
+  so a bad entry fails the build and names the file. Adding a team member is
+  one Markdown file. Ready for a git-based CMS later.
+- **Sermons import themselves:** a GitHub Actions job reads the church's
+  YouTube feed twice a day, writes new sermon files, and commits them;
+  Netlify deploys.
+- **Events stay current:** weekly events compute their next date
+  (DST-safe, America/Detroit), and a daily build hook drops past events.
+- **Netlify** for hosting, deploy previews on pull requests, and the contact
+  form (Netlify Forms, honeypot spam filter).
+- Lighthouse accessibility 100 on every page; mobile-first layout.
+
+## About the code
+
 Static site built with [Astro](https://astro.build). All content lives in
 plain files under `src/content/` and `src/data/` — no code changes needed to
 update people, sermons, events, or service times.
