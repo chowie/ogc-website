@@ -56,15 +56,28 @@ frontmatter.
 
 ### Add a sermon
 
-`src/content/sermons/2026-11-01-title.md`:
+Pull new uploads from the church YouTube channel:
+
+```bash
+npm run sermons:import
+```
+
+It reads the channel's feed (latest 15 videos), takes the speaker, scripture
+and sermon date from the video description's `🎙 Speaker:`, `📖 Scripture:`
+and `🗓` lines, and writes one file per new video. Videos already imported are
+skipped, so edits you make to those files are kept. Commit the new files.
+
+Or add one by hand, `src/content/sermons/2026-11-01-title.md`:
 
 ```markdown
 ---
 title: Sermon Title
 date: 2026-11-01
 speaker: Speaker Name
+passage: Psalm 46          # optional
 youtubeUrl: https://www.youtube.com/watch?v=...
 series: Series Name        # optional
+summary: One-line teaser.  # optional
 ---
 ```
 

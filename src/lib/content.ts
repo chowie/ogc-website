@@ -28,3 +28,8 @@ export function truncate(text: string, max = 150) {
   const cut = text.slice(0, max - 1);
   return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,.;:–—-]+$/, '')}…`;
 }
+
+// YouTube video ID from a watch, share, or embed URL.
+export function youtubeId(url: string) {
+  return url.match(/(?:v=|youtu\.be\/|embed\/|live\/)([\w-]{11})/)?.[1];
+}

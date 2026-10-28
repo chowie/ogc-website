@@ -71,7 +71,7 @@ const words = site.name.split(' ');
           <p class="eyebrow">Latest Sermon</p>
           <h2 id="sermon-heading">{latestSermon.data.title}</h2>
           <p>
-            {[latestSermon.data.speaker, latestSermon.data.series].filter(Boolean).join(' · ')}
+            {[latestSermon.data.passage, latestSermon.data.speaker].filter(Boolean).join(' · ')}
             {' · '}
             <time datetime={latestSermon.data.date.toISOString().slice(0, 10)}>
               {latestSermon.data.date.toLocaleDateString('en-US', { dateStyle: 'long', timeZone: 'UTC' })}

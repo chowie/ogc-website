@@ -51,6 +51,11 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] Seed real team text from Wix CSV export (6 people, Wix Sort Order → displayOrder,
       Wix slugs kept so /team/<name> URLs match the old site). Emails in the CSV
       deliberately NOT imported (two are personal Gmail).
+- [x] Sermons imported from youtube.com/@OneidaGospelChurch (3 public videos)
+      via `npm run sermons:import` (RSS feed; parses 🎙/📖/🗓 description lines).
+- [x] site.json filled from the channel's video descriptions: 3048 E. Strange
+      Hwy., Grand Ledge, MI 48837; Sundays 10:30 a.m.; YouTube + Facebook;
+      Google Maps embed. Sunday School placeholder removed (time unknown).
 - [x] Team photos downloaded from the current site's Wix CDN (Chris approved
       2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
@@ -83,4 +88,5 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 
 ## Stopped Here
 Demo live (manual deploy). Blocked on Chris: Netlify GitHub App repo access.
-Still need: real address/service times/map embed for site.json, hero photo.
+Still need: tagline + welcome text, office phone/email (optional), any other
+service times, hero photo. Later: run `sermons:import` on a schedule.

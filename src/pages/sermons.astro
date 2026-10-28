@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import { getSermons } from '../lib/content';
+import { getSermons, youtubeId } from '../lib/content';
 
 const sermons = await getSermons();
 ---
@@ -11,28 +11,58 @@ const sermons = await getSermons();
   <section class="section">
     <div class="container">
       <ul class="sermon-list list-plain">
-        {sermons.map((s) => (
-          <li class="sermon-row">
-            <time class="sermon-row__date" datetime={s.data.date.toISOString().slice(0, 10)}>
-              {s.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
-            </time>
-            <div>
-              <h2 class="sermon-row__title">{s.data.title}</h2>
-              <p class="sermon-row__meta">{[s.data.speaker, s.data.series].filter(Boolean).join(' · ')}</p>
-            </div>
-            <a class="btn" href={s.data.youtubeUrl}>Watch<span class="visually-hidden">: {s.data.title}</span></a>
-          </li>
-        ))}
+        {sermons.map((s) => {
+          const id = youtubeId(s.data.youtubeUrl);
+          return (
+            <li class="sermon-row">
+              <a class="sermon-row__thumb" href={s.data.youtubeUrl} tabindex="-1" aria-hidden="true">
+                {id && (
+                  <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" />
+                )}
+              </a>
+              <div class="sermon-row__body">
+                <p class="sermon-row__date">
+                  <time datetime={s.data.date.toISOString().slice(0, 10)}>
+                    {s.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
+                  </time>
+                </p>
+                <h2 class="sermon-row__title">
+                  <a href={s.data.youtubeUrl}>{s.data.title}</a>
+                </h2>
+                <p class="sermon-row__meta">
+                  {[s.data.passage, s.data.speaker, s.data.series].filter(Boolean).join(' · ')}
+                </p>
+                {s.data.summary && <p class="sermon-row__summary">{s.data.summary}</p>}
+              </div>
+            </li>
+          );
+        })}
       </ul>
+      <p class="sermon-more">
+        <a class="btn" href="https://www.youtube.com/@OneidaGospelChurch">More on YouTube</a>
+      </p>
     </div>
   </section>
 </Base>
 
 <style>
-  .sermon-row { display: grid; gap: var(--space-xs) var(--space-m); align-items: center; padding-block: var(--space-m); border-bottom: 2px solid var(--mist); }
-  @media (min-width: 48rem) { .sermon-row { grid-template-columns: 9rem 1fr auto; } }
-  .sermon-row__date { font-family: var(--font-display); font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--coral-ink); }
-  .sermon-row__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin: 0; }
-  .sermon-row__meta { color: var(--muted); margin: 0; }
-  .sermon-row .btn { justify-self: start; }
+  .sermon-row { display: grid; gap: var(--space-s) var(--space-l); padding-block: var(--space-l); border-bottom: 2px solid var(--mist); }
+  .sermon-row:first-child { padding-top: 0; }
+  @media (min-width: 40rem) { .sermon-row { grid-template-columns: minmax(12rem, 22rem) 1fr; align-items: start; } }
+  .sermon-row__thumb { display: block; position: relative; background: var(--slate); }
+  .sermon-row__thumb img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .sermon-row__thumb::after {
+    content: ''; position: absolute; right: 0.75rem; bottom: 0.75rem;
+    width: 2.75rem; height: 2.75rem; border-radius: 50%; background: rgb(28 30 43 / 0.75)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center / 55% no-repeat;
+    transition: background-color 0.15s;
+  }
+  .sermon-row:hover .sermon-row__thumb::after { background-color: var(--coral); }
+  .sermon-row__date { font-family: var(--font-display); font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--coral-ink); margin-bottom: var(--space-xs); }
+  .sermon-row__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-2); margin-bottom: var(--space-xs); }
+  .sermon-row__title a { color: var(--ink); text-decoration: none; }
+  .sermon-row__title a:hover { color: var(--coral-ink); text-decoration: underline; }
+  .sermon-row__meta { color: var(--muted); font-weight: 600; }
+  .sermon-row__summary { max-width: 40rem; }
+  .sermon-more { margin-top: var(--space-l); }
 </style>

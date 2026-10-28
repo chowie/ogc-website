@@ -2,30 +2,29 @@
   "name": "Oneida Gospel Church",
   "tagline": "Placeholder tagline. Replace in site.json.",
   "address": {
-    "street": "TODO: street",
-    "city": "TODO: city",
+    "street": "3048 E. Strange Hwy.",
+    "city": "Grand Ledge",
     "state": "MI",
-    "zip": "TODO",
-    "mapEmbedUrl": ""
+    "zip": "48837",
+    "mapEmbedUrl": "https://www.google.com/maps?q=Oneida+Gospel+Church%2C+3048+E+Strange+Hwy%2C+Grand+Ledge%2C+MI+48837&output=embed"
   },
   "phone": "",
   "email": "",
   "serviceTimes": [
     {
-      "label": "Sunday School",
+      "label": "Sunday Worship",
       "day": "Sunday",
-      "time": "TODO"
-    },
-    {
-      "label": "Morning Worship",
-      "day": "Sunday",
-      "time": "TODO"
+      "time": "10:30 a.m."
     }
   ],
   "social": [
     {
       "label": "YouTube",
-      "url": "https://www.youtube.com/"
+      "url": "https://www.youtube.com/@OneidaGospelChurch"
+    },
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/oneidagospel/"
     }
   ],
   "welcome": {

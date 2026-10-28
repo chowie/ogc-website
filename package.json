@@ -10,7 +10,8 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sermons:import": "node scripts/import-sermons.mjs"
   },
   "dependencies": {
     "@fontsource-variable/unbounded": "^5.3.0",

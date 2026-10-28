@@ -30,8 +30,10 @@ const sermons = defineCollection({
     title: z.string().min(1),
     date: z.coerce.date(),
     speaker: z.string().optional(),
+    passage: z.string().optional(),
     youtubeUrl: z.url(),
     series: z.string().optional(),
+    summary: z.string().optional(),
   }),
 });
 
