@@ -77,9 +77,12 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       366047+chowie@users.noreply.github.com on all commits; main force-pushed.
 - [x] `.gitconfig` in repo sets user.email; enable per clone with
       `git config include.path ../.gitconfig` (done in Chris's local clone).
-- [ ] Before going public: closed test PR chowie/ogc-website#1 still holds
-      pre-rewrite commits with the Gmail (GitHub keeps PR refs). Ask GitHub
-      Support to purge, or recreate the repo. Also get team OK on bios/photos.
+- [x] Repo deleted and recreated 2026-10-28 to drop old PR #1 refs. Gmail
+      also scrubbed from every version of this file (it had been written here).
+      Verified on GitHub: 0 files and 0 commits mention it. Netlify app access
+      and NETLIFY_BUILD_HOOK secret re-added by Chris; git deploy, daily rebuild
+      and sermon import all re-verified.
+- [ ] Before going public: get team OK on bios/photos.
 
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
