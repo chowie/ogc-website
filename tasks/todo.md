@@ -16,7 +16,9 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - **Team photo** sits next to its Markdown file (`photo: ./jane-doe.jpg`) so
   Astro optimizes it. Missing photo → initials placeholder.
 - **displayOrder** defaults to 999 (forgotten = sorted last); ties sort by name.
-- **shortBio** max 150 chars, enforced by schema — build fails if exceeded.
+- **shortBio** stored in full (schema max 400); team cards show the first ~150
+  chars cut at a word + "…". Changed from a hard 150 limit because every Wix
+  Short Bio is 254–348 chars (Chris chose this, 2026-10-28).
 - **noindex**: one switch, `PUBLIC_ALLOW_INDEXING` env var (unset = blocked).
   Drives both the `<meta name="robots">` tag and `/robots.txt`.
 - **Events "upcoming"** is computed at build time. Static site → needs a
@@ -24,7 +26,7 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 
 ## Blocked on Chris
 - [x] Wix template URL (visual model) — Wix "Urban Church" template #1852
-- [ ] Current OGC site URL (team bio text source)
+- [x] Team text: Chris exported Wix Team CSV (2026-10-28); current site is oneidagospel.org
 - [x] Photos: placeholders for now (Chris, 2026-10-28)
 - [x] GitHub: Chris's account (`chowie`) for now; church org later
 - [x] Netlify team: Funky Bunch (free)
@@ -46,7 +48,9 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] Team detail page
 - [x] Sermons list, Events list
 - [x] Plan a Visit: address, map embed, service times, Netlify form
-- [ ] Seed real team text from current site
+- [x] Seed real team text from Wix CSV export (6 people, Wix Sort Order → displayOrder,
+      Wix slugs kept so /team/<name> URLs match the old site). Emails in the CSV
+      deliberately NOT imported (two are personal Gmail). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
 
 ## Phase 3 — Ship (confirm each with Chris)
@@ -77,5 +81,4 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 
 ## Stopped Here
 Demo live (manual deploy). Blocked on Chris: Netlify GitHub App repo access.
-Still need: current OGC site URL (team
-text), real address/service times/map embed for site.json, hero photo.
+Still need: real address/service times/map embed for site.json, hero photo.

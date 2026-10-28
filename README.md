@@ -41,7 +41,7 @@ role: Deacon
 photo: ./first-last.jpg     # optional; path relative to this file
 photoAlt: First Last smiling outside the church   # optional
 displayOrder: 5             # lower numbers appear first; omit to sort last
-shortBio: One or two sentences for the team card. 150 characters max.
+shortBio: A few sentences. The team card shows the first ~150 characters. 400 max.
 ---
 
 Full bio goes here, in Markdown. It appears on the person's detail page

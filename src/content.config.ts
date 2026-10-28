@@ -14,9 +14,10 @@ const team = defineCollection({
       // Path relative to the Markdown file, e.g. ./jane-doe.jpg
       photo: image().optional(),
       photoAlt: z.string().optional(),
+      // Team cards show the first ~150 characters; the rest is cut at a word.
       shortBio: z
         .string()
-        .max(150, 'shortBio must be 150 characters or fewer')
+        .max(400, 'shortBio must be 400 characters or fewer')
         .optional(),
       // Lower numbers appear first. Missing = sorted to the end.
       displayOrder: z.number().default(999),

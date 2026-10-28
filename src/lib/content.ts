@@ -21,3 +21,10 @@ export async function getUpcomingEvents(now = new Date()) {
     .filter((e) => (e.data.end ?? e.data.start) >= now)
     .sort((a, b) => a.data.start.valueOf() - b.data.start.valueOf());
 }
+
+// Shorten text to at most `max` characters, cutting at a word boundary.
+export function truncate(text: string, max = 150) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,.;:–—-]+$/, '')}…`;
+}

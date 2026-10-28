@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TeamPhoto from '../../components/TeamPhoto.astro';
-import { getTeam } from '../../lib/content';
+import { getTeam, truncate } from '../../lib/content';
 
 export async function getStaticPaths() {
   const team = await getTeam();
@@ -13,7 +13,7 @@ const { member } = Astro.props;
 const { Content } = await render(member);
 ---
 
-<Base title={member.data.name} description={member.data.shortBio}>
+<Base title={member.data.name} description={member.data.shortBio && truncate(member.data.shortBio, 160)}>
   <article class="section">
     <div class="container profile">
       <div class="profile__photo">

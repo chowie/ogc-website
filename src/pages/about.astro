@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import TeamPhoto from '../components/TeamPhoto.astro';
-import { getTeam } from '../lib/content';
+import { getTeam, truncate } from '../lib/content';
 
 const team = await getTeam();
 ---
@@ -18,7 +18,7 @@ const team = await getTeam();
             <div class="team-card__body">
               <h2 class="team-card__name">{m.data.name}</h2>
               {m.data.role && <p class="team-card__role">{m.data.role}</p>}
-              {m.data.shortBio && <p class="team-card__bio">{m.data.shortBio}</p>}
+              {m.data.shortBio && <p class="team-card__bio">{truncate(m.data.shortBio)}</p>}
               <a class="team-card__more" href={`/team/${m.id}`}>
                 Read More<span class="visually-hidden"> about {m.data.name}</span>
               </a>
