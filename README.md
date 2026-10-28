@@ -40,6 +40,8 @@ Requires Node 22.23.4+ (`nvm use` picks it up from `.nvmrc`).
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # type-check + build to dist/
+npm test         # unit tests
+npm run verify   # tests + type-check + build (the release gate)
 ```
 
 After cloning, turn on the repo's git settings (commit email set to the
@@ -154,8 +156,49 @@ until: 2026-12-16                  # optional
 
 ## Deploy
 
-Netlify builds `main` to the demo site and every pull request to a deploy
-preview (config in `netlify.toml`). The contact form uses Netlify Forms.
+The live demo is always the **newest release tag** (`vX.Y.Z`), never
+`main`'s latest commit, so work in progress can sit on `main` without going
+live. Each push to `main` makes Netlify run `scripts/build-release.sh`,
+which builds the newest tag; until you cut a release, it rebuilds the same
+version. Every pull request still gets a deploy preview of its own commit
+(config in `netlify.toml`). The contact form uses Netlify Forms.
+
+Sermons the import workflow adds to `main` go live with the next release.
+
+### Releasing
+
+Versions follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+For this site, the "public API" is the content file format and the page URLs:
+
+| Bump | When |
+|---|---|
+| MAJOR | Existing content files need edits to keep building, or a page URL is removed or renamed without a redirect |
+| MINOR | A new page or feature, or a new optional content field |
+| PATCH | Fixes, copy and style tweaks, new sermons or events |
+
+Versions stay at `0.y.z` until the site goes live for real; `1.0.0` is the
+public launch.
+
+Only release a version that's done and passes everything:
+
+1. Note your changes under `## [Unreleased]` in `CHANGELOG.md` and commit.
+2. Push `main`.
+3. Run:
+
+   ```bash
+   npm run release -- patch   # or minor, major, or an exact version like 1.0.0
+   ```
+
+The script stops unless you're on a clean `main` that matches GitHub, runs
+`npm run verify` (unit tests, type check, build), then bumps `package.json`,
+turns `Unreleased` into the new version, commits `release: vX.Y.Z`, tags it,
+and pushes both. Netlify publishes it. Add `--dry-run` to preview the
+version and CHANGELOG without changing anything.
+
+**Roll back:** in Netlify → Project configuration → Environment variables,
+set `RELEASE_TAG` to an older tag (e.g. `v0.1.0`) and trigger a deploy.
+Delete the variable to return to the newest release. (Netlify's Deploys page
+can also re-publish an earlier deploy instantly.)
 
 ### Search engines
 
