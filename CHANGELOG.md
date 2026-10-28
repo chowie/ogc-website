@@ -10,6 +10,8 @@ section into the new version.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-28
+
 ### Added
 
 - Pages: Home, About/Our Team, team member detail, Sermons, Events, Plan a
@@ -26,4 +28,5 @@ section into the new version.
 - Release tooling: `npm run release`, and production deploys that build the
   newest release tag instead of `main`'s latest commit.
 
-[unreleased]: https://github.com/chowie/ogc-website/commits/main
+[unreleased]: https://github.com/chowie/ogc-website/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/chowie/ogc-website/releases/tag/v0.1.0
