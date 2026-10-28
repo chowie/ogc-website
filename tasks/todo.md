@@ -82,7 +82,9 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       Verified on GitHub: 0 files and 0 commits mention it. Netlify app access
       and NETLIFY_BUILD_HOOK secret re-added by Chris; git deploy, daily rebuild
       and sermon import all re-verified.
-- [ ] Before going public: get team OK on bios/photos.
+- [x] Repo made public by Chris (2026-10-28). Anonymous check: only no-reply
+      emails in commits; workflows have no pull_request triggers, so forks
+      can't reach the NETLIFY_BUILD_HOOK secret.
 
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
