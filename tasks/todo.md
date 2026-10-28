@@ -86,6 +86,10 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       emails in commits; workflows have no pull_request triggers, so forks
       can't reach the NETLIFY_BUILD_HOOK secret.
 
+- [x] Gmail backup bundles deleted (Chris turned on GitHub email protection).
+- [x] Portfolio polish: README intro + screenshots (docs/screenshots/), repo
+      description, homepage URL, topics. Home tagline now service time + town.
+
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
 - [x] Create Netlify site in Funky Bunch, linked to repo — https://app.netlify.com/projects/ogc-website
@@ -116,5 +120,5 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 
 ## Stopped Here
 Demo live; main auto-deploys, PRs get previews.
-Still need: tagline + welcome text, any other
-service times, hero photo. 
+Still need: welcome text, any other service times, hero photo.
+Re-shoot docs/screenshots/ after visual changes.
