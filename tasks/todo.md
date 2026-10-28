@@ -90,6 +90,41 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] Portfolio polish: README intro + screenshots (docs/screenshots/), repo
       description, homepage URL, topics. Home tagline now service time + town.
 
+## Versioning + deploy from tag (PARKED 2026-10-28 — Chris to decide later)
+Open questions: how auto-imported sermons go live when only tags deploy
+(auto patch release / wait for manual release / overlay sermons on the tag),
+and whether current main becomes v0.1.0. Nothing below is built.
+Spec: SemVer 2.0.0 (current). Tags `vX.Y.Z` (annotated; the `v` is a tag
+prefix, not part of the version), `package.json` version matches.
+`main` = demo/prod line; the live site = the newest release tag, never HEAD.
+
+What a version bump means for a website (our "public API" = content file
+format + page URLs):
+- MAJOR: existing content files need edits (breaking schema change), or a URL
+  is removed/renamed without redirect.
+- MINOR: new page/feature, new optional content field.
+- PATCH: fixes, copy/style tweaks, new content (sermons, events).
+- 0.y.z until go-live (spec: initial development); 1.0.0 = public launch.
+
+Steps:
+- [ ] `npm test`: node:test unit tests for src/lib/time.ts (DST both ways,
+      until cutoff) + content helpers; `npm run verify` = test + check + build.
+- [ ] CHANGELOG.md (Keep a Changelog 1.1.0) with an `Unreleased` section.
+- [ ] `npm run release -- patch|minor|major`: refuses unless on main, clean,
+      in sync with origin, verify passes; bumps package.json, moves Unreleased
+      → new version in CHANGELOG, commits "release: vX.Y.Z", annotated tag,
+      pushes commit + tag.
+- [ ] Netlify: stop git-triggered *production* builds (`ignore` when
+      CONTEXT=production); PR deploy previews unchanged.
+- [ ] `.github/workflows/deploy.yml`: on tag push `v*` → check out the tag,
+      verify, build, `netlify deploy --prod`. Also workflow_dispatch with a
+      `ref` input (default newest tag) for rollback/redeploy, and the daily
+      schedule (replaces daily-rebuild.yml, which rebuilds HEAD).
+      Needs **Chris:** `NETLIFY_AUTH_TOKEN` repo secret (personal access token)
+      + `NETLIFY_SITE_ID` (not secret; can live in the workflow).
+- [ ] Sermon import: see decision below.
+- [ ] README "Releasing" section; tag current main as v0.1.0 once approved.
+
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
 - [x] Create Netlify site in Funky Bunch, linked to repo — https://app.netlify.com/projects/ogc-website
