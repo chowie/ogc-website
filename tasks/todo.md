@@ -53,6 +53,10 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       deliberately NOT imported (two are personal Gmail).
 - [x] Sermons imported from youtube.com/@OneidaGospelChurch (3 public videos)
       via `npm run sermons:import` (RSS feed; parses 🎙/📖/🗓 description lines).
+- [x] Scheduled import: GitHub Actions twice daily (12:00 + 22:00 UTC) runs
+      sermons:import, validates build, commits to main as github-actions[bot].
+      Tested 2026-10-28: no-change run, and delete→re-import (54a4443, identical file).
+      Deploys depend on the Netlify GitHub App access below.
 - [x] site.json filled from the channel's video descriptions: 3048 E. Strange
       Hwy., Grand Ledge, MI 48837; Sundays 10:30 a.m.; YouTube + Facebook;
       Google Maps embed. Sunday School placeholder removed (time unknown).
@@ -89,4 +93,4 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 ## Stopped Here
 Demo live (manual deploy). Blocked on Chris: Netlify GitHub App repo access.
 Still need: tagline + welcome text, office phone/email (optional), any other
-service times, hero photo. Later: run `sermons:import` on a schedule.
+service times, hero photo. 

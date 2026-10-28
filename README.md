@@ -56,7 +56,13 @@ frontmatter.
 
 ### Add a sermon
 
-Pull new uploads from the church YouTube channel:
+New uploads to the church YouTube channel are imported automatically: a
+GitHub Actions workflow (`.github/workflows/import-sermons.yml`) checks twice a
+day (8 a.m. and 6 p.m. Eastern), commits any new sermon files to `main`, and
+Netlify deploys them. To run it now: GitHub → Actions → Import sermons →
+Run workflow.
+
+To pull uploads by hand instead:
 
 ```bash
 npm run sermons:import
