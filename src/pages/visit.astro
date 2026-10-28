@@ -28,6 +28,15 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
         </address>
         <p><a href={directionsUrl}>Get directions</a></p>
       </div>
+      {(site.phone || site.email) && (
+        <div>
+          <h2>Call or Email</h2>
+          <ul class="list-plain visit-times">
+            {site.phone && <li><a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a></li>}
+            {site.email && <li><a href={`mailto:${site.email}`}>{site.email}</a></li>}
+          </ul>
+        </div>
+      )}
     </div>
   </section>
 

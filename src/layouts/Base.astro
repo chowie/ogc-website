@@ -74,7 +74,7 @@ const { address } = site;
             {address.street}<br />
             {address.city}, {address.state} {address.zip}
           </address>
-          {site.phone && <p><a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`}>{site.phone}</a></p>}
+          {site.phone && <p><a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a></p>}
           {site.email && <p><a href={`mailto:${site.email}`}>{site.email}</a></p>}
         </div>
         <div>

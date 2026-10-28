@@ -60,6 +60,7 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] site.json filled from the channel's video descriptions: 3048 E. Strange
       Hwy., Grand Ledge, MI 48837; Sundays 10:30 a.m.; YouTube + Facebook;
       Google Maps embed. Sunday School placeholder removed (time unknown).
+- [x] Office phone 517.627.7112 + office@oneidagospel.org added (Chris, 2026-10-28)
 - [x] Team photos downloaded from the current site's Wix CDN (Chris approved
       2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
@@ -103,5 +104,5 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 
 ## Stopped Here
 Demo live; main auto-deploys, PRs get previews.
-Still need: tagline + welcome text, office phone/email (optional), any other
+Still need: tagline + welcome text, any other
 service times, hero photo. 
