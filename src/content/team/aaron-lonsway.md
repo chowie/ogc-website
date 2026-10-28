@@ -1,6 +1,8 @@
 ---
 name: "Aaron Lonsway"
 role: "Elder"
+photo: ./aaron-lonsway.jpg
+photoAlt: "Aaron Lonsway, Elder"
 displayOrder: 5
 shortBio: "Aaron is a Registered Nurse with Family Medicine of Michigan and also holds an FAA A&P aircraft maintenance license. He has led corporate worship at Oneida since shortly after his family began attending in 2023, and he completed the Elder intern process before serving as an Elder. He and his wife, Jennifer, married in 2007 and have five children."
 ---

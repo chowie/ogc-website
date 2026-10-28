@@ -1,6 +1,8 @@
 ---
 name: "Brian Milner"
 role: "Elder"
+photo: ./brian-milner.png
+photoAlt: "Brian Milner, Elder"
 displayOrder: 3
 shortBio: "Brian is a retired U.S. Navy veteran who now works as an Electronic Technician for the U.S. Postal Service. He came to faith at about 14 or 15 and served as a Deacon in a Southern Baptist church and at Oneida before God led him to serve as an Elder. He and his wife, Debbie, have three children: Amy, Kaylee, and Sam."
 ---

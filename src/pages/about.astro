@@ -11,7 +11,7 @@ const team = await getTeam();
   <PageHead eyebrow="About" title="Our Team" intro="The people who serve and lead our church family." />
   <section class="section">
     <div class="container">
-      <ul class="card-grid">
+      <ul class="card-grid team-grid">
         {team.map((m) => (
           <li class="team-card">
             <div class="team-card__photo"><TeamPhoto member={m} width={480} /></div>
@@ -31,9 +31,10 @@ const team = await getTeam();
 </Base>
 
 <style>
+  .team-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
   .team-card { display: flex; flex-direction: column; background: #fff; box-shadow: 0 1px 0 var(--mist); }
   .team-card__body { padding: var(--space-m); display: flex; flex-direction: column; flex: 1; }
-  .team-card__name { font-size: var(--step-1); margin-bottom: 0.25rem; }
+  .team-card__name { font-size: var(--step-1); margin-bottom: 0.25rem; overflow-wrap: normal; }
   .team-card__role { color: var(--coral-ink); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; }
   .team-card__bio { color: var(--muted); }
   .team-card__more { margin-top: auto; font-weight: 700; }

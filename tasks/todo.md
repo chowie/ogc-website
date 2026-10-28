@@ -50,7 +50,9 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] Plan a Visit: address, map embed, service times, Netlify form
 - [x] Seed real team text from Wix CSV export (6 people, Wix Sort Order → displayOrder,
       Wix slugs kept so /team/<name> URLs match the old site). Emails in the CSV
-      deliberately NOT imported (two are personal Gmail). Photos still placeholders.
+      deliberately NOT imported (two are personal Gmail).
+- [x] Team photos downloaded from the current site's Wix CDN (Chris approved
+      2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
 
 ## Phase 3 — Ship (confirm each with Chris)

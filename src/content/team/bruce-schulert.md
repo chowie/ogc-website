@@ -1,6 +1,8 @@
 ---
 name: "Bruce Schulert"
 role: "Elder"
+photo: ./bruce-schulert.png
+photoAlt: "Bruce Schulert, Elder"
 displayOrder: 4
 shortBio: "Bruce served 34 years in the Lansing School District as a teacher and administrator. He has attended Oneida since he was a small child and treasures the lifelong relationships he’s found here. He and his wife have four children and four grandchildren, whose love and prayers support him in his walk with Christ."
 ---

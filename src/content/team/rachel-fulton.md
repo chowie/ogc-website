@@ -1,6 +1,8 @@
 ---
 name: "Rachel Fulton"
 role: "Children's Ministry Director"
+photo: ./rachel-fulton.jpg
+photoAlt: "Rachel Fulton, Children's Ministry Director"
 displayOrder: 6
 shortBio: "Rachel is Oneida’s Children’s Director, a former teacher with a degree in education, and a mom of five. She loves teaching God’s Word to young hearts and prays the children grow in their knowledge and love of their heavenly Father as they sing, play, craft, and listen."
 ---

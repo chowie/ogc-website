@@ -1,6 +1,8 @@
 ---
 name: "Al Blankenship"
 role: "Elder"
+photo: ./al-blankenship.png
+photoAlt: "Al Blankenship, Elder"
 displayOrder: 1
 shortBio: "Al and his wife Linda have attended OGC since 2001 and have been married almost 49 years. He served 13 years on the Missions Board and has completed three terms as an Elder, and says his time at Oneida has been the season of greatest growth in his faith."
 ---

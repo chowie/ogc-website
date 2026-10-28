@@ -1,6 +1,8 @@
 ---
 name: "Andrew Fulton"
 role: "Lead Pastor"
+photo: ./andrew-fulton.jpg
+photoAlt: "Andrew Fulton, Lead Pastor"
 displayOrder: 2
 shortBio: "Andrew studied at Moody Bible Institute and earned a Master’s in Biblical Exegesis at Wheaton College, then served 12 years as an Associate Pastor in Naperville, Illinois. His mission is to know the beauty of Christ and commend Him to all. He and his wife, Rachel, have five children."
 ---
