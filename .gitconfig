@@ -1,0 +1,9 @@
+# Repo-level git settings. Git doesn't read this file on its own; enable it
+# once per clone with:
+#
+#   git config include.path ../.gitconfig
+#
+# (The path is relative to .git/, hence the ../)
+[user]
+	# GitHub no-reply address, so personal email never lands in public history.
+	email = 366047+chowie@users.noreply.github.com

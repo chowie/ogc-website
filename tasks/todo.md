@@ -64,6 +64,15 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
 
+## Commit email
+- [x] History rewritten (git filter-repo, 2026-10-28): my personal Gmail →
+      366047+chowie@users.noreply.github.com on all commits; main force-pushed.
+- [x] `.gitconfig` in repo sets user.email; enable per clone with
+      `git config include.path ../.gitconfig` (done in Chris's local clone).
+- [ ] Before going public: closed test PR chowie/ogc-website#1 still holds
+      pre-rewrite commits with the Gmail (GitHub keeps PR refs). Ask GitHub
+      Support to purge, or recreate the repo. Also get team OK on bios/photos.
+
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
 - [x] Create Netlify site in Funky Bunch, linked to repo — https://app.netlify.com/projects/ogc-website

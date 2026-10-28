@@ -14,6 +14,13 @@ npm run dev      # http://localhost:4321
 npm run build    # type-check + build to dist/
 ```
 
+After cloning, turn on the repo's git settings (commit email set to the
+GitHub no-reply address, so personal email stays out of history):
+
+```bash
+git config include.path ../.gitconfig
+```
+
 ## Editing content
 
 | What | Where |
