@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { getTeam } from '../lib/content';
+
+const team = await getTeam();
+---
+
+<Base title="About">
+  <h1>Our Team</h1>
+  <ul>
+    {team.map((m) => (
+      <li>
+        {m.data.photo && (
+          <Image src={m.data.photo} alt={m.data.photoAlt ?? m.data.name} width={320} />
+        )}
+        <h2>{m.data.name}</h2>
+        {m.data.role && <p>{m.data.role}</p>}
+        {m.data.shortBio && <p>{m.data.shortBio}</p>}
+        <a href={`/team/${m.id}`} aria-label={`Read more about ${m.data.name}`}>Read More</a>
+      </li>
+    ))}
+  </ul>
+</Base>

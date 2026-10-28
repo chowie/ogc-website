@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../lib/site';
+import { getSermons, getUpcomingEvents } from '../lib/content';
+
+const [latestSermon] = await getSermons();
+const events = (await getUpcomingEvents()).slice(0, 3);
+---
+
+<Base>
+  <section>
+    <h1>{site.name}</h1>
+    <p>{site.tagline}</p>
+    <a href="/visit">Plan a Visit</a>
+  </section>
+
+  <section>
+    <h2>Service Times</h2>
+    <ul>
+      {site.serviceTimes.map((s) => <li>{s.label}: {s.day} {s.time}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Upcoming Events</h2>
+    {events.length === 0 && <p>No upcoming events.</p>}
+    <ul>
+      {events.map((e) => (
+        <li>
+          {e.data.title} —
+          <time datetime={e.data.start.toISOString()}>
+            {e.data.start.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'America/Detroit' })}
+          </time>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {latestSermon && (
+    <section>
+      <h2>Latest Sermon</h2>
+      <a href={latestSermon.data.youtubeUrl}>{latestSermon.data.title}</a>
+    </section>
+  )}
+</Base>

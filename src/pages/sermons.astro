@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { getSermons } from '../lib/content';
+
+const sermons = await getSermons();
+---
+
+<Base title="Sermons">
+  <h1>Sermons</h1>
+  <ul>
+    {sermons.map((s) => (
+      <li>
+        <a href={s.data.youtubeUrl}>{s.data.title}</a>
+        <time datetime={s.data.date.toISOString().slice(0, 10)}>
+          {s.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })}
+        </time>
+        {s.data.speaker && <span>{s.data.speaker}</span>}
+        {s.data.series && <span>{s.data.series}</span>}
+      </li>
+    ))}
+  </ul>
+</Base>

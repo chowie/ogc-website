@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../lib/site';
+
+const { address } = site;
+---
+
+<Base title="Plan a Visit">
+  <h1>Plan a Visit</h1>
+
+  <section>
+    <h2>Service Times</h2>
+    <ul>
+      {site.serviceTimes.map((s) => <li>{s.label}: {s.day} {s.time}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Find Us</h2>
+    <address>
+      {address.street}<br />
+      {address.city}, {address.state} {address.zip}
+    </address>
+    {address.mapEmbedUrl && (
+      <iframe
+        src={address.mapEmbedUrl}
+        title={`Map to ${site.name}`}
+        width="600"
+        height="400"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    )}
+  </section>
+
+  <section>
+    <h2>Contact Us</h2>
+    <!-- Netlify Forms: detected at deploy time via data-netlify. -->
+    <form name="contact" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden><label>Leave blank <input name="bot-field" /></label></p>
+      <p><label for="name">Name</label> <input id="name" name="name" autocomplete="name" required /></p>
+      <p><label for="email">Email</label> <input id="email" name="email" type="email" autocomplete="email" required /></p>
+      <p><label for="message">Message</label> <textarea id="message" name="message" rows="5" required></textarea></p>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+</Base>

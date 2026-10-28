@@ -1,0 +1,56 @@
+---
+// Unstyled scaffold layout. Visual design comes in Phase 2.
+import { site, allowIndexing } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.tagline } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/sermons', label: 'Sermons' },
+  { href: '/events', label: 'Events' },
+  { href: '/visit', label: 'Plan a Visit' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {!allowIndexing && <meta name="robots" content="noindex, nofollow" />}
+  </head>
+  <body>
+    <header>
+      <a href="/">{site.name}</a>
+      <nav aria-label="Main">
+        <ul>
+          {nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>{site.name}</p>
+    </footer>
+  </body>
+</html>

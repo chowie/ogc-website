@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { getUpcomingEvents } from '../lib/content';
+
+const events = await getUpcomingEvents();
+const fmt = (d: Date) =>
+  d.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'America/Detroit' });
+---
+
+<Base title="Events">
+  <h1>Upcoming Events</h1>
+  {events.length === 0 && <p>No upcoming events.</p>}
+  <ul>
+    {events.map((e) => (
+      <li>
+        <h2>{e.data.title}</h2>
+        <p>
+          <time datetime={e.data.start.toISOString()}>{fmt(e.data.start)}</time>
+          {e.data.end && <> – <time datetime={e.data.end.toISOString()}>{fmt(e.data.end)}</time></>}
+        </p>
+        {e.data.location && <p>{e.data.location}</p>}
+        {e.data.summary && <p>{e.data.summary}</p>}
+      </li>
+    ))}
+  </ul>
+</Base>

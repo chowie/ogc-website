@@ -1,0 +1,19 @@
+{
+  "name": "Oneida Gospel Church",
+  "tagline": "TODO: tagline",
+  "address": {
+    "street": "TODO: street",
+    "city": "TODO: city",
+    "state": "MI",
+    "zip": "TODO",
+    "mapEmbedUrl": ""
+  },
+  "phone": "",
+  "email": "",
+  "serviceTimes": [
+    { "label": "Sunday Worship", "day": "Sunday", "time": "TODO" }
+  ],
+  "social": [
+    { "label": "YouTube", "url": "https://www.youtube.com/" }
+  ]
+}

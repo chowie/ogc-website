@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getTeam } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const team = await getTeam();
+  return team.map((member) => ({ params: { slug: member.id }, props: { member } }));
+}
+
+const { member } = Astro.props;
+const { Content } = await render(member);
+---
+
+<Base title={member.data.name} description={member.data.shortBio}>
+  <article>
+    {member.data.photo && (
+      <Image src={member.data.photo} alt={member.data.photoAlt ?? member.data.name} width={480} />
+    )}
+    <h1>{member.data.name}</h1>
+    {member.data.role && <p>{member.data.role}</p>}
+    <Content />
+    <a href="/about">Back to Our Team</a>
+  </article>
+</Base>
