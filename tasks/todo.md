@@ -66,9 +66,8 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       Flyer's personal cell numbers deliberately omitted → "call the church office".
 - [x] Recurring events: `repeat: weekly` (+ optional `until`) on events; next
       occurrence computed DST-safe in src/lib/time.ts. Women's Bible Study uses it.
-- [ ] **Chris:** add repo secret NETLIFY_BUILD_HOOK (URL of the "Daily rebuild
-      (GitHub Actions)" hook already created in Netlify) so daily-rebuild.yml can
-      run. Claude was blocked from writing secrets (correctly).
+- [x] Daily rebuild: NETLIFY_BUILD_HOOK secret added by Chris; manual run
+      2026-10-28 produced Netlify production deploy titled "Daily rebuild".
 - [x] Team photos downloaded from the current site's Wix CDN (Chris approved
       2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
