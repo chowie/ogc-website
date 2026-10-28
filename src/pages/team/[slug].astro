@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import TeamPhoto from '../../components/TeamPhoto.astro';
 import { getTeam } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -14,13 +14,32 @@ const { Content } = await render(member);
 ---
 
 <Base title={member.data.name} description={member.data.shortBio}>
-  <article>
-    {member.data.photo && (
-      <Image src={member.data.photo} alt={member.data.photoAlt ?? member.data.name} width={480} />
-    )}
-    <h1>{member.data.name}</h1>
-    {member.data.role && <p>{member.data.role}</p>}
-    <Content />
-    <a href="/about">Back to Our Team</a>
+  <article class="section">
+    <div class="container profile">
+      <div class="profile__photo">
+        <TeamPhoto member={member} width={640} />
+      </div>
+      <div class="profile__body">
+        <p class="eyebrow"><a href="/about">Our Team</a></p>
+        <h1>{member.data.name}</h1>
+        {member.data.role && <p class="profile__role">{member.data.role}</p>}
+        <div class="profile__bio">
+          <Content />
+        </div>
+        <a class="btn" href="/about">Back to Our Team</a>
+      </div>
+    </div>
   </article>
 </Base>
+
+<style>
+  .profile { display: grid; gap: var(--space-l); }
+  @media (min-width: 48rem) {
+    .profile { grid-template-columns: 2fr 3fr; align-items: start; }
+    .profile__photo { position: sticky; top: 6rem; }
+  }
+  .profile__photo { max-width: min(14rem, 60%); }
+  @media (min-width: 48rem) { .profile__photo { max-width: 26rem; } }
+  .profile__role { color: var(--coral-ink); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .profile__bio { margin-block: var(--space-m) var(--space-l); max-width: 40rem; }
+</style>

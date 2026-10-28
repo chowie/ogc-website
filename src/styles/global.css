@@ -1,0 +1,140 @@
+/* Design tokens. Mood: deep slate + plum, warm coral accent, wide bold caps. */
+:root {
+  --slate: #3f4359;
+  --slate-dark: #2e3142;
+  --plum: #6a4e77;
+  --coral: #ff6a48;        /* backgrounds/decoration only; pair with --ink text */
+  --coral-ink: #b83e25;    /* coral text/links on light backgrounds */
+  --coral-light: #ffb39f;  /* coral text/links on dark backgrounds */
+  --mist: #eaeaea;
+  --paper: #fafafa;
+  --ink: #1c1e2b;
+  --muted: #5c5f70;
+  --on-dark-muted: #c6c8d5;
+
+  --font-display: 'Unbounded Variable', 'Arial Black', sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --step-3: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --step-4: clamp(2.6rem, 1.6rem + 5vw, 6rem);
+
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --space-xl: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+
+  --container: 72rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+}
+img, iframe { max-width: 100%; display: block; }
+a { color: var(--coral-ink); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-s);
+  overflow-wrap: break-word;
+}
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+p { margin: 0 0 var(--space-s); }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--coral); color: var(--ink); padding: var(--space-xs) var(--space-s);
+  z-index: 100; font-weight: 700;
+}
+.skip-link:focus { left: var(--space-s); top: var(--space-s); }
+
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.section { padding-block: var(--space-xl); }
+.section--mist { background: var(--mist); }
+.section--slate { background: var(--slate); color: #fff; }
+.section--slate a { color: var(--coral-light); }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-s);
+}
+.muted { color: var(--muted); }
+
+/* Heading on the left, copy on the right (stacks on phones). */
+.split { display: grid; gap: var(--space-m) var(--space-l); }
+@media (min-width: 48rem) {
+  .split { grid-template-columns: 5fr 7fr; align-items: start; }
+}
+.split > :first-child { margin: 0; }
+
+/* Outlined button with an offset block shadow. */
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.85em 1.6em;
+  border: 3px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translate(3px, 3px); box-shadow: 3px 3px 0 currentColor; }
+.btn--light { color: #fff; }
+.btn--solid { background: var(--coral); color: var(--ink); border-color: var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.btn--solid:hover { box-shadow: 3px 3px 0 var(--ink); }
+.section--slate .btn--light, .hero .btn--light { color: #fff; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+/* Page header band used on inner pages. */
+.page-head {
+  background: linear-gradient(120deg, var(--slate-dark), var(--slate) 55%, var(--plum));
+  color: #fff;
+  padding-block: var(--space-xl) var(--space-l);
+}
+.page-head h1 { font-size: var(--step-4); margin: 0; }
+.page-head p { color: var(--on-dark-muted); max-width: 40rem; margin-top: var(--space-s); }
+
+/* Lists of cards. */
+.card-grid { display: grid; gap: var(--space-l) var(--space-m); grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); padding: 0; margin: 0; list-style: none; }
+
+.list-plain { list-style: none; margin: 0; padding: 0; }
+
+/* Forms */
+.field { display: grid; gap: 0.35rem; margin-bottom: var(--space-s); }
+.field label { font-weight: 600; font-size: var(--step--1); letter-spacing: 0.05em; text-transform: uppercase; }
+.field input, .field textarea {
+  font: inherit; color: var(--ink); background: #fff;
+  border: 2px solid var(--slate); border-radius: 0; padding: 0.7em 0.8em; width: 100%;
+}
+.field input:focus, .field textarea:focus { outline: 3px solid var(--coral); outline-offset: 0; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

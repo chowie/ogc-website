@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+const { event } = Astro.props;
+const { title, start, location } = event.data;
+const tz = 'America/Detroit';
+const month = start.toLocaleDateString('en-US', { month: 'short', timeZone: tz });
+const day = start.toLocaleDateString('en-US', { day: 'numeric', timeZone: tz });
+const time = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
+---
+
+<article class="event-tile">
+  <p class="event-tile__date">
+    <time datetime={start.toISOString()}>
+      <span class="event-tile__month">{month}</span>
+      <span class="event-tile__day">{day}</span>
+    </time>
+  </p>
+  <h3 class="event-tile__title">{title}</h3>
+  <p class="event-tile__meta">{time}{location && ` · ${location}`}</p>
+</article>
+
+<style>
+  .event-tile { background: rgb(255 255 255 / 0.06); border-top: 4px solid var(--coral); padding: var(--space-m); height: 100%; }
+  .event-tile__date { margin: 0 0 var(--space-s); font-family: var(--font-display); text-transform: uppercase; line-height: 1; }
+  .event-tile__date time { display: flex; align-items: baseline; gap: 0.5rem; }
+  .event-tile__month { font-size: var(--step-2); font-weight: 700; color: #fff; }
+  .event-tile__day { font-size: var(--step-1); color: var(--coral-light); }
+  .event-tile__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin-bottom: var(--space-xs); }
+  .event-tile__meta { color: var(--on-dark-muted); font-size: 0.95rem; margin: 0; }
+</style>

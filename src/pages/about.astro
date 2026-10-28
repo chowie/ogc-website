@@ -1,24 +1,48 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import TeamPhoto from '../components/TeamPhoto.astro';
 import { getTeam } from '../lib/content';
 
 const team = await getTeam();
 ---
 
-<Base title="About">
-  <h1>Our Team</h1>
-  <ul>
-    {team.map((m) => (
-      <li>
-        {m.data.photo && (
-          <Image src={m.data.photo} alt={m.data.photoAlt ?? m.data.name} width={320} />
-        )}
-        <h2>{m.data.name}</h2>
-        {m.data.role && <p>{m.data.role}</p>}
-        {m.data.shortBio && <p>{m.data.shortBio}</p>}
-        <a href={`/team/${m.id}`} aria-label={`Read more about ${m.data.name}`}>Read More</a>
-      </li>
-    ))}
-  </ul>
+<Base title="Our Team">
+  <PageHead eyebrow="About" title="Our Team" intro="The people who serve and lead our church family." />
+  <section class="section">
+    <div class="container">
+      <ul class="card-grid">
+        {team.map((m) => (
+          <li class="team-card">
+            <div class="team-card__photo"><TeamPhoto member={m} width={480} /></div>
+            <div class="team-card__body">
+              <h2 class="team-card__name">{m.data.name}</h2>
+              {m.data.role && <p class="team-card__role">{m.data.role}</p>}
+              {m.data.shortBio && <p class="team-card__bio">{m.data.shortBio}</p>}
+              <a class="team-card__more" href={`/team/${m.id}`}>
+                Read More<span class="visually-hidden"> about {m.data.name}</span>
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .team-card { display: flex; flex-direction: column; background: #fff; box-shadow: 0 1px 0 var(--mist); }
+  .team-card__body { padding: var(--space-m); display: flex; flex-direction: column; flex: 1; }
+  .team-card__name { font-size: var(--step-1); margin-bottom: 0.25rem; }
+  .team-card__role { color: var(--coral-ink); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .team-card__bio { color: var(--muted); }
+  .team-card__more { margin-top: auto; font-weight: 700; }
+  @media (max-width: 29.99rem) {
+    .team-card { flex-direction: row; align-items: flex-start; }
+    .team-card__photo { flex: 0 0 6.5rem; }
+    .team-card__photo :global(.team-photo--empty) { font-size: var(--step-1); }
+    .team-card__body { padding: 0 0 0 var(--space-s); }
+    .card-grid { gap: var(--space-m); }
+    .team-card { background: none; box-shadow: none; padding-bottom: var(--space-m); border-bottom: 2px solid var(--mist); }
+  }
+</style>

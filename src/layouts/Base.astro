@@ -1,5 +1,6 @@
 ---
-// Unstyled scaffold layout. Visual design comes in Phase 2.
+import '@fontsource-variable/unbounded';
+import '../styles/global.css';
 import { site, allowIndexing } from '../lib/site';
 
 interface Props {
@@ -11,12 +12,13 @@ const { title, description = site.tagline } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
 const nav = [
-  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/sermons', label: 'Sermons' },
   { href: '/events', label: 'Events' },
-  { href: '/visit', label: 'Plan a Visit' },
 ];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`) || (href === '/about' && path.startsWith('/team'));
+const { address } = site;
 ---
 
 <!doctype html>
@@ -27,30 +29,145 @@ const nav = [
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {!allowIndexing && <meta name="robots" content="noindex, nofollow" />}
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
-    <header>
-      <a href="/">{site.name}</a>
-      <nav aria-label="Main">
-        <ul>
-          {nav.map((item) => (
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="wordmark" href="/">
+          {site.name.split(' ').map((word) => <span>{word}</span>)}
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Main">
+          <ul>
+            {nav.map((item) => (
+              <li>
+                <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+              </li>
+            ))}
             <li>
-              <a
-                href={item.href}
-                aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
+              <a class="site-nav__cta" href="/visit" aria-current={isCurrent('/visit') ? 'page' : undefined}>Plan a Visit</a>
             </li>
-          ))}
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <main>
+
+    <main id="main">
       <slot />
     </main>
-    <footer>
-      <p>{site.name}</p>
+
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <p class="wordmark wordmark--footer">
+            {site.name.split(' ').map((word) => <span>{word}</span>)}
+          </p>
+        </div>
+        <div>
+          <h2 class="site-footer__heading">Visit</h2>
+          <address>
+            {address.street}<br />
+            {address.city}, {address.state} {address.zip}
+          </address>
+          {site.phone && <p><a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`}>{site.phone}</a></p>}
+          {site.email && <p><a href={`mailto:${site.email}`}>{site.email}</a></p>}
+        </div>
+        <div>
+          <h2 class="site-footer__heading">Sundays</h2>
+          <ul class="list-plain">
+            {site.serviceTimes.map((s) => <li>{s.label} · {s.time}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="site-footer__heading">Follow</h2>
+          <ul class="list-plain">
+            {site.social.map((s) => <li><a href={s.url}>{s.label}</a></li>)}
+          </ul>
+        </div>
+      </div>
+      <div class="container site-footer__base">
+        <p>© {new Date().getFullYear()} {site.name}</p>
+      </div>
     </footer>
+
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      toggle?.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        nav?.classList.toggle('is-open', !open);
+      });
+    </script>
   </body>
 </html>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--slate) 94%, transparent);
+    backdrop-filter: blur(6px);
+    color: #fff;
+  }
+  .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-m); min-height: 4.5rem; }
+
+  .wordmark {
+    display: grid; font-family: var(--font-display); font-weight: 700;
+    font-size: 0.7rem; line-height: 1.25; letter-spacing: 0.3em; text-transform: uppercase;
+    color: #fff; text-decoration: none; margin: 0;
+  }
+  .wordmark span:last-child::before { content: ''; display: inline-block; width: 1.2em; height: 2px; background: var(--coral); vertical-align: middle; margin-right: 0.4em; }
+  .wordmark--footer { font-size: 0.8rem; }
+
+  .nav-toggle {
+    display: none; background: none; border: 0; color: #fff; padding: 0.75rem; cursor: pointer;
+  }
+  .nav-toggle__bars, .nav-toggle__bars::before, .nav-toggle__bars::after {
+    display: block; width: 1.6rem; height: 2px; background: currentColor; position: relative; transition: transform 0.2s;
+  }
+  .nav-toggle__bars::before, .nav-toggle__bars::after { content: ''; position: absolute; left: 0; }
+  .nav-toggle__bars::before { top: -7px; }
+  .nav-toggle__bars::after { top: 7px; }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars { background: transparent; }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars::before { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bars::after { transform: translateY(-7px) rotate(-45deg); }
+
+  .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: var(--space-m); }
+  .site-nav a {
+    color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    padding-block: 0.4rem; border-bottom: 2px solid transparent;
+  }
+  .site-nav a:hover, .site-nav a[aria-current='page'] { border-bottom-color: var(--coral); }
+  .site-nav .site-nav__cta {
+    background: var(--coral); color: var(--ink); padding: 0.55rem 1rem; border: 0;
+    font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .site-nav .site-nav__cta:hover, .site-nav .site-nav__cta[aria-current='page'] { background: #fff; }
+
+  /* Phones: without JS the links simply wrap; with JS they collapse behind the toggle. */
+  @media (max-width: 47.99rem) {
+    .site-header__inner { flex-wrap: wrap; }
+    .site-nav ul { flex-wrap: wrap; gap: var(--space-xs) var(--space-m); padding-bottom: var(--space-xs); }
+    :global(.js) .nav-toggle { display: block; }
+    :global(.js) .site-header__inner { flex-wrap: nowrap; }
+    :global(.js) .site-nav { display: none; position: absolute; inset: 100% 0 auto; background: var(--slate); padding: var(--space-s) var(--gutter) var(--space-m); }
+    :global(.js) .site-nav.is-open { display: block; }
+    :global(.js) .site-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 0; }
+    :global(.js) .site-nav li a { display: block; padding: 0.9rem 0; border-bottom: 1px solid rgb(255 255 255 / 0.12); }
+    :global(.js) .site-nav li:last-child { margin-top: var(--space-s); }
+    :global(.js) .site-nav .site-nav__cta { text-align: center; padding: 0.9rem 1rem; }
+  }
+
+  .site-footer { background: var(--slate-dark); color: var(--on-dark-muted); padding-block: var(--space-l) var(--space-m); font-size: 0.95rem; }
+  .site-footer a { color: #fff; }
+  .site-footer address { font-style: normal; margin-bottom: var(--space-s); }
+  .site-footer__grid { display: grid; gap: var(--space-m); grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+  .site-footer__heading { font-size: 0.75rem; letter-spacing: 0.2em; color: #fff; margin-bottom: var(--space-xs); }
+  .site-footer__base { border-top: 1px solid rgb(255 255 255 / 0.12); margin-top: var(--space-l); padding-top: var(--space-s); font-size: var(--step--1); }
+  .site-footer__base p { margin: 0; }
+</style>

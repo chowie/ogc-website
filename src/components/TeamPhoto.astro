@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  member: CollectionEntry<'team'>;
+  width: number;
+}
+const { member, width } = Astro.props;
+const { photo, photoAlt, name } = member.data;
+const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
+---
+
+{photo ? (
+  <Image class="team-photo" src={photo} alt={photoAlt ?? name} width={width} />
+) : (
+  <div class="team-photo team-photo--empty" aria-hidden="true">{initials}</div>
+)}
+
+<style>
+  .team-photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--mist); }
+  .team-photo--empty {
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--slate), var(--plum));
+    color: #fff; font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); letter-spacing: 0.05em;
+  }
+</style>

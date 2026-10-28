@@ -1,6 +1,6 @@
 {
   "name": "Oneida Gospel Church",
-  "tagline": "TODO: tagline",
+  "tagline": "Placeholder tagline. Replace in site.json.",
   "address": {
     "street": "TODO: street",
     "city": "TODO: city",
@@ -11,9 +11,25 @@
   "phone": "",
   "email": "",
   "serviceTimes": [
-    { "label": "Sunday Worship", "day": "Sunday", "time": "TODO" }
+    {
+      "label": "Sunday School",
+      "day": "Sunday",
+      "time": "TODO"
+    },
+    {
+      "label": "Morning Worship",
+      "day": "Sunday",
+      "time": "TODO"
+    }
   ],
   "social": [
-    { "label": "YouTube", "url": "https://www.youtube.com/" }
-  ]
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/"
+    }
+  ],
+  "welcome": {
+    "heading": "All Are Welcome",
+    "body": "Placeholder welcome text. Replace with a short note about who Oneida Gospel Church is and what a first visit is like."
+  }
 }

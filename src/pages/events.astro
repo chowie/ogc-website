@@ -1,26 +1,48 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
 import { getUpcomingEvents } from '../lib/content';
 
 const events = await getUpcomingEvents();
-const fmt = (d: Date) =>
-  d.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'America/Detroit' });
+const tz = 'America/Detroit';
+const fmtDate = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: tz });
+const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
 ---
 
 <Base title="Events">
-  <h1>Upcoming Events</h1>
-  {events.length === 0 && <p>No upcoming events.</p>}
-  <ul>
-    {events.map((e) => (
-      <li>
-        <h2>{e.data.title}</h2>
-        <p>
-          <time datetime={e.data.start.toISOString()}>{fmt(e.data.start)}</time>
-          {e.data.end && <> – <time datetime={e.data.end.toISOString()}>{fmt(e.data.end)}</time></>}
-        </p>
-        {e.data.location && <p>{e.data.location}</p>}
-        {e.data.summary && <p>{e.data.summary}</p>}
-      </li>
-    ))}
-  </ul>
+  <PageHead eyebrow="Get Involved" title="Upcoming Events" />
+  <section class="section">
+    <div class="container">
+      {events.length === 0 && <p>No upcoming events right now. Check back soon.</p>}
+      <ul class="list-plain">
+        {events.map((e) => (
+          <li class="event-row">
+            <p class="event-row__date">
+              <time datetime={e.data.start.toISOString()}>
+                <span>{e.data.start.toLocaleDateString('en-US', { month: 'short', timeZone: tz })}</span>
+                <span class="event-row__day">{e.data.start.toLocaleDateString('en-US', { day: 'numeric', timeZone: tz })}</span>
+              </time>
+            </p>
+            <div>
+              <h2 class="event-row__title">{e.data.title}</h2>
+              <p class="event-row__meta">
+                {fmtDate(e.data.start)} · {fmtTime(e.data.start)}{e.data.end && ` – ${fmtTime(e.data.end)}`}
+                {e.data.location && <><br />{e.data.location}</>}
+              </p>
+              {e.data.summary && <p>{e.data.summary}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .event-row { display: grid; grid-template-columns: 5rem 1fr; gap: var(--space-m); padding-block: var(--space-m); border-bottom: 2px solid var(--mist); }
+  .event-row__date { margin: 0; background: var(--slate); color: #fff; text-align: center; padding: var(--space-s) 0; font-family: var(--font-display); text-transform: uppercase; line-height: 1.1; align-self: start; }
+  .event-row__date time { display: grid; font-size: var(--step--1); letter-spacing: 0.1em; }
+  .event-row__day { font-size: var(--step-2); font-weight: 700; color: var(--coral-light); }
+  .event-row__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin-bottom: var(--space-xs); }
+  .event-row__meta { color: var(--muted); }
+</style>

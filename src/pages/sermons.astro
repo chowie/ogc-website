@@ -1,22 +1,38 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
 import { getSermons } from '../lib/content';
 
 const sermons = await getSermons();
 ---
 
 <Base title="Sermons">
-  <h1>Sermons</h1>
-  <ul>
-    {sermons.map((s) => (
-      <li>
-        <a href={s.data.youtubeUrl}>{s.data.title}</a>
-        <time datetime={s.data.date.toISOString().slice(0, 10)}>
-          {s.data.date.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })}
-        </time>
-        {s.data.speaker && <span>{s.data.speaker}</span>}
-        {s.data.series && <span>{s.data.series}</span>}
-      </li>
-    ))}
-  </ul>
+  <PageHead eyebrow="Listen & Watch" title="Sermons" intro="Recent messages from our Sunday services, on YouTube." />
+  <section class="section">
+    <div class="container">
+      <ul class="sermon-list list-plain">
+        {sermons.map((s) => (
+          <li class="sermon-row">
+            <time class="sermon-row__date" datetime={s.data.date.toISOString().slice(0, 10)}>
+              {s.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}
+            </time>
+            <div>
+              <h2 class="sermon-row__title">{s.data.title}</h2>
+              <p class="sermon-row__meta">{[s.data.speaker, s.data.series].filter(Boolean).join(' · ')}</p>
+            </div>
+            <a class="btn" href={s.data.youtubeUrl}>Watch<span class="visually-hidden">: {s.data.title}</span></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .sermon-row { display: grid; gap: var(--space-xs) var(--space-m); align-items: center; padding-block: var(--space-m); border-bottom: 2px solid var(--mist); }
+  @media (min-width: 48rem) { .sermon-row { grid-template-columns: 9rem 1fr auto; } }
+  .sermon-row__date { font-family: var(--font-display); font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--coral-ink); }
+  .sermon-row__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin: 0; }
+  .sermon-row__meta { color: var(--muted); margin: 0; }
+  .sermon-row .btn { justify-self: start; }
+</style>

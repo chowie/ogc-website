@@ -1,45 +1,127 @@
 ---
 import Base from '../layouts/Base.astro';
+import EventTile from '../components/EventTile.astro';
 import { site } from '../lib/site';
 import { getSermons, getUpcomingEvents } from '../lib/content';
 
 const [latestSermon] = await getSermons();
 const events = (await getUpcomingEvents()).slice(0, 3);
+const words = site.name.split(' ');
 ---
 
 <Base>
-  <section>
-    <h1>{site.name}</h1>
-    <p>{site.tagline}</p>
-    <a href="/visit">Plan a Visit</a>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">Welcome to</p>
+      <h1 class="hero__title">
+        {words.map((w, i) => <span class:list={{ 'hero__last': i === words.length - 1 }}>{w}</span>)}
+      </h1>
+      <p class="hero__tagline">{site.tagline}</p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="/visit">Plan a Visit</a>
+        <a class="btn btn--light" href="/sermons">Watch Sermons</a>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Service Times</h2>
-    <ul>
-      {site.serviceTimes.map((s) => <li>{s.label}: {s.day} {s.time}</li>)}
-    </ul>
+  <section class="section section--mist" aria-labelledby="times-heading">
+    <div class="container split">
+      <h2 id="times-heading">Join Us<br />on Sunday</h2>
+      <ul class="times list-plain">
+        {site.serviceTimes.map((s) => (
+          <li>
+            <span class="times__label">{s.label}</span>
+            <span class="times__time">{s.day} · {s.time}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 
-  <section>
-    <h2>Upcoming Events</h2>
-    {events.length === 0 && <p>No upcoming events.</p>}
-    <ul>
-      {events.map((e) => (
-        <li>
-          {e.data.title} —
-          <time datetime={e.data.start.toISOString()}>
-            {e.data.start.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'America/Detroit' })}
-          </time>
-        </li>
-      ))}
-    </ul>
+  <section class="section" aria-labelledby="welcome-heading">
+    <div class="container split">
+      <h2 id="welcome-heading" class="big-heading">{site.welcome.heading}</h2>
+      <div>
+        <p>{site.welcome.body}</p>
+        <a href="/about">Meet our team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--slate events-band" aria-labelledby="events-heading">
+    <div class="container">
+      <div class="split events-band__head">
+        <h2 id="events-heading">Upcoming<br />Events</h2>
+        <p>What's coming up at church. <a href="/events">See all events</a></p>
+      </div>
+      {events.length === 0 ? (
+        <p>No upcoming events right now. Check back soon.</p>
+      ) : (
+        <ul class="card-grid">
+          {events.map((event) => <li><EventTile event={event} /></li>)}
+        </ul>
+      )}
+    </div>
   </section>
 
   {latestSermon && (
-    <section>
-      <h2>Latest Sermon</h2>
-      <a href={latestSermon.data.youtubeUrl}>{latestSermon.data.title}</a>
+    <section class="section" aria-labelledby="sermon-heading">
+      <div class="container">
+        <div class="sermon-card">
+          <p class="eyebrow">Latest Sermon</p>
+          <h2 id="sermon-heading">{latestSermon.data.title}</h2>
+          <p>
+            {[latestSermon.data.speaker, latestSermon.data.series].filter(Boolean).join(' · ')}
+            {' · '}
+            <time datetime={latestSermon.data.date.toISOString().slice(0, 10)}>
+              {latestSermon.data.date.toLocaleDateString('en-US', { dateStyle: 'long', timeZone: 'UTC' })}
+            </time>
+          </p>
+          <a class="btn" href={latestSermon.data.youtubeUrl}>Watch on YouTube</a>
+        </div>
+      </div>
     </section>
   )}
+
+  <section class="section section--mist visit-cta" aria-labelledby="visit-heading">
+    <div class="container">
+      <h2 id="visit-heading">New Here?</h2>
+      <p>We'd love to meet you. Here's what to expect on your first Sunday.</p>
+      <a class="btn" href="/visit">Plan a Visit</a>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .hero {
+    position: relative; color: #fff;
+    min-height: min(88vh, 52rem); display: grid; align-items: center;
+    padding-block: var(--space-xl);
+    /* Placeholder backdrop until real OGC photography is chosen. */
+    background:
+      radial-gradient(60rem 30rem at 85% 10%, rgb(255 106 72 / 0.28), transparent 60%),
+      radial-gradient(50rem 30rem at 0% 100%, rgb(106 78 119 / 0.9), transparent 70%),
+      linear-gradient(135deg, var(--slate-dark), var(--slate));
+  }
+  .hero__title { font-size: var(--step-4); line-height: 1.02; letter-spacing: 0.03em; display: grid; margin-bottom: var(--space-m); }
+  .hero__last { display: flex; align-items: center; gap: 0.2em; }
+  .hero__last::before { content: ''; width: 0.7em; height: 0.12em; background: var(--coral); flex: none; }
+  .hero__tagline { font-size: var(--step-1); color: var(--on-dark-muted); max-width: 34rem; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-m); margin-top: var(--space-l); }
+
+  .big-heading { font-size: var(--step-3); }
+
+  .times li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs); padding-block: var(--space-s); border-bottom: 2px solid var(--slate); }
+  .times li:first-child { border-top: 2px solid var(--slate); }
+  .times__label { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .times__time { color: var(--muted); }
+
+  .events-band { background: linear-gradient(160deg, var(--slate) 0%, var(--plum) 100%); }
+  .events-band__head { margin-bottom: var(--space-l); }
+
+  .sermon-card { background: var(--coral); color: var(--ink); padding: var(--space-l); max-width: 52rem; }
+  .sermon-card h2 { font-size: var(--step-2); }
+
+  .visit-cta { text-align: center; }
+  .visit-cta p { max-width: 32rem; margin-inline: auto; margin-bottom: var(--space-m); }
+</style>

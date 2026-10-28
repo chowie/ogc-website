@@ -23,11 +23,11 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
   daily Netlify build hook (scheduled) before go-live so past events drop off.
 
 ## Blocked on Chris
-- [ ] Wix template URL (visual model)
+- [x] Wix template URL (visual model) — Wix "Urban Church" template #1852
 - [ ] Current OGC site URL (team bio text source)
-- [ ] OK to reuse photos from current site? (default: placeholders)
-- [ ] GitHub org/name for the repo
-- [ ] Netlify team to create the site under
+- [x] Photos: placeholders for now (Chris, 2026-10-28)
+- [x] GitHub: Chris's account (`chowie`) for now; church org later
+- [x] Netlify team: Funky Bunch (free)
 
 ## Phase 1 — Scaffold (no visual design, no real content)
 - [x] Astro project, `package.json`, tsconfig
@@ -39,15 +39,15 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 - [x] README: how to add a team member
 
 ## Phase 2 — Design + content (after URLs arrive; check in first)
-- [ ] Study Wix template: layout, spacing, type scale, color mood (no code/images/text copied)
-- [ ] Design tokens + base layout, header/nav (mobile menu), footer
-- [ ] Home: hero, service times, welcome, upcoming events, latest sermon, Plan a Visit CTA
-- [ ] About/Team list (cards: photo, name, role, short bio, Read More)
-- [ ] Team detail page
-- [ ] Sermons list, Events list
-- [ ] Plan a Visit: address, map embed, service times, Netlify form
+- [x] Study Wix template: layout, spacing, type scale, color mood (no code/images/text copied)
+- [x] Design tokens + base layout, header/nav (mobile menu), footer
+- [x] Home: hero, service times, welcome, upcoming events, latest sermon, Plan a Visit CTA
+- [x] About/Team list (cards: photo, name, role, short bio, Read More)
+- [x] Team detail page
+- [x] Sermons list, Events list
+- [x] Plan a Visit: address, map embed, service times, Netlify form
 - [ ] Seed real team text from current site
-- [ ] Phone + desktop check; Lighthouse a11y ≥ 90
+- [x] Phone + desktop check; Lighthouse a11y ≥ 90
 
 ## Phase 3 — Ship (confirm each with Chris)
 - [ ] Create GitHub repo, push
@@ -61,6 +61,15 @@ past events hidden; `slug:` pins URL; 151-char shortBio fails build with a clear
 message; noindex meta + `Disallow: /` by default, flipped by
 `PUBLIC_ALLOW_INDEXING=true`. Pages are unstyled markup only.
 
+### Phase 2 design (2026-10-28)
+Palette sampled for mood only (slate #3f4359, plum #6a4e77, coral #ff6a48),
+coral adjusted for WCAG contrast (dark ink on coral; #b83e25 for coral text).
+Display font: Unbounded (OFL, self-hosted via Fontsource) stands in for the
+template's wide bold caps. Hero uses a CSS gradient placeholder, no images.
+Nothing copied from the template's code, images or text. No horizontal
+overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
+(mobile + desktop).
+
 ## Stopped Here
-Phase 1 done. Waiting on Chris for the five items under "Blocked on Chris"
-before Phase 2.
+Design done with placeholder content. Still need: current OGC site URL (team
+text), real address/service times/map embed for site.json, hero photo.

@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
 ---
 
 <Base title="Thank You">
-  <h1>Thank you</h1>
-  <p>We received your message and will be in touch soon.</p>
-  <a href="/">Back to home</a>
+  <PageHead title="Thank You" intro="We received your message and will be in touch soon." />
+  <section class="section">
+    <div class="container"><a class="btn" href="/">Back to Home</a></div>
+  </section>
 </Base>
