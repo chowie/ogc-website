@@ -104,7 +104,8 @@ current main becomes v0.1.0.
       vX.Y.Z tag in a git worktree (RELEASE_TAG env pins one for rollback);
       deploy previews unchanged. Tested in a fresh clone: unreleased HEAD
       change not published, -rc tag ignored, RELEASE_TAG pin works.
-- [ ] v0.1.0 released and live.
+- [x] v0.1.0 released (2528453) and live. Netlify log confirms
+      "build-release: building v0.1.0". The live site no longer follows main HEAD.
 
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
@@ -138,3 +139,5 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 Demo live; main auto-deploys, PRs get previews.
 Still need: welcome text, any other service times, hero photo.
 Re-shoot docs/screenshots/ after visual changes.
+Live = v0.1.0. Anything on main after that tag is unreleased until
+`npm run release`.
