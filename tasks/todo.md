@@ -61,6 +61,12 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
       Hwy., Grand Ledge, MI 48837; Sundays 10:30 a.m.; YouTube + Facebook;
       Google Maps embed. Sunday School placeholder removed (time unknown).
 - [x] Office phone 517.627.7112 + office@oneidagospel.org added (Chris, 2026-10-28)
+- [x] Events: 3 upcoming from oneidagospel.org/events (Women's Bible Study,
+      Who Is Oneida? Nov 15, Membership Class Dec 6). Trunk or Treat skipped (past).
+      Flyer's personal cell numbers deliberately omitted → "call the church office".
+- [ ] Recurring events: schema has one start date, so the weekly Women's Bible
+      Study is entered as its next date (Nov 4) and drops off after. Add a
+      `recurrence` field (e.g. weekly + until) if Chris wants standing events.
 - [x] Team photos downloaded from the current site's Wix CDN (Chris approved
       2026-10-28); EXIF/ICC metadata stripped (no GPS was present). Photos still placeholders.
 - [x] Phone + desktop check; Lighthouse a11y ≥ 90
