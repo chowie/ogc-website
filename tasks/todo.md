@@ -67,11 +67,13 @@ via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
 ## Phase 3 — Ship (confirm each with Chris)
 - [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
 - [x] Create Netlify site in Funky Bunch, linked to repo — https://app.netlify.com/projects/ogc-website
-- [ ] **Chris:** grant Netlify GitHub App access to `ogc-website`
+- [x] **Chris:** grant Netlify GitHub App access to `ogc-website` (done 2026-10-28)
       (GitHub → Settings → Applications → Netlify → Configure → add repo).
       Until then git-triggered builds fail ("Repository not found"); demo is
       deployed manually with `netlify deploy --prod --dir dist`.
-- [ ] After access granted: push to main → confirm auto build; open a test PR → confirm deploy preview
+- [x] Git-triggered build of main deployed (84093b7). Test PR chowie/ogc-website#1
+      got https://deploy-preview-1--ogc-website.netlify.app (noindex header), prod
+      unchanged; PR closed unmerged. Manual `netlify deploy` no longer needed.
 - [x] Verify demo URL, noindex live — https://ogc-website.netlify.app (robots Disallow + noindex meta confirmed; contact form registered, form detection enabled)
 
 ## Review
@@ -91,6 +93,6 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
-Demo live (manual deploy). Blocked on Chris: Netlify GitHub App repo access.
+Demo live; main auto-deploys, PRs get previews.
 Still need: tagline + welcome text, office phone/email (optional), any other
 service times, hero photo. 
