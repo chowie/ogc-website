@@ -2,6 +2,8 @@
 name: "Chris Howie"
 role: "Deacon, Technology and Production"
 group: "deacons"
+photo: ./chris-howie.jpg
+photoAlt: "Chris Howie, Deacon"
 displayOrder: 1
 shortBio: "Chris looks after Oneida's technology and Sunday production: sound, projection and AV, plus the church website, email and IT."
 ---

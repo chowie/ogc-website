@@ -20,5 +20,5 @@ sections:
     on: 2026-11-12
     note: "Bios drafted from each deacon's areas of responsibility and Chris's notes; each deacon should approve his."
 needs:
-  - "Deacons: headshots (Chris's on the way), and each deacon's OK on his bio"
+  - "Deacons: headshots for Derek and Jordan, and each deacon's OK on his bio"
 ---
