@@ -13,7 +13,7 @@ const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', mi
 
 <ContentPage entry={entry}>
   <div slot="before" class="calendar">
-    <SectionHeading title="Calendar" />
+    <SectionHeading title="Calendar" entry={entry} />
       {events.length === 0 && <p>No upcoming events right now. Check back soon.</p>}
       <ul class="list-plain">
         {events.map((e) => (

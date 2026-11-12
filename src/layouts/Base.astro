@@ -2,7 +2,7 @@
 import '@fontsource-variable/unbounded';
 import '../styles/global.css';
 import { site, allowIndexing } from '../lib/site';
-import { nav, sectionFor, isCurrentPage } from '../data/nav';
+import { nav, sectionFor, isCurrentPage, normalizePath } from '../data/nav';
 
 interface Props {
   title?: string;
@@ -14,7 +14,7 @@ interface Props {
 const { title, description = site.tagline, noindex = false } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const path = normalizePath(Astro.url.pathname);
 const current = sectionFor(path);
 const firstMinor = nav.find((item) => item.minor);
 const { address } = site;

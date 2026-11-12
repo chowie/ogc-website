@@ -33,7 +33,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 6rem; } /* clears the sticky header on #anchor jumps */
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -156,12 +156,13 @@ blockquote {
   border: 1px dashed currentColor; border-radius: 2px;
 }
 .status-badge--placeholder { color: #7a4d00; background: #fff4d6; }
+.status-badge--real { color: #1d5b2c; background: #e2f3e6; border-style: solid; }
 .status-badge--rewritten { color: #1f4f7a; background: #e3f0fb; }
 .site-footer .status-badge, .page-head .status-badge { margin: 0; vertical-align: middle; }
 
 /* Long-form copy from the pages collection. */
 .prose { max-width: 44rem; }
-.prose h2 { font-size: var(--step-2); margin-top: var(--space-l); scroll-margin-top: 6rem; }
+.prose h2 { font-size: var(--step-2); margin-top: var(--space-l); }
 .prose h2:first-child { margin-top: 0; }
 .prose h3 { font-size: var(--step-1); margin-top: var(--space-m); }
 .prose ul, .prose ol { padding-left: 1.25em; margin: 0 0 var(--space-s); }

@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
 import { nav, sectionFor, isCurrentPage } from '../src/data/nav.ts';
 import { slugify } from '../src/lib/section-status.mjs';
 
@@ -24,10 +25,22 @@ test('exactly one call-to-action item', () => {
   assert.equal(nav.filter((i) => i.cta).length, 1);
 });
 
-test('anchors are what slugify makes of a heading', () => {
+test('every menu anchor matches a heading on its page', () => {
+  // Headings come from the page's Markdown (## lines) and from SectionHeading
+  // titles in its .astro page, if it has one; both get slugify ids.
+  const headingIds = (page: string) => {
+    const read = (f: string) => (existsSync(f) ? readFileSync(f, 'utf8') : '');
+    const md = read(`src/content/pages/${page}.md`);
+    const astro = read(`src/pages/${page}.astro`);
+    const titles = [
+      ...[...md.matchAll(/^##\s+(.+)$/gm)].map((m) => m[1]),
+      ...[...astro.matchAll(/<SectionHeading\s+title="([^"]+)"/g)].map((m) => m[1]),
+    ];
+    return new Set(titles.map(slugify));
+  };
   for (const c of nav.flatMap((i) => i.children)) {
-    const anchor = c.href.split('#')[1];
-    if (anchor) assert.equal(slugify(anchor.replaceAll('-', ' ')), anchor, c.href);
+    const [path, anchor] = c.href.split('#');
+    if (anchor) assert.ok(headingIds(path.slice(1)).has(anchor), `no heading for ${c.href}`);
   }
 });
 

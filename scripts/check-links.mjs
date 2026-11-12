@@ -17,14 +17,18 @@ const htmlFiles = (dir) =>
 const urlOf = (file) => '/' + relative(dist, file).replace(/\\/g, '/').replace(/(^|\/)index\.html$/, '').replace(/\.html$/, '');
 
 const pages = new Map();
+const problems = [];
 for (const file of htmlFiles(dist)) {
   const html = readFileSync(file, 'utf8');
-  const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  const idList = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+  const ids = new Set(idList);
+  for (const id of new Set(idList.filter((id, i) => idList.indexOf(id) !== i))) {
+    problems.push(`${urlOf(file)}: duplicate id "${id}"`);
+  }
   const hrefs = [...html.matchAll(/\shref="([^"]*)"/g)].map((m) => m[1].replaceAll('&amp;', '&'));
   pages.set(urlOf(file).replace(/\/$/, '') || '/', { file, ids, hrefs });
 }
 
-const problems = [];
 for (const [from, { hrefs }] of pages) {
   for (const href of hrefs) {
     if (/^(https?:|mailto:|tel:|data:|\/\/)/.test(href)) continue;
@@ -32,12 +36,20 @@ for (const [from, { hrefs }] of pages) {
       if (!existsSync(join(dist, href))) problems.push(`${from}: missing asset ${href}`);
       continue;
     }
-    const [pathPart, fragment] = href.split('#');
-    const target = pathPart === '' ? from : pathPart.replace(/\/$/, '') || '/';
-    const page = pages.get(target);
+    // Resolve relative hrefs against the page's own URL (pages are dir/index.html).
+    const url = new URL(href, `http://site${from === '/' ? '' : from}/`);
+    const target = url.pathname.replace(/\/$/, '') || '/';
+    let fragment = url.hash.slice(1);
+    try {
+      fragment = decodeURIComponent(fragment);
+    } catch {
+      problems.push(`${from}: badly encoded anchor ${href}`);
+      continue;
+    }
+    const page = pages.get(decodeURI(target));
     if (!page) {
       problems.push(`${from}: link to missing page ${href}`);
-    } else if (fragment && !page.ids.has(decodeURIComponent(fragment))) {
+    } else if (fragment && !page.ids.has(fragment)) {
       problems.push(`${from}: link to missing anchor ${href}`);
     }
   }
@@ -45,7 +57,7 @@ for (const [from, { hrefs }] of pages) {
 
 if (problems.length) {
   console.error([...new Set(problems)].map((p) => `✗ ${p}`).join('\n'));
-  console.error(`check-links: ${new Set(problems).size} broken link(s) across ${pages.size} pages`);
+  console.error(`check-links: ${new Set(problems).size} problem(s) across ${pages.size} pages`);
   process.exit(1);
 }
 console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve`);

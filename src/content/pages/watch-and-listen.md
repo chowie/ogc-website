@@ -4,6 +4,7 @@ intro: "Short videos made for watching at home, and full services for when you c
 status: placeholder
 sections:
   monthly-service-video: real
+  series-archive: placeholder
 needs:
   - "Short 5–10 minute made-for-online videos"
   - "Series grouping for the archive"

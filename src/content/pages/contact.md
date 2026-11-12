@@ -2,6 +2,9 @@
 title: "Contact"
 intro: "Reach a real person."
 status: placeholder
+sections:
+  call-email-or-stop-by: real
+  send-a-message: real
 needs:
   - "Office hours"
   - "Prayer request form and who receives it"

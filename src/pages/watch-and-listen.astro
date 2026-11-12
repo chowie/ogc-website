@@ -13,11 +13,11 @@ const youtube = site.social.find((l) => l.label === 'YouTube');
 ---
 
 <ContentPage entry={entry}>
-  <SectionHeading title="Monthly Service Video" />
+  <SectionHeading title="Monthly Service Video" entry={entry} />
   <p class="muted">The full service, for anyone who can't be there in person.</p>
   {latest && <ul class="sermon-list list-plain"><SermonRow s={latest} /></ul>}
 
-  <SectionHeading title="Series Archive" status="placeholder" />
+  <SectionHeading title="Series Archive" entry={entry} />
   <p class="muted">Past messages. Grouping them by sermon series is still to come.</p>
   <ul class="sermon-list list-plain">
     {older.map((s) => <SermonRow s={s} />)}

@@ -104,16 +104,17 @@ export const nav: NavItem[] = [
   },
 ];
 
-const stripSlash = (p: string) => p.replace(/\/$/, '') || '/';
+/** '/about/' -> '/about'; '' or '/' -> '/'. */
+export const normalizePath = (p: string) => p.replace(/\/$/, '') || '/';
 
 /** The top-level menu item a path belongs to, if any. */
 export function sectionFor(pathname: string): NavItem | undefined {
-  const path = stripSlash(pathname);
+  const path = normalizePath(pathname);
   return nav.find((item) => path === item.href || path.startsWith(`${item.href}/`));
 }
 
 /** The child page a path is on (not anchors), for aria-current in submenus. */
 export function isCurrentPage(link: NavLink, pathname: string): boolean {
-  const path = stripSlash(pathname);
+  const path = normalizePath(pathname);
   return !link.href.includes('#') && (path === link.href || path.startsWith(`${link.href}/`));
 }

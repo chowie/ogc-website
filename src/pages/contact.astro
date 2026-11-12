@@ -10,7 +10,7 @@ const { address } = site;
 
 <ContentPage entry={entry}>
   <div slot="before" class="prose">
-    <SectionHeading title="Call, Email or Stop By" />
+    <SectionHeading title="Call, Email or Stop By" entry={entry} />
     <ul class="list-plain contact-list">
       {site.phone && <li><strong>Phone:</strong> <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a></li>}
       {site.email && <li><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></li>}
@@ -19,7 +19,7 @@ const { address } = site;
   </div>
 
   <section class="prose" aria-labelledby="send-a-message">
-    <SectionHeading title="Send a Message" />
+    <SectionHeading title="Send a Message" entry={entry} />
     <!-- Netlify Forms: detected at deploy time via data-netlify. -->
     <form class="contact-form" name="contact" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />

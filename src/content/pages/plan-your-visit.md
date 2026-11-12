@@ -3,6 +3,9 @@ title: "Plan Your Visit"
 eyebrow: "New Here?"
 intro: "Come as you are. Here's what to expect on your first Sunday at Oneida."
 status: placeholder
+sections:
+  service-times-and-location: real
+  parking-and-entrance: placeholder
 needs:
   - "Parking and which door to use"
   - "Order of service, length, music style, dress"

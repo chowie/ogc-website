@@ -9,7 +9,7 @@ interface Props {
   status?: string;
 }
 const { title, eyebrow, intro, status } = Astro.props;
-const badge = status && status in STATUS_LABELS ? STATUS_LABELS[status as keyof typeof STATUS_LABELS] : undefined;
+const badge = status && status !== 'real' && status in STATUS_LABELS ? STATUS_LABELS[status as keyof typeof STATUS_LABELS] : undefined;
 ---
 
 <header class="page-head">

@@ -74,8 +74,11 @@ const pages = defineCollection({
     eyebrow: z.string().optional(),
     intro: z.string().optional(),
     description: z.string().optional(),
-    status: status.default('placeholder'),
-    // Per-section overrides, keyed by heading id: { faq: real }
+    // Required, so the badges and /content-status always agree.
+    status,
+    // Per-section overrides, keyed by heading id: { faq: real }. Also lists
+    // sections a page's .astro file adds (SectionHeading), so /content-status
+    // and the badge read the same value.
     sections: z.record(z.string(), status).default({}),
     // Where real or rewritten copy came from.
     sources: z.array(z.url()).default([]),

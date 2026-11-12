@@ -13,7 +13,7 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
 
 <ContentPage entry={entry}>
   <div slot="before" class="prose">
-    <SectionHeading title="Service Times and Location" />
+    <SectionHeading title="Service Times and Location" entry={entry} />
     <div class="visit-grid">
       <div>
         <h3>Sundays</h3>
@@ -30,8 +30,7 @@ const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
         <p><a href={directionsUrl}>Get directions</a></p>
       </div>
     </div>
-    <h3>Parking and Entrance</h3>
-    <p class="status-badge status-badge--placeholder">Placeholder</p>
+    <SectionHeading title="Parking and Entrance" entry={entry} level={3} />
     <p>Where to park, and which door to use when you arrive, will go here.</p>
     {address.mapEmbedUrl && (
       <div class="map">

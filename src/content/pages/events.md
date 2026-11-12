@@ -3,6 +3,7 @@ title: "Events"
 intro: "What's coming up at Oneida, and gatherings that are easy to invite a friend to."
 status: real
 sections:
+  calendar: real
   community-events: placeholder
 needs:
   - "Community events (service projects, neighborhood gatherings)"
