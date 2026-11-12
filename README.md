@@ -54,8 +54,9 @@ git config include.path ../.gitconfig
 
 ## Contributing
 
-Every change goes through a pull request; nothing is committed to `main`
-directly (the sermon import and `npm run release` are the exceptions).
+Every change goes through a pull request; a GitHub ruleset blocks direct
+pushes to `main` (the sermon import opens and merges its own PRs). The one
+exception is `npm run release`, which the repo admin runs.
 
 1. Branch from an up-to-date `main`: `git switch -c feat/short-name`
    (prefix with the commit type: `feat/`, `fix/`, `content/`, `docs/`, `ci/`…).
