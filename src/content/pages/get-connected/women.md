@@ -1,21 +1,35 @@
 ---
 title: "Women"
-intro: "Encouragement, study and friendship for women, including single women and single moms."
-status: placeholder
+intro: "Women encouraging women, through Bible study, friendship, and time together."
+status: rewritten
+sources:
+  - "https://www.oneidagospel.org/about"
 needs:
-  - "Women's gatherings and studies with times"
-  - "Childcare details"
-  - "Leader photo and contact"
+  - "Childcare details for the Wednesday morning study"
+  - "Leader name, photo and contact for women's ministry"
+  - "Exercise room hours"
+  - "Next breakfast or lunch fellowship date"
+  - "Bible study plans after fall 2026"
 ---
 
 ## What We Do
 
-Women's gatherings and Bible studies will be described here.
+**Bible study.** This fall we're studying 1 Corinthians, alongside Pastor Andrew's Sunday sermons. Bible journals are available. Come learn how to study the Bible together.
+
+**Card-making.** We make greeting cards to send to our church members, and a few to take home for your own use. Sandy Husted leads this group.
+
+**Exercise.** Women use the basement exercise room on weekdays. Come for a good workout and good conversation. On Monday evenings we also play pickleball in the gym or have a game night.
+
+**Food and fellowship.** Once a month, women from Oneida get together for breakfast or lunch.
 
 ## When We Meet
 
-Days, times and places will go here, with childcare details if offered.
+- **Bible study:** Wednesdays, 9:30 a.m., in the conference room (fall 2026)
+- **Card-making:** first Monday of the month, 1 p.m. (no meetings in June, July or August)
+- **Pickleball or game night:** Mondays, 6:30 p.m.
+- **Exercise room:** weekdays; check with the office for times
+- **Breakfast or lunch:** monthly; call the office for the next date
 
 ## Contact
 
-Leader name and photo will go here.
+Call the church office at 517.627.7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org) for times and details. Leader name and photo will go here.
