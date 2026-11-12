@@ -55,8 +55,9 @@ git config include.path ../.gitconfig
 ## Contributing
 
 Every change goes through a pull request; a GitHub ruleset blocks direct
-pushes to `main` (the sermon import opens and merges its own PRs). The one
-exception is `npm run release`, which the repo admin runs.
+pushes, force pushes and deletion on `main` (the sermon import opens and
+merges its own PRs). The repo admin can bypass the ruleset at any time; use
+that only for `npm run release`.
 
 1. Branch from an up-to-date `main`: `git switch -c feat/short-name`
    (prefix with the commit type: `feat/`, `fix/`, `content/`, `docs/`, `ci/`…).
@@ -75,8 +76,9 @@ exception is `npm run release`, which the repo admin runs.
    - **Claude code review** (not automatic): Claude reviews the PRs it opens
      and posts findings as PR comments. For a PR you opened, ask Claude for
      `/code-review <PR number> --comment`. Fix or answer each comment.
-5. Merge when the checks are green and review comments are resolved. Merging
-   doesn't publish; the live site changes with the next release.
+5. Merge when the checks are green, the Claude review has posted, and its
+   comments are resolved. (As admin you can merge past open threads; don't.)
+   Merging doesn't publish; the live site changes with the next release.
 
 ## Editing content
 
