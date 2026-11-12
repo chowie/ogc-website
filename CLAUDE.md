@@ -48,7 +48,8 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
 - `.github/workflows/`: `import-sermons` (twice a day; adds sermons through its
   own PR, which it merges), `daily-rebuild` (drops past events), `pr-checks`
   (Conventional Commits).
-- `tasks/todo.md`: plan, decisions and "Stopped Here". Read it at session start.
+- `tasks/todo.md` (plan, decisions, "Stopped Here") and `tasks/lessons.md`
+  (rules from past corrections): read both at session start.
 
 ## How deploys work
 
@@ -66,8 +67,10 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
 
 1. **Never commit to `main`.** A GitHub ruleset requires a PR, requires every
    review conversation to be resolved, and blocks force pushes and deletion.
-   Only the admin role (Chris) can bypass it, for `npm run release`. The sermon
-   import goes through its own PR. Start each change on a new branch:
+   The admin role (Chris) bypasses it **always**, and Claude pushes with
+   Chris's credentials, so **the ruleset will not stop Claude**: never push,
+   force-push or delete `main` yourself. The bypass is only for
+   `npm run release`. The sermon import goes through its own PR. Start each change on a new branch:
    `git switch main && git pull && git switch -c <type>/<short-name>`.
    Rebase/amend only on your own branch.
 2. **Conventional Commits** for every commit and the PR title:

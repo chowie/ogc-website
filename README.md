@@ -55,8 +55,9 @@ git config include.path ../.gitconfig
 ## Contributing
 
 Every change goes through a pull request; a GitHub ruleset blocks direct
-pushes to `main` (the sermon import opens and merges its own PRs). The one
-exception is `npm run release`, which the repo admin runs.
+pushes, force pushes and deletion on `main` (the sermon import opens and
+merges its own PRs). The repo admin can bypass the ruleset at any time; use
+that only for `npm run release`.
 
 1. Branch from an up-to-date `main`: `git switch -c feat/short-name`
    (prefix with the commit type: `feat/`, `fix/`, `content/`, `docs/`, `ci/`…).

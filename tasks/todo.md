@@ -2,7 +2,7 @@
 
 Replace the Wix site with an Astro static site. Content lives in Markdown/JSON
 (`src/content/`, `src/data/`) so volunteers (later via a CMS) and Chris (locally
-via git) edit the same files. GitHub → Netlify: `main` = demo, PRs = previews.
+via git) edit the same files. GitHub → Netlify: production = newest release tag, PRs = previews.
 
 ## Decisions
 - **Astro 7.4** on **Node 22.23.4** (`.nvmrc`, pinned in `netlify.toml`).
@@ -125,7 +125,9 @@ plus Conventional Commits and a Claude code review on each PR.
 Decisions: review runs locally (`/code-review <n> --comment`, no Action or
 secret). Chris's ruleset `default-branch-ruleset` on main: PR required
 (0 approvals, conversations must be resolved; merge/squash/rebase allowed),
-no force push or deletion, admin bypass (for `npm run release`).
+no force push or deletion. Admin bypass is unconditional and Claude uses
+Chris's credentials, so never push, force-push or delete main; the bypass is
+for `npm run release` only.
 - [x] PR #1: `scripts/check-commit-msg.mjs` + `.githooks/` (commit-msg,
       pre-commit chaining) + `pr-checks.yml`; previews run `npm run verify`;
       README "Contributing". Review: 10 findings, all fixed.
@@ -162,6 +164,7 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 Demo live = v0.1.0 (production builds the newest release tag; merging to
 main publishes nothing until `npm run release`).
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
-Chris merges (see CLAUDE.md).
+Chris merges (see CLAUDE.md). Exception: the sermon import's bot PRs merge
+themselves after `npm run verify`.
 Still need: welcome text, any other service times, hero photo.
 Re-shoot docs/screenshots/ after visual changes.

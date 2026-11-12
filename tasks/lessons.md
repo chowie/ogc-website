@@ -1,19 +1,18 @@
 # Lessons
 
-Rules from corrections, so the same mistake doesn't happen twice.
-Project gotchas (hooks, nvm, GITHUB_TOKEN PRs) live in CLAUDE.md.
+Rules from corrections, so the same mistake doesn't happen twice. Once a rule
+is part of the standing workflow it moves to CLAUDE.md, and this file keeps
+only a pointer, so there's one wording to maintain.
 
-## Reporting a PR
-- **Always give the deploy preview URL with the PR link**, every time, even
-  for docs-only PRs (`https://deploy-preview-<PR#>--ogc-website.netlify.app`).
-  Chris never got a link for PR #2 (2026-11-12).
-
-## Branches after merge
-- **Check `gh pr view <n> --json state` before pushing to an existing PR
-  branch.** A commit pushed to `ci/pr-workflow` after PR #1 had merged never
-  reached main and needed a new PR (#4). Once merged, start a new branch.
-
-## Verify what you document
-- **Run any command before writing it into docs.** The first `CLAUDE.local.md`
-  PATH line used `ls`, which is aliased with color codes here and produced
-  a broken path. Testing it caught the bug.
+- **Preview URL with every PR** (2026-11-12): Chris never got a link for
+  PR #2. Now in CLAUDE.md, change workflow step 7.
+- **Don't push to a merged PR's branch** (2026-11-12): a commit pushed to
+  `ci/pr-workflow` after PR #1 merged never reached main and needed PR #4.
+  Now in CLAUDE.md, step 7.
+- **Run a command before documenting it** (2026-11-12): a documented shell
+  one-liner used `ls`, which is aliased with color codes in Chris's shell and
+  produced a broken path. Testing it caught the bug. Prefer globs with
+  `printf '%s\n'` over parsing `ls` output.
+- **Check how far a bypass really reaches** (2026-11-12): docs said the
+  ruleset blocks pushes to main, but the admin bypass is unconditional and
+  Claude acts as the admin. Now in CLAUDE.md, step 1.
