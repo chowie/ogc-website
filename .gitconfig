@@ -7,3 +7,6 @@
 [user]
 	# GitHub no-reply address, so personal email never lands in public history.
 	email = 366047+chowie@users.noreply.github.com
+[core]
+	# Repo hooks (.githooks/): commit-msg checks Conventional Commits.
+	hooksPath = .githooks

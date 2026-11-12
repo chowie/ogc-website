@@ -1,0 +1,8 @@
+#!/bin/sh
+# Rejects commit messages that don't follow Conventional Commits.
+# Enabled by core.hooksPath in the repo's .gitconfig (see README).
+if ! command -v node >/dev/null 2>&1; then
+  echo "commit-msg: node not on PATH; skipping Conventional Commits check (the PR check still runs)" >&2
+  exit 0
+fi
+exec node scripts/check-commit-msg.mjs "$1"

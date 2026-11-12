@@ -119,6 +119,22 @@ current main becomes v0.1.0.
       unchanged; PR closed unmerged. Manual `netlify deploy` no longer needed.
 - [x] Verify demo URL, noindex live — https://ogc-website.netlify.app (robots Disallow + noindex meta confirmed; contact form registered, form detection enabled)
 
+## PR workflow + Conventional Commits + Claude review (2026-11-12, plan — awaiting OK)
+Goal: work like ogc-asana-intake-form (branch → push → PR → Netlify preview),
+plus Conventional Commits and a Claude code review on each PR.
+- [ ] `CLAUDE.md` for this repo: branch naming (`feat/…`, `fix/…`), never commit
+      to main, push + `gh pr create`, wait for Netlify preview, review, merge.
+- [ ] Conventional Commits, zero new deps: `scripts/check-commit-msg.mjs`
+      (types: feat fix docs style refactor perf test build ci chore revert,
+      plus this repo's `content` and `release`; allows Merge/Revert/fixup!).
+- [ ] Local `commit-msg` hook in `.githooks/`, enabled via the existing
+      `.gitconfig` include (`core.hooksPath`), so bad messages fail at commit time.
+- [ ] GitHub Action `pr-checks.yml`: lint PR title + every commit in the PR.
+- [ ] Netlify deploy previews run `npm run verify` (tests + build), not just build,
+      so the Netlify check catches test failures.
+- [ ] Claude code review on each PR (approach: see question to Chris).
+- [ ] README "Contributing" section; verify end to end with a test PR.
+
 ## Review
 ### Phase 1 (2026-10-28)
 Verified: `astro check` 0 errors; team sorts by displayOrder (missing → last);
