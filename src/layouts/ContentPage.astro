@@ -1,0 +1,46 @@
+---
+// An inner page whose copy comes from the pages collection: header band,
+// the section's links on the side, then the Markdown. Pages that need more
+// (a map, a list, a form) pass it in the default slot, shown after the copy,
+// or the "before" slot, shown before it.
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import Base from './Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { sectionFor, isCurrentPage, normalizePath } from '../data/nav';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const { title, eyebrow, intro, description, status } = entry.data;
+
+const path = normalizePath(Astro.url.pathname);
+const section = sectionFor(path);
+const onThisPage = section?.children.every((c) => c.href.includes('#'));
+const hasSections = headings.some((h) => h.depth === 2);
+---
+
+<Base title={title} description={description ?? intro}>
+  <PageHead title={title} eyebrow={eyebrow ?? (section && section.href !== path ? section.label : undefined)} intro={intro} status={hasSections ? undefined : status} />
+  <div class="section">
+    <div class:list={['container', { 'content-layout': section }]}>
+      {section && (
+        <nav class="content-layout__nav subnav" aria-label={onThisPage ? 'On this page' : `In ${section.label}`}>
+          <p>{onThisPage ? 'On this page' : section.label}</p>
+          {!onThisPage && <a href={section.href} aria-current={path === section.href ? 'page' : undefined}>Overview</a>}
+          {section.children.map((c) => (
+            <a href={c.href} aria-current={isCurrentPage(c, path) ? 'page' : undefined}>{c.label}</a>
+          ))}
+        </nav>
+      )}
+      <div>
+        <slot name="before" />
+        <div class="prose"><Content /></div>
+        <slot />
+      </div>
+    </div>
+  </div>
+</Base>

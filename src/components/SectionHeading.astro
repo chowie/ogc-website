@@ -1,0 +1,21 @@
+---
+// A section heading for .astro pages, matching what section-status gives
+// Markdown sections: an id the menu can link to, plus the demo status badge.
+// The status comes from the page's frontmatter `sections:` (default real,
+// since these sections show site data), so /content-status sees it too.
+import type { CollectionEntry } from 'astro:content';
+import { slugify, STATUS_LABELS } from '../lib/section-status.mjs';
+
+interface Props {
+  title: string;
+  entry: CollectionEntry<'pages'>;
+  level?: 2 | 3;
+}
+const { title, entry, level = 2 } = Astro.props;
+const id = slugify(title);
+const status = (entry.data.sections[id] ?? 'real') as keyof typeof STATUS_LABELS;
+const Tag = (level === 3 ? 'h3' : 'h2') as 'h2' | 'h3';
+---
+
+<Tag id={id}>{title}</Tag>
+{status !== 'real' && <p class={`status-badge status-badge--${status}`}>{STATUS_LABELS[status]}</p>}

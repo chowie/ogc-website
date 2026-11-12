@@ -1,0 +1,106 @@
+---
+// Demo aid, not in the menu: every page and section, whether its copy is
+// real, rewritten from the old site (needs review) or a placeholder, and
+// what's still needed. Built from the pages collection's frontmatter.
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { nav } from '../data/nav';
+import { slugify, STATUS_LABELS } from '../lib/section-status.mjs';
+
+const label = (s: string) => STATUS_LABELS[s as keyof typeof STATUS_LABELS];
+// Sections an .astro page adds (SectionHeading) appear only in frontmatter.
+const titleFromId = (id: string) => id.charAt(0).toUpperCase() + id.slice(1).replaceAll('-', ' ');
+
+// Menu order first, then anything else.
+const order = nav.flatMap((item) => [item.href, ...item.children.map((c) => c.href)]);
+const rank = (url: string) => {
+  const i = order.indexOf(url);
+  return i === -1 ? order.length : i;
+};
+
+const pages = await Promise.all(
+  (await getCollection('pages')).map(async (entry) => {
+    const { headings } = await render(entry);
+    const url = `/${entry.id}`;
+    const fromMarkdown = headings
+      .filter((h) => h.depth === 2)
+      .map((h) => ({ id: h.slug, title: h.text, status: entry.data.sections[h.slug] ?? entry.data.status }));
+    const fromPage = Object.entries(entry.data.sections)
+      .filter(([id]) => !fromMarkdown.some((s) => s.id === id))
+      .map(([id, status]) => ({ id, title: titleFromId(id), status }));
+    const sections = [...fromPage, ...fromMarkdown].map((s) => ({ ...s, url: `${url}#${s.id}` }));
+    return { entry, url, sections };
+  }),
+);
+pages.sort((a, b) => rank(a.url) - rank(b.url));
+
+const counts = { real: 0, rewritten: 0, placeholder: 0 } as Record<string, number>;
+for (const p of pages) {
+  for (const s of p.sections.length ? p.sections : [{ status: p.entry.data.status }]) counts[s.status]++;
+}
+---
+
+<Base title="Content Status" noindex>
+  <PageHead
+    eyebrow="Demo"
+    title="Content Status"
+    intro="What's real, what's draft copy from the current site, and what's still a placeholder. Use it to decide what to write, photograph or confirm next."
+  />
+  <section class="section">
+    <div class="container">
+      <p class="summary">
+        <strong>{counts.real}</strong> real · <strong>{counts.rewritten}</strong> draft copy · <strong>{counts.placeholder}</strong> placeholder sections
+      </p>
+      <table class="status-table">
+        <thead>
+          <tr><th scope="col">Page</th><th scope="col">Sections</th><th scope="col">Still needed</th></tr>
+        </thead>
+        <tbody>
+          {pages.map(({ entry, url, sections }) => (
+            <tr id={`page-${slugify(entry.id)}`}>
+              <th scope="row">
+                <a href={url}>{entry.data.title}</a>
+                {!sections.length && <span class={`status-badge status-badge--${entry.data.status}`}>{label(entry.data.status)}</span>}
+              </th>
+              <td>
+                {sections.length ? (
+                  <ul class="list-plain">
+                    {sections.map((s) => (
+                      <li><span class={`status-badge status-badge--${s.status}`}>{label(s.status)}</span> <a href={s.url}>{s.title}</a></li>
+                    ))}
+                  </ul>
+                ) : <span class="muted">—</span>}
+              </td>
+              <td>
+                {entry.data.needs.length ? <ul>{entry.data.needs.map((n) => <li>{n}</li>)}</ul> : <span class="muted">—</span>}
+                {entry.data.sources.length > 0 && (
+                  <p class="sources">Source: {entry.data.sources.map((src, i) => <>{i > 0 && ', '}<a href={src}>{new URL(src).pathname}</a></>)}</p>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .summary { font-size: var(--step-1); }
+  .status-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .status-table th, .status-table td { text-align: left; vertical-align: top; padding: var(--space-s); border-bottom: 1px solid var(--mist); }
+  .status-table thead th { font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .status-table tbody th { font-weight: 700; min-width: 10rem; }
+  .status-table tbody th .status-badge { margin-left: 0.5rem; }
+  .status-table ul { margin: 0; padding-left: 1.1em; }
+  .status-table .list-plain { padding: 0; }
+  .status-table li { margin-bottom: 0.3rem; }
+  .status-table .status-badge { margin: 0 0.35rem 0 0; }
+  .sources { margin-top: var(--space-xs); font-size: var(--step--1); color: var(--muted); }
+  @media (max-width: 47.99rem) {
+    .status-table thead { display: none; }
+    .status-table tr, .status-table th, .status-table td { display: block; }
+    .status-table td { border: 0; padding-top: 0; }
+  }
+</style>

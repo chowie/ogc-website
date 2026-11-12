@@ -1,0 +1,49 @@
+---
+import { getEntry } from 'astro:content';
+import ContentPage from '../layouts/ContentPage.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { site } from '../lib/site';
+
+const entry = (await getEntry('pages', 'plan-your-visit'))!;
+const { address } = site;
+const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.name}, ${address.street}, ${address.city}, ${address.state} ${address.zip}`,
+)}`;
+---
+
+<ContentPage entry={entry}>
+  <div slot="before" class="prose">
+    <SectionHeading title="Service Times and Location" entry={entry} />
+    <div class="visit-grid">
+      <div>
+        <h3>Sundays</h3>
+        <ul class="list-plain">
+          {site.serviceTimes.map((s) => <li><strong>{s.label}</strong><br />{s.day}s at {s.time}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>Find Us</h3>
+        <address>
+          {address.street}<br />
+          {address.city}, {address.state} {address.zip}
+        </address>
+        <p><a href={directionsUrl}>Get directions</a></p>
+      </div>
+    </div>
+    <SectionHeading title="Parking and Entrance" entry={entry} level={3} />
+    <p>Where to park, and which door to use when you arrive, will go here.</p>
+    {address.mapEmbedUrl && (
+      <div class="map">
+        <iframe src={address.mapEmbedUrl} title={`Map showing ${site.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    )}
+  </div>
+</ContentPage>
+
+<style>
+  .visit-grid { display: grid; gap: var(--space-m); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); margin-bottom: var(--space-s); }
+  .visit-grid li { padding-block: 0.25rem; }
+  address { font-style: normal; margin-bottom: var(--space-s); }
+  .map { margin-block: var(--space-m) var(--space-l); }
+  .map iframe { width: 100%; height: clamp(16rem, 35vw, 24rem); border: 0; }
+</style>

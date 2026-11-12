@@ -10,6 +10,21 @@ section into the new version.
 
 ## [Unreleased]
 
+### Added
+
+- Menu from the proposed website outline, with dropdowns (keyboard and phone
+  friendly) and a fuller footer.
+- Every page in the outline: About (beliefs, story, team, membership), Get
+  Connected (seven pages), Kids & Families, Give, Contact and more. Copy not
+  yet final carries a "Draft copy" or "Placeholder" label.
+- `/content-status` (not linked or indexed): what is real, draft or
+  placeholder on each page, and what's still needed.
+
+### Changed
+
+- Pages moved: `/visit` → `/plan-your-visit`, `/sermons` →
+  `/watch-and-listen`, `/team/…` → `/about/team/…`. The old URLs redirect.
+
 ## [0.1.0] - 2026-10-28
 
 ### Added

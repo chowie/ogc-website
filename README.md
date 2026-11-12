@@ -88,6 +88,18 @@ that only for `npm run release`.
 | Sermons | `src/content/sermons/*.md` |
 | Events | `src/content/events/*.md` |
 | Service times, address, map, social links | `src/data/site.json` |
+| Page copy (Plan Your Visit, About, Get Connected, Give…) | `src/content/pages/**/*.md` (`about/beliefs.md` → `/about/beliefs`) |
+| The menu | `src/data/nav.ts` |
+
+Each `##` heading in a page file is a section; the menu links to it by an id
+made from the heading (`## New to the Area?` → `#new-to-the-area`). Renaming a
+heading changes its id, so update `src/data/nav.ts` too; `npm run verify`
+fails on any broken link or anchor.
+
+For the demo, a page's `status:` (`real`, `rewritten` or `placeholder`, with
+per-section overrides under `sections:`) puts a "Draft copy" or "Placeholder"
+label on unfinished sections. `/content-status` lists them all, with what's
+still needed (`needs:`).
 
 The build checks every file against the rules in `src/content.config.ts`.
 If something is wrong (missing name, short bio too long, bad date), the build
@@ -96,7 +108,7 @@ stops and names the file and field.
 ### Add a team member
 
 1. Create `src/content/team/first-last.md`. The filename becomes the page URL:
-   `/team/first-last`.
+   `/about/team/first-last`.
 2. Optional: put their photo next to it, e.g. `src/content/team/first-last.jpg`.
 3. Fill in:
 
