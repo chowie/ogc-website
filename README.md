@@ -76,8 +76,9 @@ that only for `npm run release`.
    - **Claude code review** (not automatic): Claude reviews the PRs it opens
      and posts findings as PR comments. For a PR you opened, ask Claude for
      `/code-review <PR number> --comment`. Fix or answer each comment.
-5. Merge when the checks are green and review comments are resolved. Merging
-   doesn't publish; the live site changes with the next release.
+5. Merge when the checks are green, the Claude review has posted, and its
+   comments are resolved. (As admin you can merge past open threads; don't.)
+   Merging doesn't publish; the live site changes with the next release.
 
 ## Editing content
 

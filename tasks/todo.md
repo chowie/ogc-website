@@ -2,7 +2,8 @@
 
 Replace the Wix site with an Astro static site. Content lives in Markdown/JSON
 (`src/content/`, `src/data/`) so volunteers (later via a CMS) and Chris (locally
-via git) edit the same files. GitHub → Netlify: production = newest release tag, PRs = previews.
+via git) edit the same files. GitHub → Netlify: production = newest release
+tag, PRs = previews.
 
 ## Decisions
 - **Astro 7.4** on **Node 22.23.4** (`.nvmrc`, pinned in `netlify.toml`).

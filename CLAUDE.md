@@ -67,10 +67,11 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
 
 1. **Never commit to `main`.** A GitHub ruleset requires a PR, requires every
    review conversation to be resolved, and blocks force pushes and deletion.
-   The admin role (Chris) bypasses it **always**, and Claude pushes with
-   Chris's credentials, so **the ruleset will not stop Claude**: never push,
-   force-push or delete `main` yourself. The bypass is only for
-   `npm run release`. The sermon import goes through its own PR. Start each change on a new branch:
+   The admin role (Chris) bypasses all of it **always**, and Claude acts with
+   Chris's credentials, so **the ruleset will not stop Claude**. Never push,
+   force-push or delete `main`, never merge with `--admin`, and never run
+   `npm run release`: the bypass exists only for Chris's releases. The
+   sermon import goes through its own PR. Start each change on a new branch:
    `git switch main && git pull && git switch -c <type>/<short-name>`.
    Rebase/amend only on your own branch.
 2. **Conventional Commits** for every commit and the PR title:
@@ -86,8 +87,9 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
 6. **Code review:** run the `code-review` skill on the PR with `--comment`
    (e.g. `/code-review 12 --comment`). Fix valid findings in new commits, reply
    to each comment (what was fixed in which commit, or why not), then resolve
-   the thread (GraphQL `resolveReviewThread`; the ruleset blocks merging
-   while any thread is open).
+   the thread (GraphQL `resolveReviewThread`). The ruleset holds the merge
+   while any thread is open, except for the admin bypass, so finish this
+   before telling Chris the PR is ready.
 7. Give Chris the PR link **and the deploy preview URL**. **Don't merge** unless
    Chris says to. After a merge, don't push more commits to that branch;
    start a new branch.
