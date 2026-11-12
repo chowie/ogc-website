@@ -20,6 +20,8 @@ const team = defineCollection({
         .string()
         .max(400, 'shortBio must be 400 characters or fewer')
         .optional(),
+      // Which list on /about/team the person appears in.
+      group: z.enum(['elders', 'deacons', 'staff']),
       // Lower numbers appear first. Missing = sorted to the end.
       displayOrder: z.number().default(999),
     }),
@@ -81,7 +83,8 @@ const pages = defineCollection({
     // and the badge read the same value.
     sections: z.record(z.string(), status).default({}),
     // Where real or rewritten copy came from.
-    sources: z.array(z.url()).default([]),
+    // Where the copy came from: a live-site URL, or a document's name.
+    sources: z.array(z.string()).default([]),
     // What's still needed to finish the page (shown on /content-status).
     needs: z.array(z.string()).default([]),
   }),

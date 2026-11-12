@@ -1,6 +1,7 @@
 ---
 name: "Bruce Schulert"
 role: "Elder"
+group: "elders"
 photo: ./bruce-schulert.png
 photoAlt: "Bruce Schulert, Elder"
 displayOrder: 4

@@ -1,6 +1,7 @@
 ---
 name: "Rachel Fulton"
 role: "Children's Ministry Director"
+group: "staff"
 photo: ./rachel-fulton.jpg
 photoAlt: "Rachel Fulton, Children's Ministry Director"
 displayOrder: 6

@@ -43,6 +43,9 @@ body {
   background: var(--paper);
 }
 img, iframe { max-width: 100%; display: block; }
+img { height: auto; }
+.prose img { margin-block: var(--space-m) var(--space-xs); }
+.prose p:has(> img) + p > em:only-child { color: var(--muted); font-size: var(--step--1); }
 a { color: var(--coral-ink); text-underline-offset: 0.2em; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }

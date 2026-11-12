@@ -1,6 +1,7 @@
 ---
 name: "Al Blankenship"
 role: "Elder"
+group: "elders"
 photo: ./al-blankenship.png
 photoAlt: "Al Blankenship, Elder"
 displayOrder: 1

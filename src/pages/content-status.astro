@@ -75,7 +75,7 @@ for (const p of pages) {
               <td>
                 {entry.data.needs.length ? <ul>{entry.data.needs.map((n) => <li>{n}</li>)}</ul> : <span class="muted">—</span>}
                 {entry.data.sources.length > 0 && (
-                  <p class="sources">Source: {entry.data.sources.map((src, i) => <>{i > 0 && ', '}<a href={src}>{new URL(src).pathname}</a></>)}</p>
+                  <p class="sources">Source: {entry.data.sources.map((src, i) => <>{i > 0 && '; '}{URL.canParse(src) ? <a href={src}>{new URL(src).pathname}</a> : src}</>)}</p>
                 )}
               </td>
             </tr>
