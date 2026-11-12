@@ -1,11 +1,22 @@
 ---
 title: "Our Beliefs"
 intro: "What we believe, in plain words first, then in full."
-status: rewritten
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/whoweare"
+  on: 2026-11-12
+  note: "Summary written fresh from the statement of faith below; needs elder approval."
 sections:
-  our-full-statement-of-faith: real
-sources:
-  - "https://www.oneidagospel.org/whoweare"
+  in-plain-words:
+    status: rewritten
+    from: "https://www.oneidagospel.org/whoweare"
+    on: 2026-11-12
+    note: "Summary written fresh from the statement of faith below; needs elder approval."
+  our-full-statement-of-faith:
+    status: real
+    from: "https://www.oneidagospel.org/whoweare"
+    on: 2026-11-12
+    note: "Bold labels and en dashes in verse ranges added; wording unchanged."
 needs:
   - "Plain-language summary: elders to review and approve"
   - "Decision: is the statement of faith or Operating Procedures public?"

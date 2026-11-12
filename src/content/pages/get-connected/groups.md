@@ -1,14 +1,22 @@
 ---
 title: "Groups"
 intro: "Bible studies and groups that meet during the week, and on Sunday mornings."
-status: rewritten
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/mensministry"
+  on: 2026-11-12
+  note: "Built from the men's, women's and adult class pages."
 sections:
-  find-a-group: placeholder
-sources:
-  - "https://www.oneidagospel.org/mensministry"
-  - "https://www.oneidagospel.org/about"
-  - "https://www.oneidagospel.org/adult-ed"
-  - "https://www.oneidagospel.org/"
+  current-groups:
+    status: rewritten
+    from: "oneidagospel.org men's, women's and adult class pages"
+    on: 2026-11-12
+    note: "Combined into one table; leaders the site doesn't name say \"Ask the office\"."
+  find-a-group:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "From the outline's Groups row; the form comes in a later update."
 needs:
   - "Leaders for the men's prayer, men's Bible study, and women's Bible study"
   - "Room for the men's Bible study"

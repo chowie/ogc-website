@@ -1,7 +1,11 @@
 ---
 title: "Get Connected"
 intro: "Find your people and a place to serve."
-status: placeholder
+origin:
+  status: placeholder
+  from: "Website Outline (Notion)"
+  on: 2026-11-12
+  note: "One-line descriptions of each Get Connected page, written from the outline."
 needs:
   - "Short intro for the Get Connected landing page"
 ---

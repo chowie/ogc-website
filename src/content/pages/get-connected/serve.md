@@ -1,7 +1,22 @@
 ---
 title: "Serve"
 intro: "Teams that need your gifts, and what each one asks of you."
-status: placeholder
+origin:
+  status: placeholder
+  from: "Website Outline (Notion)"
+  on: 2026-11-12
+  note: "From the outline's Serve row."
+sections:
+  teams:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "Teams from the outline's Serve row; the time each takes per month is made up."
+  sign-up:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "The outline asks for a sign-up form; it comes in a later update."
 needs:
   - "Serve team list and real time commitments"
   - "Sign-up form and who receives it"

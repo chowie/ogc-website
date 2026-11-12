@@ -1,16 +1,36 @@
 ---
 title: "Our Story"
 intro: "A church in Grand Ledge for more than 175 years, and still focused on the long game."
-status: rewritten
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/about-4"
+  on: 2026-11-12
+  note: "Condensed into short paragraphs; facts unchanged."
 sections:
-  our-mission: real
-  our-vision: real
-  what-we-value: real
-sources:
-  - "https://www.oneidagospel.org/about-4"
-  - "https://www.oneidagospel.org/post/happy-anniversary"
-  - "https://www.oneidagospel.org/whoweare"
-  - "OGC Operating Procedures (adopted 2007-01-21), Articles 1-3"
+  where-we-came-from:
+    status: rewritten
+    from: "https://www.oneidagospel.org/about-4"
+    on: 2026-11-12
+    note: "Condensed with the 175th-anniversary post; the 1848 date comes from the Operating Procedures."
+  who-we-are:
+    status: rewritten
+    from: "https://www.oneidagospel.org/whoweare"
+    on: 2026-11-12
+    note: "Reworded into two short labeled paragraphs; facts unchanged."
+  our-mission:
+    status: real
+    from: "OGC Operating Procedures (2007), Article 1"
+    on: 2026-11-12
+    note: "Called the church's \"Purpose\" there."
+  our-vision:
+    status: real
+    from: "OGC Operating Procedures (2007), Article 2"
+    on: 2026-11-12
+  what-we-value:
+    status: real
+    from: "OGC Operating Procedures (2007), Article 3"
+    on: 2026-11-12
+    note: "Taglines moved next to each value; \"BEcome\" corrected to \"become\"."
 needs:
   - 'Pastor tenure differs: /about-4 says the previous two pastors served "over 18-20 years each"; /whoweare says "a legacy of pastors who have served for over 20 years." Confirm the wording.'
   - 'Mission, vision and values are the Operating Procedures text from 2007. The procedures call the mission the "Purpose". Confirm the elders want these on the site as written.'

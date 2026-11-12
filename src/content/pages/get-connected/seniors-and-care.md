@@ -1,7 +1,11 @@
 ---
 title: "Seniors & Care"
 intro: "Care for older adults, homebound members and their families."
-status: placeholder
+origin:
+  status: placeholder
+  from: "Website Outline (Notion)"
+  on: 2026-11-12
+  note: "From the outline's Seniors & Care row; how visits and rides work is unknown."
 needs:
   - "Visiting and phone-call team details"
   - "How to request a visit or ride"

@@ -1,10 +1,27 @@
 ---
 title: "Give"
 intro: "Thank you for partnering with Oneida. Your faithful giving is precious to Christ, and to us."
-status: rewritten
-sources:
-  - "https://www.oneidagospel.org/give"
-  - "https://www.oneidagospel.org/copy-of-global-missions"
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/give"
+  on: 2026-11-12
+  note: "Reworded; facts unchanged."
+sections:
+  online-giving:
+    status: rewritten
+    from: "https://www.oneidagospel.org/give"
+    on: 2026-11-12
+    note: "COVID-era wording dropped; the Tithe.ly link is unchanged."
+  other-ways-to-give:
+    status: rewritten
+    from: "https://www.oneidagospel.org/give"
+    on: 2026-11-12
+    note: "Reworded; the current site gives no mailing address for checks."
+  where-giving-goes:
+    status: rewritten
+    from: "https://www.oneidagospel.org/copy-of-global-missions"
+    on: 2026-11-12
+    note: "Lists the three missionary families; that general giving supports them is assumed."
 needs:
   - "Mailing address and payee name for checks, if people can mail or drop off a check"
   - "One or two lines on how giving supports the local ministry (budget, staff, building)"

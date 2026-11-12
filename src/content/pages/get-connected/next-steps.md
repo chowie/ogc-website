@@ -1,7 +1,11 @@
 ---
 title: "Next Steps"
 intro: "You've visited a few times. Here's how to go from visitor to family."
-status: placeholder
+origin:
+  status: placeholder
+  from: "Website Outline (Notion)"
+  on: 2026-11-12
+  note: "Path from the outline's Next Steps row: meet the pastor, join a group, serve, explore membership."
 needs:
   - "The next-steps path, confirmed by staff"
   - '"Connect with me" form and who receives it'

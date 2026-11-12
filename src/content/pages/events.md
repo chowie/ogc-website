@@ -1,16 +1,19 @@
 ---
 title: "Events"
 intro: "What's coming up at Oneida, and gatherings that are easy to invite a friend to."
-status: real
+origin:
+  status: real
+  from: "the events calendar"
 sections:
-  calendar: real
-  community-events: rewritten
-sources:
-  - "https://www.oneidagospel.org/copy-of-vbs-2026"
-  - "https://www.oneidagospel.org/post/ministry-fair-september-8"
-  - "https://www.oneidagospel.org/post/family-camp-2026"
-  - "https://www.oneidagospel.org/post/trunk-or-treat-and-compete"
-  - "https://www.oneidagospel.org/post/christmas-eve-services"
+  calendar:
+    status: real
+    from: "the events calendar"
+    note: "Past events drop off automatically."
+  community-events:
+    status: rewritten
+    from: "oneidagospel.org event posts"
+    on: 2026-11-12
+    note: "Five dated posts rewritten as yearly events so they don't go out of date."
 needs:
   - "Share / invite-a-friend buttons (later update)"
   - "Christmas Eve 2026: service times (the last post on the old site is from 2023)"

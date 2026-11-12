@@ -1,12 +1,27 @@
 ---
 title: "Membership"
 intro: "What it means to belong to Oneida, and how to join."
-status: rewritten
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/post/want-to-know-more-about-membership-1"
+  on: 2026-11-12
+  note: "Reworded in plain language; facts unchanged."
 sections:
-  how-to-join: placeholder
-sources:
-  - "https://www.oneidagospel.org/post/want-to-know-more-about-membership-1"
-  - "https://www.oneidagospel.org/post/who-is-oneida-1"
+  what-membership-means:
+    status: rewritten
+    from: "https://www.oneidagospel.org/post/want-to-know-more-about-membership-1"
+    on: 2026-11-12
+    note: "Reworded in plain language; facts unchanged."
+  how-to-join:
+    status: placeholder
+    from: "https://www.oneidagospel.org/post/who-is-oneida-1"
+    on: 2026-11-12
+    note: "Steps 1 and 2 come from the class posts; the steps after the membership class are unknown."
+  next-class:
+    status: rewritten
+    from: "https://www.oneidagospel.org/post/who-is-oneida-1"
+    on: 2026-11-12
+    note: "Class dates replaced with a link to the events calendar so they can't go stale."
 needs:
   - "Steps after the membership class (meet with an elder? welcomed on a Sunday?), confirmed by the elders"
   - "Membership class end time (the post gives only the 9:15 a.m. start)"
