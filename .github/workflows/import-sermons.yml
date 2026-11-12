@@ -1,5 +1,10 @@
-# Checks the church YouTube channel for new sermons and commits them to main.
-# The push to main triggers the normal Netlify deploy.
+# Checks the church YouTube channel for new sermons and adds them through a
+# pull request that it merges itself (main only accepts changes via PRs).
+# The build is validated first, so the PR is safe to merge immediately.
+#
+# Needs: Settings → Actions → General → "Allow GitHub Actions to create and
+# approve pull requests". The PR targets the branch the workflow runs on
+# (main when scheduled), so running it by hand on a branch is a safe test.
 name: Import sermons
 
 on:
@@ -10,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: import-sermons
@@ -47,11 +53,20 @@ jobs:
           npm ci
           npm run build
 
-      - name: Commit and push
+      - name: Open and merge a pull request
         if: steps.changes.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ github.ref_name }}
+          BRANCH: content/sermons-${{ github.run_id }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$BRANCH"
           git add src/content/sermons
           git commit -m "content: import new sermons from YouTube"
-          git push
+          git push -u origin "$BRANCH"
+          gh pr create --base "$BASE" --head "$BRANCH" \
+            --title "content: import new sermons from YouTube" \
+            --body "Automated import from the church YouTube channel ([run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)). The site build passed before this PR was opened."
+          gh pr merge "$BRANCH" --squash --delete-branch
