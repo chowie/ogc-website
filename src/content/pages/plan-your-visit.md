@@ -2,20 +2,55 @@
 title: "Plan Your Visit"
 eyebrow: "New Here?"
 intro: "Come as you are. Here's what to expect on your first Sunday at Oneida."
-status: rewritten
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/"
+  on: 2026-11-12
+  note: "Gathered from several pages of the current site."
 sections:
-  service-times-and-location: real
-  parking-and-entrance: placeholder
-  who-youll-meet: placeholder
-  coming-back-to-church: placeholder
-  faq: placeholder
-  let-us-know-youre-coming: placeholder
-sources:
-  - "https://www.oneidagospel.org/"
-  - "https://www.oneidagospel.org/whoweare"
-  - "https://www.oneidagospel.org/children"
-  - "https://www.oneidagospel.org/meet-our-team-copy"
-  - "https://www.oneidagospel.org/post/who-is-oneida-1"
+  service-times-and-location:
+    status: real
+    from: "site settings"
+  parking-and-entrance:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "The outline asks for parking and which door to use; neither is known yet."
+  what-a-sunday-looks-like:
+    status: rewritten
+    from: "https://www.oneidagospel.org/whoweare"
+    on: 2026-11-12
+    note: "Service time from the home page; length, music and dress removed because no page gives them."
+  your-kids:
+    status: rewritten
+    from: "https://www.oneidagospel.org/children"
+    on: 2026-11-12
+    note: "Summarized from the kids page; facts unchanged."
+  who-youll-meet:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "Pastor lines come from the team page; the greeters and the \"no one will put you on the spot\" promise come from the outline."
+  new-to-the-area:
+    status: rewritten
+    from: "https://www.oneidagospel.org/post/who-is-oneida-1"
+    on: 2026-11-12
+    note: "Invites movers to the Who Is Oneida? class; dates link to the calendar."
+  coming-back-to-church:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "Written from the outline's \"no pressure, no guilt\" note; the rest is made up."
+  faq:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "Questions from the outline's FAQ row; only the service-time answer is real."
+  let-us-know-youre-coming:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "The outline asks for a short visit form; it comes in a later update."
 needs:
   - "Parking and which door to use"
   - "Service length, music style, and what people wear"

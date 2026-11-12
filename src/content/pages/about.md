@@ -1,9 +1,11 @@
 ---
 title: "About Us"
 intro: "Who we are, what we believe, and the people who lead us."
-status: rewritten
-sources:
-  - "https://www.oneidagospel.org/whoweare"
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/whoweare"
+  on: 2026-11-12
+  note: "Welcome line reworded from the \"close-knit family\" description; links to the About pages added."
 ---
 
 Oneida Gospel Church is a close-knit church family in Grand Ledge, Michigan, bound together by the Word of Christ. The Bible shapes everything we do, and it keeps pointing us to Jesus.

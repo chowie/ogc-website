@@ -1,22 +1,22 @@
 ---
-import { STATUS_LABELS } from '../lib/section-status.mjs';
+import type { CollectionEntry } from 'astro:content';
+import SectionMeta from './SectionMeta.astro';
 
 interface Props {
   title: string;
   eyebrow?: string;
   intro?: string;
-  /** Demo: labels a page whose copy isn't final (and has no sections to label). */
-  status?: string;
+  /** Demo: badge and source note for the page's intro and opening text. */
+  origin?: CollectionEntry<'pages'>['data']['origin'];
 }
-const { title, eyebrow, intro, status } = Astro.props;
-const badge = status && status !== 'real' && status in STATUS_LABELS ? STATUS_LABELS[status as keyof typeof STATUS_LABELS] : undefined;
+const { title, eyebrow, intro, origin } = Astro.props;
 ---
 
 <header class="page-head">
   <div class="container">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
-    {badge && <p class="page-head__status"><span class={`status-badge status-badge--${status}`}>{badge}</span></p>}
+    {origin && <SectionMeta origin={origin} label={title} />}
     {intro && <p>{intro}</p>}
   </div>
 </header>

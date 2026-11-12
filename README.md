@@ -97,11 +97,31 @@ made from the heading (`## New to the Area?` → `#new-to-the-area`). Renaming a
 heading changes its id, so update `src/data/nav.ts` too; `npm run verify`
 fails on any broken link or anchor.
 
-For the demo, a page's `status:` (`real`, `rewritten` or `placeholder`, with
-per-section overrides under `sections:`) puts a "Draft copy" or "Placeholder"
-label on unfinished sections. `/content-status` lists them all, with what's
-still needed (`needs:`). `sources:` records where the copy came from: a
-live-site URL or a document's name.
+For the demo, every section says whether its copy is final and where it came
+from. A "Draft copy" or "Placeholder" label (none for real copy) sits under
+the heading, with a "Source" toggle that opens a one-line note. Record it in
+the page's frontmatter: `origin:` is the page default, and `sections:` gives
+any section its own, keyed by heading id:
+
+```yaml
+origin:
+  status: rewritten          # real | rewritten | placeholder
+  from: https://www.oneidagospel.org/give   # a URL or a document's name
+  on: 2026-11-12             # date taken (or generated); required unless real
+  note: Reworded; facts unchanged.   # one short sentence
+sections:
+  faq:
+    status: placeholder      # `from` is optional for placeholders
+    from: Website Outline (Notion)
+    on: 2026-11-12
+    note: Questions from the outline's FAQ row; answers made up.
+```
+
+Real copy with a date reads "Verbatim from …, taken …"; real copy with no
+date (site settings, the YouTube import) reads "From …". A placeholder with
+no source and no note reads "made up, with no source". `/content-status`
+lists every section with its label and note, plus what's still needed
+(`needs:`).
 
 To add a photo to a page, put it in `src/assets/photos/` and use a Markdown
 image with a path relative to the page file and alt text that describes it:

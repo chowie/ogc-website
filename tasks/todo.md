@@ -156,8 +156,11 @@ plain-language summary marked for elder review).
       (Markdown `pages` collection + catch-all route), redirects, status
       badges, /content-status, link checker. PR #7: review (10 findings)
       fixed in f848e7c; merged 2026-11-12
-- [ ] PR 2 `content/site-content`: demo content + live-site copy rewritten by a
+- [x] PR 2 `content/site-content`: demo content + live-site copy rewritten by a
       content specialist, photos (no children), realistic placeholders
+      PR #8: merged 2026-11-12
+- [ ] Source notes on every section (`feat/content-provenance`): origin +
+      per-section from/on/note, collapsed "Source" toggle, /content-status
 - [ ] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
       share buttons, Watch & Listen
 - [ ] After merge: Chris decides demo from preview vs `npm run release -- minor`

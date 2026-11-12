@@ -1,15 +1,42 @@
 ---
 title: "Kids & Families"
 intro: "Oneida Kids partners with parents to help children love and serve Jesus."
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/children"
+  on: 2026-11-12
+  note: "Reworded; facts unchanged."
 sections:
-  check-in-and-safety: placeholder
-status: rewritten
-sources:
-  - "https://www.oneidagospel.org/children"
-  - "https://www.oneidagospel.org/"
-  - "https://www.oneidagospel.org/youth"
-  - "https://www.oneidagospel.org/rbt"
-  - "https://www.oneidagospel.org/copy-of-vbs-2026"
+  age-groups:
+    status: rewritten
+    from: "https://www.oneidagospel.org/children"
+    on: 2026-11-12
+    note: "Turned into a table by age group; facts unchanged."
+  youth-group:
+    status: rewritten
+    from: "https://www.oneidagospel.org/youth"
+    on: 2026-11-12
+    note: "Shortened; the two youth forms are now hosted on this site."
+  released-time-bible-class:
+    status: rewritten
+    from: "https://www.oneidagospel.org/rbt"
+    on: 2026-11-12
+    note: "\"Released Bible Time\" renamed Released Time, with a one-line explanation added."
+  vacation-bible-school:
+    status: rewritten
+    from: "https://www.oneidagospel.org/copy-of-vbs-2026"
+    on: 2026-11-12
+    note: "Shortened; dates and registration link unchanged."
+  check-in-and-safety:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "From the outline's check-in and safety row; only the pickup and background-check details are real."
+  parent-resources:
+    status: rewritten
+    from: "https://www.oneidagospel.org/children"
+    on: 2026-11-12
+    note: "The book, sermon notebooks and youth forms gathered into one list."
 needs:
   - "Check-in process: where to go on arrival and how pickup works for nursery and preschool"
   - "Photos only with written parental consent"

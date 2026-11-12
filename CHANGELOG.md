@@ -12,6 +12,8 @@ section into the new version.
 
 ### Added
 
+- Every demo section has a "Source" note saying where its copy came from:
+  copied word for word, rewritten (and how), or generated as a placeholder.
 - Menu from the proposed website outline, with dropdowns (keyboard and phone
   friendly) and a fuller footer.
 - Every page in the outline: About (beliefs, story, team, membership), Get

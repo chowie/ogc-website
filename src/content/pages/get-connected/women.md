@@ -1,9 +1,11 @@
 ---
 title: "Women"
 intro: "Women encouraging women, through Bible study, friendship, and time together."
-status: rewritten
-sources:
-  - "https://www.oneidagospel.org/about"
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/about"
+  on: 2026-11-12
+  note: "Shortened and split into what, when and contact; facts unchanged."
 needs:
   - "Childcare details for the Wednesday morning study"
   - "Leader name, photo and contact for women's ministry"

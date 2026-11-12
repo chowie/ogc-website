@@ -1,12 +1,32 @@
 ---
 title: "Men"
 intro: "Prayer, Bible study, and time together for men at every stage."
-status: rewritten
+origin:
+  status: rewritten
+  from: "https://www.oneidagospel.org/mensministry"
+  on: 2026-11-12
+  note: "Shortened and split into what and when; facts unchanged."
 sections:
-  mentoring: placeholder
-  contact: placeholder
-sources:
-  - "https://www.oneidagospel.org/mensministry"
+  what-we-do:
+    status: rewritten
+    from: "https://www.oneidagospel.org/mensministry"
+    on: 2026-11-12
+    note: "Shortened; facts unchanged."
+  when-we-meet:
+    status: rewritten
+    from: "https://www.oneidagospel.org/mensministry"
+    on: 2026-11-12
+    note: "Times pulled out into their own section; facts unchanged."
+  mentoring:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "The outline asks for mentoring with older men; the details are made up as a prompt."
+  contact:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-12
+    note: "The outline asks for a leader photo and contact; the current site has neither."
 needs:
   - "Leader name, photo and contact"
   - "Room for the Thursday Bible study"

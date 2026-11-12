@@ -163,6 +163,18 @@ blockquote {
 .status-badge--rewritten { color: #1f4f7a; background: #e3f0fb; }
 .site-footer .status-badge, .page-head .status-badge { margin: 0; vertical-align: middle; }
 
+/* Demo: badge + collapsed "where this came from" note under a heading. */
+.section-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.6rem; margin: 0 0 var(--space-s); }
+.section-meta .status-badge { margin: 0; }
+.provenance { font-size: var(--step--1); color: var(--muted); }
+.provenance summary { cursor: pointer; width: fit-content; text-decoration: underline dotted; text-underline-offset: 0.2em; }
+.provenance summary:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.provenance[open] { flex: 1 1 16rem; }
+.provenance p { margin: 0.25rem 0 0; max-width: 40rem; }
+.page-head .section-meta { margin-block: 0 var(--space-s); }
+.page-head .provenance { color: inherit; opacity: 0.85; }
+.page-head .provenance a { color: inherit; }
+
 /* Long-form copy from the pages collection. */
 .prose { max-width: 44rem; }
 .prose h2 { font-size: var(--step-2); margin-top: var(--space-l); }

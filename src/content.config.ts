@@ -69,6 +69,19 @@ const events = defineCollection({
 // `status` labels the copy for the demo: real (from the church), rewritten
 // (from the old site, edited for the web; needs review) or placeholder.
 const status = z.enum(STATUSES as [string, ...string[]]);
+// A URL, or a document's name (no ':' or '/', so a mistyped URL still fails).
+const source = z.union([z.url({ protocol: /^https?$/ }), z.string().regex(/^[^:/]+$/, 'not a URL or a document name')]);
+// Where a section's copy came from; see src/lib/section-status.mjs.
+const origin = z
+  .object({
+    status,
+    from: source.optional(),
+    // An unquoted YAML date (2026-11-12), which is read as that calendar day.
+    on: z.date({ error: 'on must be a date like 2026-11-12 (no quotes)' }).optional(),
+    note: z.string().max(200, 'note: one short sentence (200 characters max)').optional(),
+  })
+  .refine((o) => o.status === 'placeholder' || o.from, { message: 'from is required unless status is placeholder', path: ['from'] })
+  .refine((o) => o.status === 'real' || o.on, { message: 'on (a date) is required for rewritten and placeholder copy', path: ['on'] });
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z.object({
@@ -76,15 +89,12 @@ const pages = defineCollection({
     eyebrow: z.string().optional(),
     intro: z.string().optional(),
     description: z.string().optional(),
-    // Required, so the badges and /content-status always agree.
-    status,
-    // Per-section overrides, keyed by heading id: { faq: real }. Also lists
-    // sections a page's .astro file adds (SectionHeading), so /content-status
-    // and the badge read the same value.
-    sections: z.record(z.string(), status).default({}),
-    // Where the copy came from: a URL, or a document's name (no ':' or '/',
-    // so a mistyped URL still fails the build).
-    sources: z.array(z.union([z.url(), z.string().regex(/^[^:/]+$/, 'not a URL or a document name')])).default([]),
+    // The page default: status and where the copy came from. Required, so
+    // every section has a badge and a source note.
+    origin,
+    // Per-section origins, keyed by heading id. Also lists sections a page's
+    // .astro file adds (SectionHeading), so /content-status and the page agree.
+    sections: z.record(z.string(), origin).default({}),
     // What's still needed to finish the page (shown on /content-status).
     needs: z.array(z.string()).default([]),
   }),

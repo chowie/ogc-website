@@ -8,6 +8,7 @@ import { render } from 'astro:content';
 import Base from './Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { sectionFor, isCurrentPage, normalizePath } from '../data/nav';
+import { hasLeadCopy } from '../lib/section-status.mjs';
 
 interface Props {
   entry: CollectionEntry<'pages'>;
@@ -15,16 +16,18 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, eyebrow, intro, description, status } = entry.data;
+const { title, eyebrow, intro, description, origin, sections } = entry.data;
 
 const path = normalizePath(Astro.url.pathname);
 const section = sectionFor(path);
 const onThisPage = section?.children.every((c) => c.href.includes('#'));
-const hasSections = headings.some((h) => h.depth === 2);
+// Sections carry their own badge and note. The page's own `origin` covers the
+// intro and any text before the first section, so show it when there is some.
+const showPageOrigin = hasLeadCopy(entry.body, intro) || (!headings.some((h) => h.depth === 2) && !Object.keys(sections).length);
 ---
 
 <Base title={title} description={description ?? intro}>
-  <PageHead title={title} eyebrow={eyebrow ?? (section && section.href !== path ? section.label : undefined)} intro={intro} status={hasSections ? undefined : status} />
+  <PageHead title={title} eyebrow={eyebrow ?? (section && section.href !== path ? section.label : undefined)} intro={intro} origin={showPageOrigin ? origin : undefined} />
   <div class="section">
     <div class:list={['container', { 'content-layout': section }]}>
       {section && (
