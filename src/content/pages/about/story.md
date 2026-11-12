@@ -53,6 +53,6 @@ Now, with a new lead pastor, we're ready to reach out to our community and help 
 
 **To hunger for God: to experience God's presence.** To seek out God and His glory through His Word, through worship, prayer and through the guidance and direction of the Holy Spirit.
 
-**To BEcome more like Jesus: to be "Jesus with skin on."** To be in discipling relationships where we follow after the character and example of Jesus Christ and reach out to people around us with the grace, truth and love of God.
+**To become more like Jesus: to be "Jesus with skin on."** To be in discipling relationships where we follow after the character and example of Jesus Christ and reach out to people around us with the grace, truth and love of God.
 
 **To build His Kingdom: to be known by our love.** To be a place where we are one in worship and service; where we seek the activity of God; where the leadership humbly serves; and where we simply exist to bless, heal, draw people to Jesus and receive the blessing of God's presence.
