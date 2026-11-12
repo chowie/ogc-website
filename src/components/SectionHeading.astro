@@ -1,8 +1,9 @@
 ---
 // A section heading for .astro pages, matching what section-status gives
 // Markdown sections: an id the menu can link to, plus the demo badge and
-// source note. The origin comes from the page's frontmatter `sections:`
-// (falling back to the page's `origin`), so /content-status sees it too.
+// source note. Every such section needs its own entry in the page's
+// frontmatter `sections:`, so /content-status lists it too; the build stops
+// if one is missing.
 import type { CollectionEntry } from 'astro:content';
 import { slugify } from '../lib/section-status.mjs';
 import SectionMeta from './SectionMeta.astro';
@@ -14,9 +15,12 @@ interface Props {
 }
 const { title, entry, level = 2 } = Astro.props;
 const id = slugify(title);
-const origin = entry.data.sections[id] ?? entry.data.origin;
+const origin = entry.data.sections[id];
+if (!origin) {
+  throw new Error(`src/content/pages/${entry.id}.md: add "${id}" under sections: (status, from, on, note) for the "${title}" section.`);
+}
 const Tag = (level === 3 ? 'h3' : 'h2') as 'h2' | 'h3';
 ---
 
 <Tag id={id}>{title}</Tag>
-<SectionMeta origin={origin} />
+<SectionMeta origin={origin} label={title} />

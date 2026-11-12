@@ -1,0 +1,14 @@
+---
+// describeOrigin() rendered as text with its source link. Used by SectionMeta
+// and /content-status; sectionMeta() in section-status.mjs builds the same
+// thing as HAST for Markdown sections.
+import type { CollectionEntry } from 'astro:content';
+import { describeOrigin } from '../lib/section-status.mjs';
+
+interface Props {
+  origin: CollectionEntry<'pages'>['data']['origin'];
+}
+const parts = describeOrigin(Astro.props.origin);
+---
+
+{parts.map((p) => (typeof p === 'string' ? p : <a href={p.href}>{p.text}</a>))}

@@ -7,7 +7,8 @@ import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { nav } from '../data/nav';
-import { slugify, STATUS_LABELS, describeOrigin } from '../lib/section-status.mjs';
+import { slugify, STATUS_LABELS, hasLeadCopy } from '../lib/section-status.mjs';
+import OriginNote from '../components/OriginNote.astro';
 
 const label = (s: string) => STATUS_LABELS[s as keyof typeof STATUS_LABELS];
 // Sections an .astro page adds (SectionHeading) appear only in frontmatter.
@@ -30,7 +31,13 @@ const pages = await Promise.all(
     const fromPage = Object.entries(entry.data.sections)
       .filter(([id]) => !fromMarkdown.some((s) => s.id === id))
       .map(([id, origin]) => ({ id, title: titleFromId(id), origin }));
+    // Section keys link to their anchors, so check-links fails on a key that
+    // matches no heading (a typo, or a renamed heading).
     const sections = [...fromPage, ...fromMarkdown].map((s) => ({ ...s, url: `${url}#${s.id}` }));
+    // The page's own origin covers its intro and any copy before the first section.
+    if (hasLeadCopy(entry.body, entry.data.intro) || !sections.length) {
+      sections.unshift({ id: '', title: 'Introduction', url, origin: entry.data.origin });
+    }
     return { entry, url, sections };
   }),
 );
@@ -38,7 +45,7 @@ pages.sort((a, b) => rank(a.url) - rank(b.url));
 
 const counts = { real: 0, rewritten: 0, placeholder: 0 } as Record<string, number>;
 for (const p of pages) {
-  for (const s of p.sections.length ? p.sections : [{ origin: p.entry.data.origin }]) counts[s.origin.status]++;
+  for (const s of p.sections) counts[s.origin.status]++;
 }
 ---
 
@@ -65,10 +72,10 @@ for (const p of pages) {
               </th>
               <td>
                 <ul class="list-plain">
-                  {(sections.length ? sections : [{ title: 'Whole page', url, origin: entry.data.origin }]).map((s) => (
+                  {sections.map((s) => (
                     <li>
                       <span class={`status-badge status-badge--${s.origin.status}`}>{label(s.origin.status)}</span> <a href={s.url}>{s.title}</a>
-                      <span class="origin">{describeOrigin(s.origin).map((p) => (typeof p === 'string' ? p : <a href={p.href}>{p.text}</a>))}</span>
+                      <span class="origin"><OriginNote origin={s.origin} /></span>
                     </li>
                   ))}
                 </ul>

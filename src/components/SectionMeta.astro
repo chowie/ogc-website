@@ -2,13 +2,16 @@
 // The line under a section heading: status badge (none for real copy) and a
 // collapsed "Source" note. Same markup as sectionMeta() in section-status.mjs,
 // which does this for Markdown sections.
-import { describeOrigin, STATUS_LABELS } from '../lib/section-status.mjs';
+import type { CollectionEntry } from 'astro:content';
+import { STATUS_LABELS } from '../lib/section-status.mjs';
+import OriginNote from './OriginNote.astro';
 
 interface Props {
-  origin: { status: string; from?: string; on?: Date; note?: string };
+  origin: CollectionEntry<'pages'>['data']['origin'];
+  /** The section or page title, read out after "Source" by screen readers. */
+  label: string;
 }
-const { origin } = Astro.props;
-const parts = describeOrigin(origin);
+const { origin, label } = Astro.props;
 ---
 
 <div class="section-meta">
@@ -16,7 +19,7 @@ const parts = describeOrigin(origin);
     <span class={`status-badge status-badge--${origin.status}`}>{STATUS_LABELS[origin.status as keyof typeof STATUS_LABELS]}</span>
   )}
   <details class="provenance">
-    <summary>Source</summary>
-    <p>{parts.map((p) => (typeof p === 'string' ? p : <a href={p.href}>{p.text}</a>))}</p>
+    <summary>Source<span class="visually-hidden">: {label}</span></summary>
+    <p><OriginNote origin={origin} /></p>
   </details>
 </div>

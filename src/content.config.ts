@@ -70,13 +70,14 @@ const events = defineCollection({
 // (from the old site, edited for the web; needs review) or placeholder.
 const status = z.enum(STATUSES as [string, ...string[]]);
 // A URL, or a document's name (no ':' or '/', so a mistyped URL still fails).
-const source = z.union([z.url(), z.string().regex(/^[^:/]+$/, 'not a URL or a document name')]);
+const source = z.union([z.url({ protocol: /^https?$/ }), z.string().regex(/^[^:/]+$/, 'not a URL or a document name')]);
 // Where a section's copy came from; see src/lib/section-status.mjs.
 const origin = z
   .object({
     status,
     from: source.optional(),
-    on: z.coerce.date().optional(),
+    // An unquoted YAML date (2026-11-12), which is read as that calendar day.
+    on: z.date({ error: 'on must be a date like 2026-11-12 (no quotes)' }).optional(),
     note: z.string().max(200, 'note: one short sentence (200 characters max)').optional(),
   })
   .refine((o) => o.status === 'placeholder' || o.from, { message: 'from is required unless status is placeholder', path: ['from'] })

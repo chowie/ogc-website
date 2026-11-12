@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { describeOrigin, originText, formatDate, originFor } from '../src/lib/section-status.mjs';
+import { describeOrigin, originText, formatDate, originFor, hasLeadCopy } from '../src/lib/section-status.mjs';
 
 const on = new Date('2026-11-12');
 
@@ -39,4 +39,11 @@ test('a section uses its own origin, else the page default', () => {
   const fm = { origin: { status: 'rewritten' }, sections: { faq: { status: 'placeholder' } } };
   assert.equal(originFor(fm, 'faq').status, 'placeholder');
   assert.equal(originFor(fm, 'other').status, 'rewritten');
+});
+
+test('hasLeadCopy: an intro, or Markdown before the first section', () => {
+  assert.equal(hasLeadCopy('## Teams\n\nText', undefined), false);
+  assert.equal(hasLeadCopy('Opening line.\n\n## Teams', undefined), true);
+  assert.equal(hasLeadCopy('## Teams', 'An intro'), true);
+  assert.equal(hasLeadCopy(undefined, undefined), false);
 });

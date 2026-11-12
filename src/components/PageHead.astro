@@ -1,12 +1,13 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import SectionMeta from './SectionMeta.astro';
 
 interface Props {
   title: string;
   eyebrow?: string;
   intro?: string;
-  /** Demo: badge and source note for a page that has no sections to carry them. */
-  origin?: { status: string; from?: string; on?: Date; note?: string };
+  /** Demo: badge and source note for the page's intro and opening text. */
+  origin?: CollectionEntry<'pages'>['data']['origin'];
 }
 const { title, eyebrow, intro, origin } = Astro.props;
 ---
@@ -15,7 +16,7 @@ const { title, eyebrow, intro, origin } = Astro.props;
   <div class="container">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
-    {origin && <SectionMeta origin={origin} />}
+    {origin && <SectionMeta origin={origin} label={title} />}
     {intro && <p>{intro}</p>}
   </div>
 </header>
