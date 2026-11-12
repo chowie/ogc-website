@@ -15,10 +15,10 @@ sections:
     from: "Wix team collection (CSV export)"
     on: 2026-10-28
   deacons:
-    status: placeholder
-    from: "Website Outline (Notion)"
+    status: rewritten
+    from: "Notion deacon profiles"
     on: 2026-11-12
-    note: "The outline asks for elders, deacons and staff; there are no deacon details yet, so the text is made up."
+    note: "Bios drafted from each deacon's areas of responsibility and Chris's notes; each deacon should approve his."
 needs:
-  - "Deacons: names, roles, photos and short bios, with each deacon's OK to publish"
+  - "Deacons: headshots (Chris's on the way), and each deacon's OK on his bio"
 ---

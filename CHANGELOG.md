@@ -12,6 +12,8 @@ section into the new version.
 
 ### Added
 
+- Deacons on Our Team: Chris Howie, Derek Smith and Jordan Shaulis, with
+  draft bios. Headshots without a photo say "Photo to come".
 - Every demo section has a "Source" note saying where its copy came from:
   copied word for word, rewritten (and how), or generated as a placeholder.
 - Menu from the proposed website outline, with dropdowns (keyboard and phone
