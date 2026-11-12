@@ -119,6 +119,31 @@ current main becomes v0.1.0.
       unchanged; PR closed unmerged. Manual `netlify deploy` no longer needed.
 - [x] Verify demo URL, noindex live — https://ogc-website.netlify.app (robots Disallow + noindex meta confirmed; contact form registered, form detection enabled)
 
+## PR workflow + Conventional Commits + Claude review (2026-11-12)
+Goal: work like ogc-asana-intake-form (branch → push → PR → Netlify preview),
+plus Conventional Commits and a Claude code review on each PR.
+Chris chose: review run locally by Claude (no Action/secret); enforcement by
+habit only: PRs aren't required (sermon import + release still push to main).
+Chris added ruleset `default-branch-ruleset` on main (2026-11-12): blocks
+deletion and force pushes only, no bypass list. Never force-push or delete
+main; rewrite history only on feature branches.
+- [x] `CLAUDE.md` for this repo: the 7-step change workflow.
+- [x] `scripts/check-commit-msg.mjs` (no deps, unit-tested); all prior commits pass.
+- [x] `.githooks/commit-msg` via `core.hooksPath` in `.gitconfig`; finds nvm's
+      node off-PATH; forwards to executable `.git/hooks/*`.
+- [x] `.github/workflows/pr-checks.yml`: PR title + commits (origin/<base>..head).
+- [x] Deploy previews run `npm run verify`.
+- [x] Claude review: `/code-review <n> --comment` → 10 findings on PR #1, all
+      fixed (6adee21) and replied to.
+- [x] README "Contributing"; Releasing steps updated for PRs.
+- [ ] **Chris:** Netlify → ogc-website → Project configuration → Notifications →
+      Deploy notifications: add GitHub **commit status** and **pull request
+      comment** for Deploy started/succeeded/failed (intake form has them; this
+      site only has "checks"). Without them a failed preview build shows no red
+      check and no preview-link comment. (My API attempt was blocked by
+      permissions.)
+- [ ] Merge PR #1 (Chris).
+
 ## Review
 ### Phase 1 (2026-10-28)
 Verified: `astro check` 0 errors; team sorts by displayOrder (missing → last);
@@ -137,6 +162,8 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 
 ## Stopped Here
 Demo live; main auto-deploys, PRs get previews.
+PR workflow lives on PR #1 (ci/pr-workflow), waiting for Chris to merge and
+turn on the Netlify deploy notifications (see section above).
 Still need: welcome text, any other service times, hero photo.
 Re-shoot docs/screenshots/ after visual changes.
 Live = v0.1.0. Anything on main after that tag is unreleased until

@@ -10,3 +10,7 @@
 # Deploy previews (pull requests) still build their own commit.
 [context.production]
   command = "bash scripts/build-release.sh"
+
+# Pull requests: run the tests too, so a failing test fails the Netlify check.
+[context.deploy-preview]
+  command = "npm run verify"

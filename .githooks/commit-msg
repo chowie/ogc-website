@@ -1,0 +1,20 @@
+#!/bin/sh
+# Rejects commit messages that don't follow Conventional Commits, then runs
+# the clone's own .git/hooks/commit-msg, if any (core.hooksPath would
+# otherwise hide it). Enabled by core.hooksPath in the repo's .gitconfig.
+# GUI clients and non-interactive shells often lack nvm's node on PATH;
+# fall back to nvm's install of the .nvmrc version, then any nvm version.
+if ! command -v node >/dev/null 2>&1; then
+  for bin in "${NVM_DIR:-$HOME/.nvm}"/versions/node/v"$(cat .nvmrc 2>/dev/null)"*/bin \
+             "${NVM_DIR:-$HOME/.nvm}"/versions/node/*/bin; do
+    if [ -x "$bin/node" ]; then PATH="$bin:$PATH"; break; fi
+  done
+fi
+if command -v node >/dev/null 2>&1; then
+  node scripts/check-commit-msg.mjs "$1" || exit 1
+else
+  echo "commit-msg: node not found; skipping Conventional Commits check (the PR check still runs)" >&2
+fi
+# Not --git-path: that follows core.hooksPath back to this file.
+local_hook="$(git rev-parse --git-common-dir)/hooks/commit-msg"
+if [ -x "$local_hook" ]; then exec "$local_hook" "$@"; fi

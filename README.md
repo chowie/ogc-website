@@ -45,11 +45,37 @@ npm run verify   # tests + type-check + build (the release gate)
 ```
 
 After cloning, turn on the repo's git settings (commit email set to the
-GitHub no-reply address, so personal email stays out of history):
+GitHub no-reply address, so personal email stays out of history, and a
+`commit-msg` hook that checks Conventional Commits):
 
 ```bash
 git config include.path ../.gitconfig
 ```
+
+## Contributing
+
+Every change goes through a pull request; nothing is committed to `main`
+directly (the sermon import and `npm run release` are the exceptions).
+
+1. Branch from an up-to-date `main`: `git switch -c feat/short-name`
+   (prefix with the commit type: `feat/`, `fix/`, `content/`, `docs/`, `ci/`…).
+2. Commit using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
+   `type(optional scope): description`, e.g. `feat: add events page`,
+   `fix(nav): close menu on tap`, `content: add fall retreat`. Allowed types
+   are `TYPES` in `scripts/check-commit-msg.mjs`: the usual ones plus `content`
+   (site content) and `release` (written by the release script).
+   A `!` after the type, or a `BREAKING CHANGE:` footer, marks a breaking change.
+3. Push and open a PR (`gh pr create`) with a Conventional Commits title.
+4. Checks on the PR:
+   - **Netlify deploy preview**: runs `npm run verify` (tests, type check,
+     build) and posts a preview link. Check the change there.
+   - **PR checks** (GitHub Actions): the PR title and every commit follow
+     Conventional Commits (`scripts/check-commit-msg.mjs`).
+   - **Claude code review** (not automatic): Claude reviews the PRs it opens
+     and posts findings as PR comments. For a PR you opened, ask Claude for
+     `/code-review <PR number> --comment`. Fix or answer each comment.
+5. Merge when the checks are green and review comments are resolved. Merging
+   doesn't publish; the live site changes with the next release.
 
 ## Editing content
 
@@ -181,8 +207,9 @@ public launch.
 
 Only release a version that's done and passes everything:
 
-1. Note your changes under `## [Unreleased]` in `CHANGELOG.md` and commit.
-2. Push `main`.
+1. Note changes under `## [Unreleased]` in `CHANGELOG.md` (in each PR, or
+   in a `docs:` PR before releasing) and merge.
+2. `git switch main && git pull`.
 3. Run:
 
    ```bash
