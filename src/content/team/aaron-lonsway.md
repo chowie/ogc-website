@@ -8,7 +8,7 @@ displayOrder: 5
 shortBio: "Aaron is a Registered Nurse with Family Medicine of Michigan and also holds an FAA A&P aircraft maintenance license. He has led corporate worship at Oneida since shortly after his family began attending in 2023, and he completed the Elder intern process before serving as an Elder. He and his wife, Jennifer, married in 2007 and have five children."
 ---
 
-My wife (Jennifer) and I were married in 2007 and have been married for 18 years. We have five children. I am employed by Family Medicine of Michigan as a Registered Nurse. I also hold an FAA Certified A&P Aircraft Maintenance License. Jennifer takes care of “homebase” while homeschooling our children and working as the custodian for Oneida.
+My wife (Jennifer) and I were married in 2007. We have five children. I am employed by Family Medicine of Michigan as a Registered Nurse. I also hold an FAA Certified A&P Aircraft Maintenance License. Jennifer takes care of “homebase” while homeschooling our children and working as the custodian for Oneida.
 
 Our family has been attending Oneida Gospel Church since Palm Sunday (April 2) in 2023, and I have been leading corporate worship at Oneida for the last two years. I was approached by the nominating committee to serve as an Elder Intern at the end of 2024, and have completed the annual intern process.
 

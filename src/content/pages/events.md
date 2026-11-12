@@ -27,7 +27,7 @@ These gatherings come around every year, and they're easy to invite a friend to.
 
 ### Vacation Bible School
 
-Three nights for kids in kindergarten through 8th grade: **Monday–Wednesday, June 21–23, 2027, 6–8:15 p.m.** Middle and high schoolers have their own night on **Thursday, June 24, 6–8:15 p.m.** [Pre-register here](https://oneidagospel.elvanto.net/form/372e715d-e501-450d-99b2-794c735eafdf).
+Three summer evenings for kids in kindergarten through 8th grade, plus a night for middle and high schoolers. [Dates and registration](/kids-and-families#vacation-bible-school).
 
 ### Family Camp (August)
 

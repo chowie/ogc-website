@@ -82,9 +82,9 @@ const pages = defineCollection({
     // sections a page's .astro file adds (SectionHeading), so /content-status
     // and the badge read the same value.
     sections: z.record(z.string(), status).default({}),
-    // Where real or rewritten copy came from.
-    // Where the copy came from: a live-site URL, or a document's name.
-    sources: z.array(z.string()).default([]),
+    // Where the copy came from: a URL, or a document's name (no ':' or '/',
+    // so a mistyped URL still fails the build).
+    sources: z.array(z.union([z.url(), z.string().regex(/^[^:/]+$/, 'not a URL or a document name')])).default([]),
     // What's still needed to finish the page (shown on /content-status).
     needs: z.array(z.string()).default([]),
   }),

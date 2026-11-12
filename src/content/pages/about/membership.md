@@ -2,13 +2,14 @@
 title: "Membership"
 intro: "What it means to belong to Oneida, and how to join."
 status: rewritten
+sections:
+  how-to-join: placeholder
 sources:
   - "https://www.oneidagospel.org/post/want-to-know-more-about-membership-1"
   - "https://www.oneidagospel.org/post/who-is-oneida-1"
 needs:
   - "Steps after the membership class (meet with an elder? welcomed on a Sunday?), confirmed by the elders"
   - "Membership class end time (the post gives only the 9:15 a.m. start)"
-  - "Year on the membership class date: the post says only December 6th; assumed 2026. Confirm."
   - "Who to contact to sign up (the church office is listed for now)"
 ---
 
@@ -31,7 +32,6 @@ What happens after the class will be added here.
 
 Both classes meet in the Meeting Room just off the Chapel.
 
-- **Who Is Oneida?** Sunday, November 15, 2026, 9:15–10:15 a.m.
-- **Membership class:** Sunday, December 6, 9:15 a.m.
+Both meet on Sunday mornings at 9:15. See the [events calendar](/events#calendar) for the next dates.
 
 Questions? Call the church office at 517.627.7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org).

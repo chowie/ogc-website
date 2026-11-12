@@ -6,7 +6,9 @@ status: rewritten
 sections:
   service-times-and-location: real
   parking-and-entrance: placeholder
+  who-youll-meet: placeholder
   coming-back-to-church: placeholder
+  faq: placeholder
   let-us-know-youre-coming: placeholder
 sources:
   - "https://www.oneidagospel.org/"
@@ -21,12 +23,11 @@ needs:
   - "Photo of the pastor; names, photos and two lines on a few greeters"
   - "Welcome note for people coming back to church, confirmed by staff"
   - "FAQ answers: accessibility (parking, entrances, restrooms) and communion"
-  - "Who Is Oneida? class: replace with the next date once November 15, 2026 has passed"
 ---
 
 ## What a Sunday Looks Like
 
-Our worship service starts at **10:30 a.m.** every Sunday. We meet at 3048 E. Strange Hwy., Grand Ledge MI 48837.
+Our worship service starts at **10:30 a.m.** every Sunday.
 
 The sermon is expository. That means the pastor works through a book of the Bible, verse by verse, and explains what it meant then and what it means for us now.
 
@@ -56,8 +57,7 @@ Welcome to the Grand Ledge area. Moving is a lot of work, and finding a church i
 
 Once you've visited, join other newer attenders at **"Who Is Oneida?"**, a short class on our values and history. Pastor Andrew will introduce you to our church family and answer your questions.
 
-- **When:** Sunday, November 15, 2026, 9:15–10:15 a.m.
-- **Where:** the Meeting Room, just off the Chapel
+It meets on a Sunday morning at 9:15, in the Meeting Room just off the Chapel. See the [events calendar](/events#calendar) for the next class.
 
 ## Coming Back to Church?
 

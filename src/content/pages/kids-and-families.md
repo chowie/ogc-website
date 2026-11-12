@@ -1,6 +1,8 @@
 ---
 title: "Kids & Families"
 intro: "Oneida Kids partners with parents to help children love and serve Jesus."
+sections:
+  check-in-and-safety: placeholder
 status: rewritten
 sources:
   - "https://www.oneidagospel.org/children"
@@ -46,8 +48,8 @@ For the 2026–27 school year, youth group meets on **Sunday nights, 6–7:30 p.
 
 Before your student attends, please fill out these forms:
 
-- [Student Permission / Parental Consent](https://www.oneidagospel.org/_files/ugd/ba6038_347ec25489f24de38616e50a3de53e7e.pdf) (PDF)
-- [Transportation of Minors Policy](https://www.oneidagospel.org/_files/ugd/ba6038_30efa17c03cf4b0483d10b8c3b8a8c3f.pdf) (PDF)
+- [Student Permission / Parental Consent](/forms/youth-permission-form.pdf) (PDF)
+- [Transportation of Minors Policy](/forms/youth-transportation-policy.pdf) (PDF)
 
 ## Released Time Bible Class
 
@@ -61,7 +63,7 @@ Kids learn *The Story of the Bible: A Pictorial Timeline of What God Is Doing in
 
 Join us for three nights of VBS: **Monday–Wednesday, June 21–23, 2027, 6–8:15 p.m.** We have classes for kindergarten through 8th grade.
 
-Middle and high schoolers get their own night on **Thursday, June 24, 6–8:15 p.m.**
+Middle and high schoolers get their own night on **Thursday, June 24, 2027, 6–8:15 p.m.**
 
 [Pre-register here](https://oneidagospel.elvanto.net/form/372e715d-e501-450d-99b2-794c735eafdf).
 
@@ -77,4 +79,4 @@ Questions about our child protection policy? Contact Rachel Fulton at [children@
 
 - **The Biggest Story.** The book behind our Children's Church lessons. Read it together at home. [View the book](https://www.crossway.org/books/the-biggest-story-hccase/).
 - **Sermon notebooks.** For kids 5th grade and up who stay in the service. For more information, email [children@oneidagospel.org](mailto:children@oneidagospel.org).
-- **Youth forms.** The [permission form](https://www.oneidagospel.org/_files/ugd/ba6038_347ec25489f24de38616e50a3de53e7e.pdf) and [transportation policy](https://www.oneidagospel.org/_files/ugd/ba6038_30efa17c03cf4b0483d10b8c3b8a8c3f.pdf) for parents of students in grades 5–12.
+- **Youth forms.** The [permission form](/forms/youth-permission-form.pdf) and [transportation policy](/forms/youth-transportation-policy.pdf) for parents of students in grades 5–12.

@@ -8,9 +8,9 @@ import { getTeam, truncate } from '../../lib/content';
 const entry = (await getEntry('pages', 'about/team'))!;
 const team = await getTeam();
 const groups = [
-  { key: 'elders', title: 'Pastor and Elders' },
-  { key: 'deacons', title: 'Deacons' },
-  { key: 'staff', title: 'Staff' },
+  { key: 'elders', title: 'Pastor and Elders', empty: 'Our pastor and elders will be listed here.' },
+  { key: 'deacons', title: 'Deacons', empty: 'Our deacons care for the practical needs of the church family. Their names, photos and a line about each will go here.' },
+  { key: 'staff', title: 'Staff', empty: 'Our staff will be listed here.' },
 ] as const;
 ---
 
@@ -37,7 +37,7 @@ const groups = [
             ))}
           </ul>
         ) : (
-          <p class="team-group__empty">Our deacons care for the practical needs of the church family. Their names, photos and a line about each will go here.</p>
+          <p class="team-group__empty">{g.empty}</p>
         )}
       </section>
     );
