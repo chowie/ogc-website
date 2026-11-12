@@ -18,8 +18,8 @@ until go-live)
   so a bad entry fails the build and names the file. Adding a team member is
   one Markdown file. Ready for a git-based CMS later.
 - **Sermons import themselves:** a GitHub Actions job reads the church's
-  YouTube feed twice a day, writes new sermon files, and merges them in
-  through its own pull request; Netlify deploys.
+  YouTube feed twice a day, writes new sermon files, and merges them into
+  `main` through its own pull request; they go live with the next release.
 - **Events stay current:** weekly events compute their next date
   (DST-safe, America/Detroit), and a daily build hook drops past events.
 - **Netlify** for hosting, deploy previews on pull requests, and the contact
@@ -95,9 +95,11 @@ frontmatter.
 
 New uploads to the church YouTube channel are imported automatically: a
 GitHub Actions workflow (`.github/workflows/import-sermons.yml`) checks twice a
-day (8 a.m. and 6 p.m. Eastern). When there are new sermon files, it checks
-the site still builds, opens a pull request with them and merges it, and
-Netlify deploys. To run it now: GitHub → Actions → Import sermons →
+day (8 a.m. and 6 p.m. Eastern). When there are new sermon files, it runs
+`npm run verify`, then opens a pull request with them and merges it into
+`main`. They go live with the next release (see Deploy). If an import PR
+ever fails to merge, later runs stop with an error until it's merged or
+closed. To run it now: GitHub → Actions → Import sermons →
 Run workflow.
 
 To pull uploads by hand instead:
