@@ -31,5 +31,7 @@ const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
     grid-template-rows: 1fr auto; padding-bottom: 1em;
   }
   .team-photo--empty > :first-child { align-self: center; }
-  .team-photo__note { font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+  .team-photo__note { text-align: center; padding-inline: 0.5em; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+  /* Phone team cards show a small photo column; initials alone fit there. */
+  @media (max-width: 29.99rem) { :global(.team-card) .team-photo__note { display: none; } }
 </style>

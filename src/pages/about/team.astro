@@ -9,7 +9,7 @@ const entry = (await getEntry('pages', 'about/team'))!;
 const team = await getTeam();
 const groups = [
   { key: 'elders', title: 'Pastor and Elders', empty: 'Our pastor and elders will be listed here.' },
-  { key: 'deacons', title: 'Deacons', empty: 'Our deacons will be listed here.' },
+  { key: 'deacons', title: 'Deacons', intro: 'Our deacons care for the practical needs of the church family.', empty: 'Our deacons will be listed here.' },
   { key: 'staff', title: 'Staff', empty: 'Our staff will be listed here.' },
 ] as const;
 ---
@@ -20,6 +20,7 @@ const groups = [
     return (
       <section class="team-group">
         <SectionHeading title={g.title} entry={entry} />
+        {'intro' in g && <p class="team-group__intro">{g.intro}</p>}
         {people.length > 0 ? (
           <ul class="card-grid team-grid">
             {people.map((m) => (
@@ -47,6 +48,7 @@ const groups = [
 <style>
   .team-group + .team-group { margin-top: var(--space-l); }
   .team-group__empty { color: var(--muted); max-width: 40rem; }
+  .team-group__intro { max-width: 40rem; margin-bottom: var(--space-m); }
   .team-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
   .team-card { display: flex; flex-direction: column; background: #fff; box-shadow: 0 1px 0 var(--mist); }
   .team-card__body { padding: var(--space-m); display: flex; flex-direction: column; flex: 1; }

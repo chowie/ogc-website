@@ -3,7 +3,7 @@ name: "Derek Smith"
 role: "Deacon, Finance and Planning"
 group: "deacons"
 displayOrder: 2
-shortBio: "Derek oversees church finances and the budget, helps the deacons plan and set priorities, and keeps the elders informed. He also leads the usher team and the men's Bible study on Thursday nights."
+shortBio: "Derek oversees church finances and planning for the deacons. He also leads the usher team and the Thursday night men's Bible study."
 ---
 
 Derek serves as a deacon over finances and planning. He oversees the church's budget and financial reporting, helps the deacons plan ahead and set priorities, and is their liaison to the elders, bringing them the deacons' decisions and proposals.

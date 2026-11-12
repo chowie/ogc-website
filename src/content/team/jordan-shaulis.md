@@ -3,7 +3,7 @@ name: "Jordan Shaulis"
 role: "Deacon, Facilities and Grounds"
 group: "deacons"
 displayOrder: 3
-shortBio: "Jordan cares for Oneida's building and grounds, from repairs and room setup to lawn care and church workdays. He also leads the Young Adults small group and serves on the production team."
+shortBio: "Jordan cares for the building and grounds and plans church workdays. He also leads the Young Adults small group and serves on production."
 ---
 
 Jordan serves as a deacon over facilities and grounds. He looks after maintenance and repairs, the grounds and landscaping, and the parking lot, and he plans the church workdays and the volunteers who make them happen.

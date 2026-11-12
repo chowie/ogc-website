@@ -14,6 +14,9 @@ section into the new version.
 
 - Deacons on Our Team: Chris Howie, Derek Smith and Jordan Shaulis, with
   draft bios. Headshots without a photo say "Photo to come".
+- Men and Groups name Derek Smith as the Thursday study's leader; Young
+  Adults & Singles and Groups name Jordan Shaulis as the Young Adults small
+  group's leader.
 - Every demo section has a "Source" note saying where its copy came from:
   copied word for word, rewritten (and how), or generated as a placeholder.
 - Menu from the proposed website outline, with dropdowns (keyboard and phone

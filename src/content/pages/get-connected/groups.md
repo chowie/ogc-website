@@ -11,7 +11,7 @@ sections:
     status: rewritten
     from: "oneidagospel.org men's, women's and adult class pages"
     on: 2026-11-12
-    note: "Combined into one table; leaders the site doesn't name say \"Ask the office\"."
+    note: "Combined into one table; Derek's and Jordan's groups come from Chris's notes, and other unknown leaders say \"Ask the office\"."
   find-a-group:
     status: placeholder
     from: "Website Outline (Notion)"
@@ -31,7 +31,8 @@ needs:
 | Adult Elective (Sunday School) | Sundays, 9:15 a.m., mid-September to May | Chapel | Rotating: Andrew Fulton, Bruce Schulert, Aaron Lonsway, Tom Lowe | Adults; studying Systematic Theology |
 | Women's Bible Study | Wednesdays, 9:30 a.m. (fall 2026) | Conference room | Ask the office | Women; studying 1 Corinthians |
 | Men's Prayer | Mondays, 6:30 p.m. | Conference Room | Ask the office | Men |
-| Men's Bible Study | Thursdays, 6:30 p.m. | Ask the office | Ask the office | Men; studying Luke |
+| Men's Bible Study | Thursdays, 6:30 p.m. | Ask the office | Derek Smith | Men; studying Luke |
+| Young Adults Small Group | Ask the office | Ask the office | Jordan Shaulis | Single young adults |
 | Card-Making | First Monday of the month, 1 p.m. (not June–August) | Ask the office | Sandy Husted | Women |
 | Pickleball or Game Night | Mondays, 6:30 p.m. | Gym | Ask the office | Women |
 
