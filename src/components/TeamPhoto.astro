@@ -16,7 +16,10 @@ const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
 {photo ? (
   <Image class="team-photo" src={photo} alt={photoAlt ?? name} width={width} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
 ) : (
-  <div class="team-photo team-photo--empty" aria-hidden="true">{initials}</div>
+  <div class="team-photo team-photo--empty" aria-hidden="true">
+    <span>{initials}</span>
+    <span class="team-photo__note">Photo to come</span>
+  </div>
 )}
 
 <style>
@@ -25,5 +28,8 @@ const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
     display: grid; place-items: center;
     background: linear-gradient(135deg, var(--slate), var(--plum));
     color: #fff; font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); letter-spacing: 0.05em;
+    grid-template-rows: 1fr auto; padding-bottom: 1em;
   }
+  .team-photo--empty > :first-child { align-self: center; }
+  .team-photo__note { font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
 </style>
