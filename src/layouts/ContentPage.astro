@@ -15,16 +15,17 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, eyebrow, intro, description, status } = entry.data;
+const { title, eyebrow, intro, description, origin, sections } = entry.data;
 
 const path = normalizePath(Astro.url.pathname);
 const section = sectionFor(path);
 const onThisPage = section?.children.every((c) => c.href.includes('#'));
-const hasSections = headings.some((h) => h.depth === 2);
+// Sections carry their own badge and note; a page without any shows its own.
+const hasSections = headings.some((h) => h.depth === 2) || Object.keys(sections).length > 0;
 ---
 
 <Base title={title} description={description ?? intro}>
-  <PageHead title={title} eyebrow={eyebrow ?? (section && section.href !== path ? section.label : undefined)} intro={intro} status={hasSections ? undefined : status} />
+  <PageHead title={title} eyebrow={eyebrow ?? (section && section.href !== path ? section.label : undefined)} intro={intro} origin={hasSections ? undefined : origin} />
   <div class="section">
     <div class:list={['container', { 'content-layout': section }]}>
       {section && (
