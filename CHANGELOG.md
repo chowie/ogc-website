@@ -19,11 +19,20 @@ section into the new version.
   yet final carries a "Draft copy" or "Placeholder" label.
 - `/content-status` (not linked or indexed): what is real, draft or
   placeholder on each page, and what's still needed.
+- Copy from the current site, rewritten for the web: About, Our Beliefs
+  (statement of faith word for word), Our Story, Membership, Plan Your
+  Visit, Kids & Families, Events, Give, Contact, Groups, Men and Women.
+- Mission, vision and values from the church's Operating Procedures.
+- Two church photos on Our Story: the building today and a 1950s Sunday.
+- Our Team is grouped into Pastor and Elders, Deacons and Staff.
+- Sunday School and classes (9:15 a.m., mid-September to May) in the
+  service times.
 
 ### Changed
 
 - Pages moved: `/visit` → `/plan-your-visit`, `/sermons` →
   `/watch-and-listen`, `/team/…` → `/about/team/…`. The old URLs redirect.
+- Team bios no longer name members' children.
 
 ## [0.1.0] - 2026-10-28
 

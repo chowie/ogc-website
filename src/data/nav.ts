@@ -64,6 +64,7 @@ export const nav: NavItem[] = [
     href: '/watch-and-listen',
     children: [
       { label: 'Short Videos', href: '/watch-and-listen#short-videos' },
+      { label: 'Sermon Podcast', href: '/watch-and-listen#sermon-podcast' },
       { label: 'Monthly Service Video', href: '/watch-and-listen#monthly-service-video' },
       { label: 'Series Archive', href: '/watch-and-listen#series-archive' },
     ],

@@ -1,32 +1,52 @@
 ---
 import { getEntry } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import TeamPhoto from '../../components/TeamPhoto.astro';
 import { getTeam, truncate } from '../../lib/content';
 
 const entry = (await getEntry('pages', 'about/team'))!;
 const team = await getTeam();
+const groups = [
+  { key: 'elders', title: 'Pastor and Elders', empty: 'Our pastor and elders will be listed here.' },
+  { key: 'deacons', title: 'Deacons', empty: 'Our deacons care for the practical needs of the church family. Their names, photos and a line about each will go here.' },
+  { key: 'staff', title: 'Staff', empty: 'Our staff will be listed here.' },
+] as const;
 ---
 
 <ContentPage entry={entry}>
-      <ul class="card-grid team-grid">
-        {team.map((m) => (
-          <li class="team-card">
-            <div class="team-card__photo"><TeamPhoto member={m} width={480} /></div>
-            <div class="team-card__body">
-              <h2 class="team-card__name">{m.data.name}</h2>
-              {m.data.role && <p class="team-card__role">{m.data.role}</p>}
-              {m.data.shortBio && <p class="team-card__bio">{truncate(m.data.shortBio)}</p>}
-              <a class="team-card__more" href={`/about/team/${m.id}`}>
-                Read More<span class="visually-hidden"> about {m.data.name}</span>
-              </a>
-            </div>
-          </li>
-        ))}
-      </ul>
+  {groups.map((g) => {
+    const people = team.filter((m) => m.data.group === g.key);
+    return (
+      <section class="team-group">
+        <SectionHeading title={g.title} entry={entry} />
+        {people.length > 0 ? (
+          <ul class="card-grid team-grid">
+            {people.map((m) => (
+              <li class="team-card">
+                <div class="team-card__photo"><TeamPhoto member={m} width={480} /></div>
+                <div class="team-card__body">
+                  <h3 class="team-card__name">{m.data.name}</h3>
+                  {m.data.role && <p class="team-card__role">{m.data.role}</p>}
+                  {m.data.shortBio && <p class="team-card__bio">{truncate(m.data.shortBio)}</p>}
+                  <a class="team-card__more" href={`/about/team/${m.id}`}>
+                    Read More<span class="visually-hidden"> about {m.data.name}</span>
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="team-group__empty">{g.empty}</p>
+        )}
+      </section>
+    );
+  })}
 </ContentPage>
 
 <style>
+  .team-group + .team-group { margin-top: var(--space-l); }
+  .team-group__empty { color: var(--muted); max-width: 40rem; }
   .team-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
   .team-card { display: flex; flex-direction: column; background: #fff; box-shadow: 0 1px 0 var(--mist); }
   .team-card__body { padding: var(--space-m); display: flex; flex-direction: column; flex: 1; }

@@ -152,9 +152,10 @@ hidden /content-status page; forms really submit, marked "demo — not
 monitored"; no photos of children until a consent policy exists; Chris
 reviews rewritten copy on the PR preview (statement of faith verbatim,
 plain-language summary marked for elder review).
-- [ ] PR 1 `feat/nav-structure`: nav.ts, dropdown header + footer, every route
+- [x] PR 1 `feat/nav-structure`: nav.ts, dropdown header + footer, every route
       (Markdown `pages` collection + catch-all route), redirects, status
-      badges, /content-status, link checker
+      badges, /content-status, link checker. PR #7: review (10 findings)
+      fixed in f848e7c; merged 2026-11-12
 - [ ] PR 2 `content/site-content`: demo content + live-site copy rewritten by a
       content specialist, photos (no children), realistic placeholders
 - [ ] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
@@ -185,3 +186,8 @@ Chris merges (see CLAUDE.md). Exception: the sermon import's bot PRs merge
 themselves after `npm run verify`.
 Still need: welcome text, any other service times, hero photo.
 Re-shoot docs/screenshots/ after visual changes.
+Demo build (2026-11-12): PR #7 is ready for Chris. The content specialist's
+rewrite is in src/content/pages/ on `content/site-content` (PR 2). Open questions it raised:
+Andrew's children's ages, team bios naming children, pastor tenure, the
+membership class date. Mission, vision and values now come word for word from the
+OGC Operating Procedures (2007), Articles 1-3.

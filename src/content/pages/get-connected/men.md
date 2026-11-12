@@ -1,20 +1,29 @@
 ---
 title: "Men"
-intro: "Study, prayer, and time together for men at every stage."
-status: placeholder
+intro: "Prayer, Bible study, and time together for men at every stage."
+status: rewritten
+sections:
+  mentoring: placeholder
+  contact: placeholder
+sources:
+  - "https://www.oneidagospel.org/mensministry"
 needs:
-  - "What the men's group does and when it meets"
-  - "Leader photo and contact"
+  - "Leader name, photo and contact"
+  - "Room for the Thursday Bible study"
+  - "Fall retreat at Camp Barakel: dates, or whether it's yearly"
   - "Mentoring details"
 ---
 
 ## What We Do
 
-The men's ministry combines real Bible study with a meal or a shared activity. Details on current studies and gatherings will go here.
+Men at Oneida meet to pray together and to study the Bible. Right now the Thursday study is working through the book of Luke. We'd love to have you join us.
+
+We also look forward to a fall retreat at Camp Barakel.
 
 ## When We Meet
 
-Day, time and place will go here.
+- **Men's Prayer:** Monday nights, 6:30 p.m., in the Conference Room
+- **Men's Bible Study:** Thursday nights, 6:30 p.m.
 
 ## Mentoring
 
@@ -22,4 +31,4 @@ Younger men can be paired with older men for encouragement and friendship. Detai
 
 ## Contact
 
-Leader name and photo will go here.
+Leader name and photo will go here. Until then, call the church office at 517.627.7112.

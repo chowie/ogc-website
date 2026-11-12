@@ -90,6 +90,7 @@ that only for `npm run release`.
 | Service times, address, map, social links | `src/data/site.json` |
 | Page copy (Plan Your Visit, About, Get Connected, Give…) | `src/content/pages/**/*.md` (`about/beliefs.md` → `/about/beliefs`) |
 | The menu | `src/data/nav.ts` |
+| Photos used in page copy | `src/assets/photos/` |
 
 Each `##` heading in a page file is a section; the menu links to it by an id
 made from the heading (`## New to the Area?` → `#new-to-the-area`). Renaming a
@@ -99,7 +100,14 @@ fails on any broken link or anchor.
 For the demo, a page's `status:` (`real`, `rewritten` or `placeholder`, with
 per-section overrides under `sections:`) puts a "Draft copy" or "Placeholder"
 label on unfinished sections. `/content-status` lists them all, with what's
-still needed (`needs:`).
+still needed (`needs:`). `sources:` records where the copy came from: a
+live-site URL or a document's name.
+
+To add a photo to a page, put it in `src/assets/photos/` and use a Markdown
+image with a path relative to the page file and alt text that describes it:
+`![The church sign beside the old bell](../../assets/photos/sign.jpg)`. The
+build resizes it and converts it to WebP. Don't use photos that show children
+until the church has a written photo consent policy.
 
 The build checks every file against the rules in `src/content.config.ts`.
 If something is wrong (missing name, short bio too long, bad date), the build
@@ -116,6 +124,7 @@ stops and names the file and field.
 ---
 name: First Last            # required
 role: Deacon
+group: deacons              # required: elders, deacons or staff
 photo: ./first-last.jpg     # optional; path relative to this file
 photoAlt: First Last smiling outside the church   # optional
 displayOrder: 5             # lower numbers appear first; omit to sort last
@@ -126,8 +135,8 @@ Full bio goes here, in Markdown. It appears on the person's detail page
 after they click "Read More".
 ```
 
-That's it — the person appears on the About page in `displayOrder` order
-(ties sort by name) and gets their own detail page.
+That's it — the person appears on the Our Team page under their group, in
+`displayOrder` order (ties sort by name), and gets their own detail page.
 
 To keep a URL stable when renaming the file, add `slug: first-last` to the
 frontmatter.

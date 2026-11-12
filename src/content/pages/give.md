@@ -1,21 +1,34 @@
 ---
 title: "Give"
-intro: "Thank you for partnering with Oneida. Giving is simple."
-status: placeholder
+intro: "Thank you for partnering with Oneida. Your faithful giving is precious to Christ, and to us."
+status: rewritten
+sources:
+  - "https://www.oneidagospel.org/give"
+  - "https://www.oneidagospel.org/copy-of-global-missions"
 needs:
-  - "Online giving link"
-  - "Other ways to give"
-  - "One or two lines on where giving goes"
+  - "Mailing address and payee name for checks, if people can mail or drop off a check"
+  - "One or two lines on how giving supports the local ministry (budget, staff, building)"
+  - "Confirm that general giving supports the missionaries listed (or how missions giving works)"
 ---
+
+The elders thank you for your ongoing partnership with Oneida Gospel Church. Your giving is a testimony of your faith in Christ.
 
 ## Online Giving
 
-Give online in a couple of minutes. (Link to the online giving page will go here.)
+Give online through Tithe.ly in a couple of minutes, or use the Tithe.ly app.
+
+[Give online](https://tithe.ly/give?c=3040624)
 
 ## Other Ways to Give
 
-Other ways to give, such as by check or through your bank, will go here.
+You can also send a check to Oneida Gospel Church through your bank.
 
 ## Where Giving Goes
 
-One or two lines on how giving supports the church's ministry and mission will go here.
+Your giving supports the ministry of Oneida here in Grand Ledge. It also helps us reach the world for Jesus through the missionaries we support:
+
+- **Jacob and Charis Doerr**, Ethnos360, Papua New Guinea. Papua New Guinea's 7 million people speak more than 800 languages, and most live in rural, indigenous communities.
+- **Steve and Mikki Schmidt**, SIM West Africa. Steve is the Director of SIM West Africa and oversees SIM personnel in 11 West African countries. Mikki leads Pathways to School Improvement, helping Christian schools in Africa stay biblically grounded and Christ-focused. Mikki grew up at Oneida and gave her life to Christ here.
+- **Mark and Kim Dalman**, Live Global sports ministries. They build relationships between the North American church and ministries around the world to multiply the gospel's impact.
+
+[Subscribe to our missions newsletters](https://oneidagospel.elvanto.net/form/454e285f-2c76-4cf6-9d9d-5f4103d58bab).
