@@ -29,8 +29,10 @@ jobs:
           TITLE: ${{ github.event.pull_request.title }}
         run: node scripts/check-commit-msg.mjs --message "$TITLE"
 
+      # Against the current base branch, not the event's base.sha (which can be
+      # stale), so commits merged in from main aren't counted as this PR's.
       - name: Commit messages
         env:
-          BASE: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
           HEAD: ${{ github.event.pull_request.head.sha }}
-        run: node scripts/check-commit-msg.mjs --range "$BASE..$HEAD"
+        run: node scripts/check-commit-msg.mjs --range "origin/$BASE_REF..$HEAD"

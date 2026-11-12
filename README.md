@@ -61,9 +61,9 @@ directly (the sermon import and `npm run release` are the exceptions).
    (prefix with the commit type: `feat/`, `fix/`, `content/`, `docs/`, `ci/`…).
 2. Commit using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/):
    `type(optional scope): description`, e.g. `feat: add events page`,
-   `fix(nav): close menu on tap`, `content: add fall retreat`. Types:
-   `feat fix docs style refactor perf test build ci chore revert`, plus
-   `content` (site content) and `release` (written by the release script).
+   `fix(nav): close menu on tap`, `content: add fall retreat`. Allowed types
+   are `TYPES` in `scripts/check-commit-msg.mjs`: the usual ones plus `content`
+   (site content) and `release` (written by the release script).
    A `!` after the type, or a `BREAKING CHANGE:` footer, marks a breaking change.
 3. Push and open a PR (`gh pr create`) with a Conventional Commits title.
 4. Checks on the PR:
@@ -71,8 +71,9 @@ directly (the sermon import and `npm run release` are the exceptions).
      build) and posts a preview link. Check the change there.
    - **PR checks** (GitHub Actions): the PR title and every commit follow
      Conventional Commits (`scripts/check-commit-msg.mjs`).
-   - **Claude code review**: Claude reviews the PR and posts findings as PR
-     comments. Address or answer each one.
+   - **Claude code review** (not automatic): Claude reviews the PRs it opens
+     and posts findings as PR comments. For a PR you opened, ask Claude for
+     `/code-review <PR number> --comment`. Fix or answer each comment.
 5. Merge when the checks are green and review comments are resolved. Merging
    doesn't publish; the live site changes with the next release.
 

@@ -1,0 +1,6 @@
+#!/bin/sh
+# core.hooksPath points git at .githooks/, which hides the clone's own
+# .git/hooks/. Run its pre-commit (e.g. from a global git template) if present.
+# Not --git-path: that follows core.hooksPath back to this file.
+local_hook="$(git rev-parse --git-common-dir)/hooks/pre-commit"
+if [ -x "$local_hook" ]; then exec "$local_hook" "$@"; fi

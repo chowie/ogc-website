@@ -17,15 +17,18 @@ export const TYPES = [
   'build', 'ci', 'chore', 'revert', 'content', 'release',
 ];
 const MAX_HEADER = 100;
-const HEADER = new RegExp(`^(${TYPES.join('|')})(\\([\\w./-]+\\))?!?: \\S`);
+const HEADER = new RegExp(`^(${TYPES.join('|')})(\\([^()\\s][^()]*\\))?!?: \\S`);
 // Messages git writes itself; allowed through.
-const GIT_GENERATED = /^(Merge |Revert "|(fixup|squash|amend)! )/;
+const GIT_GENERATED = /^(Merge (branch|pull request|remote-tracking branch|tag) |Revert "|(fixup|squash|amend)! )/;
 
-/** Returns null if the message is fine, otherwise the reason it isn't. */
-export function checkMessage(message) {
+/**
+ * Returns null if the message is fine, otherwise the reason it isn't.
+ * `stripComments`: drop `#` lines first, as git does for a commit-msg file.
+ */
+export function checkMessage(message, { stripComments = false } = {}) {
   const header = message
     .split('\n')
-    .find((line) => line.trim() && !line.startsWith('#'))
+    .find((line) => line.trim() && !(stripComments && line.startsWith('#')))
     ?.trimEnd();
   if (!header) return 'empty commit message';
   if (GIT_GENERATED.test(header)) return null;
@@ -39,6 +42,7 @@ export function checkMessage(message) {
 function main(args) {
   const [flag, value] = args;
   let messages;
+  let stripComments = false;
   if (flag === '--message' && value !== undefined) {
     messages = [value];
   } else if (flag === '--range' && value) {
@@ -48,9 +52,11 @@ function main(args) {
     } catch {
       return 2; // git already printed why
     }
-    messages = out.split('\0\n').map((m) => m.replace(/\0$/, '')).filter((m) => m.trim());
+    // Each commit is "<message>\0\n"; the last split piece is the trailing newline.
+    messages = out.split('\0').slice(0, -1).map((m) => m.replace(/^\n/, ''));
   } else if (flag && !flag.startsWith('--')) {
     messages = [readFileSync(flag, 'utf8')];
+    stripComments = true;
   } else {
     console.error('usage: check-commit-msg.mjs <file> | --message "<text>" | --range <a..b>');
     return 2;
@@ -58,7 +64,7 @@ function main(args) {
 
   let failed = 0;
   for (const message of messages) {
-    const problem = checkMessage(message);
+    const problem = checkMessage(message, { stripComments });
     if (problem) {
       failed++;
       console.error(`✗ ${problem}`);
