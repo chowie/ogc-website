@@ -17,6 +17,7 @@ section into the new version.
 - Men and Groups name Derek Smith as the Thursday study's leader; Young
   Adults & Singles and Groups name Jordan Shaulis as the Young Adults small
   group's leader.
+- Bonnie Schulert, Office Manager, on Our Team (placeholder bio).
 - Every demo section has a "Source" note saying where its copy came from:
   copied word for word, rewritten (and how), or generated as a placeholder.
 - Menu from the proposed website outline, with dropdowns (keyboard and phone

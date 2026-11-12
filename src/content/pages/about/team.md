@@ -11,14 +11,15 @@ sections:
     on: 2026-10-28
     note: "Bios as each person wrote them, except that children's names (and disputed ages) were removed."
   staff:
-    status: real
-    from: "Wix team collection (CSV export)"
-    on: 2026-10-28
+    status: placeholder
+    on: 2026-11-12
+    note: "Rachel's bio is verbatim from the Wix team list (Oct 28, 2026); Bonnie's card is a placeholder until she sends a bio and photo."
   deacons:
     status: rewritten
     from: "Notion deacon profiles"
     on: 2026-11-12
     note: "Bios drafted from each deacon's areas of responsibility and Chris's notes; each deacon should approve his."
 needs:
+  - "Bonnie Schulert: short bio and headshot"
   - "Deacons: headshots for Derek and Jordan, and each deacon's OK on his bio"
 ---
