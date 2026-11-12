@@ -145,6 +145,22 @@ for `npm run release` only.
 - [x] nvm default was `lts/*` → uninstalled Node 26, so new shells had no
       npm; set `nvm alias default 22`.
 
+## Demo on the proposed menu structure (2026-11-12, plan approved)
+Source: Notion "Website Outline: Menu Structure and Page Content". Full plan:
+~/.claude/plans/zazzy-munching-aurora.md. Decisions: placeholders labeled +
+hidden /content-status page; forms really submit, marked "demo — not
+monitored"; no photos of children until a consent policy exists; Chris
+reviews rewritten copy on the PR preview (statement of faith verbatim,
+plain-language summary marked for elder review).
+- [ ] PR 1 `feat/nav-structure`: nav.ts, dropdown header + footer, every route
+      (Markdown `pages` collection + catch-all route), redirects, status
+      badges, /content-status, link checker
+- [ ] PR 2 `content/site-content`: demo content + live-site copy rewritten by a
+      content specialist, photos (no children), realistic placeholders
+- [ ] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
+      share buttons, Watch & Listen
+- [ ] After merge: Chris decides demo from preview vs `npm run release -- minor`
+
 ## Review
 ### Phase 1 (2026-10-28)
 Verified: `astro check` 0 errors; team sorts by displayOrder (missing → last);

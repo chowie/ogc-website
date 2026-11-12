@@ -1,0 +1,33 @@
+---
+import { getEntry } from 'astro:content';
+import ContentPage from '../layouts/ContentPage.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getSermons } from '../lib/content';
+import { site } from '../lib/site';
+import SermonRow from '../components/SermonRow.astro';
+
+const entry = (await getEntry('pages', 'watch-and-listen'))!;
+const sermons = await getSermons();
+const [latest, ...older] = sermons;
+const youtube = site.social.find((l) => l.label === 'YouTube');
+---
+
+<ContentPage entry={entry}>
+  <SectionHeading title="Monthly Service Video" />
+  <p class="muted">The full service, for anyone who can't be there in person.</p>
+  {latest && <ul class="sermon-list list-plain"><SermonRow s={latest} /></ul>}
+
+  <SectionHeading title="Series Archive" status="placeholder" />
+  <p class="muted">Past messages. Grouping them by sermon series is still to come.</p>
+  <ul class="sermon-list list-plain">
+    {older.map((s) => <SermonRow s={s} />)}
+  </ul>
+  {youtube && (
+    <p class="sermon-more"><a class="btn" href={youtube.url}>More on YouTube</a></p>
+  )}
+</ContentPage>
+
+<style>
+  .sermon-list { margin-bottom: var(--space-l); }
+  .sermon-more { margin-top: var(--space-m); }
+</style>

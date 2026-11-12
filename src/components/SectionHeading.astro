@@ -1,0 +1,14 @@
+---
+// A `##` section heading for .astro pages, matching what section-status gives
+// Markdown sections: an id the menu can link to, plus the demo status badge.
+import { slugify, STATUS_LABELS } from '../lib/section-status.mjs';
+
+interface Props {
+  title: string;
+  status?: 'real' | 'rewritten' | 'placeholder';
+}
+const { title, status = 'real' } = Astro.props;
+---
+
+<h2 id={slugify(title)}>{title}</h2>
+{status !== 'real' && <p class={`status-badge status-badge--${status}`}>{STATUS_LABELS[status]}</p>}

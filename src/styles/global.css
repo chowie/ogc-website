@@ -147,3 +147,38 @@ blockquote {
   font-style: italic;
   color: var(--slate);
 }
+
+/* Demo only: marks copy that isn't final (see src/lib/section-status.mjs). */
+.status-badge {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.15em 0.6em; margin: 0 0 var(--space-s);
+  border: 1px dashed currentColor; border-radius: 2px;
+}
+.status-badge--placeholder { color: #7a4d00; background: #fff4d6; }
+.status-badge--rewritten { color: #1f4f7a; background: #e3f0fb; }
+.site-footer .status-badge, .page-head .status-badge { margin: 0; vertical-align: middle; }
+
+/* Long-form copy from the pages collection. */
+.prose { max-width: 44rem; }
+.prose h2 { font-size: var(--step-2); margin-top: var(--space-l); scroll-margin-top: 6rem; }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { font-size: var(--step-1); margin-top: var(--space-m); }
+.prose ul, .prose ol { padding-left: 1.25em; margin: 0 0 var(--space-s); }
+.prose li { margin-bottom: 0.35em; }
+.prose .list-plain { padding-left: 0; }
+.prose table { border-collapse: collapse; width: 100%; margin-bottom: var(--space-m); font-size: 0.95rem; display: block; overflow-x: auto; }
+.prose th, .prose td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--mist); vertical-align: top; }
+
+/* Inner page: section links beside the copy (stacks on phones). */
+.content-layout { display: grid; gap: var(--space-l); }
+.content-layout > * { min-width: 0; } /* let wide tables scroll instead of widening the page */
+@media (min-width: 60rem) {
+  .content-layout { grid-template-columns: 15rem 1fr; align-items: start; }
+  .content-layout__nav { position: sticky; top: 6rem; }
+}
+.subnav { font-size: 0.95rem; border-left: 3px solid var(--mist); }
+.subnav p { font-size: var(--step--1); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-xs) var(--space-s); }
+.subnav a { display: block; padding: 0.35rem var(--space-s); color: var(--ink); text-decoration: none; }
+.subnav a:hover { color: var(--coral-ink); }
+.subnav a[aria-current] { color: var(--coral-ink); font-weight: 700; box-shadow: -3px 0 0 var(--coral); }

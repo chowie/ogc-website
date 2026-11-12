@@ -1,8 +1,8 @@
 ---
 import { render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import TeamPhoto from '../../components/TeamPhoto.astro';
-import { getTeam, truncate } from '../../lib/content';
+import Base from '../../../layouts/Base.astro';
+import TeamPhoto from '../../../components/TeamPhoto.astro';
+import { getTeam, truncate } from '../../../lib/content';
 
 export async function getStaticPaths() {
   const team = await getTeam();
@@ -20,13 +20,13 @@ const { Content } = await render(member);
         <TeamPhoto member={member} width={640} eager />
       </div>
       <div class="profile__body">
-        <p class="eyebrow"><a href="/about">Our Team</a></p>
+        <p class="eyebrow"><a href="/about/team">Our Team</a></p>
         <h1>{member.data.name}</h1>
         {member.data.role && <p class="profile__role">{member.data.role}</p>}
         <div class="profile__bio">
           <Content />
         </div>
-        <a class="btn" href="/about">Back to Our Team</a>
+        <a class="btn" href="/about/team">Back to Our Team</a>
       </div>
     </div>
   </article>

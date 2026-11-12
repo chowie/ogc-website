@@ -1,0 +1,18 @@
+---
+// Every page in src/content/pages that doesn't need its own .astro file.
+// Pages listed in CUSTOM have a page in src/pages/ that adds data or a form
+// around the same Markdown, so they're skipped here.
+import { getCollection } from 'astro:content';
+import ContentPage from '../layouts/ContentPage.astro';
+
+export async function getStaticPaths() {
+  // getStaticPaths can't see the rest of this file, so the list lives here.
+  const CUSTOM = new Set(['plan-your-visit', 'events', 'watch-and-listen', 'about/team', 'contact']);
+  const pages = await getCollection('pages', (p) => !CUSTOM.has(p.id));
+  return pages.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<ContentPage entry={entry} />

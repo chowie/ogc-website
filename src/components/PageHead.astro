@@ -1,16 +1,22 @@
 ---
+import { STATUS_LABELS } from '../lib/section-status.mjs';
+
 interface Props {
   title: string;
   eyebrow?: string;
   intro?: string;
+  /** Demo: labels a page whose copy isn't final (and has no sections to label). */
+  status?: string;
 }
-const { title, eyebrow, intro } = Astro.props;
+const { title, eyebrow, intro, status } = Astro.props;
+const badge = status && status in STATUS_LABELS ? STATUS_LABELS[status as keyof typeof STATUS_LABELS] : undefined;
 ---
 
 <header class="page-head">
   <div class="container">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
+    {badge && <p class="page-head__status"><span class={`status-badge status-badge--${status}`}>{badge}</span></p>}
     {intro && <p>{intro}</p>}
   </div>
 </header>

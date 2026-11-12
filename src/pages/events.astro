@@ -1,18 +1,19 @@
 ---
-import Base from '../layouts/Base.astro';
-import PageHead from '../components/PageHead.astro';
+import { getEntry } from 'astro:content';
+import ContentPage from '../layouts/ContentPage.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import { getUpcomingEvents } from '../lib/content';
 import { TZ as tz } from '../lib/time';
 
+const entry = (await getEntry('pages', 'events'))!;
 const events = await getUpcomingEvents();
 const fmtDate = (d: Date) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: tz });
 const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
 ---
 
-<Base title="Events">
-  <PageHead eyebrow="Get Involved" title="Upcoming Events" />
-  <section class="section">
-    <div class="container">
+<ContentPage entry={entry}>
+  <div slot="before" class="calendar">
+    <SectionHeading title="Calendar" />
       {events.length === 0 && <p>No upcoming events right now. Check back soon.</p>}
       <ul class="list-plain">
         {events.map((e) => (
@@ -24,7 +25,7 @@ const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', mi
               </time>
             </p>
             <div>
-              <h2 class="event-row__title">{e.data.title}</h2>
+              <h3 class="event-row__title">{e.data.title}</h3>
               <p class="event-row__meta">
                 {e.data.repeat === 'weekly'
                   ? <>Every {e.data.start.toLocaleDateString('en-US', { weekday: 'long', timeZone: tz })} · {fmtTime(e.data.start)}{e.data.end && ` – ${fmtTime(e.data.end)}`}<br />Next: {fmtDate(e.data.start)}</>
@@ -36,11 +37,11 @@ const fmtTime = (d: Date) => d.toLocaleTimeString('en-US', { hour: 'numeric', mi
           </li>
         ))}
       </ul>
-    </div>
-  </section>
-</Base>
+  </div>
+</ContentPage>
 
 <style>
+  .calendar { margin-bottom: var(--space-l); }
   .event-row { display: grid; grid-template-columns: 5rem 1fr; gap: var(--space-m); padding-block: var(--space-m); border-bottom: 2px solid var(--mist); }
   .event-row__date { margin: 0; background: var(--slate); color: #fff; text-align: center; padding: var(--space-s) 0; font-family: var(--font-display); text-transform: uppercase; line-height: 1.1; align-self: start; }
   .event-row__date time { display: grid; font-size: var(--step--1); letter-spacing: 0.1em; }
