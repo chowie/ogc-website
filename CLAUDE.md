@@ -8,7 +8,8 @@ content editing, deploy and releasing; read it first.
 1. **Never commit to `main`.** Start each change on a new branch from an
    up-to-date `main`: `git switch main && git pull && git switch -c <type>/<short-name>`.
    The only things that land on `main` directly are the sermon-import Action and
-   `npm run release` (which Chris runs).
+   `npm run release` (which Chris runs). A GitHub ruleset blocks force pushes
+   to and deletion of `main`; rebase/amend only on your own branch.
 2. **Conventional Commits** for every commit and the PR title:
    `type(scope)!: description`. Types are listed in `scripts/check-commit-msg.mjs`
    (`TYPES`); use `content` for site content and leave `release` to the

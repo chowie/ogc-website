@@ -123,7 +123,10 @@ current main becomes v0.1.0.
 Goal: work like ogc-asana-intake-form (branch → push → PR → Netlify preview),
 plus Conventional Commits and a Claude code review on each PR.
 Chris chose: review run locally by Claude (no Action/secret); enforcement by
-habit only (no ruleset; sermon import + release still push to main).
+habit only: PRs aren't required (sermon import + release still push to main).
+Chris added ruleset `default-branch-ruleset` on main (2026-11-12): blocks
+deletion and force pushes only, no bypass list. Never force-push or delete
+main; rewrite history only on feature branches.
 - [x] `CLAUDE.md` for this repo: the 7-step change workflow.
 - [x] `scripts/check-commit-msg.mjs` (no deps, unit-tested); all prior commits pass.
 - [x] `.githooks/commit-msg` via `core.hooksPath` in `.gitconfig`; finds nvm's
