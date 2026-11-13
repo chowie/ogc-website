@@ -164,15 +164,22 @@ plain-language summary marked for elder review).
       PR #9: merged 2026-11-12
 - [x] Deacons on Our Team (`content/deacons`): Chris, Derek, Jordan with draft
       bios; Bonnie Schulert as Office Manager placeholder. PR #10: merged 2026-11-13
-- [x] Our Team: placeholder cards for the Mission Board (4 members) and the
-      Treasurer (1). Chris is adding these as proposals (2026-11-13)
-- [ ] Welcome video example (Chris, PR #11 comment, 2026-11-13): a proposed
+- [x] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
+      share buttons. PR #11: review (10 findings) fixed in a1172b2; merged 2026-11-13
+- [x] Our Team: placeholder cards for the proposed Mission Board (4 members)
+      and Treasurer (1), from Chris (2026-11-13). PR #12: merged 2026-11-13
+- [x] Watch & Listen: "Can't Make It on Sunday?" for homebound members, podcast
+      link in site settings and footer. PR #13: merged 2026-11-13
+- [x] Welcome video example (Chris, PR #11 comment, 2026-11-13): a proposed
       transcript for the 60–90 second pastor welcome video, plus suggestions
       for staging it (setting, framing, light, sound) and any other
       direction. Presented as an example, not a final script.
-- [ ] "Add to calendar" link on every event (Chris, PR #11 comment): on event
-      pages, tiles and the calendar list (e.g. an .ics download plus Google
-      Calendar link; weekly events as a repeating entry).
+      PR #14 (docs/welcome-video-example.md): merged 2026-11-13
+- [x] "Add to calendar" link on every event (Chris, PR #11 comment): .ics
+      download plus Google Calendar link on event pages, tiles and the
+      calendar list; weekly events repeat. Locations include the church's
+      street address (Chris), `address:` for off-site events, `until` is
+      date-only. PR #15: merged 2026-11-13
 - [ ] Brainstorm, needs refinement before building (Chris, PR #11 comment):
       a "Plan Your Visit mode". Clicking Plan Your Visit turns it on; while
       the visitor browses, they can add things to a custom itinerary (e.g.
@@ -181,9 +188,8 @@ plain-language summary marked for elder review).
       person must reach the office so it can be coordinated. Open questions:
       where the itinerary is kept, how it's sent (likely with the visit
       form), and who receives and coordinates it.
-- [x] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
-      share buttons. PR #11: review (10 findings) fixed in a1172b2; merged 2026-11-13
-- [ ] After merge: Chris decides demo from preview vs `npm run release -- minor`
+- [ ] Chris decides: demo from a deploy preview, or `npm run release -- minor`
+      (production builds the newest release tag, not main)
 
 ## Review
 ### Phase 1 (2026-10-28)
@@ -202,15 +208,16 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
-Demo live = v0.1.0 (production builds the newest release tag; merging to
-main publishes nothing until `npm run release`).
+2026-11-13: PRs #7–#15 merged. Live site is still v0.1.0: production builds
+the newest release tag, and merging to main publishes nothing until Chris runs
+`npm run release`.
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
 Chris merges (see CLAUDE.md). Exception: the sermon import's bot PRs merge
-themselves after `npm run verify`.
-Still need: welcome text, any other service times, hero photo.
-Re-shoot docs/screenshots/ after visual changes.
-Demo build (2026-11-12): PR #7 is ready for Chris. The content specialist's
-rewrite is in src/content/pages/ on `content/site-content` (PR 2). Open questions it raised:
-Andrew's children's ages, team bios naming children, pastor tenure, the
-membership class date. Mission, vision and values now come word for word from the
-OGC Operating Procedures (2007), Articles 1-3.
+themselves after `npm run verify`. Independent PRs can run in parallel
+worktrees (plan and retro in .claude/orchestration/, git-ignored); a PR that
+depends on an open PR waits until that one merges.
+Next candidates: the Plan Your Visit itinerary idea (needs Chris's
+refinement first), real content from the `needs:` lists (see /content-status),
+and Chris's demo-vs-release decision above.
+Still open from the content rewrite: pastor tenure, the membership class
+steps, the hero photo. Re-shoot docs/screenshots/ after visual changes.
