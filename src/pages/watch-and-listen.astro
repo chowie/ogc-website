@@ -13,6 +13,9 @@ const youtube = site.social.find((l) => l.label === 'YouTube');
 ---
 
 <ContentPage entry={entry}>
+  <SectionHeading title="Sermon Podcast" entry={entry} />
+  <p>Missed a Sunday? Catch up on each week's message on the <strong>Oneida Gospel Messages</strong> podcast. <a href={site.podcastUrl}>Listen on Apple Podcasts</a>.</p>
+
   <SectionHeading title="Monthly Service Video" entry={entry} />
   <p class="muted">The full service, for anyone who can't be there in person.</p>
   {latest && <ul class="sermon-list list-plain"><SermonRow s={latest} /></ul>}

@@ -30,7 +30,12 @@
     {
       "label": "Facebook",
       "url": "https://www.facebook.com/oneidagospel/"
+    },
+    {
+      "label": "Apple Podcasts",
+      "url": "https://podcasts.apple.com/us/podcast/oneida-gospel-messages/id1449487498"
     }
   ],
+  "podcastUrl": "https://podcasts.apple.com/us/podcast/oneida-gospel-messages/id1449487498",
   "welcome": "A church family in Grand Ledge, opening the Bible together. Come as you are."
 }

@@ -87,7 +87,7 @@ that only for `npm run release`.
 | Team members | `src/content/team/*.md` (one file per person) |
 | Sermons | `src/content/sermons/*.md` |
 | Events | `src/content/events/*.md` |
-| Service times, address, map, social links, home page welcome line | `src/data/site.json` |
+| Service times, address, map, social links, sermon podcast link, home page welcome line | `src/data/site.json` |
 | Home page copy | `src/pages/index.astro` (its source notes: `src/content/pages/index.md`) |
 | Forms (fields, button text) | `src/data/forms.ts` |
 | Page copy (Plan Your Visit, About, Get Connected, Give…) | `src/content/pages/**/*.md` (`about/beliefs.md` → `/about/beliefs`) |

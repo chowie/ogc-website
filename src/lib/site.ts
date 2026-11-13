@@ -1,7 +1,7 @@
 import { z } from 'astro/zod';
 import raw from '../data/site.json';
 
-// Site-wide settings (service times, address, social links).
+// Site-wide settings (service times, address, social links, podcast).
 // Edit src/data/site.json; the build fails if it doesn't match this shape.
 const siteSchema = z.object({
   name: z.string(),
@@ -21,6 +21,8 @@ const siteSchema = z.object({
     z.object({ label: z.string(), day: z.string(), time: z.string() }),
   ),
   social: z.array(z.object({ label: z.string(), url: z.url() })),
+  // The sermon podcast, linked from Watch & Listen.
+  podcastUrl: z.url(),
 });
 
 export const site = siteSchema.parse(raw);
