@@ -49,6 +49,9 @@ const events = defineCollection({
       start: z.coerce.date(),
       end: z.coerce.date().optional(),
       location: z.string().optional(),
+      // Full street address, only for an event away from the church; calendar
+      // links and the event page use the church's address otherwise.
+      address: z.string().optional(),
       summary: z.string().optional(),
       // Who it's for ("New attenders", "Women") and whether kids are welcome.
       audience: z.string().optional(),

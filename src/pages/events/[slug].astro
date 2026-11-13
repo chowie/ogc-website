@@ -7,7 +7,7 @@ import PageHead from '../../components/PageHead.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import { eventWhen, upcoming } from '../../lib/content';
 import AddToCalendar from '../../components/AddToCalendar.astro';
-import { site, telHref } from '../../lib/site';
+import { site, streetAddress, telHref } from '../../lib/site';
 
 export async function getStaticPaths() {
   const events = await getCollection('events');
@@ -18,6 +18,8 @@ const { event: original } = Astro.props;
 const event = upcoming(original);
 const { title, location, summary, audience, kidsWelcome } = (event ?? original).data;
 const { when, next } = eventWhen((event ?? original).data);
+// The same address the calendar links use.
+const address = original.data.address ?? streetAddress;
 ---
 
 <Base title={title} description={summary}>
@@ -27,7 +29,7 @@ const { when, next } = eventWhen((event ?? original).data);
       {event ? (
         <dl class="event__facts">
           <dt>When</dt><dd>{when}{next && <><br />{next}</>}</dd>
-          {location && <><dt>Where</dt><dd>{location}</dd></>}
+          <dt>Where</dt><dd>{location && <>{location}<br /></>}{address}</dd>
           {audience && <><dt>For</dt><dd>{audience}</dd></>}
           {kidsWelcome !== undefined && <><dt>Kids</dt><dd>{kidsWelcome ? 'Kids are welcome' : 'For adults'}</dd></>}
         </dl>

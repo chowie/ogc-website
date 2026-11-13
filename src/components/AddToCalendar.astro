@@ -5,6 +5,7 @@
 // where the page shows the next occurrence.
 import { getEntry } from 'astro:content';
 import { googleCalendarUrl, toCalendarEvent } from '../lib/calendar';
+import { streetAddress } from '../lib/site';
 
 interface Props {
   /** The event's id (its file name). */
@@ -16,7 +17,7 @@ const { id, light = false } = Astro.props;
 const event = await getEntry('events', id);
 if (!event) throw new Error(`AddToCalendar: no event "${id}"`);
 const { title } = event.data;
-const google = googleCalendarUrl(toCalendarEvent(id, event.data, Astro.site!));
+const google = googleCalendarUrl(toCalendarEvent(id, event.data, Astro.site!, streetAddress));
 ---
 
 <span class:list={['add-cal', { 'add-cal--light': light }]}>

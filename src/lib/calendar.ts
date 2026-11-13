@@ -25,15 +25,28 @@ export interface CalendarEvent {
   uid: string;
 }
 
-/** Event fields from the content collection, plus its page URL and UID. */
+/**
+ * Calendar location: "<location>, <street address>", so mapping apps can
+ * navigate to it. Just the address when the event has no location.
+ */
+export function calendarLocation(location: string | undefined, address: string) {
+  return [location, address].filter(Boolean).join(', ');
+}
+
+/**
+ * Event fields from the content collection, plus its page URL and UID.
+ * `defaultAddress` (the church's) is used unless the event has its own.
+ */
 export function toCalendarEvent(
   id: string,
-  data: Omit<CalendarEvent, 'url' | 'uid'>,
+  data: Omit<CalendarEvent, 'url' | 'uid'> & { address?: string },
   site: URL | string,
+  defaultAddress: string,
 ): CalendarEvent {
-  const { title, start, end, location, summary, repeat, until } = data;
+  const { title, start, end, summary, repeat, until } = data;
   return {
-    title, start, end, location, summary, repeat, until,
+    title, start, end, summary, repeat, until,
+    location: calendarLocation(data.location, data.address ?? defaultAddress),
     url: new URL(`/events/${id}`, site).href,
     uid: `${id}@${new URL(site).host}`,
   };

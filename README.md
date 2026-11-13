@@ -224,6 +224,7 @@ title: Christmas Eve Service
 start: 2026-12-24T18:00:00-05:00
 end: 2026-12-24T19:00:00-05:00   # optional
 location: Sanctuary              # optional
+# address: 123 Main St., Lansing, MI 48933   # only for events away from the church
 summary: Short description.      # optional
 audience: Families               # optional: who it's for
 kidsWelcome: true                # optional
@@ -235,9 +236,12 @@ Each event gets its own page at `/events/<file name>` (here
 upcoming event also gets "Add to Calendar" links: Apple / Outlook downloads
 an `.ics` file (`/events/<file name>.ics`), and Google opens Google Calendar
 with the event filled in. Weekly events are added as a repeating series.
-Without `end`, calendar links assume one hour; add `end` if it runs longer. Past
-events drop off the lists, but their pages stay up and say the event is over,
-so shared links keep working.
+Without `end`, calendar links assume one hour; add `end` if it runs longer.
+The event page and calendar links give the location plus a street address,
+so mapping apps can navigate there. Set `address:` only for events away from
+the church; otherwise the church's address is used. Past events drop off the
+lists, but their pages stay up and say the event is over, so shared links
+keep working.
 
 Past events drop off automatically; the site rebuilds every morning
 (`.github/workflows/daily-rebuild.yml`).
