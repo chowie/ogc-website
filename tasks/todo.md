@@ -109,7 +109,7 @@ current main becomes v0.1.0.
       "build-release: building v0.1.0". The live site no longer follows main HEAD.
 
 ## Phase 3 — Ship (confirm each with Chris)
-- [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (private: commits carry personal email)
+- [x] Create GitHub repo, push — https://github.com/chowie/ogc-website (public; commits use the GitHub no-reply email set in `.gitconfig`)
 - [x] Create Netlify site in Funky Bunch, linked to repo — https://app.netlify.com/projects/ogc-website
 - [x] **Chris:** grant Netlify GitHub App access to `ogc-website` (done 2026-10-28)
       (GitHub → Settings → Applications → Netlify → Configure → add repo).
@@ -187,11 +187,12 @@ plain-language summary marked for elder review).
       meeting someone while they're there). Anything that involves a specific
       person must reach the office so it can be coordinated. Open questions:
       where the itinerary is kept, how it's sent (likely with the visit
-      form), and who receives and coordinates it. Research task in Notion
-      Work Items (due 2026-11-13): https://app.notion.com/p/417e4996907781989e74d677dc0d1989
+      form), and who receives and coordinates it. Tracked as a research task
+      in Chris's Notion Work Items.
 - [x] Chris decided to release instead of demoing from a deploy preview:
-      v0.2.0 released 2026-11-13 (c4c90f1, PRs #7–#16) and live at
-      https://ogc-website.netlify.app (still noindex).
+      v0.2.0 released 2026-11-13 (c4c90f1, everything since v0.1.0: PRs
+      #1–#16). Netlify's production deploy built c4c90f1 ("release: v0.2.0")
+      and is live at https://ogc-website.netlify.app (still noindex).
 
 ## Review
 ### Phase 1 (2026-10-28)
@@ -210,9 +211,9 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
-2026-11-13: PRs #7–#16 merged and released as v0.2.0, now live (still noindex).
+2026-11-13: PRs #1–#16 merged and released as v0.2.0, now live (still noindex).
 Production builds the newest release tag, so later merges to main publish
-nothing until Chris runs `npm run release`. Demo URL for Andrew and staff:
+nothing until Chris runs `npm run release`. Demo URL:
 https://ogc-website.netlify.app
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
 Chris merges (see CLAUDE.md). Exception: the sermon import's bot PRs merge
@@ -220,7 +221,7 @@ themselves after `npm run verify`. Independent PRs can run in parallel
 worktrees (plan and retro in .claude/orchestration/, git-ignored); a PR that
 depends on an open PR waits until that one merges.
 Next candidates: the Plan Your Visit itinerary idea (needs Chris's
-refinement first; Notion research task above) and real content from the
+refinement first; see the research task above) and real content from the
 `needs:` lists (see /content-status).
 Still open from the content rewrite: pastor tenure, the membership class
 steps, the hero photo. Re-shoot docs/screenshots/ after visual changes.
