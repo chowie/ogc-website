@@ -6,7 +6,8 @@ import raw from '../data/site.json';
 const siteSchema = z.object({
   name: z.string(),
   tagline: z.string(),
-  welcome: z.object({ heading: z.string(), body: z.string() }),
+  // One sentence under the church's name on the home page.
+  welcome: z.string(),
   address: z.object({
     street: z.string(),
     city: z.string(),

@@ -1,0 +1,50 @@
+---
+// One page per event, so each has a link to share. Built for past events
+// too, so a shared link keeps working after the event; those say it's over.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import ShareButton from '../../components/ShareButton.astro';
+import { eventWhen, upcoming } from '../../lib/content';
+import { site } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({ params: { slug: event.id }, props: { event } }));
+}
+
+const { event: original } = Astro.props;
+const event = upcoming(original);
+const { title, location, summary, audience, kidsWelcome } = (event ?? original).data;
+const { when, next } = eventWhen((event ?? original).data);
+---
+
+<Base title={title} description={summary}>
+  <PageHead title={title} eyebrow="Events" />
+  <section class="section">
+    <div class="container prose event">
+      {event ? (
+        <dl class="event__facts">
+          <dt>When</dt><dd>{when}{next && <><br />{next}</>}</dd>
+          {location && <><dt>Where</dt><dd>{location}<br /><span class="muted">{site.address.street}, {site.address.city}</span></dd></>}
+          {audience && <><dt>For</dt><dd>{audience}</dd></>}
+          {kidsWelcome !== undefined && <><dt>Kids</dt><dd>{kidsWelcome ? 'Kids are welcome' : 'For adults'}</dd></>}
+        </dl>
+      ) : (
+        <p class="event__past">This event is over. See <a href="/events">what's coming up</a>.</p>
+      )}
+      {summary && <p>{summary}</p>}
+      {event && <p><ShareButton url={`/events/${original.id}`} title={title} /></p>}
+      <p>Questions? Call the church office at <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>.</p>
+      <p><a href="/events">All events</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .event__facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-xs) var(--space-m); margin: 0 0 var(--space-m); }
+  .event__facts dt { font-family: var(--font-display); font-size: var(--step--1); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .event__facts dd { margin: 0; }
+  .event__past { font-weight: 600; }
+  .muted { color: var(--muted); }
+</style>

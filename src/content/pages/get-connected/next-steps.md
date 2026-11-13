@@ -8,7 +8,9 @@ origin:
   note: "Path from the outline's Next Steps row: meet the pastor, join a group, serve, explore membership."
 needs:
   - "The next-steps path, confirmed by staff"
-  - '"Connect with me" form and who receives it'
+  - 'Who receives the "Connect with me" form'
+form:
+  name: connect
 ---
 
 ## 1. Meet the Pastor
@@ -29,4 +31,4 @@ When you're ready, learn what it means to belong. See [Membership](/about/member
 
 ## Connect With Me
 
-Not sure where to start? Tell us a little about yourself and someone will reach out. (Form coming in a later update.)
+Not sure where to start? Tell us a little about yourself and someone will reach out.

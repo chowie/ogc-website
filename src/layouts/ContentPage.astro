@@ -1,12 +1,14 @@
 ---
 // An inner page whose copy comes from the pages collection: header band,
 // the section's links on the side, then the Markdown. Pages that need more
-// (a map, a list, a form) pass it in the default slot, shown after the copy,
-// or the "before" slot, shown before it.
+// (a map, a list) pass it in the default slot, shown after the copy, or the
+// "before" slot, shown before it. A `form:` in the frontmatter is shown right
+// after the copy.
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import Base from './Base.astro';
 import PageHead from '../components/PageHead.astro';
+import NetlifyForm from '../components/NetlifyForm.astro';
 import { sectionFor, isCurrentPage, normalizePath } from '../data/nav';
 import { hasLeadCopy } from '../lib/section-status.mjs';
 
@@ -16,7 +18,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, eyebrow, intro, description, origin, sections } = entry.data;
+const { title, eyebrow, intro, description, origin, sections, form } = entry.data;
 
 const path = normalizePath(Astro.url.pathname);
 const section = sectionFor(path);
@@ -42,6 +44,7 @@ const showPageOrigin = hasLeadCopy(entry.body, intro) || (!headings.some((h) => 
       <div>
         <slot name="before" />
         <div class="prose"><Content /></div>
+        {form && <NetlifyForm name={form.name} interest={form.interest} />}
         <slot />
       </div>
     </div>

@@ -16,10 +16,13 @@ sections:
     status: placeholder
     from: "Website Outline (Notion)"
     on: 2026-11-12
-    note: "The outline asks for a sign-up form; it comes in a later update."
+    note: "The outline asks for a sign-up form; it's the shared connect form, and nobody receives it yet."
 needs:
   - "Serve team list and real time commitments"
-  - "Sign-up form and who receives it"
+  - "Who receives the sign-up form"
+form:
+  name: connect
+  interest: "Serving on a team"
 ---
 
 ## Teams
@@ -34,4 +37,4 @@ needs:
 
 ## Sign Up
 
-Tell us which team interests you and someone will follow up. (Form coming in a later update.)
+Tell us which team interests you and someone will follow up.

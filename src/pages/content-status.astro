@@ -24,7 +24,7 @@ const rank = (url: string) => {
 const pages = await Promise.all(
   (await getCollection('pages')).map(async (entry) => {
     const { headings } = await render(entry);
-    const url = `/${entry.id}`;
+    const url = entry.id === 'index' ? '/' : `/${entry.id}`;
     const fromMarkdown = headings
       .filter((h) => h.depth === 2)
       .map((h) => ({ id: h.slug, title: h.text, origin: entry.data.sections[h.slug] ?? entry.data.origin }));
