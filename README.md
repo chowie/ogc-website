@@ -309,6 +309,10 @@ can also re-publish an earlier deploy instantly.)
 
 ### Search engines
 
-The demo is hidden from search engines (`noindex` meta tag and a
-`Disallow: /` robots.txt). At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
-Netlify site's environment variables and redeploy.
+The demo is hidden from search engines by an `X-Robots-Tag: noindex` header
+on every response (a `_headers` file the build writes) and a `noindex` meta
+tag. robots.txt deliberately *allows* crawling: a crawler blocked by
+robots.txt never sees the noindex, and Google can still list a blocked URL it
+finds linked elsewhere. At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
+Netlify site's environment variables and redeploy; the header and meta tag go
+away and robots.txt lists the sitemap.
