@@ -22,7 +22,7 @@ const team = defineCollection({
         .max(400, 'shortBio must be 400 characters or fewer')
         .optional(),
       // Which list on /about/team the person appears in.
-      group: z.enum(['elders', 'deacons', 'staff']),
+      group: z.enum(['elders', 'deacons', 'missions', 'treasurer', 'staff']),
       // Lower numbers appear first. Missing = sorted to the end.
       displayOrder: z.number().default(999),
     }),

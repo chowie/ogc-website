@@ -3,13 +3,14 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  member: CollectionEntry<'team'>;
-  width: number;
+  /** Leave out for a proposed position nobody holds yet. */
+  member?: CollectionEntry<'team'>;
+  width?: number;
   /** Set for above-the-fold photos (profile pages). */
   eager?: boolean;
 }
-const { member, width, eager = false } = Astro.props;
-const { photo, photoAlt, name } = member.data;
+const { member, width = 480, eager = false } = Astro.props;
+const { photo, photoAlt, name } = member?.data ?? { name: '' };
 const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
 ---
 
@@ -18,7 +19,7 @@ const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
 ) : (
   <div class="team-photo team-photo--empty" aria-hidden="true">
     <span>{initials}</span>
-    <span class="team-photo__note">Photo to come</span>
+    <span class="team-photo__note">{member ? 'Photo to come' : 'Proposed'}</span>
   </div>
 )}
 

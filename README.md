@@ -160,7 +160,7 @@ stops and names the file and field.
 ---
 name: First Last            # required
 role: Deacon
-group: deacons              # required: elders, deacons or staff
+group: deacons              # required: elders, deacons, missions, treasurer or staff
 photo: ./first-last.jpg     # optional; path relative to this file
 photoAlt: First Last smiling outside the church   # optional
 displayOrder: 5             # lower numbers appear first; omit to sort last
