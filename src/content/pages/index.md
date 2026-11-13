@@ -49,7 +49,7 @@ sections:
     note: "The outline's short visit form (name, email or phone, date, kids' ages); nobody receives it yet."
 needs:
   - "A real photo of people on a Sunday for the hero (not the building)"
-  - "Pastor welcome video, 60–90 seconds"
+  - "Pastor welcome video, 60–90 seconds (example script: https://github.com/chowie/ogc-website/blob/main/docs/welcome-video-example.md)"
   - "Confirm the one-line welcome"
   - "Short made-for-online videos"
   - "Service projects or neighborhood events for the calendar"
