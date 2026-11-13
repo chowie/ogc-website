@@ -49,6 +49,9 @@ const events = defineCollection({
       start: z.coerce.date(),
       end: z.coerce.date().optional(),
       location: z.string().optional(),
+      // Full street address, only for an event away from the church; calendar
+      // links and the event page use the church's address otherwise.
+      address: z.string().optional(),
       summary: z.string().optional(),
       // Who it's for ("New attenders", "Women") and whether kids are welcome.
       audience: z.string().optional(),
@@ -63,6 +66,13 @@ const events = defineCollection({
     })
     .refine((e) => !e.until || e.repeat, {
       message: 'until only applies to repeating events',
+      path: ['until'],
+    })
+    // Date only: 2026-12-16 parses as UTC midnight, and time.ts reads that
+    // as the last day. (A time of exactly 00:00 UTC, i.e. 7 PM EST, still
+    // gets through and is read as the next day; it can't be told apart.)
+    .refine((e) => !e.until || e.until.getTime() % 86_400_000 === 0, {
+      message: 'until must be a date like 2026-12-16 (no time)',
       path: ['until'],
     }),
 });

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addLocalDays, nextSunday, nextWeekly } from '../src/lib/time.ts';
+import { addLocalDays, endOfLocalDay, nextSunday, nextWeekly } from '../src/lib/time.ts';
 
 const iso = (d: Date | undefined) => d?.toISOString();
 
@@ -39,6 +39,18 @@ test('nextWeekly stops after `until` (date-only, inclusive)', () => {
   const now = new Date('2026-10-28T12:00:00-04:00');
   assert.equal(nextWeekly(start, undefined, now, new Date('2026-10-28')), undefined);
   assert.equal(iso(nextWeekly(start, undefined, now, new Date('2026-11-04'))?.start), '2026-11-04T14:30:00.000Z');
+});
+
+test('endOfLocalDay: a date-only `until` lasts through that day in church time', () => {
+  assert.equal(iso(endOfLocalDay(new Date('2026-12-16'))), '2026-12-17T04:59:59.000Z'); // EST
+  assert.equal(iso(endOfLocalDay(new Date('2026-07-01'))), '2026-07-02T03:59:59.000Z'); // EDT
+});
+
+test('nextWeekly: a Thursday series with until Dec 16 has no Dec 17 meeting', () => {
+  const start = new Date('2026-09-17T19:00:00-04:00'); // Thursday evening
+  const until = new Date('2026-12-16');
+  assert.equal(iso(nextWeekly(start, undefined, new Date('2026-12-10T12:00:00-05:00'), until)?.start), '2026-12-11T00:00:00.000Z');
+  assert.equal(nextWeekly(start, undefined, new Date('2026-12-11T12:00:00-05:00'), until), undefined);
 });
 
 test('nextSunday uses the church date, not UTC', () => {

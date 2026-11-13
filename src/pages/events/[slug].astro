@@ -6,7 +6,8 @@ import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import { eventWhen, upcoming } from '../../lib/content';
-import { site, telHref } from '../../lib/site';
+import AddToCalendar from '../../components/AddToCalendar.astro';
+import { site, streetAddress, telHref } from '../../lib/site';
 
 export async function getStaticPaths() {
   const events = await getCollection('events');
@@ -17,6 +18,8 @@ const { event: original } = Astro.props;
 const event = upcoming(original);
 const { title, location, summary, audience, kidsWelcome } = (event ?? original).data;
 const { when, next } = eventWhen((event ?? original).data);
+// The same address the calendar links use.
+const address = original.data.address ?? streetAddress;
 ---
 
 <Base title={title} description={summary}>
@@ -26,7 +29,7 @@ const { when, next } = eventWhen((event ?? original).data);
       {event ? (
         <dl class="event__facts">
           <dt>When</dt><dd>{when}{next && <><br />{next}</>}</dd>
-          {location && <><dt>Where</dt><dd>{location}</dd></>}
+          <dt>Where</dt><dd>{location && <>{location}<br /></>}{address}</dd>
           {audience && <><dt>For</dt><dd>{audience}</dd></>}
           {kidsWelcome !== undefined && <><dt>Kids</dt><dd>{kidsWelcome ? 'Kids are welcome' : 'For adults'}</dd></>}
         </dl>
@@ -34,7 +37,12 @@ const { when, next } = eventWhen((event ?? original).data);
         <p class="event__past">This event is over. See <a href="/events">what's coming up</a>.</p>
       )}
       {summary && <p>{summary}</p>}
-      {event && <p><ShareButton url={`/events/${original.id}`} title={title} /></p>}
+      {event && (
+        <p class="event__actions">
+          <ShareButton url={`/events/${original.id}`} title={title} />
+          <AddToCalendar id={original.id} />
+        </p>
+      )}
       <p>Questions? Call the church office at <a href={telHref}>{site.phone}</a>.</p>
       <p><a href="/events">All events</a></p>
     </div>
@@ -46,4 +54,5 @@ const { when, next } = eventWhen((event ?? original).data);
   .event__facts dt { font-family: var(--font-display); font-size: var(--step--1); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
   .event__facts dd { margin: 0; }
   .event__past { font-weight: 600; }
+  .event__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-m); }
 </style>

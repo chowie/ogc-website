@@ -14,3 +14,10 @@
 # Pull requests: run the tests too, so a failing test fails the Netlify check.
 [context.deploy-preview]
   command = "npm run verify"
+
+# Calendar files: say UTF-8, so names with accents or curly quotes come out
+# right in Apple Calendar and Outlook.
+[[headers]]
+  for = "/events/*.ics"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"

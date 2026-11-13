@@ -5,6 +5,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import { eventWhen, getUpcomingEvents } from '../../lib/content';
 import { TZ as tz } from '../../lib/time';
+import AddToCalendar from '../../components/AddToCalendar.astro';
 
 const entry = (await getEntry('pages', 'events'))!;
 const events = (await getUpcomingEvents()).map((e) => ({ e, ...eventWhen(e.data) }));
@@ -31,7 +32,10 @@ const events = (await getUpcomingEvents()).map((e) => ({ e, ...eventWhen(e.data)
                 {e.data.location && <><br />{e.data.location}</>}
               </p>
               {e.data.summary && <p>{e.data.summary}</p>}
-              <ShareButton url={`/events/${e.id}`} title={e.data.title} />
+              <div class="event-row__actions">
+                <ShareButton url={`/events/${e.id}`} title={e.data.title} />
+                <AddToCalendar id={e.id} />
+              </div>
             </div>
           </li>
         ))}
@@ -48,4 +52,5 @@ const events = (await getUpcomingEvents()).map((e) => ({ e, ...eventWhen(e.data)
   .event-row__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin-bottom: var(--space-xs); }
   .event-row__title a { color: var(--ink); }
   .event-row__meta { color: var(--muted); }
+  .event-row__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-m); }
 </style>

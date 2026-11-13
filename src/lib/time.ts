@@ -4,7 +4,8 @@ export const TZ = 'America/Detroit';
 
 const WEEK = 7 * 24 * 60 * 60 * 1000;
 
-function wallClock(date: Date) {
+// Wall-clock parts of `date` in church time.
+export function wallClock(date: Date) {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: TZ,
     hourCycle: 'h23',
@@ -39,13 +40,12 @@ export function nextWeekly(start: Date, end: Date | undefined, now: Date, until?
   return { start: occ, end: end ? new Date(occ.getTime() + duration) : undefined };
 }
 
-// `until: 2026-12-16` means "through that day" in local time.
-function endOfLocalDay(date: Date) {
-  const w = wallClock(date);
-  const isMidnightUtc = date.getUTCHours() === 0 && date.getUTCMinutes() === 0;
-  // Date-only values parse as UTC midnight; treat them as that calendar day.
-  const [y, m, d] = isMidnightUtc ? [date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate()] : [w.y, w.m, w.d];
-  const wall = Date.UTC(y, m - 1, d, 23, 59, 59);
+// `until: 2026-12-16` means "through that day" in church time: the last
+// instant of it. `until` is date-only (the schema rejects a time), and a
+// YAML date parses as UTC midnight, so its UTC calendar date is the day.
+// Used by both the event list and the calendar file's UNTIL.
+export function endOfLocalDay(until: Date) {
+  const wall = Date.UTC(until.getUTCFullYear(), until.getUTCMonth(), until.getUTCDate(), 23, 59, 59);
   return new Date(wall - offset(new Date(wall)));
 }
 

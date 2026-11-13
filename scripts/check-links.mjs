@@ -32,7 +32,7 @@ for (const file of htmlFiles(dist)) {
 for (const [from, { hrefs }] of pages) {
   for (const href of hrefs) {
     if (/^(https?:|mailto:|tel:|data:|\/\/)/.test(href)) continue;
-    if (href.startsWith('/_astro/') || /\.(css|js|png|jpe?g|webp|svg|ico|txt|xml|pdf)$/.test(href)) {
+    if (href.startsWith('/_astro/') || /\.(css|js|png|jpe?g|webp|svg|ico|txt|xml|pdf|ics)$/.test(href)) {
       if (!existsSync(join(dist, href))) problems.push(`${from}: missing asset ${href}`);
       continue;
     }
