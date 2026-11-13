@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { TZ as tz } from '../lib/time';
 import ShareButton from './ShareButton.astro';
 import { eventWhen } from '../lib/content';
-import { googleCalendarUrl, toCalendarEvent } from '../lib/calendar';
+import AddToCalendar from './AddToCalendar.astro';
 
 interface Props {
   event: CollectionEntry<'events'>;
@@ -13,7 +13,6 @@ const { title, start, location, repeat } = event.data;
 const month = start.toLocaleDateString('en-US', { month: 'short', timeZone: tz });
 const day = start.toLocaleDateString('en-US', { day: 'numeric', timeZone: tz });
 const { when, times } = eventWhen(event.data);
-const google = googleCalendarUrl(toCalendarEvent(event.id, event.data, Astro.site!));
 ---
 
 <article class="event-tile">
@@ -27,11 +26,7 @@ const google = googleCalendarUrl(toCalendarEvent(event.id, event.data, Astro.sit
   <p class="event-tile__meta">{repeat === 'weekly' ? when : times}{location && ` · ${location}`}</p>
   <div class="event-tile__actions">
     <ShareButton url={`/events/${event.id}`} title={title} light />
-    <span class="add-cal">
-      Add to Calendar:
-      <a href={`/events/${event.id}.ics`} download>Apple / Outlook<span class="visually-hidden">: {title}</span></a>
-      <a href={google} target="_blank" rel="noopener">Google<span class="visually-hidden">: {title}</span></a>
-    </span>
+    <AddToCalendar id={event.id} light />
   </div>
 </article>
 
@@ -45,6 +40,4 @@ const google = googleCalendarUrl(toCalendarEvent(event.id, event.data, Astro.sit
   .event-tile__meta { color: var(--on-dark-muted); font-size: 0.95rem; margin: 0 0 var(--space-s); }
   .event-tile__title a { color: #fff; }
   .event-tile__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-m); }
-  .add-cal { display: inline-flex; flex-wrap: wrap; gap: 0.75em; font-size: var(--step--1); color: var(--on-dark-muted); }
-  .add-cal a { color: #fff; }
 </style>

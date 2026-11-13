@@ -31,6 +31,7 @@ test('one-off event: UTC times, 1-hour default end, URL and stable UID', () => {
   assert.ok(l.includes('DTEND:20261206T151500Z'));
   assert.ok(l.includes('DTSTAMP:20261101T120000Z'));
   assert.ok(l.includes('UID:2026-12-06-membership-class@ogc-website.netlify.app'));
+  assert.ok(l.includes('SEQUENCE:0'));
   assert.ok(l.includes('URL:https://ogc-website.netlify.app/events/2026-12-06-membership-class'));
   assert.ok(l.includes('LOCATION:Meeting Room\\, off the chapel'));
   assert.ok(l.includes('DESCRIPTION:Bring your questions.\\n\\nhttps://ogc-website.netlify.app/events/2026-12-06-membership-class'));
@@ -60,6 +61,13 @@ test('weekly event: local TZID times, RRULE with UNTIL at end of that day, VTIME
   assert.ok(l.includes('BEGIN:VTIMEZONE') && l.includes('TZID:America/Detroit'));
   assert.ok(l.includes('RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU'));
   assert.ok(l.includes('RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU'));
+});
+
+test('weekly UNTIL ends a Thursday series before Dec 17 (same rule as the event list)', () => {
+  const thursday = { ...weekly, start: new Date('2026-09-17T19:00:00-04:00'), end: undefined };
+  const l = lines(buildIcs(thursday, stamp));
+  // Dec 17's 7 PM EST meeting starts at 2026-12-18T00:00Z, after UNTIL.
+  assert.ok(l.includes('RRULE:FREQ=WEEKLY;UNTIL=20261217T045959Z'));
 });
 
 test('weekly event without until repeats with no end', () => {

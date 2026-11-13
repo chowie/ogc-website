@@ -1,12 +1,12 @@
 // "Add to calendar" for events: an iCalendar (.ics) file for Apple Calendar
-// and Outlook, and a Google Calendar link. No imports, so `node --test` can
-// load it directly.
+// and Outlook, and a Google Calendar link. Imports use the .ts extension so
+// `node --test` can load this file directly.
 //
 // One-off events are written in UTC. Weekly events are written in church time
 // (America/Detroit) with a VTIMEZONE block, so 9:30 AM stays 9:30 AM across
 // daylight-saving changes.
+import { endOfLocalDay, TZ, wallClock } from './time.ts';
 
-export const CALENDAR_TZ = 'America/Detroit';
 const HOUR = 60 * 60 * 1000;
 
 export interface CalendarEvent {
@@ -21,7 +21,7 @@ export interface CalendarEvent {
   until?: Date;
   /** The event's page, added to the details. */
   url: string;
-  /** Stable across rebuilds, so re-adding updates the same calendar entry. */
+  /** The same on every build. */
   uid: string;
 }
 
@@ -46,38 +46,14 @@ function utcStamp(d: Date) {
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
 }
 
-function wallClock(d: Date) {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: CALENDAR_TZ, hourCycle: 'h23',
-    year: 'numeric', month: 'numeric', day: 'numeric',
-    hour: 'numeric', minute: 'numeric', second: 'numeric',
-  }).formatToParts(d);
-  const get = (type: string) => Number(parts.find((p) => p.type === type)?.value);
-  return { y: get('year'), m: get('month'), d: get('day'), h: get('hour'), mi: get('minute'), s: get('second') };
-}
-
 // 20260916T093000, church wall-clock time (no zone suffix)
 function localStamp(d: Date) {
   const w = wallClock(d);
   return `${pad(w.y, 4)}${pad(w.m)}${pad(w.d)}T${pad(w.h)}${pad(w.mi)}${pad(w.s)}`;
 }
 
-// `until: 2026-12-16` means "through that day" in church time, as a UTC
-// instant (RFC 5545 requires UNTIL in UTC when DTSTART has a TZID).
-// Date-only values parse as UTC midnight; treat them as that calendar day.
-function endOfLocalDay(d: Date) {
-  const midnightUtc = d.getUTCHours() === 0 && d.getUTCMinutes() === 0;
-  const w = wallClock(d);
-  const [y, m, day] = midnightUtc ? [d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()] : [w.y, w.m, w.d];
-  const wall = Date.UTC(y, m - 1, day, 23, 59, 59);
-  const offset = (at: Date) => {
-    const v = wallClock(at);
-    return Date.UTC(v.y, v.m - 1, v.d, v.h, v.mi, v.s) - at.getTime();
-  };
-  return new Date(wall - offset(new Date(wall)));
-}
-
 function rrule(e: CalendarEvent) {
+  // RFC 5545 wants UNTIL in UTC when DTSTART has a TZID.
   return `RRULE:FREQ=WEEKLY${e.until ? `;UNTIL=${utcStamp(endOfLocalDay(e.until))}` : ''}`;
 }
 
@@ -111,7 +87,7 @@ export function foldLine(line: string) {
 // US rules since 2007: second Sunday in March to first Sunday in November.
 const VTIMEZONE = [
   'BEGIN:VTIMEZONE',
-  `TZID:${CALENDAR_TZ}`,
+  `TZID:${TZ}`,
   'BEGIN:DAYLIGHT',
   'TZOFFSETFROM:-0500',
   'TZOFFSETTO:-0400',
@@ -144,9 +120,11 @@ export function buildIcs(e: CalendarEvent, stamp = new Date()) {
     ...(weekly ? VTIMEZONE : []),
     'BEGIN:VEVENT',
     `UID:${e.uid}`,
+    // A static file can't count revisions, so SEQUENCE stays 0.
+    'SEQUENCE:0',
     `DTSTAMP:${utcStamp(stamp)}`,
     ...(weekly
-      ? [`DTSTART;TZID=${CALENDAR_TZ}:${localStamp(e.start)}`, `DTEND;TZID=${CALENDAR_TZ}:${localStamp(end)}`, rrule(e)]
+      ? [`DTSTART;TZID=${TZ}:${localStamp(e.start)}`, `DTEND;TZID=${TZ}:${localStamp(end)}`, rrule(e)]
       : [`DTSTART:${utcStamp(e.start)}`, `DTEND:${utcStamp(end)}`]),
     `SUMMARY:${escapeText(e.title)}`,
     ...(e.location ? [`LOCATION:${escapeText(e.location)}`] : []),
@@ -171,7 +149,7 @@ export function googleCalendarUrl(e: CalendarEvent) {
   });
   if (e.location) params.set('location', e.location);
   if (weekly) {
-    params.set('ctz', CALENDAR_TZ);
+    params.set('ctz', TZ);
     params.set('recur', rrule(e));
   }
   return `https://calendar.google.com/calendar/render?${params}`;

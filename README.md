@@ -234,7 +234,8 @@ Each event gets its own page at `/events/<file name>` (here
 `/events/2026-12-24-christmas-eve`) with an "Invite a Friend" button. Every
 upcoming event also gets "Add to Calendar" links: Apple / Outlook downloads
 an `.ics` file (`/events/<file name>.ics`), and Google opens Google Calendar
-with the event filled in. Weekly events are added as a repeating series. Past
+with the event filled in. Weekly events are added as a repeating series.
+Without `end`, calendar links assume one hour; add `end` if it runs longer. Past
 events drop off the lists, but their pages stay up and say the event is over,
 so shared links keep working.
 
@@ -243,7 +244,8 @@ Past events drop off automatically; the site rebuilds every morning
 
 For something that meets every week, give the first meeting's date and add
 `repeat: weekly`. The site always shows the next upcoming meeting. Add
-`until: 2026-12-16` to stop after a date.
+`until: 2026-12-16` to stop after that day. `until` is a date only (no time,
+no quotes); the build rejects a time.
 
 ```markdown
 ---

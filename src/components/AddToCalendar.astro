@@ -1,0 +1,32 @@
+---
+// "Add to Calendar": the event's .ics file (Apple Calendar, Outlook) and a
+// Google Calendar link. Both come from the event file as written, so a
+// weekly event is added as the whole series from its first meeting, even
+// where the page shows the next occurrence.
+import { getEntry } from 'astro:content';
+import { googleCalendarUrl, toCalendarEvent } from '../lib/calendar';
+
+interface Props {
+  /** The event's id (its file name). */
+  id: string;
+  /** Light text, for dark backgrounds. */
+  light?: boolean;
+}
+const { id, light = false } = Astro.props;
+const event = await getEntry('events', id);
+if (!event) throw new Error(`AddToCalendar: no event "${id}"`);
+const { title } = event.data;
+const google = googleCalendarUrl(toCalendarEvent(id, event.data, Astro.site!));
+---
+
+<span class:list={['add-cal', { 'add-cal--light': light }]}>
+  Add to Calendar:
+  <a href={`/events/${id}.ics`} download>Apple / Outlook<span class="visually-hidden">: {title}</span></a>
+  <a href={google} target="_blank" rel="noopener">Google<span class="visually-hidden">: {title}</span></a>
+</span>
+
+<style>
+  .add-cal { display: inline-flex; flex-wrap: wrap; gap: 0.75em; font-size: var(--step--1); }
+  .add-cal--light { color: var(--on-dark-muted); }
+  .add-cal--light a { color: #fff; }
+</style>
