@@ -6,6 +6,7 @@ import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import { eventWhen, upcoming } from '../../lib/content';
+import { googleCalendarUrl, toCalendarEvent } from '../../lib/calendar';
 import { site, telHref } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -17,6 +18,8 @@ const { event: original } = Astro.props;
 const event = upcoming(original);
 const { title, location, summary, audience, kidsWelcome } = (event ?? original).data;
 const { when, next } = eventWhen((event ?? original).data);
+// The series' first meeting, so a weekly event's repeat rule covers it all.
+const google = googleCalendarUrl(toCalendarEvent(original.id, original.data, Astro.site!));
 ---
 
 <Base title={title} description={summary}>
@@ -34,7 +37,16 @@ const { when, next } = eventWhen((event ?? original).data);
         <p class="event__past">This event is over. See <a href="/events">what's coming up</a>.</p>
       )}
       {summary && <p>{summary}</p>}
-      {event && <p><ShareButton url={`/events/${original.id}`} title={title} /></p>}
+      {event && (
+        <p class="event__actions">
+          <ShareButton url={`/events/${original.id}`} title={title} />
+          <span class="add-cal">
+            Add to Calendar:
+            <a href={`/events/${original.id}.ics`} download>Apple / Outlook<span class="visually-hidden">: {title}</span></a>
+            <a href={google} target="_blank" rel="noopener">Google<span class="visually-hidden">: {title}</span></a>
+          </span>
+        </p>
+      )}
       <p>Questions? Call the church office at <a href={telHref}>{site.phone}</a>.</p>
       <p><a href="/events">All events</a></p>
     </div>
@@ -46,4 +58,6 @@ const { when, next } = eventWhen((event ?? original).data);
   .event__facts dt { font-family: var(--font-display); font-size: var(--step--1); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
   .event__facts dd { margin: 0; }
   .event__past { font-weight: 600; }
+  .event__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-m); }
+  .add-cal { display: inline-flex; flex-wrap: wrap; gap: 0.75em; font-size: var(--step--1); }
 </style>

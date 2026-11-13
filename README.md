@@ -231,7 +231,10 @@ kidsWelcome: true                # optional
 ```
 
 Each event gets its own page at `/events/<file name>` (here
-`/events/2026-12-24-christmas-eve`) with an "Invite a Friend" button. Past
+`/events/2026-12-24-christmas-eve`) with an "Invite a Friend" button. Every
+upcoming event also gets "Add to Calendar" links: Apple / Outlook downloads
+an `.ics` file (`/events/<file name>.ics`), and Google opens Google Calendar
+with the event filled in. Weekly events are added as a repeating series. Past
 events drop off the lists, but their pages stay up and say the event is over,
 so shared links keep working.
 
