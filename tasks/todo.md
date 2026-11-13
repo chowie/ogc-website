@@ -165,14 +165,19 @@ plain-language summary marked for elder review).
 - [x] Deacons on Our Team (`content/deacons`): Chris, Derek, Jordan with draft
       bios; Bonnie Schulert as Office Manager placeholder. PR #10: merged 2026-11-13
 - [x] Our Team: placeholder cards for the Mission Board (4 members) and the
-      Treasurer (1). Chris is adding these as proposals (2026-11-13)
-- [ ] Welcome video example (Chris, PR #11 comment, 2026-11-13): a proposed
+      Treasurer (1). Chris is adding these as proposals (2026-11-13). PR #12: merged
+- [x] Welcome video example (Chris, PR #11 comment, 2026-11-13): a proposed
       transcript for the 60–90 second pastor welcome video, plus suggestions
       for staging it (setting, framing, light, sound) and any other
       direction. Presented as an example, not a final script.
-- [ ] "Add to calendar" link on every event (Chris, PR #11 comment): on event
+      PR #14 (docs/welcome-video-example.md): merged 2026-11-13
+- [x] "Add to calendar" link on every event (Chris, PR #11 comment): on event
       pages, tiles and the calendar list (e.g. an .ics download plus Google
-      Calendar link; weekly events as a repeating entry).
+      Calendar link; weekly events as a repeating entry). PR #15: merged;
+      locations include the church's street address (Chris), `address:` for
+      off-site events, `until` is date-only
+- [x] Watch & Listen: "Can't Make It on Sunday?" for homebound members, podcast
+      link in site settings and footer. PR #13: merged 2026-11-13
 - [ ] Brainstorm, needs refinement before building (Chris, PR #11 comment):
       a "Plan Your Visit mode". Clicking Plan Your Visit turns it on; while
       the visitor browses, they can add things to a custom itinerary (e.g.
@@ -202,6 +207,12 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
+2026-11-13: PRs #7–#15 merged. Parallel PRs now run in worktrees (plan and
+retro in .claude/orchestration/, git-ignored). Next candidates: the Plan Your
+Visit itinerary idea (needs Chris's refinement first), real content from the
+`needs:` lists, and Chris's call on demoing from main vs `npm run release`.
+
+### Earlier
 Demo live = v0.1.0 (production builds the newest release tag; merging to
 main publishes nothing until `npm run release`).
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
