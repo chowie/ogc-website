@@ -6,7 +6,7 @@ import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import { eventWhen, upcoming } from '../../lib/content';
-import { site } from '../../lib/site';
+import { site, telHref } from '../../lib/site';
 
 export async function getStaticPaths() {
   const events = await getCollection('events');
@@ -26,7 +26,7 @@ const { when, next } = eventWhen((event ?? original).data);
       {event ? (
         <dl class="event__facts">
           <dt>When</dt><dd>{when}{next && <><br />{next}</>}</dd>
-          {location && <><dt>Where</dt><dd>{location}<br /><span class="muted">{site.address.street}, {site.address.city}</span></dd></>}
+          {location && <><dt>Where</dt><dd>{location}</dd></>}
           {audience && <><dt>For</dt><dd>{audience}</dd></>}
           {kidsWelcome !== undefined && <><dt>Kids</dt><dd>{kidsWelcome ? 'Kids are welcome' : 'For adults'}</dd></>}
         </dl>
@@ -35,7 +35,7 @@ const { when, next } = eventWhen((event ?? original).data);
       )}
       {summary && <p>{summary}</p>}
       {event && <p><ShareButton url={`/events/${original.id}`} title={title} /></p>}
-      <p>Questions? Call the church office at <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>.</p>
+      <p>Questions? Call the church office at <a href={telHref}>{site.phone}</a>.</p>
       <p><a href="/events">All events</a></p>
     </div>
   </section>
@@ -46,5 +46,4 @@ const { when, next } = eventWhen((event ?? original).data);
   .event__facts dt { font-family: var(--font-display); font-size: var(--step--1); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
   .event__facts dd { margin: 0; }
   .event__past { font-weight: 600; }
-  .muted { color: var(--muted); }
 </style>

@@ -18,12 +18,18 @@ const [latestSermon] = await getSermons();
 const events = (await getUpcomingEvents()).slice(0, 3);
 const words = site.name.split(' ');
 const { address } = site;
-const sunday = site.serviceTimes[0];
+const worship = (site.serviceTimes.find((s) => /worship/i.test(s.label)) ?? site.serviceTimes[0]).time;
+const beliefsPage = (await getEntry('pages', 'about/beliefs'))!;
+// The bold lead of each line under "In Plain Words" on Our Beliefs, so the
+// two pages can't drift apart.
+const plainWords = beliefsPage.body?.split(/^## /m).find((s) => s.startsWith('In Plain Words')) ?? '';
+const beliefs = [...plainWords.matchAll(/^- \*\*(.+?)\*\*/gm)].map((m) => m[1]);
+if (!beliefs.length) throw new Error('src/content/pages/about/beliefs.md: no bold lines under "## In Plain Words" for the home page.');
 
 const expect = [
   {
     title: 'The Service',
-    text: `Sundays at ${sunday.time} The pastor teaches through a book of the Bible, verse by verse. As a guest, you won't be asked to stand up, speak, or give.`,
+    text: `Sunday worship starts at ${worship}${worship.endsWith('.') ? '' : '.'} The pastor teaches through a book of the Bible, verse by verse. As a guest, you won't be asked to stand up, speak, or give.`,
     href: '/plan-your-visit#what-a-sunday-looks-like',
   },
   {
@@ -47,13 +53,6 @@ const places = [
   { title: 'Seniors & Care', text: 'Visits, rides and care for older adults.', href: '/get-connected/seniors-and-care' },
 ];
 
-// The bold lead of each line under "In Plain Words" on Our Beliefs.
-const beliefs = [
-  "The Bible is God's Word.",
-  'God is one God in three persons.',
-  'Jesus is God and man.',
-  "We're saved by grace, not by what we do.",
-];
 ---
 
 <Base description={entry.data.description}>

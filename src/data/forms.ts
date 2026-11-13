@@ -10,6 +10,8 @@ export interface Field {
   required?: boolean;
   autocomplete?: string;
   options?: string[];
+  /** Date fields: only upcoming Sundays are accepted. */
+  sundays?: boolean;
 }
 
 export interface FormDef {
@@ -23,8 +25,8 @@ export const forms = {
     submit: "I'm Coming",
     fields: [
       { name: 'name', label: 'Name', required: true, autocomplete: 'name' },
-      { name: 'contact', label: 'Email or phone', required: true, autocomplete: 'email' },
-      { name: 'date', label: 'Which Sunday are you planning to come?', type: 'date' },
+      { name: 'contact', label: 'Email or phone', required: true },
+      { name: 'date', label: 'Which Sunday are you planning to come?', type: 'date', sundays: true },
       { name: 'kids', label: "Kids' ages (optional)" },
     ],
   },
@@ -32,7 +34,7 @@ export const forms = {
     submit: 'Connect With Me',
     fields: [
       { name: 'name', label: 'Name', required: true, autocomplete: 'name' },
-      { name: 'contact', label: 'Email or phone', required: true, autocomplete: 'email' },
+      { name: 'contact', label: 'Email or phone', required: true },
       {
         name: 'interest',
         label: "I'm interested in",
@@ -46,7 +48,7 @@ export const forms = {
     submit: 'Send Prayer Request',
     fields: [
       { name: 'name', label: 'Name (optional)', autocomplete: 'name' },
-      { name: 'contact', label: 'Email or phone, if you want a reply (optional)', autocomplete: 'email' },
+      { name: 'contact', label: 'Email or phone, if you want a reply (optional)' },
       { name: 'request', label: 'How can we pray for you?', type: 'textarea', required: true },
     ],
   },

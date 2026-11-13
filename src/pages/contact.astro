@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content';
 import ContentPage from '../layouts/ContentPage.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import NetlifyForm from '../components/NetlifyForm.astro';
-import { site } from '../lib/site';
+import { site, telHref } from '../lib/site';
 
 const entry = (await getEntry('pages', 'contact'))!;
 const { address } = site;
@@ -13,7 +13,7 @@ const { address } = site;
   <div slot="before" class="prose">
     <SectionHeading title="Call, Email or Stop By" entry={entry} />
     <ul class="list-plain contact-list">
-      {site.phone && <li><strong>Phone:</strong> <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a></li>}
+      {site.phone && <li><strong>Phone:</strong> <a href={telHref}>{site.phone}</a></li>}
       {site.email && <li><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></li>}
       <li><strong>Address:</strong> {address.street}, {address.city}, {address.state} {address.zip}</li>
     </ul>

@@ -1,19 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import { site } from '../lib/site';
+import { site, telHref } from '../lib/site';
 ---
 
 <Base title="Thank You" noindex>
   <PageHead title="Thank You" intro="We received what you sent." />
   <section class="section">
     <div class="container prose">
-      <p class="thanks-demo">This is a demo site, so nobody reads these forms yet. To reach someone now, call the church office at <a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>.</p>
+      <p class="demo-notice">This is a demo site, so nobody reads these forms yet. To reach someone now, call the church office at <a href={telHref}>{site.phone}</a>.</p>
       <a class="btn" href="/">Back to Home</a>
     </div>
   </section>
 </Base>
 
-<style>
-  .thanks-demo { color: #7a4d00; background: #fff4d6; border: 1px dashed currentColor; padding: 0.6em 0.9em; }
-</style>

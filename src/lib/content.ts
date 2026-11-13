@@ -54,7 +54,7 @@ export function eventWhen({ start, end, repeat }: Event['data']) {
   const date = start.toLocaleDateString('en-US', opts({ weekday: 'long', month: 'long', day: 'numeric' }));
   if (repeat === 'weekly') {
     const weekday = start.toLocaleDateString('en-US', opts({ weekday: 'long' }));
-    return { when: `Every ${weekday} · ${times}`, next: `Next: ${date}` };
+    return { when: `Every ${weekday} · ${times}`, next: `Next: ${date}`, times };
   }
-  return { when: `${date} · ${times}`, next: undefined };
+  return { when: `${date} · ${times}`, next: undefined, times };
 }

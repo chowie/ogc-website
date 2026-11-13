@@ -11,6 +11,9 @@
   --ink: #1c1e2b;
   --muted: #5c5f70;
   --on-dark-muted: #c6c8d5;
+  /* Demo-only labels and notices. */
+  --placeholder-ink: #7a4d00;
+  --placeholder-bg: #fff4d6;
 
   --font-display: 'Unbounded Variable', 'Arial Black', sans-serif;
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -151,6 +154,9 @@ blockquote {
   color: var(--slate);
 }
 
+/* Demo only: says forms aren't monitored yet (NetlifyForm, /thanks). */
+.demo-notice { font-size: var(--step--1); color: var(--placeholder-ink); background: var(--placeholder-bg); border: 1px dashed currentColor; padding: 0.4em 0.7em; }
+
 /* Demo only: marks copy that isn't final (see src/lib/section-status.mjs). */
 .status-badge {
   display: inline-block;
@@ -158,7 +164,7 @@ blockquote {
   padding: 0.15em 0.6em; margin: 0 0 var(--space-s);
   border: 1px dashed currentColor; border-radius: 2px;
 }
-.status-badge--placeholder { color: #7a4d00; background: #fff4d6; }
+.status-badge--placeholder { color: var(--placeholder-ink); background: var(--placeholder-bg); }
 .status-badge--real { color: #1d5b2c; background: #e2f3e6; border-style: solid; }
 .status-badge--rewritten { color: #1f4f7a; background: #e3f0fb; }
 .site-footer .status-badge, .page-head .status-badge { margin: 0; vertical-align: middle; }

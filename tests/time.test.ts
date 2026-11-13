@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addLocalDays, nextWeekly } from '../src/lib/time.ts';
+import { addLocalDays, nextSunday, nextWeekly } from '../src/lib/time.ts';
 
 const iso = (d: Date | undefined) => d?.toISOString();
 
@@ -39,4 +39,11 @@ test('nextWeekly stops after `until` (date-only, inclusive)', () => {
   const now = new Date('2026-10-28T12:00:00-04:00');
   assert.equal(nextWeekly(start, undefined, now, new Date('2026-10-28')), undefined);
   assert.equal(iso(nextWeekly(start, undefined, now, new Date('2026-11-04'))?.start), '2026-11-04T14:30:00.000Z');
+});
+
+test('nextSunday uses the church date, not UTC', () => {
+  // Saturday 11 p.m. in Michigan is already Sunday in UTC.
+  assert.equal(nextSunday(new Date('2026-11-15T03:00:00Z')), '2026-11-15');
+  assert.equal(nextSunday(new Date('2026-11-14T15:00:00Z')), '2026-11-15');
+  assert.equal(nextSunday(new Date('2026-11-16T15:00:00Z')), '2026-11-22');
 });
