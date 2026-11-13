@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { TZ as tz } from '../lib/time';
+import ShareButton from './ShareButton.astro';
+import { eventWhen } from '../lib/content';
 
 interface Props {
   event: CollectionEntry<'events'>;
@@ -9,8 +11,7 @@ const { event } = Astro.props;
 const { title, start, location, repeat } = event.data;
 const month = start.toLocaleDateString('en-US', { month: 'short', timeZone: tz });
 const day = start.toLocaleDateString('en-US', { day: 'numeric', timeZone: tz });
-const time = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
-const weekday = start.toLocaleDateString('en-US', { weekday: 'long', timeZone: tz });
+const { when, times } = eventWhen(event.data);
 ---
 
 <article class="event-tile">
@@ -20,8 +21,9 @@ const weekday = start.toLocaleDateString('en-US', { weekday: 'long', timeZone: t
       <span class="event-tile__day">{day}</span>
     </time>
   </p>
-  <h3 class="event-tile__title">{title}</h3>
-  <p class="event-tile__meta">{repeat === 'weekly' ? `Every ${weekday}, ${time}` : time}{location && ` · ${location}`}</p>
+  <h3 class="event-tile__title"><a href={`/events/${event.id}`}>{title}</a></h3>
+  <p class="event-tile__meta">{repeat === 'weekly' ? when : times}{location && ` · ${location}`}</p>
+  <ShareButton url={`/events/${event.id}`} title={title} light />
 </article>
 
 <style>
@@ -31,5 +33,6 @@ const weekday = start.toLocaleDateString('en-US', { weekday: 'long', timeZone: t
   .event-tile__month { font-size: var(--step-2); font-weight: 700; color: #fff; }
   .event-tile__day { font-size: var(--step-1); color: var(--coral-light); }
   .event-tile__title { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin-bottom: var(--space-xs); }
-  .event-tile__meta { color: var(--on-dark-muted); font-size: 0.95rem; margin: 0; }
+  .event-tile__meta { color: var(--on-dark-muted); font-size: 0.95rem; margin: 0 0 var(--space-s); }
+  .event-tile__title a { color: #fff; }
 </style>

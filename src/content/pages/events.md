@@ -15,7 +15,6 @@ sections:
     on: 2026-11-12
     note: "Five dated posts rewritten as yearly events so they don't go out of date."
 needs:
-  - "Share / invite-a-friend buttons (later update)"
   - "Christmas Eve 2026: service times (the last post on the old site is from 2023)"
   - "Trunk or Treat and Compete: what happens and the usual time (old-site posts have a title only)"
   - "Easter: service times and details (the Easter 2026 post on the old site is empty)"

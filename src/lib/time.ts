@@ -48,3 +48,11 @@ function endOfLocalDay(date: Date) {
   const wall = Date.UTC(y, m - 1, d, 23, 59, 59);
   return new Date(wall - offset(new Date(wall)));
 }
+
+// The coming Sunday's date in church time, as YYYY-MM-DD (today, if it's Sunday).
+export function nextSunday(now = new Date()) {
+  const [y, m, d] = new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(now).split('-').map(Number);
+  const day = new Date(Date.UTC(y, m - 1, d));
+  day.setUTCDate(day.getUTCDate() + ((7 - day.getUTCDay()) % 7));
+  return day.toISOString().slice(0, 10);
+}

@@ -50,7 +50,7 @@ sections:
     status: placeholder
     from: "Website Outline (Notion)"
     on: 2026-11-12
-    note: "The outline asks for a short visit form; it comes in a later update."
+    note: "The outline's short visit form (name, email or phone, date, kids' ages); nobody receives it yet."
 needs:
   - "Parking and which door to use"
   - "Service length, music style, and what people wear"
@@ -58,6 +58,9 @@ needs:
   - "Photo of the pastor; names, photos and two lines on a few greeters"
   - "Welcome note for people coming back to church, confirmed by staff"
   - "FAQ answers: accessibility (parking, entrances, restrooms) and communion"
+  - "Who receives the visit form and makes the personal contact within 48 hours"
+form:
+  name: plan-visit
 ---
 
 ## What a Sunday Looks Like
@@ -114,4 +117,4 @@ If it's been a while, welcome back. Most people step away for ordinary reasons: 
 
 ## Let Us Know You're Coming
 
-Tell us when you plan to visit and we'll look for you. A real person will say hello; this isn't a mailing list. (Form coming in a later update.)
+Tell us when you plan to visit and we'll look for you. A real person will say hello; this isn't a mailing list.

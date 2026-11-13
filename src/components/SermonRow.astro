@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { youtubeId } from '../lib/content';
+import ShareButton from './ShareButton.astro';
 
 interface Props {
   s: CollectionEntry<'sermons'>;
@@ -22,6 +23,7 @@ const id = youtubeId(s.data.youtubeUrl);
     <h3 class="sermon-row__title"><a href={s.data.youtubeUrl}>{s.data.title}</a></h3>
     <p class="sermon-row__meta">{[s.data.passage, s.data.speaker, s.data.series].filter(Boolean).join(' · ')}</p>
     {s.data.summary && <p class="sermon-row__summary">{s.data.summary}</p>}
+    <ShareButton url={s.data.youtubeUrl} title={s.data.title} label="Share" />
   </div>
 </li>
 

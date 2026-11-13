@@ -31,7 +31,7 @@ test('every menu anchor matches a heading on its page', () => {
   const headingIds = (page: string) => {
     const read = (f: string) => (existsSync(f) ? readFileSync(f, 'utf8') : '');
     const md = read(`src/content/pages/${page}.md`);
-    const astro = read(`src/pages/${page}.astro`);
+    const astro = read(`src/pages/${page}.astro`) || read(`src/pages/${page}/index.astro`);
     const titles = [
       ...[...md.matchAll(/^##\s+(.+)$/gm)].map((m) => m[1]),
       ...[...astro.matchAll(/<SectionHeading\s+title="([^"]+)"/g)].map((m) => m[1]),

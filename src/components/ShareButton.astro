@@ -1,0 +1,71 @@
+---
+// "Invite a friend": opens the phone's share sheet (Web Share API), or copies
+// the link where that isn't available. Hidden until the script runs, since
+// it does nothing without JavaScript.
+interface Props {
+  /** Site path or full URL of the thing being shared. */
+  url: string;
+  title: string;
+  label?: string;
+  /** Light text, for dark backgrounds. */
+  light?: boolean;
+}
+const { url, title, label = 'Invite a Friend', light = false } = Astro.props;
+---
+
+<share-button data-url={url} data-title={title}>
+  <button type="button" class:list={['share-button', { 'share-button--light': light }]} hidden>
+    {label}<span class="visually-hidden">: {title}</span>
+  </button>
+  <span class="share-button__status" role="status"></span>
+</share-button>
+
+<script>
+  class ShareButton extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector('button')!;
+      const status = this.querySelector<HTMLElement>('.share-button__status')!;
+      // Resolved here, so a deploy preview shares its own address.
+      const url = new URL(this.dataset.url ?? '', location.href).href;
+      const title = this.dataset.title ?? '';
+      button.hidden = false;
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const say = (text: string, clearAfter?: number) => {
+        clearTimeout(timer);
+        status.textContent = text;
+        if (clearAfter) timer = setTimeout(() => (status.textContent = ''), clearAfter);
+      };
+      button.addEventListener('click', async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, url });
+            return;
+          } catch (e) {
+            // Closing the share sheet is fine; any other failure copies instead.
+            if ((e as DOMException).name === 'AbortError') return;
+          }
+        }
+        try {
+          await navigator.clipboard.writeText(url);
+          say('Link copied', 4000);
+        } catch {
+          say(url); // stays up so it can be selected and copied by hand
+        }
+      });
+    }
+  }
+  customElements.define('share-button', ShareButton);
+</script>
+
+<style>
+  share-button { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .share-button {
+    font: inherit; font-size: var(--step--1); font-weight: 700; letter-spacing: 0.05em;
+    color: var(--coral-ink); background: none; border: 2px solid currentColor;
+    padding: 0.3em 0.8em; cursor: pointer;
+  }
+  .share-button:hover { background: var(--coral); color: var(--ink); border-color: var(--coral); }
+  .share-button:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+  .share-button--light { color: #fff; }
+  .share-button__status { font-size: var(--step--1); overflow-wrap: anywhere; user-select: all; }
+</style>

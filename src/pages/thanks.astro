@@ -1,11 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
+import { site, telHref } from '../lib/site';
 ---
 
-<Base title="Thank You">
-  <PageHead title="Thank You" intro="We received your message and will be in touch soon." />
+<Base title="Thank You" noindex>
+  <PageHead title="Thank You" intro="We received what you sent." />
   <section class="section">
-    <div class="container"><a class="btn" href="/">Back to Home</a></div>
+    <div class="container prose">
+      <p class="demo-notice">This is a demo site, so nobody reads these forms yet. To reach someone now, call the church office at <a href={telHref}>{site.phone}</a>.</p>
+      <a class="btn" href="/">Back to Home</a>
+    </div>
   </section>
 </Base>
+

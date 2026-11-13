@@ -12,6 +12,13 @@ section into the new version.
 
 ### Added
 
+- A new home page following the website outline: welcome, a spot for the
+  pastor's welcome video, what to expect, find your place, upcoming events,
+  the latest video, what we believe, and a "let us know you're coming" form.
+- Forms on Plan Your Visit, Next Steps, Groups, Serve and Contact (visit,
+  connect, prayer request and contact). Each one says it isn't monitored yet.
+- A page for each event, with who it's for, and "Invite a Friend" buttons on
+  events and sermons that open the phone's share menu or copy the link.
 - Deacons on Our Team: Chris Howie, Derek Smith and Jordan Shaulis, with
   draft bios. Headshots without a photo say "Photo to come".
 - Men and Groups name Derek Smith as the Thursday study's leader; Young

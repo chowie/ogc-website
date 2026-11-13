@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { STATUSES } from './lib/section-status.mjs';
+import { FORM_NAMES } from './data/forms';
 
 // Team: one Markdown file per person in src/content/team/.
 // The filename is the URL slug (jane-doe.md -> /about/team/jane-doe).
@@ -49,6 +50,9 @@ const events = defineCollection({
       end: z.coerce.date().optional(),
       location: z.string().optional(),
       summary: z.string().optional(),
+      // Who it's for ("New attenders", "Women") and whether kids are welcome.
+      audience: z.string().optional(),
+      kidsWelcome: z.boolean().optional(),
       // Repeating events: `start`/`end` are the first meeting; the site shows the next one.
       repeat: z.enum(['weekly']).optional(),
       until: z.coerce.date().optional(),
@@ -97,6 +101,9 @@ const pages = defineCollection({
     sections: z.record(z.string(), origin).default({}),
     // What's still needed to finish the page (shown on /content-status).
     needs: z.array(z.string()).default([]),
+    // A form (src/data/forms.ts) shown after the copy, so it ends the last
+    // section. `interest` preselects the connect form's "I'm interested in".
+    form: z.object({ name: z.enum(FORM_NAMES), interest: z.string().optional() }).optional(),
   }),
 });
 

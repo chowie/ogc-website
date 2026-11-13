@@ -8,9 +8,9 @@ until go-live)
 
 ![Home page](docs/screenshots/home-desktop.png)
 
-| Team | Sermons | Phone |
+| Team | Watch & Listen | Phone |
 |---|---|---|
-| ![Team page](docs/screenshots/team-desktop.png) | ![Sermons page](docs/screenshots/sermons-desktop.png) | ![Home page on a phone](docs/screenshots/home-phone.png) |
+| ![Team page](docs/screenshots/team-desktop.png) | ![Watch & Listen page](docs/screenshots/sermons-desktop.png) | ![Home page on a phone](docs/screenshots/home-phone.png) |
 
 - **Astro 7**, static output, plain CSS with design tokens. No client
   framework; the only JavaScript is the mobile menu toggle.
@@ -87,7 +87,9 @@ that only for `npm run release`.
 | Team members | `src/content/team/*.md` (one file per person) |
 | Sermons | `src/content/sermons/*.md` |
 | Events | `src/content/events/*.md` |
-| Service times, address, map, social links | `src/data/site.json` |
+| Service times, address, map, social links, home page welcome line | `src/data/site.json` |
+| Home page copy | `src/pages/index.astro` (its source notes: `src/content/pages/index.md`) |
+| Forms (fields, button text) | `src/data/forms.ts` |
 | Page copy (Plan Your Visit, About, Get Connected, Give…) | `src/content/pages/**/*.md` (`about/beliefs.md` → `/about/beliefs`) |
 | The menu | `src/data/nav.ts` |
 | Photos used in page copy | `src/assets/photos/` |
@@ -122,6 +124,20 @@ date (site settings, the YouTube import) reads "From …". A placeholder with
 no source and no note reads "made up, with no source". `/content-status`
 lists every section with its label and note, plus what's still needed
 (`needs:`).
+
+To end a page with a form, name it in the frontmatter; it appears after the
+copy, so it belongs to the last section. `interest` preselects the connect
+form's "I'm interested in" choice:
+
+```yaml
+form:
+  name: connect              # plan-visit | connect | prayer | contact
+  interest: Joining a group  # optional, connect form only
+```
+
+Submissions go to Netlify (Forms in the Netlify dashboard), which shows each
+form by name. Every form says it isn't monitored yet; take that line out of
+`src/components/NetlifyForm.astro` once someone is reading them.
 
 To add a photo to a page, put it in `src/assets/photos/` and use a Markdown
 image with a path relative to the page file and alt text that describes it:
@@ -209,8 +225,15 @@ start: 2026-12-24T18:00:00-05:00
 end: 2026-12-24T19:00:00-05:00   # optional
 location: Sanctuary              # optional
 summary: Short description.      # optional
+audience: Families               # optional: who it's for
+kidsWelcome: true                # optional
 ---
 ```
+
+Each event gets its own page at `/events/<file name>` (here
+`/events/2026-12-24-christmas-eve`) with an "Invite a Friend" button. Past
+events drop off the lists, but their pages stay up and say the event is over,
+so shared links keep working.
 
 Past events drop off automatically; the site rebuilds every morning
 (`.github/workflows/daily-rebuild.yml`).

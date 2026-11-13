@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/unbounded';
 import '../styles/global.css';
-import { site, allowIndexing } from '../lib/site';
+import { site, allowIndexing, telHref } from '../lib/site';
 import { nav, sectionFor, isCurrentPage, normalizePath } from '../data/nav';
 
 interface Props {
@@ -84,7 +84,7 @@ const { address } = site;
             {address.street}<br />
             {address.city}, {address.state} {address.zip}
           </address>
-          {site.phone && <p><a href={`tel:+1${site.phone.replace(/\D/g, '')}`}>{site.phone}</a></p>}
+          {site.phone && <p><a href={telHref}>{site.phone}</a></p>}
           {site.email && <p><a href={`mailto:${site.email}`}>{site.email}</a></p>}
         </div>
         <div>

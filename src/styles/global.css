@@ -11,6 +11,9 @@
   --ink: #1c1e2b;
   --muted: #5c5f70;
   --on-dark-muted: #c6c8d5;
+  /* Demo-only labels and notices. */
+  --placeholder-ink: #7a4d00;
+  --placeholder-bg: #fff4d6;
 
   --font-display: 'Unbounded Variable', 'Arial Black', sans-serif;
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -135,11 +138,11 @@ p { margin: 0 0 var(--space-s); }
 /* Forms */
 .field { display: grid; gap: 0.35rem; margin-bottom: var(--space-s); }
 .field label { font-weight: 600; font-size: var(--step--1); letter-spacing: 0.05em; text-transform: uppercase; }
-.field input, .field textarea {
+.field input, .field textarea, .field select {
   font: inherit; color: var(--ink); background: #fff;
   border: 2px solid var(--slate); border-radius: 0; padding: 0.7em 0.8em; width: 100%;
 }
-.field input:focus, .field textarea:focus { outline: 3px solid var(--coral); outline-offset: 0; }
+.field input:focus, .field textarea:focus, .field select:focus { outline: 3px solid var(--coral); outline-offset: 0; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 blockquote {
@@ -151,6 +154,9 @@ blockquote {
   color: var(--slate);
 }
 
+/* Demo only: says forms aren't monitored yet (NetlifyForm, /thanks). */
+.demo-notice { font-size: var(--step--1); color: var(--placeholder-ink); background: var(--placeholder-bg); border: 1px dashed currentColor; padding: 0.4em 0.7em; }
+
 /* Demo only: marks copy that isn't final (see src/lib/section-status.mjs). */
 .status-badge {
   display: inline-block;
@@ -158,7 +164,7 @@ blockquote {
   padding: 0.15em 0.6em; margin: 0 0 var(--space-s);
   border: 1px dashed currentColor; border-radius: 2px;
 }
-.status-badge--placeholder { color: #7a4d00; background: #fff4d6; }
+.status-badge--placeholder { color: var(--placeholder-ink); background: var(--placeholder-bg); }
 .status-badge--real { color: #1d5b2c; background: #e2f3e6; border-style: solid; }
 .status-badge--rewritten { color: #1f4f7a; background: #e3f0fb; }
 .site-footer .status-badge, .page-head .status-badge { margin: 0; vertical-align: middle; }
@@ -174,6 +180,8 @@ blockquote {
 .page-head .section-meta { margin-block: 0 var(--space-s); }
 .page-head .provenance { color: inherit; opacity: 0.85; }
 .page-head .provenance a { color: inherit; }
+.section--slate .provenance, .hero .provenance { color: var(--on-dark-muted); }
+.section--slate .provenance a, .hero .provenance a { color: inherit; }
 
 /* Long-form copy from the pages collection. */
 .prose { max-width: 44rem; }

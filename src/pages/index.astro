@@ -1,58 +1,122 @@
 ---
+// The home page, in the order of the website outline's Home page table: it
+// answers "Should I visit, and what will it be like?" in one scroll, then
+// asks the visitor to tell us they're coming. Where each section's copy came
+// from is recorded in src/content/pages/index.md.
+import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import EventTile from '../components/EventTile.astro';
+import NetlifyForm from '../components/NetlifyForm.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SectionMeta from '../components/SectionMeta.astro';
+import SermonRow from '../components/SermonRow.astro';
 import { site } from '../lib/site';
 import { getSermons, getUpcomingEvents } from '../lib/content';
 
+const entry = (await getEntry('pages', 'index'))!;
 const [latestSermon] = await getSermons();
 const events = (await getUpcomingEvents()).slice(0, 3);
 const words = site.name.split(' ');
+const { address } = site;
+const worship = (site.serviceTimes.find((s) => /worship/i.test(s.label)) ?? site.serviceTimes[0]).time;
+const beliefsPage = (await getEntry('pages', 'about/beliefs'))!;
+// The bold lead of each line under "In Plain Words" on Our Beliefs, so the
+// two pages can't drift apart.
+const plainWords = beliefsPage.body?.split(/^## /m).find((s) => s.startsWith('In Plain Words')) ?? '';
+const beliefs = [...plainWords.matchAll(/^- \*\*(.+?)\*\*/gm)].map((m) => m[1]);
+if (!beliefs.length) throw new Error('src/content/pages/about/beliefs.md: no bold lines under "## In Plain Words" for the home page.');
+
+const expect = [
+  {
+    title: 'The Service',
+    text: `Sunday worship starts at ${worship}${worship.endsWith('.') ? '' : '.'} The pastor teaches through a book of the Bible, verse by verse. As a guest, you won't be asked to stand up, speak, or give.`,
+    href: '/plan-your-visit#what-a-sunday-looks-like',
+  },
+  {
+    title: 'Your Kids',
+    text: "Care for infants through kindergarten during the service, and Children's Church for 1st–4th graders. Every volunteer has a background check.",
+    href: '/plan-your-visit#your-kids',
+  },
+  {
+    title: 'When You Arrive',
+    text: 'Where to park and which door to use will go here, along with who will meet you.',
+    href: '/plan-your-visit#parking-and-entrance',
+  },
+];
+
+const places = [
+  { title: 'Groups', text: 'Bible studies and groups that meet during the week.', href: '/get-connected/groups' },
+  { title: 'Kids & Families', text: 'Care and teaching for every age, from the nursery to youth group.', href: '/kids-and-families' },
+  { title: 'Young Adults & Singles', text: 'Church family for every stage of life.', href: '/get-connected/young-adults-and-singles' },
+  { title: 'Men', text: 'Bible study, prayer and time together.', href: '/get-connected/men' },
+  { title: 'Women', text: 'Bible study, prayer and time together.', href: '/get-connected/women' },
+  { title: 'Seniors & Care', text: 'Visits, rides and care for older adults.', href: '/get-connected/seniors-and-care' },
+];
+
 ---
 
-<Base>
-  <section class="hero">
+<Base description={entry.data.description}>
+  <section class="hero" id="welcome" aria-labelledby="welcome-title">
     <div class="container hero__inner">
       <p class="eyebrow">Welcome to</p>
-      <h1 class="hero__title">
+      <h1 class="hero__title" id="welcome-title">
         {words.map((w, i) => <span class:list={{ 'hero__last': i === words.length - 1 }}>{w}</span>)}
       </h1>
-      <p class="hero__tagline">{site.tagline}</p>
+      <SectionMeta origin={entry.data.sections.welcome ?? entry.data.origin} label="Welcome" />
+      <p class="hero__welcome">{site.welcome}</p>
+      <p class="hero__tagline">{site.tagline}<br />{address.street}, {address.city}</p>
       <div class="hero__actions">
         <a class="btn btn--solid" href="/plan-your-visit">Plan Your Visit</a>
-        <a class="btn btn--light" href="/watch-and-listen">Watch Sermons</a>
       </div>
     </div>
   </section>
 
-  <section class="section section--mist" aria-labelledby="times-heading">
+  <section class="section" aria-labelledby="meet-our-pastor">
     <div class="container split">
-      <h2 id="times-heading">Join Us<br />on Sunday</h2>
-      <ul class="times list-plain">
-        {site.serviceTimes.map((s) => (
-          <li>
-            <span class="times__label">{s.label}</span>
-            <span class="times__time">{s.day} · {s.time}</span>
+      <div>
+        <SectionHeading title="Meet Our Pastor" entry={entry} />
+        <p>See and hear from <a href="/about/team/andrew-fulton">Pastor Andrew Fulton</a> before you walk in.</p>
+      </div>
+      <div class="video-placeholder" role="img" aria-label="Placeholder for a pastor welcome video">
+        <p>Pastor welcome video (60–90 seconds) will go here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mist" aria-labelledby="what-to-expect">
+    <div class="container">
+      <SectionHeading title="What to Expect" entry={entry} />
+      <ul class="card-grid tiles">
+        {expect.map((c) => (
+          <li class="tile">
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+            <a href={c.href}>More<span class="visually-hidden"> about {c.title.toLowerCase()}</span></a>
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="welcome-heading">
-    <div class="container split">
-      <h2 id="welcome-heading" class="big-heading">{site.welcome.heading}</h2>
-      <div>
-        <p>{site.welcome.body}</p>
-        <a href="/about/team">Meet our team</a>
-      </div>
+  <section class="section" aria-labelledby="find-your-place">
+    <div class="container">
+      <SectionHeading title="Find Your Place" entry={entry} />
+      <ul class="card-grid tiles">
+        {places.map((p) => (
+          <li class="tile tile--link">
+            <h3><a href={p.href}>{p.title}</a></h3>
+            <p>{p.text}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="section section--slate events-band" aria-labelledby="events-heading">
+  <section class="section section--slate events-band" aria-labelledby="upcoming-events">
     <div class="container">
       <div class="split events-band__head">
-        <h2 id="events-heading">Upcoming<br />Events</h2>
-        <p>What's coming up at church. <a href="/events">See all events</a></p>
+        <div><SectionHeading title="Upcoming Events" entry={entry} /></div>
+        <p>Easy to invite a friend to. <a href="/events">See all events</a></p>
       </div>
       {events.length === 0 ? (
         <p>No upcoming events right now. Check back soon.</p>
@@ -65,29 +129,34 @@ const words = site.name.split(' ');
   </section>
 
   {latestSermon && (
-    <section class="section" aria-labelledby="sermon-heading">
+    <section class="section" aria-labelledby="latest-video">
       <div class="container">
-        <div class="sermon-card">
-          <p class="eyebrow">Latest Sermon</p>
-          <h2 id="sermon-heading">{latestSermon.data.title}</h2>
-          <p>
-            {[latestSermon.data.passage, latestSermon.data.speaker].filter(Boolean).join(' · ')}
-            {' · '}
-            <time datetime={latestSermon.data.date.toISOString().slice(0, 10)}>
-              {latestSermon.data.date.toLocaleDateString('en-US', { dateStyle: 'long', timeZone: 'UTC' })}
-            </time>
-          </p>
-          <a class="btn" href={latestSermon.data.youtubeUrl}>Watch on YouTube</a>
-        </div>
+        <SectionHeading title="Latest Video" entry={entry} />
+        <ul class="list-plain"><SermonRow s={latestSermon} /></ul>
+        <p><a href="/watch-and-listen">More to watch and listen to</a></p>
       </div>
     </section>
   )}
 
-  <section class="section section--mist visit-cta" aria-labelledby="visit-heading">
-    <div class="container">
-      <h2 id="visit-heading">New Here?</h2>
-      <p>We'd love to meet you. Here's what to expect on your first Sunday.</p>
-      <a class="btn" href="/plan-your-visit">Plan Your Visit</a>
+  <section class="section section--mist" aria-labelledby="what-we-believe">
+    <div class="container split">
+      <div>
+        <SectionHeading title="What We Believe" entry={entry} />
+        <a class="btn" href="/about/beliefs">Our Beliefs</a>
+      </div>
+      <ul class="beliefs">
+        {beliefs.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="let-us-know-youre-coming">
+    <div class="container split">
+      <div>
+        <SectionHeading title="Let Us Know You're Coming" entry={entry} />
+        <p>Tell us when you plan to visit and we'll look for you. A real person will say hello; this isn't a mailing list.</p>
+      </div>
+      <NetlifyForm name="plan-visit" />
     </div>
   </section>
 </Base>
@@ -95,33 +164,40 @@ const words = site.name.split(' ');
 <style>
   .hero {
     position: relative; color: #fff;
-    min-height: min(88vh, 52rem); display: grid; align-items: center;
+    min-height: min(80vh, 48rem); display: grid; align-items: center;
     padding-block: var(--space-xl);
-    /* Placeholder backdrop until real OGC photography is chosen. */
+    /* Placeholder backdrop until a real photo of people on a Sunday is chosen. */
     background:
       radial-gradient(60rem 30rem at 85% 10%, rgb(255 106 72 / 0.28), transparent 60%),
       radial-gradient(50rem 30rem at 0% 100%, rgb(106 78 119 / 0.9), transparent 70%),
       linear-gradient(135deg, var(--slate-dark), var(--slate));
   }
-  .hero__title { font-size: var(--step-4); line-height: 1.02; letter-spacing: 0.03em; display: grid; margin-bottom: var(--space-m); }
+  .hero__title { font-size: var(--step-4); line-height: 1.02; letter-spacing: 0.03em; display: grid; margin-bottom: var(--space-s); }
   .hero__last { display: flex; align-items: center; gap: 0.2em; }
   .hero__last::before { content: ''; width: 0.7em; height: 0.12em; background: var(--coral); flex: none; }
-  .hero__tagline { font-size: var(--step-1); color: var(--on-dark-muted); max-width: 34rem; }
+  .hero__welcome { font-size: var(--step-1); max-width: 34rem; }
+  .hero__tagline { color: var(--on-dark-muted); max-width: 34rem; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-m); margin-top: var(--space-l); }
 
-  .big-heading { font-size: var(--step-3); }
+  .video-placeholder {
+    aspect-ratio: 16 / 9; display: grid; place-items: center; text-align: center;
+    padding: var(--space-m); border: 2px dashed var(--slate); background: var(--mist); color: var(--muted);
+  }
+  .video-placeholder p { margin: 0; max-width: 20rem; }
 
-  .times li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-xs); padding-block: var(--space-s); border-bottom: 2px solid var(--slate); }
-  .times li:first-child { border-top: 2px solid var(--slate); }
-  .times__label { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
-  .times__time { color: var(--muted); }
+  .tile { background: #fff; border-top: 4px solid var(--coral); padding: var(--space-m); }
+  .section:not(.section--mist) .tile { background: var(--mist); }
+  .tile h3 { font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: var(--step-1); margin-bottom: var(--space-xs); }
+  .tile p { margin-bottom: var(--space-xs); }
+  .tile--link { position: relative; }
+  .tile--link h3 a { color: var(--ink); }
+  /* The whole tile is clickable through its heading link. */
+  .tile--link h3 a::after { content: ''; position: absolute; inset: 0; }
+  .tile--link:hover { outline: 2px solid var(--coral); }
 
   .events-band { background: linear-gradient(160deg, var(--slate) 0%, var(--plum) 100%); }
   .events-band__head { margin-bottom: var(--space-l); }
 
-  .sermon-card { background: var(--coral); color: var(--ink); padding: var(--space-l); max-width: 52rem; }
-  .sermon-card h2 { font-size: var(--step-2); }
-
-  .visit-cta { text-align: center; }
-  .visit-cta p { max-width: 32rem; margin-inline: auto; margin-bottom: var(--space-m); }
+  .beliefs { font-size: var(--step-1); font-weight: 600; padding-left: 1.2em; margin: 0; }
+  .beliefs li { padding-block: var(--space-xs); }
 </style>

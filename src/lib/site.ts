@@ -6,7 +6,8 @@ import raw from '../data/site.json';
 const siteSchema = z.object({
   name: z.string(),
   tagline: z.string(),
-  welcome: z.object({ heading: z.string(), body: z.string() }),
+  // One sentence under the church's name on the home page.
+  welcome: z.string(),
   address: z.object({
     street: z.string(),
     city: z.string(),
@@ -23,6 +24,9 @@ const siteSchema = z.object({
 });
 
 export const site = siteSchema.parse(raw);
+
+// tel: link for the office phone ("517.627.7112" -> "tel:+15176277112").
+export const telHref = `tel:+1${site.phone.replace(/\D/g, '')}`;
 
 // Demo stays out of search engines until PUBLIC_ALLOW_INDEXING=true is set
 // in the Netlify environment at go-live.

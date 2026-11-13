@@ -22,7 +22,7 @@ sections:
     status: placeholder
     from: "Website Outline (Notion)"
     on: 2026-11-12
-    note: "The outline asks for a prayer request form; the form comes in a later update."
+    note: "The outline asks for a prayer request form; nobody receives it yet, and who reads requests is assumed."
   staff-directory:
     status: rewritten
     from: "https://www.oneidagospel.org/children"
@@ -30,17 +30,19 @@ sections:
     note: "Points to Our Team and adds the children's ministry email from the kids page."
 needs:
   - "Office hours"
-  - "Prayer request form and who receives it"
+  - "Who receives prayer requests"
+form:
+  name: prayer
 ---
 
 ## Office Hours
 
 Office days and hours will go here.
 
-## Prayer Request
-
-Send a prayer request and our elders will pray for you. (Form coming in a later update.)
-
 ## Staff Directory
 
 See [Our Team](/about/team) for the elders and staff. Rachel Fulton, our Children's Ministry Director, can be reached at [children@oneidagospel.org](mailto:children@oneidagospel.org).
+
+## Prayer Request
+
+Send a prayer request and our elders will pray for you.

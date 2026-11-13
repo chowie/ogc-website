@@ -159,8 +159,13 @@ plain-language summary marked for elder review).
 - [x] PR 2 `content/site-content`: demo content + live-site copy rewritten by a
       content specialist, photos (no children), realistic placeholders
       PR #8: merged 2026-11-12
-- [ ] Source notes on every section (`feat/content-provenance`): origin +
+- [x] Source notes on every section (`feat/content-provenance`): origin +
       per-section from/on/note, collapsed "Source" toggle, /content-status
+      PR #9: merged 2026-11-12
+- [x] Deacons on Our Team (`content/deacons`): Chris, Derek, Jordan with draft
+      bios; Bonnie Schulert as Office Manager placeholder. PR #10: merged 2026-11-13
+- [ ] Our Team: placeholder cards for the Mission Board (4 members) and the
+      Treasurer (1). Chris is adding these as proposals (2026-11-13)
 - [ ] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
       share buttons, Watch & Listen
 - [ ] After merge: Chris decides demo from preview vs `npm run release -- minor`

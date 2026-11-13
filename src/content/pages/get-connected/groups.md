@@ -16,12 +16,15 @@ sections:
     status: placeholder
     from: "Website Outline (Notion)"
     on: 2026-11-12
-    note: "From the outline's Groups row; the form comes in a later update."
+    note: "From the outline's Groups row; the form is the shared connect form, and nobody receives it yet."
 needs:
   - "Leaders for the men's prayer, men's Bible study, and women's Bible study"
   - "Room for the men's Bible study"
   - "Women's Bible study schedule after fall 2026"
-  - '"Find a group" form'
+  - 'Who receives the "Find a group" form'
+form:
+  name: connect
+  interest: "Joining a group"
 ---
 
 ## Current Groups
@@ -42,4 +45,4 @@ The church office can tell you more about any group: 517.627.7112 or [office@one
 
 ## Find a Group
 
-Tell us your schedule and stage of life, and we'll help you find a fit. (Form coming in a later update.)
+Tell us your schedule and stage of life, and we'll help you find a fit.
