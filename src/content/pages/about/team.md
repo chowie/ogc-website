@@ -23,12 +23,12 @@ sections:
     status: placeholder
     from: "Chris Howie's notes"
     on: 2026-11-13
-    note: "A proposed board of four (Chris, Nov 13, 2026); the description is made up, and no one is named yet."
+    note: "A proposed board of four; the description is made up, and no one is named yet."
   treasurer:
     status: placeholder
     from: "Chris Howie's notes"
     on: 2026-11-13
-    note: "A proposed position (Chris, Nov 13, 2026); the description is made up, and no one is named yet."
+    note: "A proposed position; the description is made up, and no one is named yet."
 needs:
   - "Bonnie Schulert: short bio and headshot"
   - "Deacons: headshots for Derek and Jordan, and each deacon's OK on his bio"

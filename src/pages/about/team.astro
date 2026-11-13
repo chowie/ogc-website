@@ -20,40 +20,43 @@ const groups = [
 <ContentPage entry={entry}>
   {groups.map((g) => {
     const people = team.filter((m) => m.data.group === g.key);
+    // Proposed groups keep a "To Be Named" card for each seat nobody fills yet.
+    const seats = 'openings' in g ? Math.max(0, g.openings - people.length) : 0;
+    const cards = [
+      ...people.map((member) => ({ member, seat: 0 })),
+      ...Array.from({ length: seats }, (_, i) => ({ member: undefined, seat: people.length + i + 1 })),
+    ];
     return (
       <section class="team-group">
         <SectionHeading title={g.title} entry={entry} />
         {'intro' in g && <p class="team-group__intro">{g.intro}</p>}
-        {people.length > 0 ? (
+        {cards.length > 0 ? (
           <ul class="card-grid team-grid">
-            {people.map((m) => (
+            {cards.map(({ member: m, seat }) => (
               <li class="team-card">
-                <div class="team-card__photo"><TeamPhoto member={m} width={480} /></div>
+                <div class="team-card__photo">{m ? <TeamPhoto member={m} width={480} /> : <TeamPhoto proposed />}</div>
                 <div class="team-card__body">
-                  <h3 class="team-card__name">{m.data.name}</h3>
-                  {m.data.role && <p class="team-card__role">{m.data.role}</p>}
-                  {m.data.shortBio && <p class="team-card__bio">{truncate(m.data.shortBio)}</p>}
-                  <a class="team-card__more" href={`/about/team/${m.id}`}>
-                    Read More<span class="visually-hidden"> about {m.data.name}</span>
-                  </a>
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : 'openings' in g ? (
-          <ul class="card-grid team-grid">
-            {Array.from({ length: g.openings }, () => (
-              <li class="team-card team-card--open">
-                <div class="team-card__photo"><TeamPhoto /></div>
-                <div class="team-card__body">
-                  <h3 class="team-card__name">To Be Named</h3>
-                  <p class="team-card__role">{g.role}</p>
+                  {m ? (
+                    <>
+                      <h3 class="team-card__name">{m.data.name}</h3>
+                      {m.data.role && <p class="team-card__role">{m.data.role}</p>}
+                      {m.data.shortBio && <p class="team-card__bio">{truncate(m.data.shortBio)}</p>}
+                      <a class="team-card__more" href={`/about/team/${m.id}`}>
+                        Read More<span class="visually-hidden"> about {m.data.name}</span>
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <h3 class="team-card__name">To Be Named<span class="visually-hidden">: {g.title}, seat {seat} of {'openings' in g && g.openings}</span></h3>
+                      {'role' in g && <p class="team-card__role">{g.role}</p>}
+                    </>
+                  )}
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-          <p class="team-group__empty">{g.empty}</p>
+          <p class="team-group__empty">{'empty' in g && g.empty}</p>
         )}
       </section>
     );
