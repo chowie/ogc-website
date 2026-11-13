@@ -15,6 +15,9 @@ const { title, description = site.tagline, noindex = false } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
 const path = normalizePath(Astro.url.pathname);
+// Absolute, with the trailing slash Netlify serves pages at (/about/), so it
+// matches the URL in the sitemap. Pages that are never indexed get none.
+const canonical = noindex ? undefined : new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
 const current = sectionFor(path);
 const firstMinor = nav.find((item) => item.minor);
 const { address } = site;
@@ -28,6 +31,7 @@ const { address } = site;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {(!allowIndexing || noindex) && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>

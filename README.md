@@ -316,3 +316,9 @@ robots.txt never sees the noindex, and Google can still list a blocked URL it
 finds linked elsewhere. At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
 Netlify site's environment variables and redeploy; the header and meta tag go
 away and robots.txt lists the sitemap.
+
+Canonical URLs and the sitemap (`/sitemap-index.xml`, dated from each page's
+last commit) use the site's primary domain. Netlify passes it to the build as
+`URL`, so once `www.oneidagospel.org` is the primary domain in Netlify, every
+canonical and sitemap entry follows with no code change. Local builds use the
+demo address.

@@ -21,3 +21,25 @@ export function robotsTxt({ allowIndexing, sitemapUrl }) {
 export function headersFile({ allowIndexing }) {
   return allowIndexing ? '' : '/*\n  X-Robots-Tag: noindex\n';
 }
+
+// Pages left out of the sitemap: they carry noindex for good (Base's
+// `noindex` prop), so listing them would send search engines mixed signals.
+export const NOT_IN_SITEMAP = ['/thanks/', '/content-status/'];
+
+/**
+ * The source files whose last commit dates a page for the sitemap's
+ * <lastmod>. Only files that exist are dated; a page with none gets no
+ * <lastmod>, rather than a guessed one.
+ */
+export function sourcesFor(pathname) {
+  const p = pathname.replace(/^\/|\/$/g, '');
+  const name = p || 'index';
+  const files = [`src/content/pages/${name}.md`, `src/pages/${name}.astro`, `src/pages/${name}/index.astro`];
+  const team = p.match(/^about\/team\/([^/]+)$/);
+  if (team) files.push(`src/content/team/${team[1]}.md`);
+  const event = p.match(/^events\/([^/]+)$/);
+  if (event) files.push(`src/content/events/${event[1]}.md`);
+  // These pages list the newest sermons.
+  if (p === '' || p === 'watch-and-listen') files.push('src/content/sermons');
+  return files;
+}
