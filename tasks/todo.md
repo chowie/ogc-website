@@ -194,6 +194,23 @@ plain-language summary marked for elder review).
       #1–#16). Netlify's production deploy built c4c90f1 ("release: v0.2.0")
       and is live at https://ogc-website.netlify.app (still noindex).
 
+## SEO and discoverability (2026-11-13, branch `seo-discoverability`)
+Chris's 5-phase brief. Phase 1 inventory approved. See docs/seo-audit.md
+(findings and questions), docs/redirect-map.md, docs/seo-offsite-checklist.md.
+- [x] Indexing: robots.txt Allow + X-Robots-Tag noindex until go-live
+- [x] Real 301s in public/_redirects; check-links validates redirect targets
+- [x] Sitemap (git-dated lastmod) + canonicals; `site` from Netlify's URL
+- [x] Open Graph / Twitter cards (church photo)
+- [x] 404 page
+- [x] JSON-LD: Church+WebSite (home), Event, BreadcrumbList; check-links validates
+- [x] llms.txt (generated; not counted as a win)
+- [x] Lighthouse mobile before/after: perf and a11y 100, no regressions;
+      go-live mode SEO 100
+- [ ] Chris: answer the 11 questions in docs/seo-audit.md
+- [ ] After sign-off: titles, descriptions (keyword map), facts from site.json
+- [ ] Before go-live: hide demo badges/notices when indexing is on; add the
+      cutover redirects; favicon/logo; push the branch and open a PR (Chris's OK)
+
 ## Review
 ### Phase 1 (2026-10-28)
 Verified: `astro check` 0 errors; team sorts by displayOrder (missing → last);
