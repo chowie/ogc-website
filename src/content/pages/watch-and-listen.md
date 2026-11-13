@@ -1,4 +1,6 @@
 ---
+# Sermon Podcast, Monthly Service Video and Series Archive are in
+# src/pages/watch-and-listen.astro; their source notes stay below.
 title: "Watch & Listen"
 intro: "Short videos made for watching at home, and full services for when you can't be there."
 origin:
@@ -7,6 +9,11 @@ origin:
   on: 2026-11-12
   note: "From the outline's Watch & Listen row."
 sections:
+  cant-make-it-on-sunday:
+    status: placeholder
+    from: "Website Outline (Notion)"
+    on: 2026-11-13
+    note: "The outline asks for a clear link for homebound members; the wording is new and needs a pastor's review."
   short-videos:
     status: placeholder
     from: "Website Outline (Notion)"
@@ -30,10 +37,12 @@ needs:
   - "Series grouping for the archive"
 ---
 
+## Can't Make It on Sunday?
+
+If you're homebound, recovering, traveling or just can't be with us this week, you're still part of the family. Watch the full service in the [monthly service video](#monthly-service-video), or listen to each week's message on the [sermon podcast](#sermon-podcast).
+
+We'd love to stay in touch. You can [request a visit or a ride](/get-connected/seniors-and-care#request-a-visit-or-a-ride) on Seniors & Care, or send us a [prayer request](/contact#prayer-request).
+
 ## Short Videos
 
 Short videos (5–10 minutes) made for people watching at home will go here.
-
-## Sermon Podcast
-
-Missed a Sunday? Catch up on each week's message on the **Oneida Gospel Messages** podcast. [Listen on Apple Podcasts](https://podcasts.apple.com/us/podcast/oneida-gospel-messages/id1449487498).
