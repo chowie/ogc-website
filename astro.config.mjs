@@ -29,10 +29,5 @@ export default defineConfig({
   markdown: {
     processor: satteri({ hastPlugins: [sectionStatusPlugin] }),
   },
-  // Old URLs from the first demo menu.
-  redirects: {
-    '/visit': '/plan-your-visit',
-    '/sermons': '/watch-and-listen',
-    '/team/[slug]': '/about/team/[slug]',
-  },
+  // Redirects live in public/_redirects (real HTTP 301s on Netlify).
 });

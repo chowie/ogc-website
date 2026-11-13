@@ -55,9 +55,35 @@ for (const [from, { hrefs }] of pages) {
   }
 }
 
+// Netlify _redirects: every target must be a built page. A `:slug`
+// placeholder must match at least one page under its parent path.
+const redirectsFile = join(dist, '_redirects');
+let redirects = 0;
+if (existsSync(redirectsFile)) {
+  for (const [n, raw] of readFileSync(redirectsFile, 'utf8').split('\n').entries()) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#')) continue;
+    const [fromPath, to, status] = line.split(/\s+/);
+    const where = `_redirects line ${n + 1}`;
+    redirects++;
+    if (!fromPath?.startsWith('/') || !to || !/^30[1278]!?$/.test(status ?? '')) {
+      problems.push(`${where}: expected "/from /to 301", got "${line}"`);
+      continue;
+    }
+    if (/^https?:/.test(to)) continue;
+    const target = to.split('#')[0].replace(/\/$/, '') || '/';
+    if (target.includes(':')) {
+      const parent = target.slice(0, target.indexOf('/:'));
+      if (![...pages.keys()].some((p) => p.startsWith(parent + '/'))) problems.push(`${where}: no pages under ${parent}/`);
+    } else if (!pages.has(target)) {
+      problems.push(`${where}: redirect to missing page ${to}`);
+    }
+  }
+}
+
 if (problems.length) {
   console.error([...new Set(problems)].map((p) => `✗ ${p}`).join('\n'));
   console.error(`check-links: ${new Set(problems).size} problem(s) across ${pages.size} pages`);
   process.exit(1);
 }
-console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve`);
+console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve; ${redirects} redirects point at real pages`);
