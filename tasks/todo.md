@@ -187,9 +187,11 @@ plain-language summary marked for elder review).
       meeting someone while they're there). Anything that involves a specific
       person must reach the office so it can be coordinated. Open questions:
       where the itinerary is kept, how it's sent (likely with the visit
-      form), and who receives and coordinates it.
-- [ ] Chris decides: demo from a deploy preview, or `npm run release -- minor`
-      (production builds the newest release tag, not main)
+      form), and who receives and coordinates it. Research task in Notion
+      Work Items (due 2026-11-13): https://app.notion.com/p/417e4996907781989e74d677dc0d1989
+- [x] Chris decided to release instead of demoing from a deploy preview:
+      v0.2.0 released 2026-11-13 (c4c90f1, PRs #7–#16) and live at
+      https://ogc-website.netlify.app (still noindex).
 
 ## Review
 ### Phase 1 (2026-10-28)
@@ -208,16 +210,17 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
-2026-11-13: PRs #7–#15 merged. Live site is still v0.1.0: production builds
-the newest release tag, and merging to main publishes nothing until Chris runs
-`npm run release`.
+2026-11-13: PRs #7–#16 merged and released as v0.2.0, now live (still noindex).
+Production builds the newest release tag, so later merges to main publish
+nothing until Chris runs `npm run release`. Demo URL for Andrew and staff:
+https://ogc-website.netlify.app
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
 Chris merges (see CLAUDE.md). Exception: the sermon import's bot PRs merge
 themselves after `npm run verify`. Independent PRs can run in parallel
 worktrees (plan and retro in .claude/orchestration/, git-ignored); a PR that
 depends on an open PR waits until that one merges.
 Next candidates: the Plan Your Visit itinerary idea (needs Chris's
-refinement first), real content from the `needs:` lists (see /content-status),
-and Chris's demo-vs-release decision above.
+refinement first; Notion research task above) and real content from the
+`needs:` lists (see /content-status).
 Still open from the content rewrite: pastor tenure, the membership class
 steps, the hero photo. Re-shoot docs/screenshots/ after visual changes.
