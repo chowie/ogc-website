@@ -56,3 +56,14 @@ export function nextSunday(now = new Date()) {
   day.setUTCDate(day.getUTCDate() + ((7 - day.getUTCDay()) % 7));
   return day.toISOString().slice(0, 10);
 }
+
+// ISO 8601 in church time with its UTC offset ("2026-12-06T09:15:00-05:00"),
+// as Google asks for event start and end dates.
+export function localIso(date: Date) {
+  const w = wallClock(date);
+  const p = (n: number) => String(n).padStart(2, '0');
+  const mins = Math.round(offset(date) / 60_000);
+  const sign = mins < 0 ? '-' : '+';
+  const abs = Math.abs(mins);
+  return `${w.y}-${p(w.m)}-${p(w.d)}T${p(w.h)}:${p(w.mi)}:${p(w.s)}${sign}${p(Math.floor(abs / 60))}:${p(abs % 60)}`;
+}

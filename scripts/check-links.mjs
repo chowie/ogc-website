@@ -55,6 +55,34 @@ for (const [from, { hrefs }] of pages) {
   }
 }
 
+// JSON-LD: every block parses and has the properties Google requires
+// (structured-data/event, /breadcrumb, appearance/site-names).
+const REQUIRED = {
+  Event: (d) => d.name && d.startDate && d.location?.name && d.location?.address,
+  BreadcrumbList: (d) =>
+    d.itemListElement?.length >= 2 &&
+    d.itemListElement.every((i, n, all) => i.position === n + 1 && i.name && (i.item || n === all.length - 1)),
+  WebSite: (d) => d.name && d.url,
+  Church: (d) => d.name && d.address?.streetAddress && d.url,
+};
+let jsonLdBlocks = 0;
+for (const [from, { file }] of pages) {
+  const html = readFileSync(file, 'utf8');
+  for (const [, body] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    jsonLdBlocks++;
+    let data;
+    try {
+      data = JSON.parse(body);
+    } catch {
+      problems.push(`${from}: JSON-LD doesn't parse`);
+      continue;
+    }
+    const types = [data['@type']].flat();
+    for (const t of types) if (REQUIRED[t] && !REQUIRED[t](data)) problems.push(`${from}: ${t} JSON-LD is missing required properties`);
+    if (!types.some((t) => REQUIRED[t])) problems.push(`${from}: unchecked JSON-LD type ${types.join(', ')}`);
+  }
+}
+
 // Netlify _redirects: every target must be a built page. A `:slug`
 // placeholder must match at least one page under its parent path.
 const redirectsFile = join(dist, '_redirects');
@@ -86,4 +114,4 @@ if (problems.length) {
   console.error(`check-links: ${new Set(problems).size} problem(s) across ${pages.size} pages`);
   process.exit(1);
 }
-console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve; ${redirects} redirects point at real pages`);
+console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve; ${redirects} redirects point at real pages; ${jsonLdBlocks} JSON-LD blocks valid`);
