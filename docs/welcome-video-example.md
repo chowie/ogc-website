@@ -26,18 +26,19 @@ a friendly hello at the door, not a sermon or an announcement.
 
 ## 2. Example script
 
-About 210 words, which is roughly 85 seconds at a calm speaking pace. Every
-fact in it comes from the website (Plan Your Visit, the team page and the site
-settings).
+About 175 words. At a calm 125 words a minute that runs about 85 seconds,
+and no beat is faster than about 140 words a minute. Every fact in it comes
+from the website (Plan Your Visit, Kids & Families, the team page and the
+site settings).
 
 | Time | On screen | Andrew says |
 |---|---|---|
-| 0:00–0:10 | Andrew in the empty sanctuary, medium shot, looking into the lens. Lower third: *Andrew Fulton, Lead Pastor*. | "Hi, I'm Andrew Fulton, the lead pastor of Oneida Gospel Church here in Grand Ledge. I'm really glad you found us." |
-| 0:10–0:22 | Stay on Andrew. Cut briefly to the building and sign from the road. | "Maybe you've never been to church, or it's been a while, or you just moved to the area. Whatever brings you here, I'd like to tell you what a Sunday is like." |
-| 0:22–0:40 | Back to Andrew. Optional B-roll: an open Bible on a pew, the sanctuary from the back. | "We worship together Sundays at 10:30 in the morning. When I preach, we work through a book of the Bible, verse by verse, so you'll hear what it meant then and what it means for us now. From mid-September to May, there are classes for youth and adults at 9:15, and you're welcome at both." |
-| 0:40–0:55 | B-roll: the children's hallway or an empty, tidy classroom. **No children on camera.** | "If you have kids, they're welcome in the service. We also care for infants through kindergarten, and first through fourth graders have Children's Church. Every one of our children's volunteers has a background check." |
-| 0:55–1:10 | B-roll: adults talking after the service, the coffee area. Back to Andrew. | "As a guest, you won't be asked to stand up, speak, or give. Just come and see. After the service, a lot of us stay to talk, and I'd love to meet you." |
-| 1:10–1:25 | Andrew, slightly closer. End card fades in: *Sundays at 10:30 a.m. · 3048 E. Strange Hwy., Grand Ledge, MI · 517.627.7112 · Plan Your Visit*. | "My mission is to know the beauty of Christ and commend Him to all. That's what we hope for you too. You'll find everything you need under Plan Your Visit. We'd be glad to see you Sunday." |
+| 0:00–0:10 | Andrew in the empty sanctuary, medium shot, looking into the lens. Lower third: *Andrew Fulton, Lead Pastor*. | "Hi, I'm Andrew Fulton, lead pastor of Oneida Gospel Church in Grand Ledge. I'm glad you found us." |
+| 0:10–0:22 | Stay on Andrew. Cut briefly to the building and sign from the road. | "Maybe you've never been to church, or it's been a while, or you just moved here. Whatever brings you, let me tell you what a Sunday is like." |
+| 0:22–0:42 | Back to Andrew. Optional B-roll: an open Bible on a pew, the sanctuary from the back. | "We worship Sundays at 10:30 in the morning. When I preach, we work through a book of the Bible verse by verse. From mid-September to May, there's Sunday School for kids and classes for adults at 9:15." |
+| 0:42–1:00 | B-roll: the children's hallway or an empty, tidy classroom, filmed on a weekday. **No children on camera.** | "Kids are welcome in the service. We care for infants through kindergarten, and kids in first through fourth grade have their own Bible lesson during the sermon. Every children's volunteer has a background check." |
+| 1:00–1:14 | B-roll: adult volunteers talking, the coffee area (staged on a weekday). Back to Andrew. | "As a guest, you won't be asked to stand up, speak, or give. Just come and see. After the service, many of us stay to talk. I'd love to meet you." |
+| 1:14–1:28 | Andrew, slightly closer. End card fades in: *Sundays at 10:30 a.m. · 3048 E. Strange Hwy., Grand Ledge, MI · 517.627.7112 · Plan Your Visit*. | "My mission is to know the beauty of Christ and commend Him to all. You'll find directions under Plan Your Visit. We'd be glad to see you Sunday." |
 
 Notes on the script:
 
@@ -57,9 +58,11 @@ Notes on the script:
 
 Pick one main location and use the others for B-roll:
 
-- **The sanctuary before a service** (or on a weekday): pews and the front of
-  the room behind Andrew say "this is where you'll be." Film it empty so no
-  one is caught on camera.
+Film everything on a weekday, when the building is empty. That keeps
+children out of every shot (see "What to avoid").
+
+- **The sanctuary:** pews and the front of the room behind Andrew say "this
+  is where you'll be." Film it empty so no one is caught on camera.
 - **The front entrance:** Andrew standing just inside the doors suggests "come
   on in." Good for the opening or closing line.
 - **The greeting area:** where a visitor actually arrives. Good for a warm,
@@ -85,8 +88,8 @@ Pick one main location and use the others for B-roll:
 
 - **Natural light first.** Face Andrew toward a window or open door so the
   light falls on his face. Don't put a bright window behind him.
-- Turn off any lights that clash in color with the daylight, or turn all of
-  them on and close the blinds. Avoid mixing.
+- If the room is still dim, add the room lights or a lamp off to one side of
+  Andrew, not behind him.
 - Avoid harsh overhead light that shadows the eyes. A cheap LED panel or a
   white poster board bouncing window light onto his face fixes most of this.
 
@@ -100,8 +103,10 @@ they'll click away from echo.
 - **Listen for room noise:** HVAC, fans, the fridge, traffic on Strange Hwy.
   Turn off what you can. Record 10 seconds of the empty room's "silence" for
   the editor.
-- A big sanctuary echoes. If the sound is too hollow, move closer to the
-  front where there's more fabric and people, or film in the greeting area.
+- A big empty sanctuary echoes. If the sound is too hollow, move the mic
+  closer to Andrew and move toward the front of the room, and put soft
+  materials just off camera (rugs, blankets, a pile of coats). Or film in the
+  greeting area, which is smaller.
 
 ### Phone settings
 
@@ -115,14 +120,18 @@ they'll click away from echo.
 
 ### B-roll list
 
-Short clips of 5–10 seconds each, filmed steadily:
+Short clips of 5–10 seconds each, filmed steadily. Film the building shots
+on a weekday, and stage the people shots on a weekday too, with adult
+volunteers who have agreed to appear. If anything is filmed on a Sunday, it
+must be adults only, framed so no children appear even in the background.
 
 - [ ] The building and the sign from the road, ideally on a sunny day
 - [ ] Walking up to and through the front entrance
 - [ ] The empty sanctuary, from the back and from the side
 - [ ] An open Bible on a pew
-- [ ] Adults talking after the service (**adults only**, and ask them first)
-- [ ] The coffee area
+- [ ] A few adults talking, as if after a service (staged on a weekday with
+      volunteers who agreed to appear)
+- [ ] The coffee area, with the same volunteers
 - [ ] The children's hallway or an empty classroom (no children)
 
 ## 4. Captions and accessibility
@@ -142,8 +151,8 @@ Short clips of 5–10 seconds each, filmed steadily:
 ## 5. What to avoid
 
 - **Insider language.** No room names, ministry nicknames or church terms a
-  visitor wouldn't know. Say "classes for youth and adults," not the name of
-  a class.
+  visitor wouldn't know. Say "a Bible lesson for kids during the sermon," not
+  the name of a class.
 - **Long announcements.** No events, sign-ups or dates that will go out of
   date. The video should still be true a year from now.
 - **Asking for money.** Don't mention giving, except to say that guests won't
@@ -173,10 +182,13 @@ Short clips of 5–10 seconds each, filmed steadily:
    awaiting staff confirmation. If it isn't accurate, cut it from the script.
 2. **Who films and edits it?** A volunteer with a phone is enough, but someone
    needs to own the editing, captions and upload.
-3. **When and where?** Which location, and a weekday or a Sunday before the
-   service? A weekday avoids catching people (and children) on camera.
+3. **When and where?** Which location, and which weekday? This plan films
+   everything, including the staged people shots, on a weekday so no children
+   are caught on camera. Anything filmed on a Sunday must be adults only,
+   framed so no children appear even in the background.
 4. **Is there a coffee area to film?** The B-roll list assumes there is one.
-5. **Which adults would be willing to appear** in the after-service B-roll?
+5. **Which adult volunteers would be willing to appear** in the staged
+   "people talking" and coffee area B-roll?
 6. **Should the video mention the "Who Is Oneida?" class** for newer
    attenders? It's left out to keep the video short and free of dates.
 7. **Does Andrew want a teleprompter, notes, or to speak freely** from the
