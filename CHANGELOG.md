@@ -13,7 +13,7 @@ section into the new version.
 ### Added
 
 - "Can't Make It on Sunday?" on Watch & Listen for homebound members, and the
-  sermon podcast (Apple Podcasts) in the footer.
+  sermon podcast (Apple Podcasts) in the footer's social links.
 - Proposed Mission Board (four members) and Treasurer on Our Team, shown as
   cards with no one named yet.
 - A new home page following the website outline: welcome, a spot for the

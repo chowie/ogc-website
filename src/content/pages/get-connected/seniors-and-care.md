@@ -21,7 +21,7 @@ How to ask for a visit, or a ride to church, will go here. (Form coming in a lat
 
 ## Can't Make It on Sunday?
 
-Watch the service from home on [Watch & Listen](/watch-and-listen).
+Watch the service from home on [Watch & Listen](/watch-and-listen#cant-make-it-on-sunday).
 
 ## Prayer
 
