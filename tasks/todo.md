@@ -164,10 +164,25 @@ plain-language summary marked for elder review).
       PR #9: merged 2026-11-12
 - [x] Deacons on Our Team (`content/deacons`): Chris, Derek, Jordan with draft
       bios; Bonnie Schulert as Office Manager placeholder. PR #10: merged 2026-11-13
-- [ ] Our Team: placeholder cards for the Mission Board (4 members) and the
+- [x] Our Team: placeholder cards for the Mission Board (4 members) and the
       Treasurer (1). Chris is adding these as proposals (2026-11-13)
-- [ ] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
-      share buttons, Watch & Listen
+- [ ] Welcome video example (Chris, PR #11 comment, 2026-11-13): a proposed
+      transcript for the 60–90 second pastor welcome video, plus suggestions
+      for staging it (setting, framing, light, sound) and any other
+      direction. Presented as an example, not a final script.
+- [ ] "Add to calendar" link on every event (Chris, PR #11 comment): on event
+      pages, tiles and the calendar list (e.g. an .ics download plus Google
+      Calendar link; weekly events as a repeating entry).
+- [ ] Brainstorm, needs refinement before building (Chris, PR #11 comment):
+      a "Plan Your Visit mode". Clicking Plan Your Visit turns it on; while
+      the visitor browses, they can add things to a custom itinerary (e.g.
+      Sunday School for their kids, a class, talking to a specific person, or
+      meeting someone while they're there). Anything that involves a specific
+      person must reach the office so it can be coordinated. Open questions:
+      where the itinerary is kept, how it's sent (likely with the visit
+      form), and who receives and coordinates it.
+- [x] PR 3 `feat/home-forms-events`: outline home page, 4 forms, event pages +
+      share buttons. PR #11: review (10 findings) fixed in a1172b2; merged 2026-11-13
 - [ ] After merge: Chris decides demo from preview vs `npm run release -- minor`
 
 ## Review

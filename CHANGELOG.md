@@ -12,6 +12,8 @@ section into the new version.
 
 ### Added
 
+- Proposed Mission Board (four members) and Treasurer on Our Team, shown as
+  cards with no one named yet.
 - A new home page following the website outline: welcome, a spot for the
   pastor's welcome video, what to expect, find your place, upcoming events,
   the latest video, what we believe, and a "let us know you're coming" form.

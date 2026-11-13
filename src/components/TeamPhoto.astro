@@ -2,23 +2,27 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
-interface Props {
-  member: CollectionEntry<'team'>;
-  width: number;
-  /** Set for above-the-fold photos (profile pages). */
-  eager?: boolean;
-}
-const { member, width, eager = false } = Astro.props;
-const { photo, photoAlt, name } = member.data;
+type Props =
+  | {
+      member: CollectionEntry<'team'>;
+      width: number;
+      /** Set for above-the-fold photos (profile pages). */
+      eager?: boolean;
+    }
+  /** An empty frame for a proposed position nobody holds yet. */
+  | { proposed: true };
+const props = Astro.props;
+const member = 'member' in props ? props : undefined;
+const { photo, photoAlt, name } = member?.member.data ?? { name: '' };
 const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
 ---
 
-{photo ? (
-  <Image class="team-photo" src={photo} alt={photoAlt ?? name} width={width} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
+{member && photo ? (
+  <Image class="team-photo" src={photo} alt={photoAlt ?? name} width={member.width} loading={member.eager ? 'eager' : 'lazy'} fetchpriority={member.eager ? 'high' : undefined} />
 ) : (
-  <div class="team-photo team-photo--empty" aria-hidden="true">
+  <div class:list={['team-photo team-photo--empty', { 'team-photo--proposed': !member }]} aria-hidden="true">
     <span>{initials}</span>
-    <span class="team-photo__note">Photo to come</span>
+    <span class="team-photo__note">{member ? 'Photo to come' : 'Proposed'}</span>
   </div>
 )}
 
@@ -32,6 +36,7 @@ const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
   }
   .team-photo--empty > :first-child { align-self: center; }
   .team-photo__note { text-align: center; padding-inline: 0.5em; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
-  /* Phone team cards show a small photo column; initials alone fit there. */
-  @media (max-width: 29.99rem) { :global(.team-card) .team-photo__note { display: none; } }
+  /* Phone team cards show a small photo column; initials alone fit there. A
+     proposed frame has no initials, so it keeps its note. */
+  @media (max-width: 29.99rem) { :global(.team-card) .team-photo:not(.team-photo--proposed) .team-photo__note { display: none; } }
 </style>
