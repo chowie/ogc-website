@@ -10,6 +10,8 @@ section into the new version.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-13
+
 ### Added
 
 - "Can't Make It on Sunday?" on Watch & Listen for homebound members, and the
@@ -73,5 +75,6 @@ section into the new version.
 - Release tooling: `npm run release`, and production deploys that build the
   newest release tag instead of `main`'s latest commit.
 
-[unreleased]: https://github.com/chowie/ogc-website/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/chowie/ogc-website/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/chowie/ogc-website/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/chowie/ogc-website/releases/tag/v0.1.0
