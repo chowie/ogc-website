@@ -1,0 +1,27 @@
+---
+// Netlify serves dist/404.html, with a 404 status, for any URL that doesn't
+// exist. Old links from the previous church website may land here, so it
+// answers the questions a visitor most likely came with.
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { site, streetAddress, telHref } from '../lib/site';
+---
+
+<Base title="Page Not Found" noindex>
+  <PageHead title="Page Not Found" intro="That page isn't here. It may have moved when the website changed." />
+  <section class="section">
+    <div class="container prose">
+      <h2>Here's what most people are looking for</h2>
+      <ul>
+        {site.serviceTimes.map((s) => <li>{s.label}: {s.day}s, {s.time}</li>)}
+        <li>{streetAddress}</li>
+        <li>Call the office at <a href={telHref}>{site.phone}</a></li>
+      </ul>
+      <p>
+        <a class="btn btn--solid" href="/plan-your-visit">Plan Your Visit</a>
+        <a class="btn" href="/">Home</a>
+      </p>
+      <p>Other places to start: <a href="/events">Events</a>, <a href="/watch-and-listen">Watch &amp; Listen</a>, <a href="/about">About</a>, <a href="/contact">Contact</a>.</p>
+    </div>
+  </section>
+</Base>
