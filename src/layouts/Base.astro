@@ -1,7 +1,9 @@
 ---
 import '@fontsource-variable/unbounded';
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
 import { site, allowIndexing, telHref } from '../lib/site';
+import sharePhoto from '../assets/photos/church-sign-and-bell.jpg';
 import { nav, sectionFor, isCurrentPage, normalizePath } from '../data/nav';
 
 interface Props {
@@ -21,6 +23,12 @@ const canonical = noindex ? undefined : new URL(Astro.url.pathname.replace(/\/?$
 const current = sectionFor(path);
 const firstMinor = nav.find((item) => item.minor);
 const { address } = site;
+
+// Link previews (Facebook, Messages, Slack…): the church photo, cropped to the
+// 1200×630 that Open Graph previews use.
+const shareImage = await getImage({ src: sharePhoto, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const shareImageUrl = new URL(shareImage.src, Astro.site).href;
+const shareImageAlt = 'The Oneida Gospel Church sign beside the old church bell, in front of the stone-and-brick wall with its cross.';
 ---
 
 <!doctype html>
@@ -32,6 +40,17 @@ const { address } = site;
     <meta name="description" content={description} />
     {(!allowIndexing || noindex) && <meta name="robots" content="noindex, nofollow" />}
     {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title ?? site.name} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={shareImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={shareImageAlt} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
