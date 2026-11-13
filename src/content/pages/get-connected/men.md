@@ -23,12 +23,12 @@ sections:
     on: 2026-11-12
     note: "The outline asks for mentoring with older men; the details are made up as a prompt."
   contact:
-    status: placeholder
-    from: "Website Outline (Notion)"
+    status: rewritten
+    from: "Chris Howie's notes"
     on: 2026-11-12
-    note: "The outline asks for a leader photo and contact; the current site has neither."
+    note: "Derek Smith named as the Thursday study's leader."
 needs:
-  - "Leader name, photo and contact"
+  - "Who leads Men's Prayer on Mondays"
   - "Room for the Thursday Bible study"
   - "Fall retreat at Camp Barakel: dates, or whether it's yearly"
   - "Mentoring details"
@@ -51,4 +51,4 @@ Younger men can be paired with older men for encouragement and friendship. Detai
 
 ## Contact
 
-Leader name and photo will go here. Until then, call the church office at 517.627.7112.
+[Derek Smith](/about/team/derek-smith) leads the Thursday night Bible study. For anything else, call the church office at 517.627.7112.
