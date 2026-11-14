@@ -271,8 +271,8 @@ assistant's answers.
 
 ## Questions for Chris
 
-1. **Final domain:** is it `https://www.oneidagospel.org` (www, as Wix does today)?
-2. **Old `/about`** on Wix is the *Women's Ministry* page. Redirect it to `/get-connected/women`? It can't, because the new `/about` is About Us. Should we accept that the address now means something else?
+1. ✅ **Final domain:** `https://www.oneidagospel.org` (www). Confirmed by Chris on 2026-11-13. Make it the primary domain in Netlify at cutover; canonicals and the sitemap follow automatically.
+2. ✅ **Old `/about`** (Wix's *Women's Ministry* page) becomes About Us, with no redirect. Chris, 2026-11-13: the Wix page was a mistake, and paths should describe their content.
 3. **Wix pages with no new home:** Jobs, Global Missions, Pictures, Shared Prayer, Prayer signup, Books to Borrow. Redirect each to the nearest section, or let them 404?
 4. **Old blog posts** (`/post/*`, 64 of them): send them all to `/events`, or let the dated ones 404?
 5. **Missing facts:** parking and entrance, service length, what to wear, accessibility (including any hearing assistance), children's check-in, office hours, a youth leader and a women's ministry leader.

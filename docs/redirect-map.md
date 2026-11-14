@@ -35,7 +35,7 @@ fetched on 2026-11-13. It contains:
 | `/podcast` | `/watch-and-listen/` | exact |
 | `/whoweare` (Who We Are) | `/about/beliefs/` | likely: it holds the statement of faith, which is now on Our Beliefs |
 | `/about-4` (History) | `/about/story/` | exact |
-| `/about` (**Women's Ministry**) | — | 🟡 the new `/about` is About Us (question 2) |
+| `/about` (**Women's Ministry**) | `/about/` (About Us; no redirect) | decided: Chris, 2026-11-13. The Wix page was misnamed, and paths should describe their content. Old links to it now land on About Us; Women's Ministry is at `/get-connected/women/`. |
 | `/team` (Team list) | `/about/team/` | exact |
 | `/meet-our-team-copy` (Meet Our Team) | `/about/team/` | exact |
 | `/team/:slug` (6 people) | `/about/team/:slug/` | exact (already live) |

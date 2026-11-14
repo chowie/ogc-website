@@ -206,7 +206,8 @@ Chris's 5-phase brief. Phase 1 inventory approved. See docs/seo-audit.md
 - [x] llms.txt (generated; not counted as a win)
 - [x] Lighthouse mobile before/after: perf and a11y 100, no regressions;
       go-live mode SEO 100
-- [ ] Chris: answer the 11 questions in docs/seo-audit.md
+- [ ] Chris: answer questions 3–11 in docs/seo-audit.md (1 and 2 answered 2026-11-13:
+      the domain is www.oneidagospel.org; old /about becomes About Us)
 - [ ] After sign-off: titles, descriptions (keyword map), facts from site.json
 - [ ] Before go-live: hide demo badges/notices when indexing is on; add the
       cutover redirects; favicon/logo; push the branch and open a PR (Chris's OK)

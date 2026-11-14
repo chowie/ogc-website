@@ -14,7 +14,7 @@ copy already on the site.
 | Name | `Oneida Gospel Church` |
 | Address | `3048 E. Strange Hwy., Grand Ledge, MI 48837` |
 | Phone | `517.627.7112` (🟡 question 9 in seo-audit.md: if the format changes, change it here, in site.json, and on every listing at once) |
-| Website | `https://www.oneidagospel.org/` (🟡 question 1) |
+| Website | `https://www.oneidagospel.org/` (confirmed by Chris, 2026-11-13) |
 | Email | `office@oneidagospel.org` |
 | Sunday Worship | Sundays, 10:30 a.m. |
 | Sunday School and Classes | Sundays, 9:15 a.m. (mid-September to May) |
