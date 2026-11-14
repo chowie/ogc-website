@@ -11,12 +11,12 @@ sections:
   send-a-prayer-request:
     status: placeholder
     on: 2026-11-13
-    note: "A pointer to the prayer request form on Contact, written for this page."
+    note: "A pointer to the prayer request form on Contact, written for this page; nobody receives that form yet."
   pray-with-us-every-day:
     status: rewritten
     from: "https://www.oneidagospel.org/prayer-signup"
     on: 2026-11-13
-    note: "The three subscribe options; tied to a spring campaign there, written here as ongoing. The member directory is offered only on request."
+    note: "The three options; tied to a spring campaign there, written here as ongoing. Its signup form also sends the member list, so joining is through the office instead."
   shared-relationship-prayer:
     status: rewritten
     from: "https://www.oneidagospel.org/sharedprayer"
@@ -25,7 +25,8 @@ sections:
 needs:
   - "Confirm the daily prayer list (PrayerMate, email and print) is still running, and who sends it."
   - "Confirm whether the Shared Relationship prayer emphasis is current or repeats each spring, and its dates."
-  - "Decide how members get the membership list to pray through. It's private, so it should never be a public link."
+  - "Who receives prayer requests (open on Contact too). The Send a Prayer Request section points to that form, so it needs a reader before go-live."
+  - "Decide how people join the prayer list and how members get the membership list to pray through. The old signup form also sends the member list, so it isn't linked; the list is private and should never be a public link."
 ---
 
 ## Send a Prayer Request
@@ -40,7 +41,7 @@ Receive daily prayer requests for our church in one of three ways:
 - **Daily email.** A daily church prayer request delivered to your inbox.
 - **Print copies.** A printed calendar of prayer needs.
 
-[Subscribe to the prayer list](https://oneidagospel.elvanto.net/form/41e8657c-69eb-49f9-a7c2-d167e4d70a59). Members can also ask for the membership list to pray through.
+To join the prayer list, ask the church office to add you: email [office@oneidagospel.org](mailto:office@oneidagospel.org) or call 517.627.7112. Members can also ask the church office for the membership list to pray through.
 
 ## Shared Relationship Prayer
 
