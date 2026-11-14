@@ -11,6 +11,8 @@ import SectionHeading from '../components/SectionHeading.astro';
 import SectionMeta from '../components/SectionMeta.astro';
 import SermonRow from '../components/SermonRow.astro';
 import { site } from '../lib/site';
+import { churchJsonLd, websiteJsonLd } from '../lib/structured-data.ts';
+import { shareImageUrl } from '../lib/share-image';
 import { getSermons, getUpcomingEvents } from '../lib/content';
 
 const entry = (await getEntry('pages', 'index'))!;
@@ -53,9 +55,15 @@ const places = [
   { title: 'Seniors & Care', text: 'Visits, rides and care for older adults.', href: '/get-connected/seniors-and-care' },
 ];
 
+// The church and the site, for search engines (home page only, per Google).
+// The Church's image is the share image, the same file as og:image.
+const jsonLd = [
+  churchJsonLd(site, Astro.site!.href, await shareImageUrl(Astro.site!)),
+  websiteJsonLd(site, Astro.site!.href),
+];
 ---
 
-<Base description={entry.data.description}>
+<Base description={entry.data.description} jsonLd={jsonLd}>
   <section class="hero" id="welcome" aria-labelledby="welcome-title">
     <div class="container hero__inner">
       <p class="eyebrow">Welcome to</p>

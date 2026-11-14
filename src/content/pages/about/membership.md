@@ -49,4 +49,4 @@ Both classes meet in the Meeting Room just off the Chapel.
 
 Both meet on Sunday mornings at 9:15. See the [events calendar](/events#calendar) for the next dates.
 
-Questions? Call the church office at 517.627.7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org).
+Questions? Call the church office at (517) 627-7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org).
