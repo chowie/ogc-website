@@ -27,6 +27,8 @@ export const nav: NavItem[] = [
       { label: 'Our Story', href: '/about/story' },
       { label: 'Our Team', href: '/about/team' },
       { label: 'Membership', href: '/about/membership' },
+      { label: 'Global Missions', href: '/about/missions' },
+      { label: 'Jobs', href: '/about/jobs' },
     ],
   },
   {
@@ -40,6 +42,8 @@ export const nav: NavItem[] = [
       { label: 'Young Adults & Singles', href: '/get-connected/young-adults-and-singles' },
       { label: 'Seniors & Care', href: '/get-connected/seniors-and-care' },
       { label: 'Serve', href: '/get-connected/serve' },
+      { label: 'Prayer', href: '/get-connected/prayer' },
+      { label: 'Church Library', href: '/get-connected/library' },
     ],
   },
   {

@@ -16,3 +16,5 @@ Start with what we believe, read our story, or meet the people who serve here.
 - [Our Story](/about/story): where Oneida came from and where we're going.
 - [Our Team](/about/team): the elders, deacons and staff who serve the church.
 - [Membership](/about/membership): what it means to belong here, and how to join.
+- [Global Missions](/about/missions): the missionaries we support around the world.
+- [Jobs](/about/jobs): open positions at the church.

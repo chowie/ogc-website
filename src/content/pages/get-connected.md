@@ -18,3 +18,5 @@ New friendships are what turn a Sunday visit into a church home. Here's where to
 - [Young Adults & Singles](/get-connected/young-adults-and-singles): church family for every stage of life.
 - [Seniors & Care](/get-connected/seniors-and-care): visits, rides and care for older adults.
 - [Serve](/get-connected/serve): teams that need your gifts.
+- [Prayer](/get-connected/prayer): send a prayer request, or pray with the church every day.
+- [Church Library](/get-connected/library): books to borrow.

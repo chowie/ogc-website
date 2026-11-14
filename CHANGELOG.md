@@ -12,6 +12,8 @@ section into the new version.
 
 ### Added
 
+- Pages carried over from the current website: Global Missions and Jobs
+  (under About), and Prayer and Church Library (under Get Connected).
 - Shared links show a preview card with a photo of the church.
 - A helpful "Page Not Found" page with service times, the address and the
   office phone.
