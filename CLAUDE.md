@@ -21,6 +21,9 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
   | `URL`, `DEPLOY_PRIME_URL`, `CONTEXT` | Set by Netlify | Site address for canonicals, the sitemap and share images: `URL` (primary domain) in production, `DEPLOY_PRIME_URL` on previews and branch deploys; local builds use the demo URL |
   | `RELEASE_TAG` | Netlify env | Pin production to an older tag (rollback); unset = newest |
   | `NETLIFY_BUILD_HOOK` | GitHub secret | Used by the daily-rebuild Action |
+  | `REVIEW_PASSCODE` | Netlify env (Functions) | Reviewers' passcode for the review API; unset turns it off |
+  | `REVIEW_ADMIN_PASSCODE` | Netlify env (Functions) | Chris's passcode: also marks review items done |
+  | `PUBLIC_REVIEW` | Netlify env | `off` turns review off before go-live |
 
 ## Commands (details in README)
 
@@ -44,6 +47,10 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
 - `src/lib/content.ts`: collection queries (`getTeam`, `getSermons`,
   `getUpcomingEvents`) and helpers. `src/lib/time.ts`: DST-safe weekly-event
   math (America/Detroit), unit-tested.
+- `netlify/functions/review.mjs`: the review API (comments and to-dos from
+  reviewers), from the `review-layer` package (github.com/chowie/review-layer).
+  Data is in Netlify Blobs, shared by the demo and its previews.
+  `npm run review -- list --open` reads it (needs `REVIEW_URL` and a passcode).
 - `scripts/`: `import-sermons.mjs`, `release.mjs`, `build-release.sh`
   (production build of the newest tag), `check-commit-msg.mjs`.
 - `.github/workflows/`: `import-sermons` (twice a day; adds sermons through its

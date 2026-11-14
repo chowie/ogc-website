@@ -21,3 +21,10 @@ git worktree add --quiet --detach "$dir" "$tag"
 (cd "$dir" && npm ci --no-audit --no-fund && npm run build)
 rm -rf dist
 cp -R "$dir/dist" dist
+# Netlify bundles functions from this checkout (main) after the build, so
+# replace them with the tag's, or unreleased function code would go live.
+rm -rf netlify/functions
+if [ -d "$dir/netlify/functions" ]; then
+  mkdir -p netlify
+  cp -R "$dir/netlify/functions" netlify/functions
+fi

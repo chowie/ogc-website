@@ -6,6 +6,12 @@
   NODE_VERSION = "22.23.4"
   # Leave PUBLIC_ALLOW_INDEXING unset until go-live (keeps demo out of search).
 
+# Serverless functions (the review API). On production they come from the
+# release tag too: scripts/build-release.sh swaps in the tag's copy.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # The live site is the newest release tag, not main's latest commit.
 # Deploy previews (pull requests) still build their own commit.
 [context.production]
