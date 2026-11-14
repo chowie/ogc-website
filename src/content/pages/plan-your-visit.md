@@ -111,7 +111,7 @@ If it's been a while, welcome back. Most people step away for ordinary reasons: 
 
 **Can I take communion?** A plain explanation of how Oneida observes communion will go here.
 
-**How do I reach someone?** Call 517.627.7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org).
+**How do I reach someone?** Call (517) 627-7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org).
 
 **What happens to my contact information?** If you fill out a form, a real person will reach out once. We won't add you to a mailing list or share your information.
 

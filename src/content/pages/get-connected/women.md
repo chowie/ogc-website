@@ -34,4 +34,4 @@ needs:
 
 ## Contact
 
-Call the church office at 517.627.7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org) for times and details. Leader name and photo will go here.
+Call the church office at (517) 627-7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org) for times and details. Leader name and photo will go here.

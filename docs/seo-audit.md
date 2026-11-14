@@ -119,9 +119,14 @@ noindex in mind):
   - `npm run verify` fails if any redirect points at a page that doesn't exist.
   - The draft Wix → new map for about 100 URLs is in [redirect-map.md](redirect-map.md). It's held for questions 2–4.
 
-### 6. Demo labels would be crawled and quoted 🟡 ⏳
+### 6. Demo labels would be crawled and quoted ✅ (decided)
 - **Evidence:** the "Draft copy" and "Placeholder" badges, the "Source" notes, the form notice ("Demo site: this form isn't monitored yet"), the footer's "Privacy… Placeholder", and `/content-status` are all in the static HTML on every build. An AI assistant quoting the Plan Your Visit page would repeat "Details on accessible parking… will go here."
-- **Fix (before go-live):** show these only while `PUBLIC_ALLOW_INDEXING` is unset, and resolve every placeholder they mark. This changes what reviewers see, so it's Chris's call. Not done on this branch.
+- **Decision (Chris, 2026-11-13):** keep them. While this is a demo it must be clear that it's a demo and not the live website.
+- **Added:** every page now opens with a banner: "This is a demo of a proposed new website, not the church's official site. For current information, visit oneidagospel.org." `/llms.txt` carries the same sentence. Both appear only while `PUBLIC_ALLOW_INDEXING` is unset.
+  - The banner is plain text in every page's HTML, so any crawler, training crawler or assistant that reads the page gets it with the content. That's the one signal that reaches them all.
+  - The noindex header only tells search engines not to list the page. Training crawlers follow robots.txt, not noindex. Markup can't mark content "not authoritative" (schema.org has no such property).
+  - Lighthouse: performance and accessibility stay 100; no layout shift.
+- **Before go-live:** the labels go away as each placeholder is replaced with signed-off copy. The banner turns off with the go-live flag.
 
 ### 7. First-visitor answers are missing 🟡
 AI assistants answer "what time / where / what about my kids / what do I
@@ -178,7 +183,7 @@ Each needs one plain, quotable sentence on Plan Your Visit, for example
 | `/contact` | brand plus phone and address | Contact · Oneida Gospel Church, Grand Ledge |
 | others | brand | keep "Page \| Oneida Gospel Church" |
 
-- **Affiliation queries:** the site states "non-denominational" and "elder-led", with Presbyterian roots (Our Story). Don't target a denomination unless question 6 names one.
+- **Affiliation queries:** the church is non-denominational and elder-led, with no association or fellowship membership (Chris, 2026-11-13). Target "non-denominational church Grand Ledge" only; no denominational directories.
 - **Descriptions:** rewrite with the titles to 120–155 characters. Contact's needs the phone and city. The three event descriptions (164–206) get cut down.
 - **Headings:** every page already has one H1. Heading order is enforced by the provenance system.
 
@@ -230,6 +235,7 @@ noindex and not in the sitemap.
   - "OGC" in Al Blankenship's bio
   - `E. Strange Hwy.` vs `E Strange Hwy` inside the map URL
   - the home hero shows the street and city without the state and ZIP
+- **Phone:** now `(517) 627-7112` everywhere (Chris, 2026-11-13). It's the usual US written form; listings and JSON-LD parse any format the same way (JSON-LD uses `+1-517-627-7112`, tel: links use `+15176277112`), so the choice is about consistency for people.
 - **Rule:** the name, address and phone must read exactly the same here, on Google Business Profile, Bing Places, Apple Business Connect and Facebook. See [seo-offsite-checklist.md](seo-offsite-checklist.md).
 
 ### 17. llms.txt ✅ (not counted as a win)
@@ -257,7 +263,9 @@ assistant's answers.
 | Common Crawl | — | — | CCBot (its data feeds many models) | https://commoncrawl.org/ccbot |
 | Meta | (docs couldn't be fetched) | | meta-externalagent | — |
 
-**Training crawlers: Chris's decision (question 8).**
+**Training crawlers: allow (decided by Chris, 2026-11-13).** robots.txt
+stays `Allow: /` for everyone. Anything a training crawler collects from
+the demo carries the demo banner (finding #6). The trade-offs considered:
 - **Allow (today's setting):**
   - The church's beliefs, times and voice become part of how future models describe it.
   - Simplest setup, with nothing to maintain.
@@ -273,12 +281,12 @@ assistant's answers.
 
 1. ✅ **Final domain:** `https://www.oneidagospel.org` (www). Confirmed by Chris on 2026-11-13. Make it the primary domain in Netlify at cutover; canonicals and the sitemap follow automatically.
 2. ✅ **Old `/about`** (Wix's *Women's Ministry* page) becomes About Us, with no redirect. Chris, 2026-11-13: the Wix page was a mistake, and paths should describe their content.
-3. **Wix pages with no new home:** Jobs, Global Missions, Pictures, Shared Prayer, Prayer signup, Books to Borrow. Redirect each to the nearest section, or let them 404?
-4. **Old blog posts** (`/post/*`, 64 of them): send them all to `/events`, or let the dated ones 404?
-5. **Missing facts:** parking and entrance, service length, what to wear, accessibility (including any hearing assistance), children's check-in, office hours, a youth leader and a women's ministry leader.
-6. **Affiliation:** is "non-denominational, elder-led" the whole story, or is the church a member of an association or fellowship that should be named?
-7. **Logo:** is there a logo file (SVG preferred), and should the church sign-and-bell photo stay as the share image? Also: does a Google Business Profile exist (it would supply the map pin and coordinates)?
-8. **Training crawlers:** allow (today) or block? See above.
-9. **Phone format:** keep `517.627.7112`, or use `(517) 627-7112`? Whatever is chosen must match every listing exactly.
-10. **Demo labels at go-live** (#6): OK to hide the badges, Source notes and demo notices automatically once indexing is turned on?
-11. **Keyword map** (#8): approve, edit or reject before any titles and copy change.
+3. ✅ **Wix pages with no new home:** add them back to the demo, organized our own way (separate PR).
+4. ✅ **Old blog posts:** audit each one and decide (separate PR).
+5. ✅ **Missing facts:** tracked as Notion Work Items (Oneida Website Update 2026), due 2026-11-14.
+6. ✅ **Affiliation:** non-denominational and elder-led; no association.
+7. 🟡 **Logo:** none yet. Five concepts are being designed for Chris to choose from. Still open: does a Google Business Profile exist (it would supply the map pin and coordinates)?
+8. ✅ **Training crawlers:** allow; the demo banner marks demo content.
+9. ✅ **Phone format:** `(517) 627-7112`.
+10. ✅ **Demo labels:** keep them; add a demo banner (#6).
+11. 🟡 **Keyword map** (#8): tracked as a Notion Work Item, due 2026-11-13.

@@ -4,7 +4,7 @@
 // (https://developers.google.com/search/docs/fundamentals/ai-optimization-guide);
 // it's here only because it costs nothing to keep accurate.
 import type { APIRoute } from 'astro';
-import { site, streetAddress } from '../lib/site';
+import { site, streetAddress, allowIndexing } from '../lib/site';
 import { nav } from '../data/nav';
 
 export const GET: APIRoute = () => {
@@ -14,6 +14,9 @@ export const GET: APIRoute = () => {
     '',
     `> ${site.welcome}`,
     '',
+    ...(allowIndexing
+      ? []
+      : ['This is a demo of a proposed new website, not the church\'s official site. For current information, use https://www.oneidagospel.org/.', '']),
     ...site.serviceTimes.map((s) => `- ${s.label}: ${s.day}s, ${s.time}`),
     `- Address: ${streetAddress}`,
     `- Phone: ${site.phone}`,

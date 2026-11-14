@@ -206,8 +206,12 @@ Chris's 5-phase brief. Phase 1 inventory approved. See docs/seo-audit.md
 - [x] llms.txt (generated; not counted as a win)
 - [x] Lighthouse mobile before/after: perf and a11y 100, no regressions;
       go-live mode SEO 100
-- [ ] Chris: answer questions 3–11 in docs/seo-audit.md (1 and 2 answered 2026-11-13:
-      the domain is www.oneidagospel.org; old /about becomes About Us)
+- [x] Chris answered questions 1–10 on 2026-11-13 (see docs/seo-audit.md). Follow-ups:
+      Notion items for the missing facts (due 11-14) and the keyword map (due 11-13);
+      separate PRs for the restored Wix sections and the blog-post audit;
+      logo concepts (5 options) pending Chris's pick.
+- [x] Demo banner on every page plus llms.txt note (demo, not the official site)
+- [x] Phone format is now (517) 627-7112 everywhere
 - [ ] After sign-off: titles, descriptions (keyword map), facts from site.json
 - [ ] Before go-live: hide demo badges/notices when indexing is on; add the
       cutover redirects; favicon/logo; push the branch and open a PR (Chris's OK)

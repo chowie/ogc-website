@@ -71,6 +71,13 @@ const shareImageAlt = 'The Oneida Gospel Church sign beside the old church bell,
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    {!allowIndexing && (
+      <div class="demo-banner" role="note" aria-label="Demo site">
+        <p class="container">
+          This is a demo of a proposed new website, not the church's official site. For current information, visit <a href="https://www.oneidagospel.org/">oneidagospel.org</a>.
+        </p>
+      </div>
+    )}
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="wordmark" href="/">

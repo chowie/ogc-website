@@ -13,7 +13,7 @@ copy already on the site.
 |---|---|
 | Name | `Oneida Gospel Church` |
 | Address | `3048 E. Strange Hwy., Grand Ledge, MI 48837` |
-| Phone | `517.627.7112` (🟡 question 9 in seo-audit.md: if the format changes, change it here, in site.json, and on every listing at once) |
+| Phone | `(517) 627-7112` (chosen by Chris, 2026-11-13; if it changes, change it here, in site.json, and on every listing at once) |
 | Website | `https://www.oneidagospel.org/` (confirmed by Chris, 2026-11-13) |
 | Email | `office@oneidagospel.org` |
 | Sunday Worship | Sundays, 10:30 a.m. |
@@ -52,7 +52,7 @@ https://business.google.com
      - the worship space
      - the logo (🟡 question 7)
    - **No photos of children** until a consent policy exists.
-8. **Description:** the short description above, plus the service times and "non-denominational, elder-led" (🟡 question 6).
+8. **Description:** the short description above, plus the service times and "non-denominational, elder-led".
 9. **Posts:** "share announcements, offers, updates, and event details." *(docs)* https://support.google.com/business/answer/7342169
    - Post each public event from `/events` (Who Is Oneida?, the Membership Class, and the Christmas and Easter services), linking to its event page.
 10. **Website link:** use `https://www.oneidagospel.org/` (not `/plan-your-visit`) unless Google offers a separate "appointment" or "menu" link.
@@ -105,7 +105,7 @@ facebook.com/oneidagospel
 
 ## 7. Yelp and directories
 - **Yelp** (https://biz.yelp.com): claim the listing if one exists, and use the same values.
-- **Affiliation directories:** 🟡 only if question 6 names an association or fellowship. Its member directory is then the most valuable citation.
+- **Affiliation directories:** none. The church isn't part of any association or fellowship (Chris, 2026-11-13).
 - **Other free listings:** add the church to any it already appears in, such as a local church finder or the Grand Ledge Area Chamber (if the church is a member), with the same values. Don't pay for listing services.
 
 ## 8. After go-live

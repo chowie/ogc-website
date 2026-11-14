@@ -31,7 +31,7 @@ export interface SiteFacts {
 
 const CONTEXT = 'https://schema.org';
 
-/** "517.627.7112" -> "+1-517-627-7112" */
+/** "(517) 627-7112" -> "+1-517-627-7112" */
 export function e164ish(phone: string) {
   const d = phone.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
   return d.length === 10 ? `+1-${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}` : phone;
