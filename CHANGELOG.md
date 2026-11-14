@@ -17,6 +17,12 @@ section into the new version.
   office phone.
 - Search engine groundwork for go-live: a sitemap, canonical page addresses,
   structured data (church, events, breadcrumbs) and `/llms.txt`.
+- A banner on every page saying this is a demo, with a link to the church's
+  official website.
+
+### Changed
+
+- The phone number is written (517) 627-7112.
 
 ### Fixed
 
