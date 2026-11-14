@@ -1,5 +1,6 @@
 ---
 title: "Our Story"
+description: "Oneida Gospel Church has served Grand Ledge, Michigan for more than 175 years. Our story, mission, vision and values, still focused on the long game."
 intro: "A church in Grand Ledge for more than 175 years, and still focused on the long game."
 origin:
   status: rewritten

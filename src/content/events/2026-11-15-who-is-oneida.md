@@ -1,5 +1,6 @@
 ---
 title: "Who Is Oneida?"
+description: "For new attenders: Andrew introduces the values and history of Oneida Gospel Church and answers your questions. The first step toward membership."
 start: 2026-11-15T09:15:00-05:00
 end: 2026-11-15T10:15:00-05:00
 location: Meeting Room, off the chapel

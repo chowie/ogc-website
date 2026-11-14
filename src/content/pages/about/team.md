@@ -1,5 +1,6 @@
 ---
 title: "Our Team"
+description: "Meet the people who serve and lead Oneida Gospel Church in Grand Ledge, MI: our pastor, elders, deacons and staff, with a short bio for each."
 intro: "The people who serve and lead our church family."
 origin:
   status: real

@@ -1,5 +1,6 @@
 ---
 title: "Seniors & Care"
+description: "Care for older adults, homebound members and their families at Oneida Gospel Church in Grand Ledge, MI: visits, calls, rides and prayer."
 intro: "Care for older adults, homebound members and their families."
 origin:
   status: placeholder

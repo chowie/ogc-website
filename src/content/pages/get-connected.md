@@ -1,5 +1,6 @@
 ---
 title: "Get Connected"
+description: "Find your people and a place to serve at Oneida Gospel Church in Grand Ledge, MI: groups, men, women, young adults, seniors, prayer and next steps."
 intro: "Find your people and a place to serve."
 origin:
   status: placeholder

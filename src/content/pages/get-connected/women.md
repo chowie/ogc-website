@@ -1,5 +1,6 @@
 ---
 title: "Women"
+description: "Women at Oneida Gospel Church in Grand Ledge, MI: Wednesday morning Bible study, card-making, pickleball or game night, and a monthly meal together."
 intro: "Women encouraging women, through Bible study, friendship, and time together."
 origin:
   status: rewritten

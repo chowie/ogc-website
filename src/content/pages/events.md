@@ -1,5 +1,7 @@
 ---
 title: "Events"
+seoTitle: "Events · Oneida Gospel Church, Grand Ledge"
+description: "Upcoming events at Oneida Gospel Church in Grand Ledge, MI, and yearly gatherings that are easy to invite a friend to, from Family Camp to Christmas Eve."
 intro: "What's coming up at Oneida, and gatherings that are easy to invite a friend to."
 origin:
   status: real

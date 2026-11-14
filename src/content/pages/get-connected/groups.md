@@ -1,5 +1,7 @@
 ---
 title: "Groups"
+seoTitle: "Bible Studies & Groups · Oneida Gospel Church"
+description: "Bible studies and groups at Oneida Gospel Church in Grand Ledge, MI: an adult class on Sunday mornings at 9:15, and weekday studies for men and women."
 intro: "Bible studies and groups that meet during the week, and on Sunday mornings."
 origin:
   status: rewritten

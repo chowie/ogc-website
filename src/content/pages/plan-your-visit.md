@@ -1,5 +1,7 @@
 ---
 title: "Plan Your Visit"
+seoTitle: "Plan Your Visit · Church in Grand Ledge, MI"
+description: "Planning a first visit to Oneida Gospel Church in Grand Ledge, MI? Sunday worship is at 10:30 a.m. Here's what to expect, for you and your kids."
 eyebrow: "New Here?"
 intro: "Come as you are. Here's what to expect on your first Sunday at Oneida."
 origin:

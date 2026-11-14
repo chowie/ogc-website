@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
 const { event: original } = Astro.props;
 const event = upcoming(original);
-const { title, location, summary, audience, kidsWelcome } = (event ?? original).data;
+const { title, location, summary, description, audience, kidsWelcome } = (event ?? original).data;
 const { when, next } = eventWhen((event ?? original).data);
 // The same address the calendar links use.
 const address = original.data.address ?? streetAddress;
@@ -27,7 +27,7 @@ const jsonLd = event
   : [];
 ---
 
-<Base title={title} description={summary} jsonLd={jsonLd}>
+<Base title={title} description={description ?? summary} jsonLd={jsonLd}>
   <PageHead title={title} eyebrow="Events" />
   <section class="section">
     <div class="container prose event">

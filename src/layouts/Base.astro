@@ -8,6 +8,8 @@ import { breadcrumbJsonLd, serialize } from '../lib/structured-data.ts';
 
 interface Props {
   title?: string;
+  /** The whole <title>, used as is (no " | Oneida Gospel Church" added). */
+  seoTitle?: string;
   description?: string;
   /** Keep this page out of search engines even after go-live. */
   noindex?: boolean;
@@ -15,8 +17,8 @@ interface Props {
   jsonLd?: Record<string, unknown>[];
 }
 
-const { title, description = site.tagline, noindex = false, jsonLd = [] } = Astro.props;
-const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const { title, seoTitle, description = site.tagline, noindex = false, jsonLd = [] } = Astro.props;
+const pageTitle = seoTitle ?? (title ? `${title} | ${site.name}` : site.name);
 
 const path = normalizePath(Astro.url.pathname);
 // Absolute, with the trailing slash Netlify serves pages at (/about/), so it
@@ -55,7 +57,7 @@ const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
     {canonical && <link rel="canonical" href={canonical} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={title ?? site.name} />
+    <meta property="og:title" content={seoTitle ?? title ?? site.name} />
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={shareImageUrl} />

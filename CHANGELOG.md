@@ -24,6 +24,8 @@ section into the new version.
 
 ### Changed
 
+- Page titles and search descriptions name Grand Ledge and say what each
+  page offers, so search results show where the church is and what's there.
 - The phone number is written (517) 627-7112.
 
 ### Fixed

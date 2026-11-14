@@ -1,7 +1,7 @@
 ---
 title: "Prayer"
 intro: "Pray with your church family, and let us pray for you."
-description: "Send a prayer request, or join Oneida Gospel Church's daily prayer list by app, email or print."
+description: "Send a prayer request to Oneida Gospel Church in Grand Ledge, MI, or join the church's prayer list and pray with your church family every day."
 origin:
   status: rewritten
   from: "https://www.oneidagospel.org/prayer-signup"

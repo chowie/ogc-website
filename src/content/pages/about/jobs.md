@@ -1,7 +1,7 @@
 ---
 title: "Jobs"
 intro: "Open positions at Oneida Gospel Church."
-description: "Open staff positions at Oneida Gospel Church in Grand Ledge, Michigan, and how to ask about them."
+description: "Open staff positions at Oneida Gospel Church in Grand Ledge, Michigan, including an Associate Pastor, and how to ask the church about them."
 origin:
   status: rewritten
   from: "https://www.oneidagospel.org/about-5"

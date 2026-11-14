@@ -1,5 +1,6 @@
 ---
 title: "Give"
+description: "Give to Oneida Gospel Church in Grand Ledge, MI online through Tithe.ly or by check. Your giving supports ministry here and the missionaries we support."
 intro: "Thank you for partnering with Oneida. Your faithful giving is precious to Christ, and to us."
 origin:
   status: rewritten

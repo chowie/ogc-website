@@ -1,5 +1,7 @@
 ---
 title: "About Us"
+seoTitle: "About Oneida Gospel Church, Grand Ledge"
+description: "Who we are at Oneida Gospel Church in Grand Ledge, Michigan: our story, what we believe, the people who lead us, and how to become a member."
 intro: "Who we are, what we believe, and the people who lead us."
 origin:
   status: rewritten

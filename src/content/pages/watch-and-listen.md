@@ -2,6 +2,8 @@
 # Sermon Podcast, Monthly Service Video and Series Archive are in
 # src/pages/watch-and-listen.astro; their source notes stay below.
 title: "Watch & Listen"
+seoTitle: "Sermons & Videos · Oneida Gospel Church"
+description: "Sermons from Oneida Gospel Church in Grand Ledge, MI: each week's message as a podcast, and the monthly full service video for when you can't be there."
 intro: "Short videos made for watching at home, and full services for when you can't be there."
 origin:
   status: placeholder
