@@ -112,6 +112,7 @@ for (const f of sitemaps) {
 // placeholder must match at least one page under its parent path.
 const redirectsFile = join(dist, '_redirects');
 let redirects = 0;
+const seenFrom = new Map();
 if (!existsSync(redirectsFile)) {
   problems.push('dist/_redirects is missing (public/_redirects should be copied into the build)');
 } else {
@@ -124,6 +125,14 @@ if (!existsSync(redirectsFile)) {
     if (!fromPath?.startsWith('/') || !to || !/^30[1278]!?$/.test(status ?? '')) {
       problems.push(`${where}: expected "/from /to 301", got "${line}"`);
       continue;
+    }
+    // Netlify skips a rule whose old address is a real page (no `!`), and
+    // only the first of two rules for one address ever fires.
+    const from = fromPath.replace(/\/$/, '') || '/';
+    if (seenFrom.has(from)) problems.push(`${where}: ${fromPath} is already redirected on line ${seenFrom.get(from)}`);
+    else seenFrom.set(from, n + 1);
+    if (!from.includes(':') && pages.has(from) && !status.endsWith('!')) {
+      problems.push(`${where}: ${fromPath} is a page on this site, so Netlify never applies this redirect`);
     }
     if (/^https?:/.test(to)) continue;
     const target = to.split('#')[0].replace(/\/$/, '') || '/';

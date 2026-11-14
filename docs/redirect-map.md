@@ -1,4 +1,4 @@
-# Redirect Map: Wix → New Site (draft)
+# Redirect Map: Wix → New Site
 
 **Status:** the decided rows are in `public/_redirects`. They only matter
 once `www.oneidagospel.org` points at Netlify. Rows marked 🟡 are still open.
@@ -56,7 +56,7 @@ fetched on 2026-11-13. It contains:
 | `/blank-page` (Contact) | `/contact/` | exact |
 | `/post/who-is-oneida`, `/post/who-is-oneida-1` | `/about/membership/` | likely (the event page expires; see the blog audit) |
 | `/post/want-to-know-more-about-membership`, `…-membership-1` | `/about/membership/` | exact |
-| `/post/women-s-*bible-study*` (6 posts) | current fall 2026 post → `/events/womens-bible-study/`; older ones → `/get-connected/women/` | likely |
+| `/post/women-s-*bible-study*` (6 posts) | `/get-connected/women/` | likely |
 | `/post/*` (the other 56 posts) | decided per post in the blog audit; the rest return 404 | — |
 | `/blog-feed.xml` | 🟡 `/events/` or 404 | — |
 | `/about-5` (Jobs) | `/about/jobs/` | exact |
@@ -71,11 +71,9 @@ fetched on 2026-11-13. It contains:
 `public/_redirects` holds every decided row above and the ready blog-post
 rows. `npm run verify` fails if any target page is missing.
 
-**Event pages can be removed.** Event pages exist only while their Markdown
-file does. If the Women's Bible Study event is deleted, the
-`/post/women-s-fall-bible-study-1` target disappears and `npm run verify`
-fails. That's the intended guard: point the
-rule at `/events/` instead.
+**Don't point a rule at an event page.** Event pages exist only while their
+Markdown file does, and redirects stay up for a year or more. Use the program
+page (`/get-connected/women/`, `/about/membership/`) or `/events/` instead.
 
 ## At cutover
 1. Settle the 🟡 row and the held-back blog posts, add them to `public/_redirects`, run `npm run verify`, and open a PR.
