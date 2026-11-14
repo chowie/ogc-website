@@ -320,5 +320,6 @@ away and robots.txt lists the sitemap.
 Canonical URLs and the sitemap (`/sitemap-index.xml`, dated from each page's
 last commit) use the site's primary domain. Netlify passes it to the build as
 `URL`, so once `www.oneidagospel.org` is the primary domain in Netlify, every
-canonical and sitemap entry follows with no code change. Local builds use the
-demo address.
+canonical and sitemap entry follows with no code change. Deploy previews use
+their own address instead (Netlify's `DEPLOY_PRIME_URL`), so a shared preview
+link shows that preview's photo. Local builds use the demo address.

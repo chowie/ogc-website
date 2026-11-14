@@ -39,7 +39,14 @@ export function sourcesFor(pathname) {
   if (team) files.push(`src/content/team/${team[1]}.md`);
   const event = p.match(/^events\/([^/]+)$/);
   if (event) files.push(`src/content/events/${event[1]}.md`);
-  // These pages list the newest sermons.
+  // List pages change with the collections they show. Site-wide chrome (the
+  // layout, the menu, the footer) is left out on purpose: Google wants
+  // <lastmod> to be "the last significant update to the page", and a chrome
+  // tweak would re-date every page at once.
   if (p === '' || p === 'watch-and-listen') files.push('src/content/sermons');
+  if (p === '' || p === 'events') files.push('src/content/events');
+  if (p === 'about/team') files.push('src/content/team');
+  // The home page's Church and WebSite structured data come from site.json.
+  if (p === '') files.push('src/data/site.json');
   return files;
 }

@@ -24,5 +24,10 @@ test('sitemap dates each page from its own source files', async () => {
   assert.ok(sourcesFor('/about/team/andrew-fulton/').includes('src/content/team/andrew-fulton.md'));
   assert.ok(sourcesFor('/events/womens-bible-study/').includes('src/content/events/womens-bible-study.md'));
   assert.ok(sourcesFor('/events/').includes('src/pages/events/index.astro'));
+  // List pages are dated by the collections they show.
+  assert.ok(sourcesFor('/events/').includes('src/content/events'));
+  assert.ok(sourcesFor('/').includes('src/content/events'));
+  assert.ok(sourcesFor('/about/team/').includes('src/content/team'));
+  assert.ok(sourcesFor('/watch-and-listen/').includes('src/content/sermons'));
   for (const p of NOT_IN_SITEMAP) assert.match(p, /^\/.+\/$/, `${p} must be a /path/ like the sitemap's`);
 });
