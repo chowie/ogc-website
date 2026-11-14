@@ -309,6 +309,17 @@ can also re-publish an earlier deploy instantly.)
 
 ### Search engines
 
-The demo is hidden from search engines (`noindex` meta tag and a
-`Disallow: /` robots.txt). At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
-Netlify site's environment variables and redeploy.
+The demo is hidden from search engines by an `X-Robots-Tag: noindex` header
+on every response (a `_headers` file the build writes) and a `noindex` meta
+tag. robots.txt deliberately *allows* crawling: a crawler blocked by
+robots.txt never sees the noindex, and Google can still list a blocked URL it
+finds linked elsewhere. At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
+Netlify site's environment variables and redeploy; the header and meta tag go
+away and robots.txt lists the sitemap.
+
+Canonical URLs and the sitemap (`/sitemap-index.xml`, dated from each page's
+last commit) use the site's primary domain. Netlify passes it to the build as
+`URL`, so once `www.oneidagospel.org` is the primary domain in Netlify, every
+canonical and sitemap entry follows with no code change. Deploy previews use
+their own address instead (Netlify's `DEPLOY_PRIME_URL`), so a shared preview
+link shows that preview's photo. Local builds use the demo address.

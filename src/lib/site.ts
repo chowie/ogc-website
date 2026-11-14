@@ -28,7 +28,7 @@ export const site = siteSchema.parse(raw);
 // One-line street address ("3048 E. Strange Hwy., Grand Ledge, MI 48837").
 export const streetAddress = `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}`;
 
-// tel: link for the office phone ("517.627.7112" -> "tel:+15176277112").
+// tel: link for the office phone ("(517) 627-7112" -> "tel:+15176277112").
 export const telHref = `tel:+1${site.phone.replace(/\D/g, '')}`;
 
 // Demo stays out of search engines until PUBLIC_ALLOW_INDEXING=true is set

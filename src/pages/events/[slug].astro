@@ -8,6 +8,7 @@ import ShareButton from '../../components/ShareButton.astro';
 import { eventWhen, upcoming } from '../../lib/content';
 import AddToCalendar from '../../components/AddToCalendar.astro';
 import { site, streetAddress, telHref } from '../../lib/site';
+import { eventJsonLd } from '../../lib/structured-data.ts';
 
 export async function getStaticPaths() {
   const events = await getCollection('events');
@@ -20,9 +21,13 @@ const { title, location, summary, audience, kidsWelcome } = (event ?? original).
 const { when, next } = eventWhen((event ?? original).data);
 // The same address the calendar links use.
 const address = original.data.address ?? streetAddress;
+// Event markup for the next meeting only; none once the event is over.
+const jsonLd = event
+  ? [eventJsonLd(event.data, new URL(`/events/${original.id}/`, Astro.site).href, site, Astro.site!.href)]
+  : [];
 ---
 
-<Base title={title} description={summary}>
+<Base title={title} description={summary} jsonLd={jsonLd}>
   <PageHead title={title} eyebrow="Events" />
   <section class="section">
     <div class="container prose event">

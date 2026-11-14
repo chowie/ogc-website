@@ -41,7 +41,7 @@ form:
 
 **What's Systematic Theology?** It's a study of what the whole Bible teaches on one topic at a time, such as who God is or what salvation means.
 
-The church office can tell you more about any group: 517.627.7112 or [office@oneidagospel.org](mailto:office@oneidagospel.org).
+The church office can tell you more about any group: (517) 627-7112 or [office@oneidagospel.org](mailto:office@oneidagospel.org).
 
 ## Find a Group
 

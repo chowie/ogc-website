@@ -1,0 +1,10 @@
+# Netlify redirects: real HTTP 301s (Astro's `redirects` option only writes
+# meta-refresh pages in a static build). Google recommends server-side
+# permanent redirects when URLs change:
+# https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes
+# The cutover map from the old Wix site is drafted in docs/redirect-map.md.
+
+# Old URLs from the first demo menu.
+/visit          /plan-your-visit/     301
+/sermons        /watch-and-listen/    301
+/team/:slug     /about/team/:slug/    301
