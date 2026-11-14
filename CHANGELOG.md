@@ -10,6 +10,27 @@ section into the new version.
 
 ## [Unreleased]
 
+### Added
+
+- Shared links show a preview card with a photo of the church.
+- A helpful "Page Not Found" page with service times, the address and the
+  office phone.
+- Search engine groundwork for go-live: a sitemap, canonical page addresses,
+  structured data (church, events, breadcrumbs) and `/llms.txt`.
+- A banner on every page saying this is a demo, with a link to the church's
+  official website.
+
+### Changed
+
+- The phone number is written (517) 627-7112.
+
+### Fixed
+
+- The demo is kept out of search results by a `noindex` header instead of a
+  robots.txt block, which had hidden the `noindex` from search engines.
+- Old demo addresses (`/visit`, `/sermons`, `/team/…`) now redirect properly
+  (HTTP 301).
+
 ## [0.2.0] - 2026-11-13
 
 ### Added

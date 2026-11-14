@@ -51,4 +51,4 @@ Younger men can be paired with older men for encouragement and friendship. Detai
 
 ## Contact
 
-[Derek Smith](/about/team/derek-smith) leads the Thursday night Bible study. For anything else, call the church office at 517.627.7112.
+[Derek Smith](/about/team/derek-smith) leads the Thursday night Bible study. For anything else, call the church office at (517) 627-7112.

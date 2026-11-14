@@ -38,7 +38,7 @@ site settings).
 | 0:22–0:42 | Back to Andrew. Optional B-roll: an open Bible on a pew, the sanctuary from the back. | "We worship Sundays at 10:30 in the morning. When I preach, we work through a book of the Bible verse by verse. From mid-September to May, there's Sunday School for kids and classes for adults at 9:15." |
 | 0:42–1:00 | B-roll: the children's hallway or an empty, tidy classroom, filmed on a weekday. **No children on camera.** | "Kids are welcome in the service. We care for infants through kindergarten, and kids in first through fourth grade have their own Bible lesson during the sermon. Every children's volunteer has a background check." |
 | 1:00–1:14 | B-roll: adult volunteers talking, the coffee area (staged on a weekday). Back to Andrew. | "As a guest, you won't be asked to stand up, speak, or give. Just come and see. After the service, many of us stay to talk. I'd love to meet you." |
-| 1:14–1:28 | Andrew, slightly closer. End card fades in: *Sundays at 10:30 a.m. · 3048 E. Strange Hwy., Grand Ledge, MI · 517.627.7112 · Plan Your Visit*. | "My mission is to know the beauty of Christ and commend Him to all. You'll find directions under Plan Your Visit. We'd be glad to see you Sunday." |
+| 1:14–1:28 | Andrew, slightly closer. End card fades in: *Sundays at 10:30 a.m. · 3048 E. Strange Hwy., Grand Ledge, MI · (517) 627-7112 · Plan Your Visit*. | "My mission is to know the beauty of Christ and commend Him to all. You'll find directions under Plan Your Visit. We'd be glad to see you Sunday." |
 
 Notes on the script:
 

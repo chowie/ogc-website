@@ -17,7 +17,8 @@ Machine-specific setup (paths, logins) lives in `CLAUDE.local.md` (git-ignored).
 
   | Variable | Where | Purpose |
   |---|---|---|
-  | `PUBLIC_ALLOW_INDEXING` | Netlify env | `true` at go-live; unset keeps `noindex` + `Disallow: /` |
+  | `PUBLIC_ALLOW_INDEXING` | Netlify env | `true` at go-live; unset keeps the `X-Robots-Tag: noindex` header + `noindex` meta (crawling stays allowed) |
+  | `URL`, `DEPLOY_PRIME_URL`, `CONTEXT` | Set by Netlify | Site address for canonicals, the sitemap and share images: `URL` (primary domain) in production, `DEPLOY_PRIME_URL` on previews and branch deploys; local builds use the demo URL |
   | `RELEASE_TAG` | Netlify env | Pin production to an older tag (rollback); unset = newest |
   | `NETLIFY_BUILD_HOOK` | GitHub secret | Used by the daily-rebuild Action |
 

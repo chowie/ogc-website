@@ -2,22 +2,44 @@
 import '@fontsource-variable/unbounded';
 import '../styles/global.css';
 import { site, allowIndexing, telHref } from '../lib/site';
+import { SHARE_IMAGE_ALT, shareImageUrl as shareImageFor } from '../lib/share-image';
 import { nav, sectionFor, isCurrentPage, normalizePath } from '../data/nav';
+import { breadcrumbJsonLd, serialize } from '../lib/structured-data.ts';
 
 interface Props {
   title?: string;
   description?: string;
   /** Keep this page out of search engines even after go-live. */
   noindex?: boolean;
+  /** schema.org JSON-LD blocks for this page (see src/lib/structured-data.ts). */
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { title, description = site.tagline, noindex = false } = Astro.props;
+const { title, description = site.tagline, noindex = false, jsonLd = [] } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
 const path = normalizePath(Astro.url.pathname);
+// Absolute, with the trailing slash Netlify serves pages at (/about/), so it
+// matches the URL in the sitemap. Pages that are never indexed get none.
+const canonical = noindex ? undefined : new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site).href;
 const current = sectionFor(path);
 const firstMinor = nav.find((item) => item.minor);
 const { address } = site;
+
+// Link previews (Facebook, Messages, Slack…): the church photo.
+const shareImageUrl = await shareImageFor(Astro.site!);
+// Breadcrumbs from the URL: Home, each parent page by its menu label, then
+// this page's title. Matches the section eyebrow and menu a visitor sees.
+const menuLabel = (href: string) =>
+  nav.flatMap((i) => [i, ...i.children]).find((l) => l.href === href)?.label;
+const segments = path === '/' ? [] : path.slice(1).split('/');
+const crumbs = segments.map((_, i) => {
+  const href = '/' + segments.slice(0, i + 1).join('/');
+  const last = i === segments.length - 1;
+  return { name: (last && title) || menuLabel(href) || '', url: new URL(href + '/', Astro.site).href };
+});
+const breadcrumb = noindex ? undefined : breadcrumbJsonLd([{ name: 'Home', url: new URL('/', Astro.site).href }, ...crumbs]);
+const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
 ---
 
 <!doctype html>
@@ -27,11 +49,33 @@ const { address } = site;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    {(!allowIndexing || noindex) && <meta name="robots" content="noindex, nofollow" />}
+    {/* data-noindex-page marks pages kept out of search for good, so
+         scripts/check-links.mjs can tell them apart from the demo's noindex. */}
+    {(!allowIndexing || noindex) && <meta name="robots" content="noindex, nofollow" data-noindex-page={noindex ? 'true' : undefined} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title ?? site.name} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={shareImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={SHARE_IMAGE_ALT} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {structured.map((data) => <script type="application/ld+json" set:html={serialize(data)} />)}
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    {!allowIndexing && (
+      <div class="demo-banner" role="note" aria-label="Demo site">
+        <p class="container">
+          This is a demo of a proposed new website, not the church's official site. For current information, visit <a href="https://www.oneidagospel.org/">oneidagospel.org</a>.
+        </p>
+      </div>
+    )}
     <header class="site-header">
       <div class="container site-header__inner">
         <a class="wordmark" href="/">
