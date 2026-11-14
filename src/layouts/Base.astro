@@ -49,7 +49,9 @@ const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    {(!allowIndexing || noindex) && <meta name="robots" content="noindex, nofollow" />}
+    {/* data-noindex-page marks pages kept out of search for good, so
+         scripts/check-links.mjs can tell them apart from the demo's noindex. */}
+    {(!allowIndexing || noindex) && <meta name="robots" content="noindex, nofollow" data-noindex-page={noindex ? 'true' : undefined} />}
     {canonical && <link rel="canonical" href={canonical} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />

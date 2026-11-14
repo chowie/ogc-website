@@ -1,5 +1,6 @@
 // After `astro build`: checks that every internal link in dist/ points at a
-// page that exists and, if it has a #fragment, at an id on that page.
+// page that exists and, if it has a #fragment, at an id on that page; then
+// checks the JSON-LD, the sitemap (no noindex pages) and _redirects.
 // Run by `npm run verify` (and so by every deploy preview).
 //
 //   node scripts/check-links.mjs [distDir]
@@ -66,9 +67,10 @@ const REQUIRED = {
   Church: (d) => d.name && d.address?.streetAddress && d.url,
 };
 let jsonLdBlocks = 0;
+let homeChurch = false;
 for (const [from, { file }] of pages) {
   const html = readFileSync(file, 'utf8');
-  for (const [, body] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+  for (const [, body] of html.matchAll(/<script\b[^>]*\btype="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     jsonLdBlocks++;
     let data;
     try {
@@ -78,8 +80,31 @@ for (const [from, { file }] of pages) {
       continue;
     }
     const types = [data['@type']].flat();
+    if (from === '/' && types.includes('Church')) homeChurch = true;
     for (const t of types) if (REQUIRED[t] && !REQUIRED[t](data)) problems.push(`${from}: ${t} JSON-LD is missing required properties`);
     if (!types.some((t) => REQUIRED[t])) problems.push(`${from}: unchecked JSON-LD type ${types.join(', ')}`);
+  }
+}
+
+// A check that finds nothing must fail, not pass quietly.
+if (!jsonLdBlocks) problems.push('no JSON-LD blocks found (has the <script type="application/ld+json"> form changed?)');
+if (!homeChurch) problems.push('/: no Church JSON-LD on the home page');
+
+// Sitemap: no page marked noindex for good (Base's `noindex` prop, which
+// adds data-noindex-page) may be listed. Catches a new noindex page that was
+// not added to NOT_IN_SITEMAP in src/lib/indexing.mjs.
+const sitemaps = readdirSync(dist).filter((f) => /^sitemap-\d+\.xml$/.test(f));
+if (!sitemaps.length) problems.push('no sitemap-N.xml in dist');
+let sitemapUrls = 0;
+for (const f of sitemaps) {
+  for (const [, loc] of readFileSync(join(dist, f), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    sitemapUrls++;
+    const path = decodeURI(new URL(loc).pathname).replace(/\/$/, '') || '/';
+    const page = pages.get(path);
+    if (!page) problems.push(`${f}: lists missing page ${loc}`);
+    else if (/<meta\b[^>]*\bdata-noindex-page\b/.test(readFileSync(page.file, 'utf8'))) {
+      problems.push(`${f}: lists ${path}, which is noindex (add it to NOT_IN_SITEMAP in src/lib/indexing.mjs)`);
+    }
   }
 }
 
@@ -87,7 +112,9 @@ for (const [from, { file }] of pages) {
 // placeholder must match at least one page under its parent path.
 const redirectsFile = join(dist, '_redirects');
 let redirects = 0;
-if (existsSync(redirectsFile)) {
+if (!existsSync(redirectsFile)) {
+  problems.push('dist/_redirects is missing (public/_redirects should be copied into the build)');
+} else {
   for (const [n, raw] of readFileSync(redirectsFile, 'utf8').split('\n').entries()) {
     const line = raw.trim();
     if (!line || line.startsWith('#')) continue;
@@ -114,4 +141,4 @@ if (problems.length) {
   console.error(`check-links: ${new Set(problems).size} problem(s) across ${pages.size} pages`);
   process.exit(1);
 }
-console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve; ${redirects} redirects point at real pages; ${jsonLdBlocks} JSON-LD blocks valid`);
+console.log(`check-links: ✓ ${pages.size} pages, all internal links and anchors resolve; ${redirects} redirects point at real pages; ${jsonLdBlocks} JSON-LD blocks valid; ${sitemapUrls} sitemap URLs, none noindex`);
