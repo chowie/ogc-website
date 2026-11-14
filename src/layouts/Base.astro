@@ -1,9 +1,8 @@
 ---
 import '@fontsource-variable/unbounded';
 import '../styles/global.css';
-import { getImage } from 'astro:assets';
 import { site, allowIndexing, telHref } from '../lib/site';
-import sharePhoto from '../assets/photos/church-sign-and-bell.jpg';
+import { SHARE_IMAGE_ALT, shareImageUrl as shareImageFor } from '../lib/share-image';
 import { nav, sectionFor, isCurrentPage, normalizePath } from '../data/nav';
 import { breadcrumbJsonLd, serialize } from '../lib/structured-data.ts';
 
@@ -27,10 +26,8 @@ const current = sectionFor(path);
 const firstMinor = nav.find((item) => item.minor);
 const { address } = site;
 
-// Link previews (Facebook, Messages, Slack…): the church photo, cropped to the
-// 1200×630 that Open Graph previews use.
-const shareImage = await getImage({ src: sharePhoto, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
-const shareImageUrl = new URL(shareImage.src, Astro.site).href;
+// Link previews (Facebook, Messages, Slack…): the church photo.
+const shareImageUrl = await shareImageFor(Astro.site!);
 // Breadcrumbs from the URL: Home, each parent page by its menu label, then
 // this page's title. Matches the section eyebrow and menu a visitor sees.
 const menuLabel = (href: string) =>
@@ -43,7 +40,6 @@ const crumbs = segments.map((_, i) => {
 });
 const breadcrumb = noindex ? undefined : breadcrumbJsonLd([{ name: 'Home', url: new URL('/', Astro.site).href }, ...crumbs]);
 const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
-const shareImageAlt = 'The Oneida Gospel Church sign beside the old church bell, in front of the stone-and-brick wall with its cross.';
 ---
 
 <!doctype html>
@@ -63,7 +59,7 @@ const shareImageAlt = 'The Oneida Gospel Church sign beside the old church bell,
     <meta property="og:image" content={shareImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={shareImageAlt} />
+    <meta property="og:image:alt" content={SHARE_IMAGE_ALT} />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     {structured.map((data) => <script type="application/ld+json" set:html={serialize(data)} />)}

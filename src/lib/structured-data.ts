@@ -88,6 +88,17 @@ export interface EventFacts {
   address?: string;
 }
 
+/**
+ * The Place's name. At the church, the room plus the church's name, unless
+ * the room already names the church. Away from the church, the event's own
+ * place name (or its address), never the church's.
+ */
+function placeName(e: EventFacts, churchName: string) {
+  if (e.address) return e.location || e.address;
+  if (!e.location) return churchName;
+  return e.location.includes(churchName) ? e.location : `${e.location}, ${churchName}`;
+}
+
 /** One meeting of an event, at a physical place. */
 export function eventJsonLd(e: EventFacts, pageUrl: string, site: SiteFacts, siteUrl: string): Json {
   return {
@@ -101,7 +112,7 @@ export function eventJsonLd(e: EventFacts, pageUrl: string, site: SiteFacts, sit
     url: pageUrl,
     location: {
       '@type': 'Place',
-      name: e.location ? `${e.location}, ${site.name}` : site.name,
+      name: placeName(e, site.name),
       address: e.address ?? postalAddress(site.address),
     },
     organizer: { '@type': 'Organization', name: site.name, url: new URL('/', siteUrl).href },

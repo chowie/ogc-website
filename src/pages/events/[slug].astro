@@ -23,7 +23,7 @@ const { when, next } = eventWhen((event ?? original).data);
 const address = original.data.address ?? streetAddress;
 // Event markup for the next meeting only; none once the event is over.
 const jsonLd = event
-  ? [eventJsonLd({ ...event.data, address: original.data.address }, new URL(`/events/${original.id}/`, Astro.site).href, site, Astro.site!.href)]
+  ? [eventJsonLd(event.data, new URL(`/events/${original.id}/`, Astro.site).href, site, Astro.site!.href)]
   : [];
 ---
 

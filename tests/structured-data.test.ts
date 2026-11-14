@@ -45,6 +45,16 @@ test('an event has Google\'s required name, startDate and physical location', ()
   assert.equal((away.location as { address: string }).address, '1 Park Rd, Lansing, MI');
 });
 
+test('an event\'s place name says the church once, and only for events at the church', () => {
+  const at = (location?: string, address?: string) =>
+    (eventJsonLd({ title: 'X', start: new Date(), location, address }, `${SITE}/e/`, raw, SITE).location as { name: string }).name;
+  assert.equal(at(raw.name), raw.name, 'location already is the church');
+  assert.equal(at(undefined), raw.name);
+  assert.equal(at('Meeting Room'), `Meeting Room, ${raw.name}`);
+  assert.equal(at('Lansing City Park', '1 Park Rd, Lansing, MI'), 'Lansing City Park');
+  assert.equal(at(undefined, '1 Park Rd, Lansing, MI'), '1 Park Rd, Lansing, MI');
+});
+
 test('breadcrumbs need two crumbs, and the last one has no item', () => {
   assert.equal(breadcrumbJsonLd([{ name: 'Home', url: `${SITE}/` }]), undefined);
   const b = breadcrumbJsonLd([{ name: 'Home', url: `${SITE}/` }, { name: 'About', url: `${SITE}/about/` }])!;
