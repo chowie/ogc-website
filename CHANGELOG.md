@@ -10,6 +10,11 @@ section into the new version.
 
 ## [Unreleased]
 
+### Added
+
+- Pages carried over from the current website: Global Missions and Jobs
+  (under About), and Prayer and Church Library (under Get Connected).
+
 ## [0.2.0] - 2026-11-13
 
 ### Added
