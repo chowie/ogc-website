@@ -41,7 +41,7 @@ Receive daily prayer requests for our church in one of three ways:
 - **Daily email.** A daily church prayer request delivered to your inbox.
 - **Print copies.** A printed calendar of prayer needs.
 
-To join the prayer list, ask the church office to add you: email [office@oneidagospel.org](mailto:office@oneidagospel.org) or call 517.627.7112. Members can also ask the church office for the membership list to pray through.
+To join the prayer list, ask the church office to add you: email [office@oneidagospel.org](mailto:office@oneidagospel.org) or call (517) 627-7112. Members can also ask the church office for the membership list to pray through.
 
 ## Shared Relationship Prayer
 
