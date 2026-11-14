@@ -32,7 +32,8 @@ from the images.
 **Rules applied:**
 - **301** only when a new page covers the same program or the same yearly
   tradition.
-- **404** (no rule needed) for one-off dated events.
+- **404** (no rule needed) for one-off events with no page that covers the
+  same program or yearly tradition.
 - No 410s.
 
 This replaces the earlier draft idea of a catch-all `/post/* → /events/`, which
@@ -46,8 +47,11 @@ the first quote above warns against.
 | KEEP AS CONTENT (and 301 to where that content lands) | 8 |
 | LET 404 | 15 |
 
-Categories in the table: a = one-off event, b = recurring program, c = sermon
-series or teaching, d = church info.
+Categories in the table: a = one-off event, b = recurring program or yearly
+tradition (Christmas Eve, Holy Week and Easter, Trunk or Treat, Christmas Tea),
+c = sermon series or teaching, d = church info. Three `a` rows still get a 301
+as judgment calls (festival-of-prayer, leap-day-lunch,
+womens-new-year-breakfast); see Decisions for Chris.
 
 ## All 66 posts
 
@@ -56,7 +60,7 @@ series or teaching, d = church info.
 | relationships-made-whole | 2022-09-01 | Relationships Made Whole | 59 | c | Partly | KEEP AS CONTENT | `/watch-and-listen/` 2022 Ephesians series blurb; series archive, then 301 |
 | what-is-a-healthy-church | 2022-09-03 | What is a Healthy Church? | 183 | b | Partly | REDIRECT | `/get-connected/groups/` 2022 nine-week 9Marks class; Adult Elective on Groups |
 | christmas-advent-series-god-with-us | 2022-11-10 | Christmas Advent Series - "God With Us" | 170 | c | Partly | KEEP AS CONTENT | `/watch-and-listen/` 2022 Advent series blurb with sermon list; series archive, then 301 |
-| christmas-eve-candlelight-service | 2022-11-22 | Christmas Eve Candlelight Service | 32 | a | No | REDIRECT | `/events/` 2022 Christmas Eve candlelight service; same yearly service on /events/ |
+| christmas-eve-candlelight-service | 2022-11-22 | Christmas Eve Candlelight Service | 32 | b | No | REDIRECT | `/events/` 2022 Christmas Eve candlelight service; same yearly service on /events/ |
 | want-to-know-more-about-membership | 2022-11-28 | Want to know more about membership? | 216 | d | Yes | REDIRECT | `/about/membership/` Membership class invite (2022); exact match |
 | ho-ho-ho | 2022-12-15 | HO...HO...HO! | 40 | a | No | LET 404 | 2022 teen/young-adult holiday party at a private home |
 | christmas-eve-candlelight-service-1 | 2022-12-19 | Christmas Eve Candlelight Service HAS BEEN CANCELED | 17 | a | No | LET 404 | 2022 weather cancellation notice; no equivalent |
@@ -66,8 +70,8 @@ series or teaching, d = church info.
 | women-s-bible-study-starting-february-15-2023 | 2023-01-24 | Women's Bible Study starting February 15, 2023 - "Sermon on the Mount" | 302 | b | No | REDIRECT | `/get-connected/women/` 2023 Sermon on the Mount study; Women page |
 | new-sunday-morning-class | 2023-03-07 | New Sunday morning class - Habakkuk: God's Grace for your Complaints | 89 | b | No | REDIRECT | `/get-connected/groups/` 2023 Habakkuk adult class; Adult Elective on Groups |
 | game-night-for-teens-young-adults | 2023-03-20 | Game Night for Teens & Young Adults | 45 | a | No | LET 404 | One-off 2023 game night |
-| easter-egg-hunt | 2023-03-21 | Easter Egg Hunt | 53 | a | No | REDIRECT | `/events/` 2023 egg hunt; target only once an Easter section exists on /events/ (else 404) |
-| holy-week-at-oneida | 2023-04-03 | Holy Week at Oneida | 45 | a | No | REDIRECT | `/events/` 2023 Holy Week times; same condition (Easter section) |
+| easter-egg-hunt | 2023-03-21 | Easter Egg Hunt | 53 | b | No | REDIRECT | `/events/` 2023 egg hunt; target only once an Easter section exists on /events/ (else 404) |
+| holy-week-at-oneida | 2023-04-03 | Holy Week at Oneida | 45 | b | No | REDIRECT | `/events/` 2023 Holy Week times; same condition (Easter section) |
 | happy-anniversary | 2023-04-14 | Happy Anniversary! | 65 | d | Partly | REDIRECT | `/about/story/` 175th homecoming 2023; already condensed into Our Story |
 | adult-and-children-s-sunday-school-resumes | 2023-09-07 | Adult and Children's Sunday School resumes | 173 | b | No | REDIRECT | `/get-connected/groups/` Fall 2023 adult class (Beatitudes) and kids' curriculum; the Adult Elective at 9:15 still runs and is listed there |
 | fall-sermon-series | 2023-09-07 | Fall Sermon Series | 140 | c | Partly | KEEP AS CONTENT | `/watch-and-listen/` Fall 2023 Isaiah 40-55 series blurb; series archive, then 301 (links to old /isaiah page, now gone) |
@@ -77,8 +81,8 @@ series or teaching, d = church info.
 | other-six-days | 2023-11-02 | Other Six Days - Three week Sunday School Series | 65 | b | No | REDIRECT | `/get-connected/groups/` 2023 three-week adult Sunday School series; Groups |
 | sunday-school-four-weeks-of-christmas | 2023-11-14 | Sunday School: Four Weeks of Christmas | 0 (flyer) | b | No | REDIRECT | `/get-connected/groups/` 2023 Advent adult Sunday School; Groups |
 | women-s-christmas-tea | 2023-11-14 | Women's Christmas Tea | 167 | b | No | KEEP AS CONTENT | `/get-connected/women/` Annual Christmas Tea (2023, 2024, 2025 all held); add a "Christmas Tea (December)" line to Women, then 301 |
-| advent-at-oneida-gospel | 2023-11-18 | Advent at Oneida Gospel | 0 (flyer) | a | No | REDIRECT | `/events/` 2023 Christmas-season flyer; /events/ has the yearly Christmas Eve section |
-| christmas-eve-services | 2023-11-29 | Christmas Eve Services | 62 | a | No | REDIRECT | `/events/` 2023 Christmas Eve service times; same yearly service on /events/ |
+| advent-at-oneida-gospel | 2023-11-18 | Advent at Oneida Gospel | 0 (flyer) | b | No | REDIRECT | `/events/` 2023 Christmas-season flyer; /events/ has the yearly Christmas Eve section |
+| christmas-eve-services | 2023-11-29 | Christmas Eve Services | 62 | b | No | REDIRECT | `/events/` 2023 Christmas Eve service times; same yearly service on /events/ |
 | what-are-you-doing-new-year-s-eve | 2023-12-12 | WHAT ARE YOU DOING NEW YEAR'S EVE? | 0 (flyer) | a | No | LET 404 | 2023 New Year's Eve party flyer |
 | bible-reading-plan-for-2024 | 2023-12-30 | Bible Reading Plan for 2024 - You can join any time | 142 | b | No | LET 404 | 2024 YouVersion whole-Bible plan; no reading-plan page on the new site |
 | ten-essential-christian-truths-meeting-on-sundays-at-9-15-am | 2024-01-06 | "Ten Essential Christian Truths" - meeting on Sundays at 9:15 AM | 0 (flyer) | b | No | REDIRECT | `/get-connected/groups/` 2024 adult class (David Platt video series); Groups |
@@ -86,8 +90,8 @@ series or teaching, d = church info.
 | exciting-sequel-to-jesus-life | 2024-01-18 | Exciting Sequel to Jesus' Life | 0 (flyer) | c | Partly | KEEP AS CONTENT | `/watch-and-listen/` 2024 Acts series blurb (in the flyer image); series archive, then 301 |
 | leap-day-lunch | 2024-02-21 | Leap Day Lunch | 30 | a | No | REDIRECT | `/get-connected/women/` Ladies' lunch; Women page lists the monthly breakfast or lunch |
 | women-s-bible-study-prayer | 2024-02-29 | Women's Bible Study & Prayer | 0 (flyer) | b | No | REDIRECT | `/get-connected/women/` 2024 women's study flyer; Women page Bible study |
-| easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults | 2024-03-20 | EASTER EGG HUNT AT NOON ON 3/24/24 - Coffee and refreshments for adults | 0 (flyer) | a | No | REDIRECT | `/events/` 2024 egg hunt; same condition (Easter section) |
-| holy-week-at-oneida-1 | 2024-03-20 | Holy Week at Oneida | 10 | a | No | REDIRECT | `/events/` 2024 Holy Week flyer; same condition (Easter section) |
+| easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults | 2024-03-20 | EASTER EGG HUNT AT NOON ON 3/24/24 - Coffee and refreshments for adults | 0 (flyer) | b | No | REDIRECT | `/events/` 2024 egg hunt; same condition (Easter section) |
+| holy-week-at-oneida-1 | 2024-03-20 | Holy Week at Oneida | 10 | b | No | REDIRECT | `/events/` 2024 Holy Week flyer; same condition (Easter section) |
 | meeting-with-god | 2024-04-04 | MEETING WITH GOD | 110 | b | No | REDIRECT | `/get-connected/groups/` 2024 five-week adult Sunday School class; Adult Elective on Groups |
 | we-are-hiring | 2024-04-23 | We Are Hiring | 38 | d | No | REDIRECT | `/about/jobs/` (pending) 2024 custodian opening; Jobs page (pending) answers "jobs at Oneida", though the role differs (borderline; 404 also defensible) |
 | vbs-2024-june-25-27 | 2024-04-24 | VBS 2024 - June 25-27 | 5 | b | No | REDIRECT | `/kids-and-families/` VBS 2024; VBS section with 2027 dates |
@@ -97,27 +101,27 @@ series or teaching, d = church info.
 | ministry-fair-september-8 | 2024-08-26 | Ministry Fair - September 8 | 51 | b | No | REDIRECT | `/events/` 2024 Ministry Fair; yearly section on /events/ |
 | new-adult-elective-on-sunday-mornings-at-9-15-am | 2024-08-28 | Adult Elective on Sunday mornings at 9:15 AM | 114 | b | No | REDIRECT | `/get-connected/groups/` 2024 adult elective; Adult Elective on Groups |
 | family-movie-night-inside-out-2 | 2024-09-09 | Family Movie Night: Inside Out 2 | 9 | a | No | LET 404 | One-off 2024 movie night |
-| trunk-or-treat-and-compete | 2024-09-20 | Join us at Trunk or Treat and Compete! on October 27th | 0 (flyer) | a | No | REDIRECT | `/events/` Trunk or Treat 2024; yearly section on /events/ |
+| trunk-or-treat-and-compete | 2024-09-20 | Join us at Trunk or Treat and Compete! on October 27th | 0 (flyer) | b | No | REDIRECT | `/events/` Trunk or Treat 2024; yearly section on /events/ |
 | join-our-communal-journey-through-the-new-testament | 2024-10-01 | Join Our Communal Journey Through the New Testament | 142 | b | No | LET 404 | Oct-Dec 2024 New Testament reading plan; no equivalent |
 | women-s-bible-study-starting-october-3-2024 | 2024-10-01 | Women's Bible Study (October 3 - Nov. 21, 2024) | 141 | b | No | REDIRECT | `/get-connected/women/` 2024 Amos study; Women page |
 | teens-at-country-mill | 2024-10-02 | Teens at Country Mill | 0 (flyer) | a | No | LET 404 | One-off 2024 youth outing |
 | who-is-oneida | 2024-10-21 | Who Is Oneida? | 67 | d | No | REDIRECT | `/about/membership/` Who Is Oneida? class (Feb 2025); Membership page describes the class as step 1, with a Next Class section |
 | oneida-youth-christmas-party | 2024-11-19 | Oneida Youth Christmas Party | 53 | a | No | LET 404 | 2024 youth party; no event equivalent |
-| christmas-eve-candlelight-service-2-1 | 2024-11-25 | Christmas Eve Candlelight Service | 0 (flyer) | a | No | REDIRECT | `/events/` 2024 Christmas Eve service flyer; same yearly service on /events/ |
+| christmas-eve-candlelight-service-2-1 | 2024-11-25 | Christmas Eve Candlelight Service | 0 (flyer) | b | No | REDIRECT | `/events/` 2024 Christmas Eve service flyer; same yearly service on /events/ |
 | women-s-christmas-tea-and-crafting-december-15 | 2024-12-08 | Women's Christmas Tea and Crafting - December 15 | 0 (flyer) | b | No | REDIRECT | `/get-connected/women/` 2024 Christmas Tea; after the Tea line is added |
 | family-new-year-s-eve-party | 2024-12-09 | Family New Year's Eve Party | 0 (flyer) | a | No | LET 404 | 2024 New Year's Eve party; no equivalent page |
 | philippians-series-beginning-february-2-2025 | 2025-02-04 | Philippians Series beginning February 2, 2025 | 0 (flyer) | c | Partly | KEEP AS CONTENT | `/watch-and-listen/` 2025 Philippians series blurb (flyer); series archive, then 301 |
-| christmas-at-oneida | 2025-11-11 | Christmas at Oneida | 0 (flyer) | a | No | REDIRECT | `/events/` 2025 Christmas schedule; /events/ Christmas Eve section is the yearly equivalent |
+| christmas-at-oneida | 2025-11-11 | Christmas at Oneida | 0 (flyer) | b | No | REDIRECT | `/events/` 2025 Christmas schedule; /events/ Christmas Eve section is the yearly equivalent |
 | womens-new-year-breakfast | 2026-01-02 | Womens New Year Breakfast | 0 (flyer) | a | No | REDIRECT | `/get-connected/women/` Jan 2026 women's breakfast; Women page lists the monthly breakfast or lunch |
 | women-s-ministry-favorite-things-evening-2-6-26 | 2026-01-27 | Women's Ministry "Favorite Things" Evening - 2/6/26 | 40 | a | No | LET 404 | One-off Feb 2026 evening at a private home |
-| easter-services-2026 | 2026-03-09 | Easter Services 2026 | 0 (flyer) | a | No | KEEP AS CONTENT | `/events/` Holy Week 2026 schedule flyer; seed a yearly "Holy Week and Easter" section on /events/ (already in events.md needs), then 301 |
+| easter-services-2026 | 2026-03-09 | Easter Services 2026 | 0 (flyer) | b | No | KEEP AS CONTENT | `/events/` Holy Week 2026 schedule flyer; seed a yearly "Holy Week and Easter" section on /events/ (already in events.md needs), then 301 |
 | vbs-2026 | 2026-03-09 | VBS 2026 | 0 (flyer) | b | No | REDIRECT | `/kids-and-families/` VBS 2026; VBS section with 2027 dates |
 | women-s-spring-bible-study | 2026-04-01 | Women's Spring Bible Study | 116 | b | No | REDIRECT | `/get-connected/women/` Spring 2026 Psalm 23 study; Women page |
 | work-day-may-16-9-30-am | 2026-04-30 | Work Day - May 16 - 9:30 AM | 10 | a | No | LET 404 | One-off May 2026 building work day |
 | family-camp-2026 | 2026-07-31 | Family Camp 2026 | 79 | b | Yes | REDIRECT | `/events/` Annual Family Camp; text already reused in the /events/ Family Camp section |
 | want-to-know-more-about-membership-1 | 2026-08-06 | Want to know more about Membership? | 189 | d | Yes | REDIRECT | `/about/membership/` Membership invite (2026); its text is the source of the Membership page. Linked from Wix /events and both Who Is Oneida posts |
 | women-s-fall-bible-study-1 | 2026-09-05 | Women's Fall Bible Study | 0 (flyer) | b | Yes | REDIRECT | `/events/womens-bible-study/` Current fall 2026 study (1 Corinthians, Wed 9:30); exact match. Linked from Wix home and /events |
-| copy-of-join-us-at-trunk-or-treat-and-compete-on-october-27th | 2026-09-30 | Join us at Trunk or Treat and Compete! on October 25th | 0 (flyer) | a | No | REDIRECT | `/events/` Trunk or Treat 2026 (Oct 25, now past); yearly section on /events/. Linked from Wix home and /events |
+| copy-of-join-us-at-trunk-or-treat-and-compete-on-october-27th | 2026-09-30 | Join us at Trunk or Treat and Compete! on October 25th | 0 (flyer) | b | No | REDIRECT | `/events/` Trunk or Treat 2026 (Oct 25, now past); yearly section on /events/. Linked from Wix home and /events |
 | who-is-oneida-1 | 2026-10-20 | WHO IS ONEIDA? | 67 | d | Yes | REDIRECT | `/about/membership/` Who Is Oneida? class Nov 15 2026; not the event page, which expires Nov 15. Linked from Wix home and /events |
 
 ## Proposed `_redirects` lines
@@ -182,12 +186,27 @@ series or teaching, d = church info.
 is still missing; the posts then fall back to 404.
 - `/about/jobs/` and `/get-connected/prayer/` are added by the
   restore-Wix-sections change, not yet on `main`.
-- The six Easter and Holy Week posts assume a yearly Easter section on
-  `/events/` (already in that page's needs).
-- The Christmas Tea post assumes a Tea line on `/get-connected/women/`.
+- The five Easter and Holy Week posts (easter-egg-hunt,
+  easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults,
+  holy-week-at-oneida, holy-week-at-oneida-1 and easter-services-2026) assume
+  a yearly Easter section on `/events/` (already in that page's needs).
+- The two Christmas Tea posts (women-s-christmas-tea and
+  women-s-christmas-tea-and-crafting-december-15) go wherever the Tea line
+  actually lands: `/get-connected/women/` or `/events/`. The lines above
+  assume Women; change both targets if it goes on `/events/`.
+- The six sermon-series posts (relationships-made-whole,
+  christmas-advent-series-god-with-us,
+  a-whole-new-work-god-s-vision-from-isaiah, fall-sermon-series,
+  exciting-sequel-to-jesus-life and
+  philippians-series-beginning-february-2-2025) depend on the series archive
+  on `/watch-and-listen/`. Drop them at cutover if the archive doesn't exist
+  yet.
 
-`npm run verify` checks that each target page exists, but it can't check
-that a section exists on that page.
+Only the `seo-discoverability` branch (PR #18) adds the check that each
+`_redirects` target page exists (in `scripts/check-links.mjs`); `npm run
+verify` on `main` doesn't check redirect targets. These redirects must not land
+before PR #18 merges. Even then, the check can't tell whether a section exists
+on a page.
 
 ## Posts worth keeping as content
 
@@ -198,7 +217,8 @@ that a section exists on that page.
 - **easter-services-2026**: source for a yearly Holy Week and Easter section
   on `/events/`.
 - **women-s-christmas-tea**: held every December (2023, 2024, 2025); add to
-  `/get-connected/women/` or the Community Events list.
+  `/get-connected/women/` or the Community Events list on `/events/`, and point
+  both Tea redirects at whichever one it lands on.
 - **Optional:** teen-talk has a youth-group vision statement;
   festival-of-prayer has copy on why the church prays together. If the church
   runs a yearly Bible reading plan, the two reading-plan posts could redirect
@@ -216,8 +236,11 @@ that a section exists on that page.
 
 - Should all 9 adult Sunday School posts point at the one Adult Elective
   listing on Groups, or should some 404?
-- Should Leap Day Lunch and New Year Breakfast point at Women, which lists the
-  monthly breakfast or lunch, or 404?
+- Judgment calls: three one-off events (`a`) get a 301 because a page covers
+  the same program. Should leap-day-lunch and womens-new-year-breakfast point
+  at Women, which lists the monthly breakfast or lunch, and
+  festival-of-prayer-june-2-6-pm at the pending prayer page, or should they
+  404 like other one-offs?
 - **we-are-hiring** was a custodian job, and the Jobs page is for an Associate
   Pastor. Should it 301 to Jobs, or 404?
 - Does the church run a reading plan every year? If so, should it get a page?
