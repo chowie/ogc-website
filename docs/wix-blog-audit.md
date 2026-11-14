@@ -3,9 +3,8 @@
 Audit of all 66 posts in the Wix blog sitemap (www.oneidagospel.org, checked
 2026-11-13). This decides, for each old `/post/<slug>` URL, whether it gets a
 301 redirect to a page on the new site, becomes content on the new site, or is
-left to return 404. Nothing here is live yet. The `_redirects` lines go into
-`docs/redirect-map.md` and `public/_redirects` once the SEO work
-(`seo-discoverability`) is merged, since those files live on that branch.
+left to return 404. The ready `_redirects` lines are in `public/_redirects`
+(see below); they take effect once the domain moves.
 
 22 posts are flyer images with no body text. Their dates and details were read
 from the images.
@@ -93,10 +92,10 @@ womens-new-year-breakfast); see Decisions for Chris.
 | easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults | 2024-03-20 | EASTER EGG HUNT AT NOON ON 3/24/24 - Coffee and refreshments for adults | 0 (flyer) | b | No | REDIRECT | `/events/` 2024 egg hunt; same condition (Easter section) |
 | holy-week-at-oneida-1 | 2024-03-20 | Holy Week at Oneida | 10 | b | No | REDIRECT | `/events/` 2024 Holy Week flyer; same condition (Easter section) |
 | meeting-with-god | 2024-04-04 | MEETING WITH GOD | 110 | b | No | REDIRECT | `/get-connected/groups/` 2024 five-week adult Sunday School class; Adult Elective on Groups |
-| we-are-hiring | 2024-04-23 | We Are Hiring | 38 | d | No | REDIRECT | `/about/jobs/` (pending) 2024 custodian opening; Jobs page (pending) answers "jobs at Oneida", though the role differs (borderline; 404 also defensible) |
+| we-are-hiring | 2024-04-23 | We Are Hiring | 38 | d | No | REDIRECT | `/about/jobs/` 2024 custodian opening; Jobs page answers "jobs at Oneida", though the role differs (borderline; 404 also defensible) |
 | vbs-2024-june-25-27 | 2024-04-24 | VBS 2024 - June 25-27 | 5 | b | No | REDIRECT | `/kids-and-families/` VBS 2024; VBS section with 2027 dates |
 | breakfast-flowers | 2024-05-07 | Breakfast & Flowers - May 22 @ 9 AM | 0 (flyer) | a | No | LET 404 | One-off 2024 breakfast and flower-shopping outing |
-| festival-of-prayer-june-2-6-pm | 2024-05-18 | Festival of Prayer, June 2, 6 PM | 149 | a | Partly | REDIRECT | `/get-connected/prayer/` (pending) 2024 corporate prayer night; prayer page (pending) covers church-wide seasons of prayer |
+| festival-of-prayer-june-2-6-pm | 2024-05-18 | Festival of Prayer, June 2, 6 PM | 149 | a | Partly | REDIRECT | `/get-connected/prayer/` 2024 corporate prayer night; Prayer page covers church-wide seasons of prayer |
 | picnic-time | 2024-06-29 | Picnic Time | 24 | a | No | LET 404 | 2024 fifth-Sunday picnic |
 | ministry-fair-september-8 | 2024-08-26 | Ministry Fair - September 8 | 51 | b | No | REDIRECT | `/events/` 2024 Ministry Fair; yearly section on /events/ |
 | new-adult-elective-on-sunday-mornings-at-9-15-am | 2024-08-28 | Adult Elective on Sunday mornings at 9:15 AM | 114 | b | No | REDIRECT | `/get-connected/groups/` 2024 adult elective; Adult Elective on Groups |
@@ -182,31 +181,28 @@ womens-new-year-breakfast); see Decisions for Chris.
 /post/relationships-made-whole                                                /watch-and-listen/            301
 ```
 
-**Targets not ready yet.** Drop the matching lines at cutover if any of these
-is still missing; the posts then fall back to 404.
-- `/about/jobs/` and `/get-connected/prayer/` are added by the
-  restore-Wix-sections change, not yet on `main`.
-- The five Easter and Holy Week posts (easter-egg-hunt,
-  easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults,
-  holy-week-at-oneida, holy-week-at-oneida-1 and easter-services-2026) assume
-  a yearly Easter section on `/events/` (already in that page's needs).
-- The two Christmas Tea posts (women-s-christmas-tea and
-  women-s-christmas-tea-and-crafting-december-15) go wherever the Tea line
-  actually lands: `/get-connected/women/` or `/events/`. The lines above
-  assume Women; change both targets if it goes on `/events/`.
-- The six sermon-series posts (relationships-made-whole,
-  christmas-advent-series-god-with-us,
-  a-whole-new-work-god-s-vision-from-isaiah, fall-sermon-series,
-  exciting-sequel-to-jesus-life and
-  philippians-series-beginning-february-2-2025) depend on the series archive
-  on `/watch-and-listen/`. Drop them at cutover if the archive doesn't exist
-  yet.
+**What's in `public/_redirects` now.** 25 of the 51 lines above. The other
+26 are held back, and those posts return 404 until they're added:
+- **Waiting on Chris** (Decisions for Chris below): the 9 adult Sunday
+  School posts, leap-day-lunch, womens-new-year-breakfast,
+  festival-of-prayer-june-2-6-pm and we-are-hiring.
+- **Waiting on a section of a page:**
+  - the five Easter and Holy Week posts (easter-egg-hunt,
+    easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults,
+    holy-week-at-oneida, holy-week-at-oneida-1 and easter-services-2026)
+    need a yearly Easter section on `/events/`;
+  - the two Christmas Tea posts (women-s-christmas-tea and
+    women-s-christmas-tea-and-crafting-december-15) go wherever the Tea line
+    lands, `/get-connected/women/` or `/events/`;
+  - the six sermon-series posts (relationships-made-whole,
+    christmas-advent-series-god-with-us,
+    a-whole-new-work-god-s-vision-from-isaiah, fall-sermon-series,
+    exciting-sequel-to-jesus-life and
+    philippians-series-beginning-february-2-2025) need the series archive on
+    `/watch-and-listen/`.
 
-Only the `seo-discoverability` branch (PR #18) adds the check that each
-`_redirects` target page exists (in `scripts/check-links.mjs`); `npm run
-verify` on `main` doesn't check redirect targets. These redirects must not land
-before PR #18 merges. Even then, the check can't tell whether a section exists
-on a page.
+`npm run verify` checks that each target page exists, but it can't tell
+whether a section exists on a page.
 
 ## Posts worth keeping as content
 
