@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import ShareButton from '../../components/ShareButton.astro';
-import { eventWhen, upcoming } from '../../lib/content';
+import { eventWhen, upcoming, truncate } from '../../lib/content';
 import AddToCalendar from '../../components/AddToCalendar.astro';
 import { site, streetAddress, telHref } from '../../lib/site';
 import { eventJsonLd } from '../../lib/structured-data.ts';
@@ -27,7 +27,7 @@ const jsonLd = event
   : [];
 ---
 
-<Base title={title} description={description ?? summary} jsonLd={jsonLd}>
+<Base title={title} description={description ?? (summary && truncate(summary, 160))} jsonLd={jsonLd}>
   <PageHead title={title} eyebrow="Events" />
   <section class="section">
     <div class="container prose event">

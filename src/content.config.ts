@@ -104,7 +104,7 @@ const pages = defineCollection({
     title: z.string().min(1),
     // The full browser-tab and search-result title, when it should say more
     // than "Title | Oneida Gospel Church" (approved keyword map, 2026-11-14).
-    seoTitle: z.string().max(60, 'seoTitle: 60 characters max; search results cut longer ones').optional(),
+    seoTitle: z.string().min(1).max(60, 'seoTitle: 60 characters max; search results cut longer ones').optional(),
     eyebrow: z.string().optional(),
     intro: z.string().optional(),
     description: z.string().max(160, 'description: 160 characters max (aim for 120–155); search results cut longer ones').optional(),
