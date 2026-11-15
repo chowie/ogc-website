@@ -10,6 +10,7 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "review": "review-layer",
     "astro": "astro",
     "sermons:import": "node scripts/import-sermons.mjs",
     "test": "node --test tests/*.test.ts",
@@ -20,7 +21,9 @@
     "@astrojs/markdown-satteri": "0.4.6",
     "@astrojs/sitemap": "3.7.4",
     "@fontsource-variable/unbounded": "^5.3.0",
-    "astro": "^7.4.3"
+    "@netlify/blobs": "^11.1.9",
+    "astro": "^7.4.3",
+    "review-layer": "github:chowie/review-layer#v0.1.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
