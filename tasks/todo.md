@@ -226,9 +226,44 @@ Chris's 5-phase brief. Phase 1 inventory approved. See docs/seo-audit.md
       logo concepts (5 options) pending Chris's pick.
 - [x] Demo banner on every page plus llms.txt note (demo, not the official site)
 - [x] Phone format is now (517) 627-7112 everywhere
-- [ ] After sign-off: titles, descriptions (keyword map), facts from site.json
-- [ ] Before go-live: hide demo badges/notices when indexing is on; add the
-      cutover redirects; favicon/logo; push the branch and open a PR (Chris's OK)
+- [x] Merged as PR #18 (2026-11-14), then #19 (restored Wix sections) and
+      #20 (blog-post audit).
+- [x] Cutover redirects: 27 Wix pages + 25 blog posts, with check-links
+      guards for duplicate sources and sources that are real pages → PR #21
+      (merged 2026-11-15). Held back for Chris: Sunday School ×9, leap-day-lunch,
+      womens-new-year-breakfast, festival-of-prayer, we-are-hiring, reading
+      plan, `/blog-feed.xml` (recommended: 404).
+- [x] Titles and descriptions from the approved keyword map (Chris approved
+      in Notion, 2026-11-14): `seoTitle` ≤ 60, `description` ≤ 160, plus a
+      test that times in descriptions match site.json → PR #22 (merged
+      2026-11-15).
+- [ ] Before go-live: hide demo badges/notices when indexing is on;
+      favicon/logo (Chris picking; round 4 adds terracotta seals)
+
+## Review system (2026-11-14, plan approved)
+Chris wants reviewers to comment on the demo (point at a section, element or
+highlighted text), with comments becoming a to-do list whose items jump to
+the content. Decided: our own build on Netlify Functions + Blobs; shared link
++ passcode, no accounts; only Chris closes items; off at go-live. Built as a
+reusable public package, `chowie/review-layer` (local checkout
+`~/Documents/projects/review-layer`). Plan:
+`~/.claude/plans/zazzy-munching-aurora.md`.
+- [x] review-layer v0.1.0 (tagged a40f53d): API handler, memory + Blobs
+      stores, seed merge, anchor matching, CLI; 16 tests
+- [x] PR #23 (merged 2026-11-15): the API as `netlify/functions/review.mjs`;
+      build-release.sh ships the tag's functions and node_modules. Reviewed,
+      all threads resolved, preview passing
+- [ ] **Chris:** set `REVIEW_PASSCODE` and `REVIEW_ADMIN_PASSCODE` in Netlify
+      (Functions scope, all deploy contexts); they apply on the next deploy
+- [ ] Verify on the next deploy preview after that: curl (401 / 403 / 201)
+      and `REVIEW_URL=https://deploy-preview-<n>--ogc-website.netlify.app npm run review -- list`.
+      Production gets the API only with the next release.
+- [ ] review-layer v0.2.0: in-page overlay, search-listing panel, to-do list
+      UI, `?review=<id>` deep links, per-page index (review-layer#1)
+- [ ] ogc PR B: loader + banner link, `/review` page, `seed.json` from
+      `needs:`, rewritten sections and `src/data/review-items.ts` (move the
+      interim "Content review" list in), `NOT_IN_SITEMAP`, check-links guard,
+      README "Reviewing the demo", CLAUDE.md rules, CHANGELOG
 
 ## Review
 ### Phase 1 (2026-10-28)
@@ -247,17 +282,25 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
-2026-11-13: PRs #1–#16 merged and released as v0.2.0, now live (still noindex).
-Production builds the newest release tag, so later merges to main publish
-nothing until Chris runs `npm run release`. Demo URL:
-https://ogc-website.netlify.app
+2026-11-15: PRs #1–#23 merged (v0.2.0 is live at
+https://ogc-website.netlify.app, still noindex; later merges publish nothing
+until Chris runs `npm run release`). Waiting on Chris to set the two review
+passcodes (the API answers 404 until then). Next for Claude: verify the API
+on a deploy preview once the passcodes are set, then review-layer v0.2.0 and ogc PR B (see "Review
+system").
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
 Chris merges (see CLAUDE.md). Exception: the sermon import's bot PRs merge
 themselves after `npm run verify`. Independent PRs can run in parallel
 worktrees (plan and retro in .claude/orchestration/, git-ignored); a PR that
 depends on an open PR waits until that one merges.
-Next candidates: the Plan Your Visit itinerary idea (needs Chris's
-refinement first; see the research task above) and real content from the
-`needs:` lists (see /content-status).
-Still open from the content rewrite: pastor tenure, the membership class
-steps, the hero photo. Re-shoot docs/screenshots/ after visual changes.
+Content needing confirmation goes on the content review list (interim list
+above, then the review system's seeds), in the same PR as the content.
+Chris's open decisions: the Home and Our Beliefs descriptions (separate
+step), the held-back blog posts and `/blog-feed.xml`, Give page missionary
+blurbs vs the verbatim Missions page, and the logo (artifact
+https://claude.ai/artifact/11Wg1B8iijCzXci8gHmocH, round 4).
+Other candidates: the Plan Your Visit itinerary idea (needs Chris's
+refinement first) and real content from the `needs:` lists (see
+/content-status). Still open from the content rewrite: pastor tenure, the
+membership class steps, the hero photo. Re-shoot docs/screenshots/ after
+visual changes.

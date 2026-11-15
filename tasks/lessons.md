@@ -12,6 +12,16 @@ are in CLAUDE.md's Gotchas section.
 - **Run a command before documenting it** (2026-11-12): a documented one-liner
   parsed `ls` output, and `ls` is aliased with color codes in Chris's shell,
   so the path broke. Use a glob (`printf '%s\n' dir/v22.*`) or `command ls`.
+- **Production functions come from main's checkout** (2026-11-14): Netlify
+  bundles `netlify/functions` from the clone it built in, not from the tag
+  build-release.sh builds, so the script must copy in the tag's functions
+  *and* node_modules. Any new build-time input needs the same check.
+- **Kill switches fail closed on a variable we control** (2026-11-14):
+  `PUBLIC_ALLOW_INDEXING` may not reach the Functions scope, so the review
+  API is off whenever its passcode is unset, not only when indexing is on.
+- **Test fact checks against real copy first** (2026-11-14): the first
+  description test failed on "9:30" without "a.m."; run new content tests
+  against every file before trusting the rule, and prove they catch a change.
 
 ## Verbatim quotes: don't carry the source's typos onto the website (2026-11-12)
 Quoting the Operating Procedures word for word kept "To BEcome", and Chris
