@@ -323,10 +323,12 @@ The same switch ends the demo. A go-live build drops the demo banner, the
 monitored" notices, the footer's placeholder policy line and
 `/content-status`. Because nothing is labelled any more, **the go-live build
 stops if any section is still a placeholder** and lists each one
-(`/contact#office-hours: Office Hours`); replace that copy and change its
-`status`, then redeploy. "Draft copy" sections don't stop it, so sign them
-off first. Before turning it on, also make sure someone receives the form
-submissions (Netlify → Forms → notifications).
+(`/contact#office-hours`); replace that copy and change its
+`status`, then redeploy. Once the live site is indexed, `npm run release`
+runs the same check before tagging, so a release can't fail on Netlify.
+"Draft copy" sections don't stop it, so sign them off first. Before turning
+it on, also make sure someone receives the form submissions (Netlify →
+Forms → notifications).
 
 Canonical URLs and the sitemap (`/sitemap-index.xml`, dated from each page's
 last commit) use the site's primary domain. Netlify passes it to the build as

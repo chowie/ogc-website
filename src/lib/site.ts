@@ -34,3 +34,7 @@ export const telHref = `tel:+1${site.phone.replace(/\D/g, '')}`;
 // Demo stays out of search engines until PUBLIC_ALLOW_INDEXING=true is set
 // in the Netlify environment at go-live.
 export const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
+
+// The same switch ends the demo: banner, badges, Source notes, form notices
+// and /content-status show only while isDemo.
+export const isDemo = !allowIndexing;

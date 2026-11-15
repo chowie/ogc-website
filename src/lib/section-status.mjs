@@ -155,12 +155,3 @@ export function sectionStatusPlugin({ demoLabels = true } = {}) {
   };
 }
 
-/**
- * The go-live build drops every demo label, so a placeholder would read as
- * real copy. Returns one line per placeholder left ("/contact#map: Map"), from
- * the sections that getContentStatus() lists; the go-live build stops if any.
- * @param {{ url: string, sections: { url: string, title: string, origin: Origin }[] }[]} pages
- */
-export function goLiveBlockers(pages) {
-  return pages.flatMap((p) => p.sections.filter((s) => s.origin.status === 'placeholder').map((s) => `${s.url}: ${s.title}`));
-}

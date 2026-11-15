@@ -1,33 +1,52 @@
 ---
 // Demo aid, not in the menu: every page and section, whether its copy is
 // real, rewritten from the old site (needs review) or a placeholder, and
-// what's still needed, and where each section's copy came from.
-//
-// At go-live (PUBLIC_ALLOW_INDEXING=true) the page isn't built, and the build
-// stops if any section is still a placeholder: with the demo labels gone,
-// made-up copy would read as real.
+// what's still needed, and where each section's copy came from. Built from
+// the pages collection's frontmatter. Demo only: not built at go-live.
+import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
+import { nav } from '../../data/nav';
+import { slugify, STATUS_LABELS, hasLeadCopy } from '../../lib/section-status.mjs';
 import OriginNote from '../../components/OriginNote.astro';
-import { allowIndexing } from '../../lib/site';
-import { getContentStatus, type ContentStatus } from '../../lib/content-status';
-import { slugify, STATUS_LABELS, goLiveBlockers } from '../../lib/section-status.mjs';
+import { isDemo } from '../../lib/site';
 
-export async function getStaticPaths() {
-  const pages = await getContentStatus();
-  if (!allowIndexing) return [{ params: { demo: undefined }, props: { pages } }];
-  const blockers = goLiveBlockers(pages);
-  if (blockers.length) {
-    throw new Error(
-      `Go-live build stopped: ${blockers.length} section(s) are still placeholders. ` +
-        `Replace them with real copy (and update their status), or leave PUBLIC_ALLOW_INDEXING unset:\n  ${blockers.join('\n  ')}`,
-    );
-  }
-  return [];
+export function getStaticPaths() {
+  return isDemo ? [{ params: { demo: undefined } }] : [];
 }
 
-const { pages } = Astro.props as { pages: ContentStatus };
 const label = (s: string) => STATUS_LABELS[s as keyof typeof STATUS_LABELS];
+// Sections an .astro page adds (SectionHeading) appear only in frontmatter.
+const titleFromId = (id: string) => id.charAt(0).toUpperCase() + id.slice(1).replaceAll('-', ' ');
+
+// Menu order first, then anything else.
+const order = nav.flatMap((item) => [item.href, ...item.children.map((c) => c.href)]);
+const rank = (url: string) => {
+  const i = order.indexOf(url);
+  return i === -1 ? order.length : i;
+};
+
+const pages = await Promise.all(
+  (await getCollection('pages')).map(async (entry) => {
+    const { headings } = await render(entry);
+    const url = entry.id === 'index' ? '/' : `/${entry.id}`;
+    const fromMarkdown = headings
+      .filter((h) => h.depth === 2)
+      .map((h) => ({ id: h.slug, title: h.text, origin: entry.data.sections[h.slug] ?? entry.data.origin }));
+    const fromPage = Object.entries(entry.data.sections)
+      .filter(([id]) => !fromMarkdown.some((s) => s.id === id))
+      .map(([id, origin]) => ({ id, title: titleFromId(id), origin }));
+    // Section keys link to their anchors, so check-links fails on a key that
+    // matches no heading (a typo, or a renamed heading).
+    const sections = [...fromPage, ...fromMarkdown].map((s) => ({ ...s, url: `${url}#${s.id}` }));
+    // The page's own origin covers its intro and any copy before the first section.
+    if (hasLeadCopy(entry.body, entry.data.intro) || !sections.length) {
+      sections.unshift({ id: '', title: 'Introduction', url, origin: entry.data.origin });
+    }
+    return { entry, url, sections };
+  }),
+);
+pages.sort((a, b) => rank(a.url) - rank(b.url));
 
 const counts = { real: 0, rewritten: 0, placeholder: 0 } as Record<string, number>;
 for (const p of pages) {

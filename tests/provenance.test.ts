@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { describeOrigin, originText, formatDate, originFor, hasLeadCopy, sectionStatusPlugin, goLiveBlockers } from '../src/lib/section-status.mjs';
+import { describeOrigin, originText, formatDate, originFor, hasLeadCopy, sectionStatusPlugin } from '../src/lib/section-status.mjs';
 
 const on = new Date('2026-11-12');
 
@@ -72,15 +72,4 @@ test('the go-live build keeps section ids but adds no demo labels', () => {
   const { id, inserted } = visitHeading({ demoLabels: false });
   assert.equal(id, 'our-story');
   assert.deepEqual(inserted, []);
-});
-
-test('go-live is blocked by every placeholder section, and only by those', () => {
-  const section = (url: string, title: string, status: string) => ({ url, title, origin: { status } });
-  const pages = [
-    { url: '/contact', sections: [section('/contact#map', 'Map', 'placeholder'), section('/contact#office', 'Office', 'real')] },
-    { url: '/give', sections: [section('/give', 'Introduction', 'rewritten')] },
-    { url: '/', sections: [section('/#welcome', 'Welcome', 'placeholder')] },
-  ];
-  assert.deepEqual(goLiveBlockers(pages), ['/contact#map: Map', '/#welcome: Welcome']);
-  assert.deepEqual(goLiveBlockers([pages[1]]), []);
 });

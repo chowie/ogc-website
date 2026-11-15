@@ -4,8 +4,12 @@
 //   npm run release -- patch|minor|major|X.Y.Z [--dry-run]
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
+import { findPlaceholders, placeholderMessage } from '../src/lib/go-live.mjs';
 
 const REPO = 'https://github.com/chowie/ogc-website';
+// The live site. After the domain move Netlify redirects this to the primary
+// domain, and fetch follows.
+const LIVE = 'https://ogc-website.netlify.app/';
 // Release versions only: pre-release (-rc.1) and build (+sha) versions never go live.
 const SEMVER = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 
@@ -70,6 +74,19 @@ try {
   run('npm', 'run', 'verify');
 } catch {
   fail('verify failed; nothing was changed');
+}
+
+// Once the live site is indexed (go-live), Netlify's production build stops
+// on placeholder copy, and that would only show after the tag is pushed.
+// Catch it here. The demo says noindex in a header and a meta tag (older
+// releases only in the meta tag). If the site can't be reached, assume it's
+// indexed.
+const indexed = await fetch(LIVE)
+  .then(async (r) => !/noindex/i.test(r.headers.get('x-robots-tag') ?? '') && !/<meta name="robots" content="[^"]*noindex/i.test(await r.text()))
+  .catch(() => true);
+if (indexed) {
+  const blockers = findPlaceholders();
+  if (blockers.length) fail(`the live site is indexed, so this release would fail to deploy. ${placeholderMessage(blockers)}`);
 }
 
 writeFileSync('CHANGELOG.md', updated);
