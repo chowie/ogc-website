@@ -156,7 +156,7 @@ Each needs one plain, quotable sentence on Plan Your Visit, for example
 "Most people wear ___; you're welcome however you come." See question 5.
 
 **Plan-link URL format:** the Plan Your Visit itinerary feature isn't built
-(it's a research task in Notion), so there's no plan link to document yet.
+(a later-phase idea, still a research task in Notion), so there's no plan link to document yet.
 
 ---
 
