@@ -21,6 +21,8 @@ section into the new version.
   structured data (church, events, breadcrumbs) and `/llms.txt`.
 - A banner on every page saying this is a demo, with a link to the church's
   official website.
+- Addresses from the current website (27 pages and 25 blog posts) will
+  redirect to their new pages once oneidagospel.org moves to this site.
 
 ### Changed
 

@@ -3,9 +3,8 @@
 Audit of all 66 posts in the Wix blog sitemap (www.oneidagospel.org, checked
 2026-11-13). This decides, for each old `/post/<slug>` URL, whether it gets a
 301 redirect to a page on the new site, becomes content on the new site, or is
-left to return 404. Nothing here is live yet. The `_redirects` lines go into
-`docs/redirect-map.md` and `public/_redirects` once the SEO work
-(`seo-discoverability`) is merged, since those files live on that branch.
+left to return 404. The ready `_redirects` lines are in `public/_redirects`
+(see below); they take effect once the domain moves.
 
 22 posts are flyer images with no body text. Their dates and details were read
 from the images.
@@ -93,10 +92,10 @@ womens-new-year-breakfast); see Decisions for Chris.
 | easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults | 2024-03-20 | EASTER EGG HUNT AT NOON ON 3/24/24 - Coffee and refreshments for adults | 0 (flyer) | b | No | REDIRECT | `/events/` 2024 egg hunt; same condition (Easter section) |
 | holy-week-at-oneida-1 | 2024-03-20 | Holy Week at Oneida | 10 | b | No | REDIRECT | `/events/` 2024 Holy Week flyer; same condition (Easter section) |
 | meeting-with-god | 2024-04-04 | MEETING WITH GOD | 110 | b | No | REDIRECT | `/get-connected/groups/` 2024 five-week adult Sunday School class; Adult Elective on Groups |
-| we-are-hiring | 2024-04-23 | We Are Hiring | 38 | d | No | REDIRECT | `/about/jobs/` (pending) 2024 custodian opening; Jobs page (pending) answers "jobs at Oneida", though the role differs (borderline; 404 also defensible) |
+| we-are-hiring | 2024-04-23 | We Are Hiring | 38 | d | No | REDIRECT? | `/about/jobs/` 2024 custodian opening; Jobs page answers "jobs at Oneida", though the role differs (borderline; 404 also defensible) (held: decision for Chris) |
 | vbs-2024-june-25-27 | 2024-04-24 | VBS 2024 - June 25-27 | 5 | b | No | REDIRECT | `/kids-and-families/` VBS 2024; VBS section with 2027 dates |
 | breakfast-flowers | 2024-05-07 | Breakfast & Flowers - May 22 @ 9 AM | 0 (flyer) | a | No | LET 404 | One-off 2024 breakfast and flower-shopping outing |
-| festival-of-prayer-june-2-6-pm | 2024-05-18 | Festival of Prayer, June 2, 6 PM | 149 | a | Partly | REDIRECT | `/get-connected/prayer/` (pending) 2024 corporate prayer night; prayer page (pending) covers church-wide seasons of prayer |
+| festival-of-prayer-june-2-6-pm | 2024-05-18 | Festival of Prayer, June 2, 6 PM | 149 | a | Partly | REDIRECT? | `/get-connected/prayer/` 2024 corporate prayer night; Prayer page covers church-wide seasons of prayer (held: decision for Chris) |
 | picnic-time | 2024-06-29 | Picnic Time | 24 | a | No | LET 404 | 2024 fifth-Sunday picnic |
 | ministry-fair-september-8 | 2024-08-26 | Ministry Fair - September 8 | 51 | b | No | REDIRECT | `/events/` 2024 Ministry Fair; yearly section on /events/ |
 | new-adult-elective-on-sunday-mornings-at-9-15-am | 2024-08-28 | Adult Elective on Sunday mornings at 9:15 AM | 114 | b | No | REDIRECT | `/get-connected/groups/` 2024 adult elective; Adult Elective on Groups |
@@ -120,34 +119,22 @@ womens-new-year-breakfast); see Decisions for Chris.
 | work-day-may-16-9-30-am | 2026-04-30 | Work Day - May 16 - 9:30 AM | 10 | a | No | LET 404 | One-off May 2026 building work day |
 | family-camp-2026 | 2026-07-31 | Family Camp 2026 | 79 | b | Yes | REDIRECT | `/events/` Annual Family Camp; text already reused in the /events/ Family Camp section |
 | want-to-know-more-about-membership-1 | 2026-08-06 | Want to know more about Membership? | 189 | d | Yes | REDIRECT | `/about/membership/` Membership invite (2026); its text is the source of the Membership page. Linked from Wix /events and both Who Is Oneida posts |
-| women-s-fall-bible-study-1 | 2026-09-05 | Women's Fall Bible Study | 0 (flyer) | b | Yes | REDIRECT | `/events/womens-bible-study/` Current fall 2026 study (1 Corinthians, Wed 9:30); exact match. Linked from Wix home and /events |
+| women-s-fall-bible-study-1 | 2026-09-05 | Women's Fall Bible Study | 0 (flyer) | b | Yes | REDIRECT | `/get-connected/women/` Fall 2026 study (1 Corinthians, Wed 9:30); Women page. Not the event page, which ends with the study. Linked from Wix home and /events |
 | copy-of-join-us-at-trunk-or-treat-and-compete-on-october-27th | 2026-09-30 | Join us at Trunk or Treat and Compete! on October 25th | 0 (flyer) | b | No | REDIRECT | `/events/` Trunk or Treat 2026 (Oct 25, now past); yearly section on /events/. Linked from Wix home and /events |
 | who-is-oneida-1 | 2026-10-20 | WHO IS ONEIDA? | 67 | d | Yes | REDIRECT | `/about/membership/` Who Is Oneida? class Nov 15 2026; not the event page, which expires Nov 15. Linked from Wix home and /events |
 
-## Proposed `_redirects` lines
+## `_redirects` lines
+
+The 25 ready lines live only in `public/_redirects`, so there's one copy to
+edit. The 26 below are held back (reasons in the next section); move each into
+`public/_redirects` once its decision or target section is settled.
 
 ```
-# Blog posts → the matching program or yearly-tradition page
 /post/we-are-hiring                                                           /about/jobs/                  301
-/post/want-to-know-more-about-membership                                      /about/membership/            301
-/post/want-to-know-more-about-membership-1                                    /about/membership/            301
-/post/who-is-oneida                                                           /about/membership/            301
-/post/who-is-oneida-1                                                         /about/membership/            301
-/post/happy-anniversary                                                       /about/story/                 301
-/post/advent-at-oneida-gospel                                                 /events/                      301
-/post/christmas-at-oneida                                                     /events/                      301
-/post/christmas-eve-candlelight-service                                       /events/                      301
-/post/christmas-eve-candlelight-service-2-1                                   /events/                      301
-/post/christmas-eve-services                                                  /events/                      301
-/post/copy-of-join-us-at-trunk-or-treat-and-compete-on-october-27th           /events/                      301
 /post/easter-egg-hunt                                                         /events/                      301
 /post/easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults   /events/                      301
-/post/family-camp-2026                                                        /events/                      301
 /post/holy-week-at-oneida                                                     /events/                      301
 /post/holy-week-at-oneida-1                                                   /events/                      301
-/post/ministry-fair-september-8                                               /events/                      301
-/post/trunk-or-treat-and-compete                                              /events/                      301
-/post/women-s-fall-bible-study-1                                              /events/womens-bible-study/   301
 /post/adult-and-children-s-sunday-school-resumes                              /get-connected/groups/        301
 /post/light-in-the-darkness                                                   /get-connected/groups/        301
 /post/meeting-with-god                                                        /get-connected/groups/        301
@@ -157,21 +144,10 @@ womens-new-year-breakfast); see Decisions for Chris.
 /post/sunday-school-four-weeks-of-christmas                                   /get-connected/groups/        301
 /post/ten-essential-christian-truths-meeting-on-sundays-at-9-15-am            /get-connected/groups/        301
 /post/what-is-a-healthy-church                                                /get-connected/groups/        301
-/post/men-s-fall-bible-study-2-corinthians                                    /get-connected/men/           301
-/post/men-s-study-resumes                                                     /get-connected/men/           301
 /post/festival-of-prayer-june-2-6-pm                                          /get-connected/prayer/        301
 /post/leap-day-lunch                                                          /get-connected/women/         301
-/post/women-s-bible-study-prayer                                              /get-connected/women/         301
-/post/women-s-bible-study-starting-february-15-2023                           /get-connected/women/         301
-/post/women-s-bible-study-starting-october-3-2024                             /get-connected/women/         301
 /post/women-s-christmas-tea-and-crafting-december-15                          /get-connected/women/         301
-/post/women-s-fall-bible-study                                                /get-connected/women/         301
-/post/women-s-spring-bible-study                                              /get-connected/women/         301
 /post/womens-new-year-breakfast                                               /get-connected/women/         301
-/post/teen-talk                                                               /kids-and-families/           301
-/post/vbs-2024-june-25-27                                                     /kids-and-families/           301
-/post/vbs-2026                                                                /kids-and-families/           301
-# KEEP AS CONTENT posts → where the migrated content lives
 /post/easter-services-2026                                                    /events/                      301
 /post/women-s-christmas-tea                                                   /get-connected/women/         301
 /post/a-whole-new-work-god-s-vision-from-isaiah                               /watch-and-listen/            301
@@ -182,31 +158,27 @@ womens-new-year-breakfast); see Decisions for Chris.
 /post/relationships-made-whole                                                /watch-and-listen/            301
 ```
 
-**Targets not ready yet.** Drop the matching lines at cutover if any of these
-is still missing; the posts then fall back to 404.
-- `/about/jobs/` and `/get-connected/prayer/` are added by the
-  restore-Wix-sections change, not yet on `main`.
-- The five Easter and Holy Week posts (easter-egg-hunt,
-  easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults,
-  holy-week-at-oneida, holy-week-at-oneida-1 and easter-services-2026) assume
-  a yearly Easter section on `/events/` (already in that page's needs).
-- The two Christmas Tea posts (women-s-christmas-tea and
-  women-s-christmas-tea-and-crafting-december-15) go wherever the Tea line
-  actually lands: `/get-connected/women/` or `/events/`. The lines above
-  assume Women; change both targets if it goes on `/events/`.
-- The six sermon-series posts (relationships-made-whole,
-  christmas-advent-series-god-with-us,
-  a-whole-new-work-god-s-vision-from-isaiah, fall-sermon-series,
-  exciting-sequel-to-jesus-life and
-  philippians-series-beginning-february-2-2025) depend on the series archive
-  on `/watch-and-listen/`. Drop them at cutover if the archive doesn't exist
-  yet.
+**Why they're held back.** These posts return 404 until their line is added:
+- **Waiting on Chris** (Decisions for Chris below): the 9 adult Sunday
+  School posts, leap-day-lunch, womens-new-year-breakfast,
+  festival-of-prayer-june-2-6-pm and we-are-hiring.
+- **Waiting on a section of a page:**
+  - the five Easter and Holy Week posts (easter-egg-hunt,
+    easter-egg-hunt-at-noon-on-3-24-24-coffee-and-refreshments-for-adults,
+    holy-week-at-oneida, holy-week-at-oneida-1 and easter-services-2026)
+    need a yearly Easter section on `/events/`;
+  - the two Christmas Tea posts (women-s-christmas-tea and
+    women-s-christmas-tea-and-crafting-december-15) go wherever the Tea line
+    lands, `/get-connected/women/` or `/events/`;
+  - the six sermon-series posts (relationships-made-whole,
+    christmas-advent-series-god-with-us,
+    a-whole-new-work-god-s-vision-from-isaiah, fall-sermon-series,
+    exciting-sequel-to-jesus-life and
+    philippians-series-beginning-february-2-2025) need the series archive on
+    `/watch-and-listen/`.
 
-Only the `seo-discoverability` branch (PR #18) adds the check that each
-`_redirects` target page exists (in `scripts/check-links.mjs`); `npm run
-verify` on `main` doesn't check redirect targets. These redirects must not land
-before PR #18 merges. Even then, the check can't tell whether a section exists
-on a page.
+`npm run verify` checks that each target page exists, but it can't tell
+whether a section exists on a page.
 
 ## Posts worth keeping as content
 
@@ -228,8 +200,8 @@ on a page.
 
 - **Who Is Oneida? posts** go to `/about/membership/`, not the
   2026-11-15 event page, which disappears once that event passes.
-- **Older women's Bible study posts** go to `/get-connected/women/`. Only the
-  current fall 2026 post points at `/events/womens-bible-study/`.
+- **All women's Bible study posts** go to `/get-connected/women/`, including
+  the current fall 2026 one: `/events/womens-bible-study/` ends with the study.
 - **The post count is 66, not 64.**
 
 ## Decisions for Chris
@@ -239,7 +211,7 @@ on a page.
 - Judgment calls: three one-off events (`a`) get a 301 because a page covers
   the same program. Should leap-day-lunch and womens-new-year-breakfast point
   at Women, which lists the monthly breakfast or lunch, and
-  festival-of-prayer-june-2-6-pm at the pending prayer page, or should they
+  festival-of-prayer-june-2-6-pm at the Prayer page, or should they
   404 like other one-offs?
 - **we-are-hiring** was a custodian job, and the Jobs page is for an Associate
   Pastor. Should it 301 to Jobs, or 404?
