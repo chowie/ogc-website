@@ -85,7 +85,8 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    processor: satteri({ hastPlugins: [sectionStatusPlugin] }),
+    // Section ids always; demo badges and "Source" notes only until go-live.
+    processor: satteri({ hastPlugins: [() => sectionStatusPlugin({ demoLabels: !allowIndexing })] }),
   },
   // Redirects live in public/_redirects (real HTTP 301s on Netlify).
 });

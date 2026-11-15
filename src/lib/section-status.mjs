@@ -127,8 +127,10 @@ export function sectionMeta(origin, label) {
  * Sätteri (Astro 7's Markdown processor) HAST plugin, created once per file.
  * Runs before Astro's own heading-id plugin, which keeps an id that's already
  * set. A repeated heading gets -1, -2… so ids stay unique.
+ * `demoLabels: false` (the go-live build) keeps the ids but adds no badge or
+ * "Source" note.
  */
-export function sectionStatusPlugin() {
+export function sectionStatusPlugin({ demoLabels = true } = {}) {
   const seen = new Map();
   return {
     name: 'section-status',
@@ -146,9 +148,19 @@ export function sectionStatusPlugin() {
         }
         // Only pages declare an origin (the schema requires it there); other
         // collections (team bios, sermons) never get badges.
-        if (!frontmatter.origin) return;
+        if (!frontmatter.origin || !demoLabels) return;
         ctx.insertAfter(node, sectionMeta(originFor(frontmatter, id), ctx.textContent(node)));
       },
     },
   };
+}
+
+/**
+ * The go-live build drops every demo label, so a placeholder would read as
+ * real copy. Returns one line per placeholder left ("/contact#map: Map"), from
+ * the sections that getContentStatus() lists; the go-live build stops if any.
+ * @param {{ url: string, sections: { url: string, title: string, origin: Origin }[] }[]} pages
+ */
+export function goLiveBlockers(pages) {
+  return pages.flatMap((p) => p.sections.filter((s) => s.origin.status === 'placeholder').map((s) => `${s.url}: ${s.title}`));
 }

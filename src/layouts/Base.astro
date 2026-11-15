@@ -149,7 +149,8 @@ const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
       </div>
       <div class="container site-footer__base">
         <p>© {new Date().getFullYear()} {site.name}</p>
-        <p>Privacy and photo/video policy: <span class="status-badge status-badge--placeholder">Placeholder</span></p>
+        {/* Demo only: at go-live the line goes until a real policy is linked here. */}
+        {!allowIndexing && <p>Privacy and photo/video policy: <span class="status-badge status-badge--placeholder">Placeholder</span></p>}
       </div>
     </footer>
 
