@@ -317,12 +317,6 @@ finds linked elsewhere. At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
 Netlify site's environment variables and redeploy; the header and meta tag go
 away and robots.txt lists the sitemap.
 
-**Also at go-live: turn off review.** Delete `REVIEW_PASSCODE` and
-`REVIEW_ADMIN_PASSCODE` from the environment variables (export the comments
-first with `npm run review -- list --json`). The review API is off whenever
-`REVIEW_PASSCODE` is missing, so this works even if `PUBLIC_ALLOW_INDEXING`
-was only given the Builds scope.
-
 Canonical URLs and the sitemap (`/sitemap-index.xml`, dated from each page's
 last commit) use the site's primary domain. Netlify passes it to the build as
 `URL`, so once `www.oneidagospel.org` is the primary domain in Netlify, every

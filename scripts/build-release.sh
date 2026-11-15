@@ -14,20 +14,10 @@ if [ -z "$tag" ]; then
 fi
 echo "build-release: building $tag (main is at $(git rev-parse --short HEAD))"
 
-# Build in a separate checkout, then copy the tag's dist/, functions and
-# node_modules into the clone Netlify made (it publishes and bundles from there).
+# Build in a separate checkout so this script and the clone Netlify made stay untouched.
 dir=$(mktemp -d)
 trap 'git worktree remove --force "$dir"' EXIT
 git worktree add --quiet --detach "$dir" "$tag"
 (cd "$dir" && npm ci --no-audit --no-fund && npm run build)
 rm -rf dist
 cp -R "$dir/dist" dist
-# Netlify bundles functions from this checkout (main) after the build, so
-# swap in the tag's functions and the packages they import, or unreleased
-# function code or dependencies would go live.
-rm -rf netlify/functions node_modules
-mv "$dir/node_modules" node_modules
-if [ -d "$dir/netlify/functions" ]; then
-  mkdir -p netlify
-  cp -R "$dir/netlify/functions" netlify/functions
-fi
