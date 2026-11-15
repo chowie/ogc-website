@@ -77,6 +77,11 @@ const netlifyHeaders = {
 export default defineConfig({
   site: siteUrl,
   output: 'static',
+  // Astro caches rendered Markdown here and reuses it unless the config's
+  // plain values change; the plugin option below is a function, which it
+  // ignores. A separate folder per mode keeps a demo build's badges out of a
+  // go-live build (and the reverse).
+  cacheDir: allowIndexing ? './node_modules/.astro/go-live' : './node_modules/.astro',
   integrations: [
     netlifyHeaders,
     sitemap({
