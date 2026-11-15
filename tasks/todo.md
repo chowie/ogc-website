@@ -194,15 +194,7 @@ plain-language summary marked for elder review).
       calendar list; weekly events repeat. Locations include the church's
       street address (Chris), `address:` for off-site events, `until` is
       date-only. PR #15: merged 2026-11-13
-- [ ] Brainstorm, needs refinement before building (Chris, PR #11 comment):
-      a "Plan Your Visit mode". Clicking Plan Your Visit turns it on; while
-      the visitor browses, they can add things to a custom itinerary (e.g.
-      Sunday School for their kids, a class, talking to a specific person, or
-      meeting someone while they're there). Anything that involves a specific
-      person must reach the office so it can be coordinated. Open questions:
-      where the itinerary is kept, how it's sent (likely with the visit
-      form), and who receives and coordinates it. Tracked as a research task
-      in Chris's Notion Work Items.
+- [ ] Plan Your Visit mode: moved to "Later phases (TBD)" (Chris, 2026-11-15)
 - [x] Chris decided to release instead of demoing from a deploy preview:
       v0.2.0 released 2026-11-13 (c4c90f1, everything since v0.1.0: PRs
       #1–#16). Netlify's production deploy built c4c90f1 ("release: v0.2.0")
@@ -264,6 +256,21 @@ the passcodes, then continue below.
       `?review=<id>` deep links, review-layer#1), then ogc PR B (loader,
       `/review` page, `seed.json`, docs)
 
+## Later phases (TBD)
+Ideas Chris still wants, set aside on 2026-11-15 so the focus stays on
+finishing the website. Don't start these until Chris brings them back.
+- [ ] **Plan Your Visit mode** (Chris, PR #11 comment; needs refinement
+      before building). Clicking Plan Your Visit turns it on; while
+      the visitor browses, they can add things to a custom itinerary (e.g.
+      Sunday School for their kids, a class, talking to a specific person, or
+      meeting someone while they're there). Anything that involves a specific
+      person must reach the office so it can be coordinated. Open questions:
+      where the itinerary is kept, how it's sent (likely with the visit
+      form), and who receives and coordinates it. Tracked as a research task
+      in Chris's Notion Work Items.
+- [ ] **Review system:** see "Review system" above (branch
+      `feat/review-layer-integration`).
+
 ## Review
 ### Phase 1 (2026-10-28)
 Verified: `astro check` 0 errors; team sorts by displayOrder (missing → last);
@@ -297,8 +304,8 @@ Chris's open decisions: the Home and Our Beliefs descriptions (separate
 step), the held-back blog posts and `/blog-feed.xml`, Give page missionary
 blurbs vs the verbatim Missions page, and the logo (artifact
 https://claude.ai/artifact/11Wg1B8iijCzXci8gHmocH, round 4).
-Other candidates: the Plan Your Visit itinerary idea (needs Chris's
-refinement first) and real content from the `needs:` lists (see
+Later phases (TBD, don't start): the Plan Your Visit mode and the review
+system. Other candidates: real content from the `needs:` lists (see
 /content-status). Still open from the content rewrite: pastor tenure, the
 membership class steps, the hero photo. Re-shoot docs/screenshots/ after
 visual changes.
