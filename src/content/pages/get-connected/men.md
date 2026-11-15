@@ -1,5 +1,6 @@
 ---
 title: "Men"
+description: "Men at Oneida Gospel Church in Grand Ledge, MI meet to pray on Monday nights and study the Bible on Thursday nights, both at 6:30 p.m. Come join us."
 intro: "Prayer, Bible study, and time together for men at every stage."
 origin:
   status: rewritten

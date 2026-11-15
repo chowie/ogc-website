@@ -18,7 +18,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, eyebrow, intro, description, origin, sections, form } = entry.data;
+const { title, seoTitle, eyebrow, intro, description, origin, sections, form } = entry.data;
 
 const path = normalizePath(Astro.url.pathname);
 const section = sectionFor(path);
@@ -28,7 +28,7 @@ const onThisPage = section?.children.every((c) => c.href.includes('#'));
 const showPageOrigin = hasLeadCopy(entry.body, intro) || (!headings.some((h) => h.depth === 2) && !Object.keys(sections).length);
 ---
 
-<Base title={title} description={description ?? intro}>
+<Base title={title} seoTitle={seoTitle} description={description ?? intro}>
   <PageHead title={title} eyebrow={eyebrow ?? (section && section.href !== path ? section.label : undefined)} intro={intro} origin={showPageOrigin ? origin : undefined} />
   <div class="section">
     <div class:list={['container', { 'content-layout': section }]}>

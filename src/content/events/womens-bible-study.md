@@ -1,5 +1,6 @@
 ---
 title: "Women's Bible Study: Digging Deeper"
+description: "This fall, women meet Wednesdays at 9:30 a.m. to study 1 Corinthians alongside Andrew's Sunday series: learning God's Word and praying together."
 # First meeting; the site shows the next upcoming Wednesday.
 start: 2026-09-16T09:30:00-04:00
 repeat: weekly

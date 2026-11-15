@@ -1,5 +1,7 @@
 ---
 title: "Our Beliefs"
+seoTitle: "What We Believe · Oneida Gospel Church"
+description: "What Oneida Gospel Church, a non-denominational church in Grand Ledge, MI, believes: in plain words first, then our full statement of faith."
 intro: "What we believe, in plain words first, then in full."
 origin:
   status: rewritten

@@ -8,6 +8,8 @@ import { breadcrumbJsonLd, serialize } from '../lib/structured-data.ts';
 
 interface Props {
   title?: string;
+  /** The whole <title>, used as is (no " | Oneida Gospel Church" added). */
+  seoTitle?: string;
   description?: string;
   /** Keep this page out of search engines even after go-live. */
   noindex?: boolean;
@@ -15,8 +17,8 @@ interface Props {
   jsonLd?: Record<string, unknown>[];
 }
 
-const { title, description = site.tagline, noindex = false, jsonLd = [] } = Astro.props;
-const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const { title, seoTitle, description = site.tagline, noindex = false, jsonLd = [] } = Astro.props;
+const pageTitle = seoTitle ?? (title ? `${title} | ${site.name}` : site.name);
 
 const path = normalizePath(Astro.url.pathname);
 // Absolute, with the trailing slash Netlify serves pages at (/about/), so it

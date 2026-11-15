@@ -1,5 +1,6 @@
 ---
 title: "Serve"
+description: "Serve at Oneida Gospel Church in Grand Ledge, MI: greeting, kids, tech, hospitality and community projects, and how much time each team asks."
 intro: "Teams that need your gifts, and what each one asks of you."
 origin:
   status: placeholder

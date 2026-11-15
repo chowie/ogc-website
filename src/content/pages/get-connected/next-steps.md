@@ -1,5 +1,6 @@
 ---
 title: "Next Steps"
+description: "Visited Oneida Gospel Church a few times? Here's how to go from visitor to family: meet the pastor, join a group, serve and explore membership."
 intro: "You've visited a few times. Here's how to go from visitor to family."
 origin:
   status: placeholder

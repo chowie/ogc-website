@@ -32,6 +32,20 @@ tag, PRs = previews.
 - [x] GitHub: Chris's account (`chowie`) for now; church org later
 - [x] Netlify team: Funky Bunch (free)
 
+## Content review (interim list, 2026-11-14)
+Content that needs confirmation before go-live. Chris asked for this list on
+2026-11-14; it moves into the review system's seeded to-dos
+(`src/data/review-items.ts`) once that exists. Page copy that needs
+confirmation goes in the page's `needs:` instead.
+- [ ] **Home search description** (`src/content/pages/index.md`): "Oneida
+  Gospel Church in Grand Ledge, Michigan: a church family opening the Bible
+  together. Sunday worship is at 10:30 a.m. Come as you are." Check: is this
+  how the church wants to introduce itself in Google results?
+- [ ] **Our Beliefs search description** (`src/content/pages/about/beliefs.md`):
+  "What Oneida Gospel Church, a non-denominational church in Grand Ledge, MI,
+  believes: in plain words first, then our full statement of faith." Check:
+  leadership is happy with "non-denominational" as the label in search results.
+
 ## Phase 1 — Scaffold (no visual design, no real content)
 - [x] Astro project, `package.json`, tsconfig
 - [x] Content schema: team, sermons, events + site settings

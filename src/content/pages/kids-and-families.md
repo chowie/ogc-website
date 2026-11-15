@@ -1,5 +1,7 @@
 ---
 title: "Kids & Families"
+seoTitle: "Kids & Sunday School · Oneida Gospel Church"
+description: "Oneida Kids partners with parents in Grand Ledge, MI: nursery, Sunday School at 9:15 a.m., Children's Church, youth group and Vacation Bible School."
 intro: "Oneida Kids partners with parents to help children love and serve Jesus."
 origin:
   status: rewritten

@@ -53,6 +53,8 @@ const events = defineCollection({
       // links and the event page use the church's address otherwise.
       address: z.string().optional(),
       summary: z.string().optional(),
+      // Search-result snippet; the summary is used when there's none.
+      description: z.string().max(160, 'description: 160 characters max (aim for 120–155); search results cut longer ones').optional(),
       // Who it's for ("New attenders", "Women") and whether kids are welcome.
       audience: z.string().optional(),
       kidsWelcome: z.boolean().optional(),
@@ -100,9 +102,12 @@ const pages = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z.object({
     title: z.string().min(1),
+    // The full browser-tab and search-result title, when it should say more
+    // than "Title | Oneida Gospel Church" (approved keyword map, 2026-11-14).
+    seoTitle: z.string().min(1).max(60, 'seoTitle: 60 characters max; search results cut longer ones').optional(),
     eyebrow: z.string().optional(),
     intro: z.string().optional(),
-    description: z.string().optional(),
+    description: z.string().max(160, 'description: 160 characters max (aim for 120–155); search results cut longer ones').optional(),
     // The page default: status and where the copy came from. Required, so
     // every section has a badge and a source note.
     origin,

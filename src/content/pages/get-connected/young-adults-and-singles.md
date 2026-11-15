@@ -1,5 +1,6 @@
 ---
 title: "Young Adults & Singles"
+description: "Church family at Oneida Gospel Church in Grand Ledge, MI for single young adults and anyone without a spouse or kids at home, including a small group."
 intro: "Church family for single young adults and anyone without a spouse or kids at home."
 origin:
   status: placeholder

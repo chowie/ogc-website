@@ -1,5 +1,6 @@
 ---
 title: "Membership"
+description: "What it means to belong to Oneida Gospel Church in Grand Ledge, MI, how to become a member, and when the next membership class meets."
 intro: "What it means to belong to Oneida, and how to join."
 origin:
   status: rewritten

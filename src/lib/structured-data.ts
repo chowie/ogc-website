@@ -82,6 +82,8 @@ export interface EventFacts {
   start: Date;
   end?: Date;
   summary?: string;
+  /** Search-result snippet; preferred over the summary when set. */
+  description?: string;
   /** Room or place name ("Meeting Room, off the chapel"). */
   location?: string;
   /** Street address for an event away from the church. */
@@ -108,7 +110,7 @@ export function eventJsonLd(e: EventFacts, pageUrl: string, site: SiteFacts, sit
     startDate: localIso(e.start),
     ...(e.end && { endDate: localIso(e.end) }),
     eventStatus: 'https://schema.org/EventScheduled',
-    ...(e.summary && { description: e.summary }),
+    ...(e.description || e.summary ? { description: e.description || e.summary } : {}),
     url: pageUrl,
     location: {
       '@type': 'Place',

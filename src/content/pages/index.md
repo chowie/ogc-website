@@ -1,6 +1,7 @@
 ---
 title: "Home"
-description: "Oneida Gospel Church in Grand Ledge, Michigan: a church family opening the Bible together. Come as you are."
+seoTitle: "Oneida Gospel Church · Grand Ledge, MI"
+description: "Oneida Gospel Church in Grand Ledge, Michigan: a church family opening the Bible together. Sunday worship is at 10:30 a.m. Come as you are."
 # The home page's copy lives in src/pages/index.astro (and the welcome line in
 # src/data/site.json); this file records where each section came from.
 origin:

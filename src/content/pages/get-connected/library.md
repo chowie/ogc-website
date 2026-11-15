@@ -1,7 +1,7 @@
 ---
 title: "Church Library"
 intro: "Trusted resources for learning about God, ourselves and the Christian life."
-description: "Borrow books from Oneida Gospel Church's library: browse the catalog online and request a book from the church office."
+description: "Borrow books from Oneida Gospel Church's library in Grand Ledge, MI: browse the catalog online and request a book from the church office."
 origin:
   status: rewritten
   from: "https://www.oneidagospel.org/about-us-1"

@@ -1,5 +1,7 @@
 ---
 title: "Contact"
+seoTitle: "Contact · Oneida Gospel Church, Grand Ledge"
+description: "Contact Oneida Gospel Church, 3048 E. Strange Hwy., Grand Ledge, MI. Call the office at (517) 627-7112, email us, or send a prayer request."
 intro: "Reach a real person."
 origin:
   status: placeholder
