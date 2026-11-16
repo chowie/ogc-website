@@ -126,7 +126,7 @@ noindex in mind):
   - The banner is plain text in every page's HTML, so any crawler, training crawler or assistant that reads the page gets it with the content. That's the one signal that reaches them all.
   - The noindex header only tells search engines not to list the page. Training crawlers follow robots.txt, not noindex. Markup can't mark content "not authoritative" (schema.org has no such property).
   - Lighthouse: performance and accessibility stay 100; no layout shift.
-- **At go-live:** the go-live flag turns off the banner and every label (badges, Source notes, form notices, `/content-status`). The go-live build stops while any section is still a placeholder, so made-up copy can't go live unlabelled.
+- **At go-live:** the go-live flag turns off the banner and every label (badges, Source notes, form notices, `/content-status`). The go-live build warns, listing each section that is still a placeholder, because made-up copy would go live unlabelled. It still builds.
 
 ### 7. First-visitor answers are missing 🟡
 AI assistants answer "what time / where / what about my kids / what do I

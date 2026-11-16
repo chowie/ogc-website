@@ -76,9 +76,9 @@ try {
   fail('verify failed; nothing was changed');
 }
 
-// Once the live site is indexed (go-live), Netlify's production build stops
-// on placeholder copy, and that would only show after the tag is pushed.
-// Catch it here. The demo says noindex in a header and a meta tag (older
+// Once the live site is indexed (go-live), placeholder copy goes out with no
+// label. The build only warns, in Netlify's log, so say it here too, where
+// it will be read. The demo says noindex in a header and a meta tag (older
 // releases only in the meta tag). If the site can't be reached, assume it's
 // indexed.
 const indexed = await fetch(LIVE)
@@ -86,7 +86,7 @@ const indexed = await fetch(LIVE)
   .catch(() => true);
 if (indexed) {
   const blockers = findPlaceholders();
-  if (blockers.length) fail(`the live site is indexed, so this release would fail to deploy. ${placeholderMessage(blockers)}`);
+  if (blockers.length) console.warn(`release: warning: the live site is indexed. ${placeholderMessage(blockers)}`);
 }
 
 writeFileSync('CHANGELOG.md', updated);

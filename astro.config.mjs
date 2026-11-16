@@ -80,17 +80,18 @@ const netlifyHeaders = {
 };
 
 /**
- * Go-live check: stops a go-live build (or dev server) while any page still
- * has placeholder copy, before anything is built. See src/lib/go-live.mjs.
+ * Go-live check: warns at the start of a go-live build (or dev server) while
+ * any page still has placeholder copy. It warns rather than fails (Chris,
+ * 2026-11-15). See src/lib/go-live.mjs.
  * @type {import('astro').AstroIntegration}
  */
 const goLiveCheck = {
   name: 'go-live-check',
   hooks: {
-    'astro:config:setup': () => {
+    'astro:config:setup': ({ logger }) => {
       if (!allowIndexing) return;
       const blockers = findPlaceholders();
-      if (blockers.length) throw new Error(`Go-live build stopped: ${placeholderMessage(blockers)}`);
+      if (blockers.length) logger.warn(placeholderMessage(blockers));
     },
   },
 };

@@ -322,11 +322,11 @@ The same switch ends the demo. A go-live build drops the demo banner, the
 "Draft copy" and "Placeholder" badges, the "Source" notes, the forms' "not
 monitored" notices, the footer's placeholder policy line and
 `/content-status`. Because nothing is labelled any more, **the go-live build
-stops if any section is still a placeholder** and lists each one
-(`/contact#office-hours`); replace that copy and change its
-`status`, then redeploy. Once the live site is indexed, `npm run release`
-runs the same check before tagging, so a release can't fail on Netlify.
-"Draft copy" sections don't stop it, so sign them off first. Before turning
+warns if any section is still a placeholder** and lists each one
+(`/contact#office-hours`). It still builds, so that placeholder copy goes
+live looking real: replace it and change its `status`, then redeploy. Once
+the live site is indexed, `npm run release` prints the same warning before
+tagging. "Draft copy" sections aren't listed, so sign them off first. Before turning
 it on, also make sure someone receives the form submissions (Netlify →
 Forms → notifications).
 
