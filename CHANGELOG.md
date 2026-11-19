@@ -12,7 +12,6 @@ section into the new version.
 
 ### Added
 
-- Women names Bonnie Schulert as the women's ministry leader.
 - Pages carried over from the current website: Global Missions and Jobs
   (under About), and Prayer and Church Library (under Get Connected).
 - Shared links show a preview card with a photo of the church.
@@ -27,6 +26,8 @@ section into the new version.
 
 ### Changed
 
+- The Women page and Our Team now name Bonnie Schulert as the women's
+  ministry leader.
 - Page titles and search descriptions name Grand Ledge and say what each
   page offers, so search results show where the church is and what's there.
 - The phone number is written (517) 627-7112.

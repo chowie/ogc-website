@@ -14,7 +14,7 @@ sections:
   staff:
     status: placeholder
     on: 2026-11-12
-    note: "Rachel's bio is verbatim from the Wix team list (Oct 28, 2026); Bonnie's card is a placeholder until she sends a bio and photo."
+    note: "Rachel's bio is verbatim from the Wix team list (Oct 28, 2026); Bonnie's card is a placeholder until she sends a bio and photo; that she leads women's ministry is from Chris, 2026-11-18."
   deacons:
     status: rewritten
     from: "Notion deacon profiles"

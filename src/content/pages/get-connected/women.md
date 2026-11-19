@@ -6,7 +6,7 @@ origin:
   status: rewritten
   from: "https://www.oneidagospel.org/about"
   on: 2026-11-12
-  note: "Shortened and split into what, when and contact; facts unchanged. The leader (Bonnie Schulert) is from Chris, 2026-11-18."
+  note: "Shortened and split into what, when and contact; facts from the old site unchanged. The leader (Bonnie Schulert) is from Chris, 2026-11-18."
 needs:
   - "Childcare details for the Wednesday morning study"
   - "Exercise room hours"
