@@ -6,10 +6,9 @@ origin:
   status: rewritten
   from: "https://www.oneidagospel.org/about"
   on: 2026-11-12
-  note: "Shortened and split into what, when and contact; facts unchanged."
+  note: "Shortened and split into what, when and contact; facts unchanged. The leader (Bonnie Schulert) is from Chris, 2026-11-18."
 needs:
   - "Childcare details for the Wednesday morning study"
-  - "Leader name, photo and contact for women's ministry"
   - "Exercise room hours"
   - "Next breakfast or lunch fellowship date"
   - "Bible study plans after fall 2026"
@@ -35,4 +34,4 @@ needs:
 
 ## Contact
 
-Call the church office at (517) 627-7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org) for times and details. Leader name and photo will go here.
+[Bonnie Schulert](/about/team/bonnie-schulert) leads women's ministry. Call the church office at (517) 627-7112 or email [office@oneidagospel.org](mailto:office@oneidagospel.org) for times and details.
