@@ -123,7 +123,8 @@ Real copy with a date reads "Verbatim from …, taken …"; real copy with no
 date (site settings, the YouTube import) reads "From …". A placeholder with
 no source and no note reads "made up, with no source". `/content-status`
 lists every section with its label and note, plus what's still needed
-(`needs:`).
+(`needs:`). Labels, notes and `/content-status` exist only in the demo
+(see "Search engines").
 
 To end a page with a form, name it in the frontmatter; it appears after the
 copy, so it belongs to the last section. `interest` preselects the connect
@@ -316,6 +317,18 @@ robots.txt never sees the noindex, and Google can still list a blocked URL it
 finds linked elsewhere. At go-live, set `PUBLIC_ALLOW_INDEXING=true` in the
 Netlify site's environment variables and redeploy; the header and meta tag go
 away and robots.txt lists the sitemap.
+
+The same switch ends the demo. A go-live build drops the demo banner, the
+"Draft copy" and "Placeholder" badges, the "Source" notes, the forms' "not
+monitored" notices, the footer's placeholder policy line and
+`/content-status`. Because nothing is labelled any more, **the go-live build
+warns if any section is still a placeholder** and lists each one
+(`/contact#office-hours`). It still builds, so that placeholder copy goes
+live looking real: replace it and change its `status`, then redeploy. Once
+the live site is indexed, `npm run release` prints the same warning before
+tagging. "Draft copy" sections aren't listed, so sign them off first. Before turning
+it on, also make sure someone receives the form submissions (Netlify →
+Forms → notifications).
 
 Canonical URLs and the sitemap (`/sitemap-index.xml`, dated from each page's
 last commit) use the site's primary domain. Netlify passes it to the build as

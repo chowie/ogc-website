@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/unbounded';
 import '../styles/global.css';
-import { site, allowIndexing, telHref } from '../lib/site';
+import { site, allowIndexing, isDemo, telHref } from '../lib/site';
 import { SHARE_IMAGE_ALT, shareImageUrl as shareImageFor } from '../lib/share-image';
 import { nav, sectionFor, isCurrentPage, normalizePath } from '../data/nav';
 import { breadcrumbJsonLd, serialize } from '../lib/structured-data.ts';
@@ -71,7 +71,7 @@ const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    {!allowIndexing && (
+    {isDemo && (
       <div class="demo-banner" role="note" aria-label="Demo site">
         <p class="container">
           This is a demo of a proposed new website, not the church's official site. For current information, visit <a href="https://www.oneidagospel.org/">oneidagospel.org</a>.
@@ -149,7 +149,8 @@ const structured = [...jsonLd, ...(breadcrumb ? [breadcrumb] : [])];
       </div>
       <div class="container site-footer__base">
         <p>© {new Date().getFullYear()} {site.name}</p>
-        <p>Privacy and photo/video policy: <span class="status-badge status-badge--placeholder">Placeholder</span></p>
+        {/* Demo only: at go-live the line goes until a real policy is linked here. */}
+        {isDemo && <p>Privacy and photo/video policy: <span class="status-badge status-badge--placeholder">Placeholder</span></p>}
       </div>
     </footer>
 

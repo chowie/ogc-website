@@ -4,6 +4,7 @@
 // `interest` preselects an option of the connect form's "interest" list.
 import { forms, type FormDef, type FormName } from '../data/forms';
 import { nextSunday } from '../lib/time';
+import { isDemo } from '../lib/site';
 
 interface Props {
   name: FormName;
@@ -39,7 +40,7 @@ const sunday = nextSunday();
       )}
     </div>
   ))}
-  <p class="demo-notice">Demo site: this form isn't monitored yet. To reach someone, call the church office.</p>
+  {isDemo && <p class="demo-notice">Demo site: this form isn't monitored yet. To reach someone, call the church office.</p>}
   <button class="btn btn--solid" type="submit">{form.submit}</button>
 </form>
 

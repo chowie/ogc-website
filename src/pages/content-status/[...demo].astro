@@ -2,13 +2,18 @@
 // Demo aid, not in the menu: every page and section, whether its copy is
 // real, rewritten from the old site (needs review) or a placeholder, and
 // what's still needed, and where each section's copy came from. Built from
-// the pages collection's frontmatter.
+// the pages collection's frontmatter. Demo only: not built at go-live.
 import { getCollection, render } from 'astro:content';
-import Base from '../layouts/Base.astro';
-import PageHead from '../components/PageHead.astro';
-import { nav } from '../data/nav';
-import { slugify, STATUS_LABELS, hasLeadCopy } from '../lib/section-status.mjs';
-import OriginNote from '../components/OriginNote.astro';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { nav } from '../../data/nav';
+import { slugify, STATUS_LABELS, hasLeadCopy } from '../../lib/section-status.mjs';
+import OriginNote from '../../components/OriginNote.astro';
+import { isDemo } from '../../lib/site';
+
+export function getStaticPaths() {
+  return isDemo ? [{ params: { demo: undefined } }] : [];
+}
 
 const label = (s: string) => STATUS_LABELS[s as keyof typeof STATUS_LABELS];
 // Sections an .astro page adds (SectionHeading) appear only in frontmatter.

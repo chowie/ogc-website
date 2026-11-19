@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { describeOrigin, originText, formatDate, originFor, hasLeadCopy } from '../src/lib/section-status.mjs';
+import { describeOrigin, originText, formatDate, originFor, hasLeadCopy, sectionStatusPlugin } from '../src/lib/section-status.mjs';
 
 const on = new Date('2026-11-12');
 
@@ -46,4 +46,30 @@ test('hasLeadCopy: an intro, or Markdown before the first section', () => {
   assert.equal(hasLeadCopy('Opening line.\n\n## Teams', undefined), true);
   assert.equal(hasLeadCopy('## Teams', 'An intro'), true);
   assert.equal(hasLeadCopy(undefined, undefined), false);
+});
+
+/** Runs the plugin's h2 visitor on one heading; returns its id and what it inserted. */
+function visitHeading(options?: { demoLabels: boolean }) {
+  const node: { properties: Record<string, unknown> } = { properties: {} };
+  const inserted: unknown[] = [];
+  const ctx = {
+    data: { astro: { frontmatter: { origin: { status: 'placeholder', on } } } },
+    textContent: () => 'Our Story',
+    setProperty: (n: typeof node, k: string, v: unknown) => { n.properties[k] = v; },
+    insertAfter: (_n: unknown, added: unknown) => inserted.push(added),
+  };
+  sectionStatusPlugin(options).element.visit(node, ctx);
+  return { id: node.properties.id, inserted };
+}
+
+test('the demo adds a badge and Source note under each section heading', () => {
+  const { id, inserted } = visitHeading();
+  assert.equal(id, 'our-story');
+  assert.equal(inserted.length, 1);
+});
+
+test('the go-live build keeps section ids but adds no demo labels', () => {
+  const { id, inserted } = visitHeading({ demoLabels: false });
+  assert.equal(id, 'our-story');
+  assert.deepEqual(inserted, []);
 });

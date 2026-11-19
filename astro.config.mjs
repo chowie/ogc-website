@@ -6,8 +6,13 @@ import { existsSync, writeFileSync } from 'node:fs';
 import sitemap from '@astrojs/sitemap';
 import { sectionStatusPlugin } from './src/lib/section-status.mjs';
 import { headersFile, NOT_IN_SITEMAP, sourcesFor } from './src/lib/indexing.mjs';
+import { findPlaceholders, placeholderMessage } from './src/lib/go-live.mjs';
+import { loadEnv } from 'vite';
 
-const allowIndexing = process.env.PUBLIC_ALLOW_INDEXING === 'true';
+// Read the go-live switch the way src/lib/site.ts does (environment, then
+// .env files), so the config and the components never disagree.
+const env = { ...loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), 'PUBLIC_'), ...process.env };
+const allowIndexing = env.PUBLIC_ALLOW_INDEXING === 'true';
 
 // Canonical URLs, the sitemap and share links use this address. In
 // production Netlify sets URL to the site's primary domain, so it becomes
@@ -74,10 +79,33 @@ const netlifyHeaders = {
   },
 };
 
+/**
+ * Go-live check: warns at the start of a go-live build (or dev server) while
+ * any page still has placeholder copy. It warns rather than fails (Chris,
+ * 2026-11-15). See src/lib/go-live.mjs.
+ * @type {import('astro').AstroIntegration}
+ */
+const goLiveCheck = {
+  name: 'go-live-check',
+  hooks: {
+    'astro:config:setup': ({ logger }) => {
+      if (!allowIndexing) return;
+      const blockers = findPlaceholders();
+      if (blockers.length) logger.warn(placeholderMessage(blockers));
+    },
+  },
+};
+
 export default defineConfig({
   site: siteUrl,
   output: 'static',
+  // Astro reuses rendered Markdown from this cache unless the config's plain
+  // values change, and it can't see the section-status plugin's option (a
+  // function). Separate folders per mode keep a demo build's badges out of a
+  // go-live build and the reverse.
+  cacheDir: allowIndexing ? './node_modules/.astro-go-live' : './node_modules/.astro',
   integrations: [
+    goLiveCheck,
     netlifyHeaders,
     sitemap({
       filter: (page) => !NOT_IN_SITEMAP.includes(new URL(page).pathname),
@@ -85,7 +113,8 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    processor: satteri({ hastPlugins: [sectionStatusPlugin] }),
+    // Section ids always; demo badges and "Source" notes only until go-live.
+    processor: satteri({ hastPlugins: [() => sectionStatusPlugin({ demoLabels: !allowIndexing })] }),
   },
   // Redirects live in public/_redirects (real HTTP 301s on Netlify).
 });

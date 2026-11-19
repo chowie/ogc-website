@@ -229,8 +229,14 @@ Chris's 5-phase brief. Phase 1 inventory approved. See docs/seo-audit.md
       in Notion, 2026-11-14): `seoTitle` ≤ 60, `description` ≤ 160, plus a
       test that times in descriptions match site.json → PR #22 (merged
       2026-11-15).
-- [ ] Before go-live: hide demo badges/notices when indexing is on;
-      favicon/logo (Chris picking; round 4 adds terracotta seals)
+- [x] Go-live mode drops every demo label and `/content-status`; the go-live
+      build warns (doesn't fail; Chris, 2026-11-15) while any section is a
+      placeholder (33 on 2026-11-15); so does `npm run release` once the
+      live site is indexed
+- [ ] Before go-live: replace the placeholders (the build lists them); sign
+      off draft copy; privacy/photo policy (or leave the footer line out);
+      Netlify form notifications to the office; favicon/logo (Chris picking;
+      round 4 adds terracotta seals)
 
 ## Review system (set aside 2026-11-15)
 Chris wants reviewers to comment on the demo (point at a section, element or

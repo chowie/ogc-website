@@ -22,6 +22,11 @@ are in CLAUDE.md's Gotchas section.
 - **Test fact checks against real copy first** (2026-11-14): the first
   description test failed on "9:30" without "a.m."; run new content tests
   against every file before trusting the rule, and prove they catch a change.
+- **Astro's content cache ignores function options** (2026-11-15): rendered
+  Markdown is reused unless the config's plain values change, so a Markdown
+  plugin option set from an env var gave stale output after switching modes.
+  Test both directions (demo → go-live → demo) without clearing caches; a
+  per-mode `cacheDir` fixed it.
 
 ## Verbatim quotes: don't carry the source's typos onto the website (2026-11-12)
 Quoting the Operating Procedures word for word kept "To BEcome", and Chris

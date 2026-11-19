@@ -12,6 +12,9 @@ section into the new version.
 
 ### Added
 
+- Go-live mode ends the demo: turning on search indexing removes the demo
+  banner, badges, source notes, form notices and the Content Status page,
+  and the build warns about any placeholder copy that's left.
 - Pages carried over from the current website: Global Missions and Jobs
   (under About), and Prayer and Church Library (under Get Connected).
 - Shared links show a preview card with a photo of the church.
