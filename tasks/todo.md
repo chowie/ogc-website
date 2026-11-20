@@ -294,9 +294,10 @@ overflow at 375px on any page. Lighthouse accessibility 100 on all six pages
 (mobile + desktop).
 
 ## Stopped Here
-2026-11-15: PRs #1–#24 merged (v0.2.0 is live at
-https://ogc-website.netlify.app, still noindex; later merges publish nothing
-until Chris runs `npm run release`). The review system is set aside
+2026-11-19: PRs #1–#29 merged (v0.2.0 is live at
+https://ogc-website.netlify.app, still noindex; later merges, including the
+go-live placeholder warning (#27) and Bonnie as women's ministry leader (#28),
+publish nothing until Chris runs `npm run release`). The review system is set aside
 (branch `feat/review-layer-integration`; see "Review system"); focus is on
 finishing the website, with reviews handled manually.
 Every change: branch → PR → Netlify preview + PR checks → Claude review →
@@ -309,7 +310,8 @@ review" list above), in the same PR as the content.
 Chris's open decisions: the Home and Our Beliefs descriptions (separate
 step), the held-back blog posts and `/blog-feed.xml`, Give page missionary
 blurbs vs the verbatim Missions page, and the logo (artifact
-https://claude.ai/artifact/11Wg1B8iijCzXci8gHmocH, round 4).
+https://claude.ai/artifact/11Wg1B8iijCzXci8gHmocH: round 5 asks him to pick
+plum pair P1, P2 or P3 for A1).
 Later phases (TBD, don't start): the Plan Your Visit mode and the review
 system. Other candidates: real content from the `needs:` lists (see
 /content-status). Still open from the content rewrite: pastor tenure, the
